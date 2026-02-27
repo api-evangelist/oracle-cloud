@@ -1,0 +1,161 @@
+name: Oracle Cloud Infrastructure APIs
+description: Collection of Oracle Cloud Infrastructure (OCI) REST APIs for managing cloud resources and services
+image: https://www.oracle.com/a/ocom/img/social-og-oracle-cloud.jpg
+created: '2024-01-01'
+modified: '2024-01-01'
+specificationVersion: '0.18'
+url: https://docs.oracle.com/en-us/iaas/api/
+tags:
+- Cloud Computing
+- Infrastructure as a Service
+- Platform as a Service
+- Enterprise Cloud
+- Oracle
+apis:
+- name: Compute API
+  description: Manage compute instances, images, and related resources
+  image: https://www.oracle.com/cloud/compute/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  baseURL: https://iaas.{region}.oraclecloud.com
+  tags:
+  - Compute
+  - Virtual Machines
+  - Instances
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+  - type: X-pricing
+    url: https://www.oracle.com/cloud/compute/pricing.html
+- name: Object Storage API
+  description: Store and retrieve large amounts of unstructured data
+  image: https://www.oracle.com/cloud/storage/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/latest/
+  baseURL: https://objectstorage.{region}.oraclecloud.com
+  tags:
+  - Object Storage
+  - Storage
+  - Buckets
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Object/home.htm
+  - type: X-pricing
+    url: https://www.oracle.com/cloud/storage/pricing.html
+- name: Networking API
+  description: Manage virtual cloud networks, subnets, and network resources
+  image: https://www.oracle.com/cloud/networking/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vcn/
+  baseURL: https://iaas.{region}.oraclecloud.com
+  tags:
+  - Networking
+  - VCN
+  - Load Balancer
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/overview.htm
+- name: Database API
+  description: Manage Oracle Database Cloud Services and Autonomous Databases
+  image: https://www.oracle.com/database/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/database/latest/
+  baseURL: https://database.{region}.oraclecloud.com
+  tags:
+  - Database
+  - Autonomous Database
+  - DBaaS
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/database/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Database/home.htm
+  - type: X-pricing
+    url: https://www.oracle.com/cloud/price-list.html#database
+- name: Identity and Access Management API
+  description: Manage users, groups, policies, and authentication
+  image: https://www.oracle.com/security/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/identity/latest/
+  baseURL: https://identity.{region}.oraclecloud.com
+  tags:
+  - IAM
+  - Authentication
+  - Authorization
+  - Security
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/identity/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Identity/home.htm
+- name: Container Engine for Kubernetes API
+  description: Manage Kubernetes clusters and node pools
+  image: https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/latest/
+  baseURL: https://containerengine.{region}.oraclecloud.com
+  tags:
+  - Kubernetes
+  - Containers
+  - OKE
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm
+- name: Functions API
+  description: Serverless platform for building and running applications
+  image: https://www.oracle.com/cloud/cloud-native/functions/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/functions/latest/
+  baseURL: https://functions.{region}.oraclecloud.com
+  tags:
+  - Serverless
+  - Functions
+  - FaaS
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/functions/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Functions/home.htm
+- name: Monitoring API
+  description: Monitor cloud resources using metrics and alarms
+  image: https://www.oracle.com/cloud/monitoring/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/latest/
+  baseURL: https://telemetry.{region}.oraclecloud.com
+  tags:
+  - Monitoring
+  - Metrics
+  - Alarms
+  properties:
+  - type: X-openapi
+    url: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/latest/
+  - type: X-documentation
+    url: https://docs.oracle.com/en-us/iaas/Content/Monitoring/home.htm
+common:
+- type: X-portal
+  url: https://cloud.oracle.com/
+- type: X-console
+  url: https://console.oracle.com/
+- type: X-documentation
+  url: https://docs.oracle.com/en-us/iaas/Content/home.htm
+- type: X-authentication
+  url: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm
+- type: X-sdks
+  url: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdks.htm
+- type: X-cli
+  url: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm
+- type: X-status
+  url: https://ocistatus.oraclecloud.com/
+- type: X-support
+  url: https://www.oracle.com/support/
+- type: X-pricing
+  url: https://www.oracle.com/cloud/price-list.html
+- type: X-terms-of-service
+  url: https://www.oracle.com/legal/terms.html
+- type: X-privacy-policy
+  url: https://www.oracle.com/legal/privacy/
+maintainers:
+- FN: Oracle Cloud Infrastructure
+  email: cloud-infrastructure_ww_grp@oracle.com
+  url: https://www.oracle.com/cloud/
+include: []
