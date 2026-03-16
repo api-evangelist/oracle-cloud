@@ -1,10 +1,15 @@
+aid: oracle-cloud
 name: Oracle Cloud Infrastructure APIs
 description: Collection of Oracle Cloud Infrastructure (OCI) REST APIs for managing cloud resources and services
-image: https://www.oracle.com/a/ocom/img/social-og-oracle-cloud.jpg
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 created: '2024-01-01'
-modified: '2024-01-01'
-specificationVersion: '0.18'
-url: https://docs.oracle.com/en-us/iaas/api/
+modified: '2026-03-16'
+specificationVersion: '0.19'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/apis.yml
 tags:
 - Cloud Computing
 - Infrastructure as a Service
@@ -155,7 +160,6 @@ common:
 - type: X-privacy-policy
   url: https://www.oracle.com/legal/privacy/
 maintainers:
-- FN: Oracle Cloud Infrastructure
-  email: cloud-infrastructure_ww_grp@oracle.com
-  url: https://www.oracle.com/cloud/
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 include: []
