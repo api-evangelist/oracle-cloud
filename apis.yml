@@ -1,5 +1,5 @@
 aid: oracle-cloud
-name: Oracle Cloud Infrastructure APIs
+name: Oracle Cloud Infrastructure
 description: Collection of Oracle Cloud Infrastructure (OCI) REST APIs for managing cloud resources and services
 type: Index
 position: Consumer
