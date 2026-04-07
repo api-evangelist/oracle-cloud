@@ -14,10 +14,10 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/apis.yml
 tags:
   - Cloud Computing
-  - Infrastructure as a Service
-  - Platform as a Service
   - Enterprise Cloud
+  - Infrastructure as a Service
   - Oracle
+  - Platform as a Service
 apis:
   - name: Compute API
     description: >-
@@ -27,8 +27,8 @@ apis:
     baseURL: https://iaas.{region}.oraclecloud.com
     tags:
       - Compute
-      - Virtual Machines
       - Instances
+      - Virtual Machines
     properties:
       - type: X-openapi
         url: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/
@@ -43,9 +43,9 @@ apis:
     humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/latest/
     baseURL: https://objectstorage.{region}.oraclecloud.com
     tags:
+      - Buckets
       - Object Storage
       - Storage
-      - Buckets
     properties:
       - type: X-openapi
         url: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/latest/
@@ -60,15 +60,14 @@ apis:
     humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vcn/
     baseURL: https://iaas.{region}.oraclecloud.com
     tags:
+      - Load Balancer
       - Networking
       - VCN
-      - Load Balancer
     properties:
       - type: X-openapi
         url: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/
       - type: X-documentation
-        url: 
-          https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/overview.htm
+        url: https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/overview.htm
   - name: Database API
     description: >-
       Manage Oracle Database Cloud Services and Autonomous Databases.
@@ -76,8 +75,8 @@ apis:
     humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/database/latest/
     baseURL: https://database.{region}.oraclecloud.com
     tags:
-      - Database
       - Autonomous Database
+      - Database
       - DBaaS
     properties:
       - type: X-openapi
@@ -93,9 +92,9 @@ apis:
     humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/identity/latest/
     baseURL: https://identity.{region}.oraclecloud.com
     tags:
-      - IAM
       - Authentication
       - Authorization
+      - IAM
       - Security
     properties:
       - type: X-openapi
@@ -105,14 +104,12 @@ apis:
   - name: Container Engine for Kubernetes API
     description: >-
       Manage Kubernetes clusters and node pools.
-    image: 
-      https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/
-    humanURL: 
-      https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/latest/
+    image: https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/
+    humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/latest/
     baseURL: https://containerengine.{region}.oraclecloud.com
     tags:
-      - Kubernetes
       - Containers
+      - Kubernetes
       - OKE
     properties:
       - type: X-openapi
@@ -126,9 +123,9 @@ apis:
     humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/functions/latest/
     baseURL: https://functions.{region}.oraclecloud.com
     tags:
-      - Serverless
-      - Functions
       - FaaS
+      - Functions
+      - Serverless
     properties:
       - type: X-openapi
         url: https://docs.oracle.com/en-us/iaas/api/#/en/functions/latest/
@@ -141,9 +138,9 @@ apis:
     humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/latest/
     baseURL: https://telemetry.{region}.oraclecloud.com
     tags:
-      - Monitoring
-      - Metrics
       - Alarms
+      - Metrics
+      - Monitoring
     properties:
       - type: X-openapi
         url: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/latest/
@@ -157,8 +154,7 @@ common:
   - type: X-documentation
     url: https://docs.oracle.com/en-us/iaas/Content/home.htm
   - type: X-authentication
-    url: 
-      https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm
+    url: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm
   - type: X-sdks
     url: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdks.htm
   - type: X-cli
