@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "UpdateVcnDetails": "oci:UpdateVcnDetails",
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    }
+  }
+}

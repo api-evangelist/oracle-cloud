@@ -1,0 +1,11 @@
+{
+  "displayName": "updated-instance-name",
+  "shape": "VM.Standard.E4.Flex",
+  "shapeConfig": {
+    "ocpus": 4.0,
+    "memoryInGBs": 32.0
+  },
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

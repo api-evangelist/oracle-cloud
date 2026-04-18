@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/database-create-autonomous-database-details-structure.json",
+  "name": "CreateAutonomousDatabaseDetails",
+  "description": "Details for creating an Autonomous Database.",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dbName": {
+      "type": "string",
+      "example": "MYADB"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-adb"
+    },
+    "cpuCoreCount": {
+      "type": "int32",
+      "example": 2
+    },
+    "dataStorageSizeInTBs": {
+      "type": "int32",
+      "example": 1
+    },
+    "adminPassword": {
+      "type": "string",
+      "example": "********"
+    },
+    "dbWorkload": {
+      "type": "string",
+      "enum": "['OLTP', 'DW', 'AJD', 'APEX']",
+      "example": "OLTP"
+    },
+    "isFreeTier": {
+      "type": "boolean",
+      "default": false,
+      "example": false
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean",
+      "default": false,
+      "example": false
+    }
+  },
+  "required": [
+    "compartmentId",
+    "dbName",
+    "cpuCoreCount",
+    "dataStorageSizeInTBs",
+    "adminPassword"
+  ]
+}

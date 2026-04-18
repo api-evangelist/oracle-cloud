@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/iam-create-policy-details-schema.json",
+  "title": "CreatePolicyDetails",
+  "description": "CreatePolicyDetails schema from oracle-cloud-iam-openapi.yaml",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "name",
+    "description",
+    "statements"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "statements": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

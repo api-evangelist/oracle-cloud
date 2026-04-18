@@ -1,0 +1,9 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "cidrBlocks": "['10.0.0.0/16']",
+  "displayName": "my-vcn",
+  "dnsLabel": "myvcn",
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

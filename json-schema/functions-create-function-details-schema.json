@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/functions-create-function-details-schema.json",
+  "title": "CreateFunctionDetails",
+  "description": "CreateFunctionDetails schema from oracle-cloud-functions-openapi.yaml",
+  "type": "object",
+  "required": [
+    "applicationId",
+    "displayName",
+    "image",
+    "memoryInMBs"
+  ],
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "image": {
+      "type": "string",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "memoryInMBs": {
+      "type": "integer",
+      "example": 1
+    },
+    "timeoutInSeconds": {
+      "type": "integer",
+      "example": 30,
+      "default": 30
+    },
+    "config": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

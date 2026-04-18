@@ -1,0 +1,9 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "instanceId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "volumeId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "lifecycleState": "ATTACHING",
+  "timeCreated": "2026-04-18T10:30:00Z",
+  "attachmentType": "iscsi"
+}

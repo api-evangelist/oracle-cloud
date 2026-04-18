@@ -1,0 +1,6 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "name": "example-value",
+  "description": "example-value",
+  "statements": "['example-value']"
+}

@@ -1,0 +1,39 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateClusterDetails": "oci:CreateClusterDetails",
+    "CreateNodePoolDetails": "oci:CreateNodePoolDetails",
+    "clusterId": {
+      "@id": "oci:clusterId",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "kubernetesVersion": {
+      "@id": "oci:kubernetesVersion",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "nodeShape": {
+      "@id": "oci:nodeShape",
+      "@type": "xsd:string"
+    },
+    "quantityPerSubnet": {
+      "@id": "oci:quantityPerSubnet",
+      "@type": "xsd:integer"
+    },
+    "vcnId": {
+      "@id": "oci:vcnId",
+      "@type": "xsd:string"
+    }
+  }
+}

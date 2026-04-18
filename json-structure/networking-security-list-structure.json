@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/networking-security-list-structure.json",
+  "name": "SecurityList",
+  "description": "A set of firewall rules for a VCN subnet.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "Default Security List"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['PROVISIONING', 'AVAILABLE', 'TERMINATING', 'TERMINATED']",
+      "example": "PROVISIONING"
+    },
+    "ingressSecurityRules": {
+      "type": "array",
+      "example": "[{'protocol': '6', 'source': '0.0.0.0/0', 'isStateless': True}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "egressSecurityRules": {
+      "type": "array",
+      "example": "[{'protocol': 'example-value', 'destination': 'example-value', 'isStateless': True}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

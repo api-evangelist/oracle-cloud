@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/functions-application-schema.json",
+  "title": "Application",
+  "description": "A Functions application containing one or more functions.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the application.",
+      "example": "ocid1.fnapp.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-app"
+    },
+    "subnetIds": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['CREATING', 'ACTIVE', 'DELETING', 'DELETED', 'FAILED']",
+      "example": "CREATING"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "config": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

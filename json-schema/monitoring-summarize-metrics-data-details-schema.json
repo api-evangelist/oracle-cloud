@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/monitoring-summarize-metrics-data-details-schema.json",
+  "title": "SummarizeMetricsDataDetails",
+  "description": "Details for summarizing metrics data.",
+  "type": "object",
+  "required": [
+    "namespace",
+    "query"
+  ],
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "The metric namespace.",
+      "example": "oci_computeagent"
+    },
+    "query": {
+      "type": "string",
+      "description": "The Monitoring Query Language expression.",
+      "example": "CpuUtilization[1m].mean()"
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Start of the time range.",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "End of the time range.",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "resolution": {
+      "type": "string",
+      "description": "The time interval for aggregation.",
+      "example": "1m"
+    }
+  }
+}

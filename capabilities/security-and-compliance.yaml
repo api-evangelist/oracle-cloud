@@ -1,0 +1,30 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud Security and Compliance
+  description: Workflow for managing identity, access control, and monitoring across OCI. Used by security engineers.
+  tags:
+  - Oracle Cloud
+  - Security And Compliance
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - import: iam
+    location: ./shared/iam.yaml
+  - import: monitoring
+    location: ./shared/monitoring.yaml
+  exposes:
+  - type: rest
+    port: 8083
+    namespace: security-and-compliance-api
+    description: Unified REST API for workflow for managing identity, access control, and monitoring across oci.
+  - type: mcp
+    port: 9093
+    namespace: security-and-compliance-mcp
+    transport: http
+    description: MCP server for AI-assisted security and compliance.

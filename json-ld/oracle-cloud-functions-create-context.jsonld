@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateFunctionDetails": "oci:CreateFunctionDetails",
+    "CreateApplicationDetails": "oci:CreateApplicationDetails",
+    "applicationId": {
+      "@id": "oci:applicationId",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "config": {
+      "@id": "oci:config"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "image": {
+      "@id": "oci:image",
+      "@type": "xsd:string"
+    },
+    "memoryInMBs": {
+      "@id": "oci:memoryInMBs",
+      "@type": "xsd:integer"
+    },
+    "subnetIds": {
+      "@id": "oci:subnetIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "timeoutInSeconds": {
+      "@id": "oci:timeoutInSeconds",
+      "@type": "xsd:integer"
+    }
+  }
+}

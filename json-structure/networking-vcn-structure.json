@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/networking-vcn-structure.json",
+  "name": "Vcn",
+  "description": "A virtual cloud network in Oracle Cloud Infrastructure.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the VCN.",
+      "example": "ocid1.vcn.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-vcn"
+    },
+    "cidrBlock": {
+      "type": "string",
+      "description": "The CIDR block of the VCN.",
+      "example": "10.0.0.0/16"
+    },
+    "cidrBlocks": {
+      "type": "array",
+      "description": "List of CIDR blocks.",
+      "example": "['10.0.0.0/16']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "defaultDhcpOptionsId": {
+      "type": "string",
+      "description": "The OCID of the default DHCP options.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "defaultRouteTableId": {
+      "type": "string",
+      "description": "The OCID of the default route table.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "defaultSecurityListId": {
+      "type": "string",
+      "description": "The OCID of the default security list.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dnsLabel": {
+      "type": "string",
+      "description": "The DNS label for the VCN.",
+      "example": "myvcn"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['PROVISIONING', 'AVAILABLE', 'TERMINATING', 'TERMINATED']",
+      "example": "PROVISIONING"
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

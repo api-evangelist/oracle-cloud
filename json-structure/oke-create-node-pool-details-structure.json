@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/oke-create-node-pool-details-structure.json",
+  "name": "CreateNodePoolDetails",
+  "description": "CreateNodePoolDetails schema from oracle-cloud-oke-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "clusterId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "example": "v1.28.2"
+    },
+    "nodeShape": {
+      "type": "string",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "quantityPerSubnet": {
+      "type": "int32",
+      "example": 1
+    }
+  },
+  "required": [
+    "compartmentId",
+    "clusterId",
+    "name",
+    "kubernetesVersion",
+    "nodeShape"
+  ]
+}

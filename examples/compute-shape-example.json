@@ -1,0 +1,9 @@
+{
+  "shape": "VM.Standard.E4.Flex",
+  "processorDescription": "2.55 GHz AMD EPYC 7J13",
+  "ocpus": "1.0",
+  "memoryInGBs": "16.0",
+  "gpus": "0",
+  "networkingBandwidthInGbps": "1.0",
+  "isFlexible": true
+}

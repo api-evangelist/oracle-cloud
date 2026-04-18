@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/monitoring-alarm-structure.json",
+  "name": "Alarm",
+  "description": "A monitoring alarm.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.alarm.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "High CPU Alarm"
+    },
+    "metricCompartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "query": {
+      "type": "string",
+      "example": "CpuUtilization[1m].mean() > 90"
+    },
+    "severity": {
+      "type": "string",
+      "enum": "['CRITICAL', 'ERROR', 'WARNING', 'INFO']",
+      "example": "CRITICAL"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['ACTIVE', 'DELETING', 'DELETED']",
+      "example": "ACTIVE"
+    },
+    "destinations": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "applicationId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "image": "ocid1.image.oc1.iad.abcdefg123456",
+  "memoryInMBs": 1,
+  "timeoutInSeconds": 30,
+  "config": {
+    "key1": "value1"
+  }
+}

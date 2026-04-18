@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/functions-function-summary-schema.json",
+  "title": "FunctionSummary",
+  "description": "FunctionSummary schema from oracle-cloud-functions-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "applicationId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "image": {
+      "type": "string",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "memoryInMBs": {
+      "type": "integer",
+      "example": 1
+    },
+    "lifecycleState": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

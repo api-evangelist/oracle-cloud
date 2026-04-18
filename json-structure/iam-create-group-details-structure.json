@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/iam-create-group-details-structure.json",
+  "name": "CreateGroupDetails",
+  "description": "CreateGroupDetails schema from oracle-cloud-iam-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    }
+  },
+  "required": [
+    "compartmentId",
+    "name",
+    "description"
+  ]
+}

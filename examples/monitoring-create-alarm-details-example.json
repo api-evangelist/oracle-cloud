@@ -1,0 +1,10 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "metricCompartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "namespace": "oci_computeagent",
+  "query": "CpuUtilization[1m].mean()",
+  "severity": "CRITICAL",
+  "isEnabled": true,
+  "destinations": "['example-value']"
+}

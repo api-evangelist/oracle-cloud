@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/monitoring-metric-data-schema.json",
+  "title": "MetricData",
+  "description": "Aggregated metric data points.",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "name": {
+      "type": "string",
+      "example": "CpuUtilization"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dimensions": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "aggregatedDatapoints": {
+      "type": "array",
+      "example": "[{'timestamp': '2026-04-18T10:30:00Z', 'value': 42.5}]",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

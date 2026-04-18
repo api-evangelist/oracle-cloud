@@ -1,0 +1,90 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Shape": "oci:Shape",
+    "Image": "oci:Image",
+    "Instance": "oci:Instance",
+    "availabilityDomain": {
+      "@id": "oci:availabilityDomain",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "definedTags": {
+      "@id": "oci:definedTags"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    },
+    "gpus": {
+      "@id": "oci:gpus",
+      "@type": "xsd:integer"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "imageId": {
+      "@id": "oci:imageId",
+      "@type": "xsd:string"
+    },
+    "isFlexible": {
+      "@id": "oci:isFlexible",
+      "@type": "xsd:boolean"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "memoryInGBs": {
+      "@id": "oci:memoryInGBs",
+      "@type": "xsd:decimal"
+    },
+    "networkingBandwidthInGbps": {
+      "@id": "oci:networkingBandwidthInGbps",
+      "@type": "xsd:decimal"
+    },
+    "ocpus": {
+      "@id": "oci:ocpus",
+      "@type": "xsd:decimal"
+    },
+    "operatingSystem": {
+      "@id": "oci:operatingSystem",
+      "@type": "xsd:string"
+    },
+    "operatingSystemVersion": {
+      "@id": "oci:operatingSystemVersion",
+      "@type": "xsd:string"
+    },
+    "processorDescription": {
+      "@id": "oci:processorDescription",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "oci:region",
+      "@type": "xsd:string"
+    },
+    "shape": {
+      "@id": "oci:shape",
+      "@type": "xsd:string"
+    },
+    "sizeInMBs": {
+      "@id": "oci:sizeInMBs",
+      "@type": "xsd:integer"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

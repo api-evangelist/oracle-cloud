@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/database-autonomous-database-structure.json",
+  "name": "AutonomousDatabase",
+  "description": "An Oracle Autonomous Database.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID.",
+      "example": "ocid1.autonomousdatabase.oc1.iad.abcdefg"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "User-friendly name.",
+      "example": "my-adb"
+    },
+    "dbName": {
+      "type": "string",
+      "description": "The database name.",
+      "example": "MYADB"
+    },
+    "cpuCoreCount": {
+      "type": "int32",
+      "description": "Number of CPU cores.",
+      "example": 2
+    },
+    "dataStorageSizeInTBs": {
+      "type": "int32",
+      "description": "Data storage size in terabytes.",
+      "example": 1
+    },
+    "dbWorkload": {
+      "type": "string",
+      "description": "The workload type.",
+      "enum": "['OLTP', 'DW', 'AJD', 'APEX']",
+      "example": "OLTP"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "description": "Current state.",
+      "enum": "['PROVISIONING', 'AVAILABLE', 'STOPPING', 'STOPPED', 'STARTING', 'TERMINATING', 'TERMINATED', 'RESTORE_IN_PROGRESS', 'BACKUP_IN_PROGRESS', 'SCALE_IN_PROGRESS', 'AVAILABLE_NEEDS_ATTENTION', 'UPDATING']",
+      "example": "PROVISIONING"
+    },
+    "isFreeTier": {
+      "type": "boolean",
+      "description": "Whether this is an Always Free resource.",
+      "example": true
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean",
+      "description": "Whether auto scaling is enabled.",
+      "example": true
+    },
+    "connectionUrls": {
+      "type": "object",
+      "example": {
+        "sqlDevWebUrl": "example-value",
+        "apexUrl": "example-value",
+        "graphStudioUrl": "example-value"
+      }
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

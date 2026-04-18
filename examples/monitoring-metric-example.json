@@ -1,0 +1,8 @@
+{
+  "name": "CpuUtilization",
+  "namespace": "oci_computeagent",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "dimensions": {
+    "key1": "value1"
+  }
+}

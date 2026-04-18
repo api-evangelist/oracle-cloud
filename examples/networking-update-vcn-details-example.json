@@ -1,0 +1,6 @@
+{
+  "displayName": "my-resource",
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

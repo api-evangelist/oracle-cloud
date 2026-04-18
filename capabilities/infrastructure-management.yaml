@@ -1,0 +1,32 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud Infrastructure Management
+  description: Unified workflow for managing compute instances, networking, and storage resources across OCI. Used by cloud administrators and DevOps engineers.
+  tags:
+  - Oracle Cloud
+  - Infrastructure Management
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - import: compute
+    location: ./shared/compute.yaml
+  - import: networking
+    location: ./shared/networking.yaml
+  - import: object-storage
+    location: ./shared/object-storage.yaml
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: infrastructure-management-api
+    description: Unified REST API for unified workflow for managing compute instances, networking, and storage resources across oci.
+  - type: mcp
+    port: 9090
+    namespace: infrastructure-management-mcp
+    transport: http
+    description: MCP server for AI-assisted infrastructure management.

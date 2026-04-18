@@ -1,0 +1,8 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "clusterId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "name": "example-value",
+  "kubernetesVersion": "v1.28.2",
+  "nodeShape": "VM.Standard.E4.Flex",
+  "lifecycleState": "example-value"
+}

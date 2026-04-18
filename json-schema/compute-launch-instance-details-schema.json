@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/compute-launch-instance-details-schema.json",
+  "title": "LaunchInstanceDetails",
+  "description": "Details for launching a new compute instance.",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "shape",
+    "availabilityDomain"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.compartment.oc1..abcdefg123456"
+    },
+    "availabilityDomain": {
+      "type": "string",
+      "description": "The availability domain.",
+      "example": "Uocm:US-ASHBURN-AD-1"
+    },
+    "shape": {
+      "type": "string",
+      "description": "The shape of the instance.",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-new-instance"
+    },
+    "imageId": {
+      "type": "string",
+      "description": "The OCID of the image to use.",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "subnetId": {
+      "type": "string",
+      "description": "The OCID of the subnet.",
+      "example": "ocid1.subnet.oc1.iad.abcdefg123456"
+    },
+    "shapeConfig": {
+      "type": "object",
+      "description": "Configuration for flexible shapes.",
+      "example": {
+        "ocpus": 2.0,
+        "memoryInGBs": 16.0
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

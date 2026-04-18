@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/compute-shape-structure.json",
+  "name": "Shape",
+  "description": "A compute shape defining the resources available for an instance.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "The name of the shape.",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "processorDescription": {
+      "type": "string",
+      "description": "Description of the processor.",
+      "example": "2.55 GHz AMD EPYC 7J13"
+    },
+    "ocpus": {
+      "type": "double",
+      "description": "Default number of OCPUs.",
+      "example": "1.0"
+    },
+    "memoryInGBs": {
+      "type": "double",
+      "description": "Default amount of memory in gigabytes.",
+      "example": "16.0"
+    },
+    "gpus": {
+      "type": "int32",
+      "description": "Number of GPUs.",
+      "example": "0"
+    },
+    "networkingBandwidthInGbps": {
+      "type": "double",
+      "description": "Networking bandwidth in Gbps.",
+      "example": "1.0"
+    },
+    "isFlexible": {
+      "type": "boolean",
+      "description": "Whether the shape is flexible.",
+      "example": true
+    }
+  }
+}

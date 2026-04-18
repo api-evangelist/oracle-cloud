@@ -1,0 +1,122 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ObjectSummary": "oci:ObjectSummary",
+    "BucketSummary": "oci:BucketSummary",
+    "UpdateBucketDetails": "oci:UpdateBucketDetails",
+    "PreauthenticatedRequestSummary": "oci:PreauthenticatedRequestSummary",
+    "PreauthenticatedRequest": "oci:PreauthenticatedRequest",
+    "Bucket": "oci:Bucket",
+    "ListObjects": "oci:ListObjects",
+    "CreateBucketDetails": "oci:CreateBucketDetails",
+    "CreatePreauthenticatedRequestDetails": "oci:CreatePreauthenticatedRequestDetails",
+    "accessType": {
+      "@id": "oci:accessType",
+      "@type": "xsd:string"
+    },
+    "accessUri": {
+      "@id": "oci:accessUri",
+      "@type": "xsd:string"
+    },
+    "approximateCount": {
+      "@id": "oci:approximateCount",
+      "@type": "xsd:integer"
+    },
+    "approximateSize": {
+      "@id": "oci:approximateSize",
+      "@type": "xsd:integer"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "createdBy": {
+      "@id": "oci:createdBy",
+      "@type": "xsd:string"
+    },
+    "definedTags": {
+      "@id": "oci:definedTags"
+    },
+    "etag": {
+      "@id": "oci:etag",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "md5": {
+      "@id": "oci:md5",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "namespace": {
+      "@id": "oci:namespace",
+      "@type": "xsd:string"
+    },
+    "nextStartWith": {
+      "@id": "oci:nextStartWith",
+      "@type": "xsd:string"
+    },
+    "objectEventsEnabled": {
+      "@id": "oci:objectEventsEnabled",
+      "@type": "xsd:boolean"
+    },
+    "objectLifecyclePolicyEtag": {
+      "@id": "oci:objectLifecyclePolicyEtag",
+      "@type": "xsd:string"
+    },
+    "objectName": {
+      "@id": "oci:objectName",
+      "@type": "xsd:string"
+    },
+    "objects": {
+      "@id": "oci:objects",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "prefixes": {
+      "@id": "oci:prefixes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "publicAccessType": {
+      "@id": "oci:publicAccessType",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "oci:size",
+      "@type": "xsd:integer"
+    },
+    "storageTier": {
+      "@id": "oci:storageTier",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "timeExpires": {
+      "@id": "oci:timeExpires",
+      "@type": "xsd:dateTime"
+    },
+    "timeModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "versioning": {
+      "@id": "oci:versioning",
+      "@type": "xsd:string"
+    }
+  }
+}

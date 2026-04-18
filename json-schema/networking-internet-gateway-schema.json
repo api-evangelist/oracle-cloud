@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/networking-internet-gateway-schema.json",
+  "title": "InternetGateway",
+  "description": "An internet gateway for a VCN.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-internet-gateway"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['PROVISIONING', 'AVAILABLE', 'TERMINATING', 'TERMINATED']",
+      "example": "PROVISIONING"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

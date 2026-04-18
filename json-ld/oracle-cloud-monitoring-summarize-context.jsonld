@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SummarizeMetricsDataDetails": "oci:SummarizeMetricsDataDetails",
+    "endTime": {
+      "@id": "oci:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "namespace": {
+      "@id": "oci:namespace",
+      "@type": "xsd:string"
+    },
+    "query": {
+      "@id": "oci:query",
+      "@type": "xsd:string"
+    },
+    "resolution": {
+      "@id": "oci:resolution",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "oci:startTime",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

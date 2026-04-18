@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/iam-group-schema.json",
+  "title": "Group",
+  "description": "An IAM group.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "Administrators"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['CREATING', 'ACTIVE', 'INACTIVE', 'DELETING', 'DELETED']",
+      "example": "CREATING"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

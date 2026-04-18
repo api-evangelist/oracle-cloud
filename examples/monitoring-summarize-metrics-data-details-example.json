@@ -1,0 +1,7 @@
+{
+  "namespace": "oci_computeagent",
+  "query": "CpuUtilization[1m].mean()",
+  "startTime": "2026-04-18T10:30:00Z",
+  "endTime": "2026-04-18T10:30:00Z",
+  "resolution": "1m"
+}

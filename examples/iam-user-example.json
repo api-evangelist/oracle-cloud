@@ -1,0 +1,10 @@
+{
+  "id": "ocid1.user.oc1..abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "name": "jsmith@example.com",
+  "description": "John Smith",
+  "email": "jsmith@example.com",
+  "lifecycleState": "CREATING",
+  "isMfaActivated": true,
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

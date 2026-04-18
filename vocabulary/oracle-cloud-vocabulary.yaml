@@ -1,0 +1,1242 @@
+vocabulary: 1.0.0
+info:
+  provider: Oracle Cloud Infrastructure
+  description: Unified taxonomy mapping operational and capability dimensions of Oracle Cloud Infrastructure APIs.
+  created: '2026-04-18'
+  modified: '2026-04-18'
+operational:
+  apis:
+  - name: Oracle Cloud Functions API
+    namespace: functions
+    version: '20181201'
+    baseUrl: https://functions.{region}.oraclecloud.com/20181201
+    status: active
+  - name: Oracle Cloud Monitoring API
+    namespace: monitoring
+    version: '20180401'
+    baseUrl: https://telemetry.{region}.oraclecloud.com/20180401
+    status: active
+  - name: Oracle Cloud Container Engine for Kubernetes API
+    namespace: oke
+    version: '20180222'
+    baseUrl: https://containerengine.{region}.oraclecloud.com/20180222
+    status: active
+  - name: Oracle Cloud Networking API
+    namespace: networking
+    version: '20160918'
+    baseUrl: https://iaas.{region}.oraclecloud.com/20160918
+    status: active
+  - name: Oracle Cloud Database API
+    namespace: database
+    version: '20160918'
+    baseUrl: https://database.{region}.oraclecloud.com/20160918
+    status: active
+  - name: Oracle Cloud Object Storage API
+    namespace: object-storage
+    version: '20160918'
+    baseUrl: https://objectstorage.{region}.oraclecloud.com
+    status: active
+  - name: Oracle Cloud Compute API
+    namespace: compute
+    version: '20160918'
+    baseUrl: https://iaas.{region}.oraclecloud.com/20160918
+    status: active
+  - name: Oracle Cloud Identity and Access Management API
+    namespace: iam
+    version: '20160918'
+    baseUrl: https://identity.{region}.oraclecloud.com/20160918
+    status: active
+  resources:
+  - name: Applications
+    api: functions
+    actions: &id001
+    - list
+    - create
+    - get
+    - delete
+  - name: Functions
+    api: functions
+    actions: &id002
+    - list
+    - create
+    - get
+    - delete
+    - invoke
+  - name: Metrics
+    api: monitoring
+    actions: &id003
+    - summarize
+    - list
+  - name: Alarms
+    api: monitoring
+    actions: &id004
+    - list
+    - create
+    - get
+    - update
+    - delete
+  - name: Clusters
+    api: oke
+    actions: &id005
+    - list
+    - create
+    - get
+    - update
+    - delete
+  - name: Node Pools
+    api: oke
+    actions: &id006
+    - list
+    - create
+    - get
+    - delete
+  - name: VCNs
+    api: networking
+    actions: &id007
+    - list
+    - create
+    - get
+    - update
+    - delete
+  - name: Subnets
+    api: networking
+    actions: &id008
+    - list
+    - create
+    - get
+    - delete
+  - name: Security Lists
+    api: networking
+    actions: &id009
+    - list
+  - name: Internet Gateways
+    api: networking
+    actions: &id010
+    - list
+    - create
+  - name: Route Tables
+    api: networking
+    actions: &id011
+    - list
+  - name: Autonomous Databases
+    api: database
+    actions: &id012
+    - list
+    - create
+    - get
+    - update
+    - delete
+    - start
+    - stop
+  - name: DB Systems
+    api: database
+    actions: &id013
+    - list
+    - get
+  - name: Namespaces
+    api: object-storage
+    actions: &id014
+    - get
+  - name: Buckets
+    api: object-storage
+    actions: &id015
+    - list
+    - create
+    - get
+    - update
+    - delete
+  - name: Objects
+    api: object-storage
+    actions: &id016
+    - list
+    - get
+    - putO
+    - delete
+  - name: Preauthenticated Requests
+    api: object-storage
+    actions: &id017
+    - list
+    - create
+  - name: Instances
+    api: compute
+    actions: &id018
+    - list
+    - laun
+    - get
+    - update
+    - terminate
+    - inst
+  - name: Images
+    api: compute
+    actions: &id019
+    - list
+    - get
+  - name: Shapes
+    api: compute
+    actions: &id020
+    - list
+  - name: Volume Attachments
+    api: compute
+    actions: &id021
+    - list
+    - attach
+    - detach
+  - name: Users
+    api: iam
+    actions: &id022
+    - list
+    - create
+    - get
+    - update
+    - delete
+  - name: Groups
+    api: iam
+    actions: &id023
+    - list
+    - create
+  - name: Policies
+    api: iam
+    actions: &id024
+    - list
+    - create
+  - name: Compartments
+    api: iam
+    actions: &id025
+    - list
+  actions:
+  - name: attach
+    pattern: write
+  - name: create
+    pattern: write
+  - name: delete
+    pattern: destructive
+  - name: detach
+    pattern: destructive
+  - name: get
+    pattern: read
+  - name: inst
+    pattern: action
+  - name: invoke
+    pattern: action
+  - name: laun
+    pattern: action
+  - name: list
+    pattern: read
+  - name: putO
+    pattern: action
+  - name: start
+    pattern: action
+  - name: stop
+    pattern: destructive
+  - name: summarize
+    pattern: read
+  - name: terminate
+    pattern: destructive
+  - name: update
+    pattern: write
+  schemas:
+    core:
+    - name: Application
+      api: functions
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - subnetIds
+      - lifecycleState
+    - name: ApplicationSummary
+      api: functions
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - lifecycleState
+      - timeCreated
+    - name: CreateApplicationDetails
+      api: functions
+      keyProperties:
+      - compartmentId
+      - displayName
+      - subnetIds
+      - config
+    - name: Function
+      api: functions
+      keyProperties:
+      - id
+      - applicationId
+      - compartmentId
+      - displayName
+      - image
+    - name: FunctionSummary
+      api: functions
+      keyProperties:
+      - id
+      - applicationId
+      - displayName
+      - image
+      - memoryInMBs
+    - name: CreateFunctionDetails
+      api: functions
+      keyProperties:
+      - applicationId
+      - displayName
+      - image
+      - memoryInMBs
+      - timeoutInSeconds
+    - name: SummarizeMetricsDataDetails
+      api: monitoring
+      keyProperties:
+      - namespace
+      - query
+      - startTime
+      - endTime
+      - resolution
+    - name: MetricData
+      api: monitoring
+      keyProperties:
+      - namespace
+      - name
+      - compartmentId
+      - dimensions
+      - aggregatedDatapoints
+    - name: Metric
+      api: monitoring
+      keyProperties:
+      - name
+      - namespace
+      - compartmentId
+      - dimensions
+    - name: Alarm
+      api: monitoring
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - metricCompartmentId
+      - namespace
+    - name: AlarmSummary
+      api: monitoring
+      keyProperties:
+      - id
+      - displayName
+      - severity
+      - isEnabled
+      - lifecycleState
+    - name: CreateAlarmDetails
+      api: monitoring
+      keyProperties:
+      - compartmentId
+      - displayName
+      - metricCompartmentId
+      - namespace
+      - query
+    - name: UpdateAlarmDetails
+      api: monitoring
+      keyProperties:
+      - displayName
+      - query
+      - severity
+      - isEnabled
+    - name: Cluster
+      api: oke
+      keyProperties:
+      - id
+      - compartmentId
+      - name
+      - kubernetesVersion
+      - vcnId
+    - name: ClusterSummary
+      api: oke
+      keyProperties:
+      - id
+      - compartmentId
+      - name
+      - kubernetesVersion
+      - lifecycleState
+    - name: CreateClusterDetails
+      api: oke
+      keyProperties:
+      - compartmentId
+      - name
+      - vcnId
+      - kubernetesVersion
+    - name: UpdateClusterDetails
+      api: oke
+      keyProperties:
+      - name
+      - kubernetesVersion
+    - name: NodePool
+      api: oke
+      keyProperties:
+      - id
+      - clusterId
+      - compartmentId
+      - name
+      - kubernetesVersion
+    - name: NodePoolSummary
+      api: oke
+      keyProperties:
+      - id
+      - clusterId
+      - name
+      - kubernetesVersion
+      - nodeShape
+    - name: CreateNodePoolDetails
+      api: oke
+      keyProperties:
+      - compartmentId
+      - clusterId
+      - name
+      - kubernetesVersion
+      - nodeShape
+    - name: Vcn
+      api: networking
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - cidrBlock
+      - cidrBlocks
+    - name: CreateVcnDetails
+      api: networking
+      keyProperties:
+      - compartmentId
+      - cidrBlocks
+      - displayName
+      - dnsLabel
+      - freeformTags
+    - name: UpdateVcnDetails
+      api: networking
+      keyProperties:
+      - displayName
+      - freeformTags
+    - name: Subnet
+      api: networking
+      keyProperties:
+      - id
+      - compartmentId
+      - vcnId
+      - displayName
+      - cidrBlock
+    - name: CreateSubnetDetails
+      api: networking
+      keyProperties:
+      - compartmentId
+      - vcnId
+      - cidrBlock
+      - displayName
+      - dnsLabel
+    - name: SecurityList
+      api: networking
+      keyProperties:
+      - id
+      - compartmentId
+      - vcnId
+      - displayName
+      - lifecycleState
+    - name: InternetGateway
+      api: networking
+      keyProperties:
+      - id
+      - compartmentId
+      - vcnId
+      - displayName
+      - isEnabled
+    - name: CreateInternetGatewayDetails
+      api: networking
+      keyProperties:
+      - compartmentId
+      - vcnId
+      - isEnabled
+      - displayName
+    - name: RouteTable
+      api: networking
+      keyProperties:
+      - id
+      - compartmentId
+      - vcnId
+      - displayName
+      - lifecycleState
+    - name: AutonomousDatabase
+      api: database
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - dbName
+      - cpuCoreCount
+    - name: AutonomousDatabaseSummary
+      api: database
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - dbName
+      - cpuCoreCount
+    - name: CreateAutonomousDatabaseDetails
+      api: database
+      keyProperties:
+      - compartmentId
+      - dbName
+      - displayName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+    - name: UpdateAutonomousDatabaseDetails
+      api: database
+      keyProperties:
+      - displayName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+      - isAutoScalingEnabled
+      - adminPassword
+    - name: DbSystem
+      api: database
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - shape
+      - availabilityDomain
+    - name: DbSystemSummary
+      api: database
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - shape
+      - lifecycleState
+    - name: BucketSummary
+      api: object-storage
+      keyProperties:
+      - namespace
+      - name
+      - compartmentId
+      - createdBy
+      - timeCreated
+    - name: Bucket
+      api: object-storage
+      keyProperties:
+      - namespace
+      - name
+      - compartmentId
+      - createdBy
+      - timeCreated
+    - name: CreateBucketDetails
+      api: object-storage
+      keyProperties:
+      - name
+      - compartmentId
+      - publicAccessType
+      - storageTier
+      - objectEventsEnabled
+    - name: UpdateBucketDetails
+      api: object-storage
+      keyProperties:
+      - name
+      - namespace
+      - compartmentId
+      - publicAccessType
+      - objectEventsEnabled
+    - name: ListObjects
+      api: object-storage
+      keyProperties:
+      - objects
+      - prefixes
+      - nextStartWith
+    - name: ObjectSummary
+      api: object-storage
+      keyProperties:
+      - name
+      - size
+      - md5
+      - timeCreated
+      - timeModified
+    - name: PreauthenticatedRequestSummary
+      api: object-storage
+      keyProperties:
+      - id
+      - name
+      - objectName
+      - accessType
+      - timeExpires
+    - name: PreauthenticatedRequest
+      api: object-storage
+      keyProperties:
+      - id
+      - name
+      - accessUri
+      - objectName
+      - accessType
+    - name: CreatePreauthenticatedRequestDetails
+      api: object-storage
+      keyProperties:
+      - name
+      - objectName
+      - accessType
+      - timeExpires
+    - name: Instance
+      api: compute
+      keyProperties:
+      - id
+      - compartmentId
+      - availabilityDomain
+      - displayName
+      - shape
+    - name: LaunchInstanceDetails
+      api: compute
+      keyProperties:
+      - compartmentId
+      - availabilityDomain
+      - shape
+      - displayName
+      - imageId
+    - name: UpdateInstanceDetails
+      api: compute
+      keyProperties:
+      - displayName
+      - shape
+      - shapeConfig
+      - freeformTags
+    - name: Image
+      api: compute
+      keyProperties:
+      - id
+      - compartmentId
+      - displayName
+      - operatingSystem
+      - operatingSystemVersion
+    - name: Shape
+      api: compute
+      keyProperties:
+      - shape
+      - processorDescription
+      - ocpus
+      - memoryInGBs
+      - gpus
+    - name: VolumeAttachment
+      api: compute
+      keyProperties:
+      - id
+      - instanceId
+      - volumeId
+      - displayName
+      - lifecycleState
+    - name: AttachVolumeDetails
+      api: compute
+      keyProperties:
+      - instanceId
+      - volumeId
+      - type
+      - displayName
+      - isReadOnly
+    - name: User
+      api: iam
+      keyProperties:
+      - id
+      - compartmentId
+      - name
+      - description
+      - email
+    - name: CreateUserDetails
+      api: iam
+      keyProperties:
+      - compartmentId
+      - name
+      - description
+      - email
+    - name: UpdateUserDetails
+      api: iam
+      keyProperties:
+      - description
+      - email
+    - name: Group
+      api: iam
+      keyProperties:
+      - id
+      - compartmentId
+      - name
+      - description
+      - lifecycleState
+    - name: CreateGroupDetails
+      api: iam
+      keyProperties:
+      - compartmentId
+      - name
+      - description
+    - name: Policy
+      api: iam
+      keyProperties:
+      - id
+      - compartmentId
+      - name
+      - description
+      - statements
+    - name: CreatePolicyDetails
+      api: iam
+      keyProperties:
+      - compartmentId
+      - name
+      - description
+      - statements
+    - name: Compartment
+      api: iam
+      keyProperties:
+      - id
+      - compartmentId
+      - name
+      - description
+      - lifecycleState
+  parameters:
+    pagination:
+    - name: limit
+      type: integer
+    - name: page
+      type: string
+    identifiers:
+    - name: compartmentId
+      type: string
+    - name: applicationId
+      type: string
+    - name: functionId
+      type: string
+    - name: alarmId
+      type: string
+    - name: clusterId
+      type: string
+    - name: nodePoolId
+      type: string
+    - name: vcnId
+      type: string
+    - name: subnetId
+      type: string
+    - name: autonomousDatabaseId
+      type: string
+    - name: dbSystemId
+      type: string
+    - name: instanceId
+      type: string
+    - name: imageId
+      type: string
+    - name: volumeAttachmentId
+      type: string
+    - name: userId
+      type: string
+    filters:
+    - name: name
+      type: string
+    - name: namespace
+      type: string
+    - name: namespaceName
+      type: string
+    - name: bucketName
+      type: string
+    - name: prefix
+      type: string
+    - name: delimiter
+      type: string
+    - name: start
+      type: string
+    - name: objectName
+      type: string
+    - name: Content-Type
+      type: string
+    - name: Content-Length
+      type: integer
+    - name: availabilityDomain
+      type: string
+    - name: displayName
+      type: string
+    - name: lifecycleState
+      type: string
+    - name: preserveBootVolume
+      type: boolean
+    - name: action
+      type: string
+    - name: operatingSystem
+      type: string
+  enums:
+    states:
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - DELETING
+      - DELETED
+      - FAILED
+      schema: Application
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - INACTIVE
+      - UPDATING
+      - DELETING
+      - DELETED
+      - FAILED
+      schema: Function
+    - name: lifecycleState
+      values:
+      - ACTIVE
+      - DELETING
+      - DELETED
+      schema: Alarm
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - FAILED
+      - DELETING
+      - DELETED
+      - UPDATING
+      schema: Cluster
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - AVAILABLE
+      - TERMINATING
+      - TERMINATED
+      schema: Vcn
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - AVAILABLE
+      - TERMINATING
+      - TERMINATED
+      schema: Subnet
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - AVAILABLE
+      - TERMINATING
+      - TERMINATED
+      schema: SecurityList
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - AVAILABLE
+      - TERMINATING
+      - TERMINATED
+      schema: InternetGateway
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - AVAILABLE
+      - TERMINATING
+      - TERMINATED
+      schema: RouteTable
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - AVAILABLE
+      - STOPPING
+      - STOPPED
+      - STARTING
+      - TERMINATING
+      - TERMINATED
+      - RESTORE_IN_PROGRESS
+      - BACKUP_IN_PROGRESS
+      - SCALE_IN_PROGRESS
+      - AVAILABLE_NEEDS_ATTENTION
+      - UPDATING
+      schema: AutonomousDatabase
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - RUNNING
+      - STARTING
+      - STOPPING
+      - STOPPED
+      - CREATING_IMAGE
+      - TERMINATING
+      - TERMINATED
+      schema: Instance
+    - name: lifecycleState
+      values:
+      - PROVISIONING
+      - IMPORTING
+      - AVAILABLE
+      - EXPORTING
+      - DISABLED
+      - DELETED
+      schema: Image
+    - name: lifecycleState
+      values:
+      - ATTACHING
+      - ATTACHED
+      - DETACHING
+      - DETACHED
+      schema: VolumeAttachment
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - INACTIVE
+      - DELETING
+      - DELETED
+      schema: User
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - INACTIVE
+      - DELETING
+      - DELETED
+      schema: Group
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - INACTIVE
+      - DELETING
+      - DELETED
+      schema: Policy
+    - name: lifecycleState
+      values:
+      - CREATING
+      - ACTIVE
+      - INACTIVE
+      - DELETING
+      - DELETED
+      schema: Compartment
+    types:
+    - name: severity
+      values:
+      - CRITICAL
+      - ERROR
+      - WARNING
+      - INFO
+      schema: Alarm
+    - name: severity
+      values:
+      - CRITICAL
+      - ERROR
+      - WARNING
+      - INFO
+      schema: CreateAlarmDetails
+    - name: dbWorkload
+      values:
+      - OLTP
+      - DW
+      - AJD
+      - APEX
+      schema: AutonomousDatabase
+    - name: dbWorkload
+      values:
+      - OLTP
+      - DW
+      - AJD
+      - APEX
+      schema: CreateAutonomousDatabaseDetails
+    - name: databaseEdition
+      values:
+      - STANDARD_EDITION
+      - ENTERPRISE_EDITION
+      - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+      - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+      schema: DbSystem
+    - name: publicAccessType
+      values:
+      - NoPublicAccess
+      - ObjectRead
+      - ObjectReadWithoutList
+      schema: Bucket
+    - name: storageTier
+      values:
+      - Standard
+      - Archive
+      schema: Bucket
+    - name: versioning
+      values:
+      - Enabled
+      - Suspended
+      - Disabled
+      schema: Bucket
+    - name: publicAccessType
+      values:
+      - NoPublicAccess
+      - ObjectRead
+      - ObjectReadWithoutList
+      schema: CreateBucketDetails
+    - name: storageTier
+      values:
+      - Standard
+      - Archive
+      schema: CreateBucketDetails
+    - name: versioning
+      values:
+      - Enabled
+      - Disabled
+      schema: CreateBucketDetails
+    - name: publicAccessType
+      values:
+      - NoPublicAccess
+      - ObjectRead
+      - ObjectReadWithoutList
+      schema: UpdateBucketDetails
+    - name: versioning
+      values:
+      - Enabled
+      - Suspended
+      schema: UpdateBucketDetails
+    - name: storageTier
+      values:
+      - Standard
+      - InfrequentAccess
+      - Archive
+      schema: ObjectSummary
+    - name: accessType
+      values:
+      - ObjectRead
+      - ObjectWrite
+      - ObjectReadWrite
+      - AnyObjectRead
+      - AnyObjectWrite
+      - AnyObjectReadWrite
+      schema: PreauthenticatedRequestSummary
+    - name: accessType
+      values:
+      - ObjectRead
+      - ObjectWrite
+      - ObjectReadWrite
+      - AnyObjectRead
+      - AnyObjectWrite
+      - AnyObjectReadWrite
+      schema: PreauthenticatedRequest
+    - name: accessType
+      values:
+      - ObjectRead
+      - ObjectWrite
+      - ObjectReadWrite
+      - AnyObjectRead
+      - AnyObjectWrite
+      - AnyObjectReadWrite
+      schema: CreatePreauthenticatedRequestDetails
+    - name: attachmentType
+      values:
+      - iscsi
+      - paravirtualized
+      schema: VolumeAttachment
+    - name: type
+      values:
+      - iscsi
+      - paravirtualized
+      schema: AttachVolumeDetails
+  authentication:
+    schemes:
+    - type: bearer
+      name: OCI API Signature
+      description: Request signing using RSA key pairs
+    apis:
+    - functions
+    - monitoring
+    - oke
+    - networking
+    - database
+    - object-storage
+    - compute
+    - iam
+capability:
+  workflows:
+  - name: infrastructure-management
+    description: Unified workflow for managing compute instances, networking, and storage resources across OCI. Used by cloud administrators and DevOps engineers.
+    apis:
+    - compute
+    - networking
+    - object-storage
+    persona: Cloud Administrator
+  - name: data-platform
+    description: Workflow for managing databases, data storage, and data processing across OCI. Used by data engineers and DBAs.
+    apis:
+    - database
+    - object-storage
+    persona: Data Engineer
+  - name: cloud-native-development
+    description: Workflow for building and deploying containerized and serverless applications on OCI. Used by application developers.
+    apis:
+    - oke
+    - functions
+    persona: Application Developer
+  - name: security-and-compliance
+    description: Workflow for managing identity, access control, and monitoring across OCI. Used by security engineers.
+    apis:
+    - iam
+    - monitoring
+    persona: Security Engineer
+  personas:
+  - id: cloud-admin
+    name: Cloud Administrator
+    description: Manages OCI infrastructure resources
+    workflows:
+    - infrastructure-management
+  - id: data-engineer
+    name: Data Engineer
+    description: Manages databases and data pipelines
+    workflows:
+    - data-platform
+  - id: app-developer
+    name: Application Developer
+    description: Builds cloud-native applications
+    workflows:
+    - cloud-native-development
+  - id: security-engineer
+    name: Security Engineer
+    description: Manages security and compliance
+    workflows:
+    - security-and-compliance
+  domains:
+  - name: Infrastructure
+    resources:
+    - Instances
+    - VCNs
+    - Subnets
+    - Images
+    - Shapes
+  - name: Data
+    resources:
+    - Autonomous Databases
+    - DB Systems
+    - Buckets
+    - Objects
+  - name: Cloud Native
+    resources:
+    - Clusters
+    - Node Pools
+    - Applications
+    - Functions
+  - name: Security
+    resources:
+    - Users
+    - Groups
+    - Policies
+    - Compartments
+    - Alarms
+crossReference:
+- resource: Applications
+  api: functions
+  actions: *id001
+  workflows:
+  - cloud-native-development
+- resource: Functions
+  api: functions
+  actions: *id002
+  workflows:
+  - cloud-native-development
+- resource: Metrics
+  api: monitoring
+  actions: *id003
+  workflows:
+  - security-and-compliance
+- resource: Alarms
+  api: monitoring
+  actions: *id004
+  workflows:
+  - security-and-compliance
+- resource: Clusters
+  api: oke
+  actions: *id005
+  workflows:
+  - cloud-native-development
+- resource: Node Pools
+  api: oke
+  actions: *id006
+  workflows:
+  - cloud-native-development
+- resource: VCNs
+  api: networking
+  actions: *id007
+  workflows:
+  - infrastructure-management
+- resource: Subnets
+  api: networking
+  actions: *id008
+  workflows:
+  - infrastructure-management
+- resource: Security Lists
+  api: networking
+  actions: *id009
+  workflows:
+  - infrastructure-management
+- resource: Internet Gateways
+  api: networking
+  actions: *id010
+  workflows:
+  - infrastructure-management
+- resource: Route Tables
+  api: networking
+  actions: *id011
+  workflows:
+  - infrastructure-management
+- resource: Autonomous Databases
+  api: database
+  actions: *id012
+  workflows:
+  - data-platform
+- resource: DB Systems
+  api: database
+  actions: *id013
+  workflows:
+  - data-platform
+- resource: Namespaces
+  api: object-storage
+  actions: *id014
+  workflows:
+  - infrastructure-management
+  - data-platform
+- resource: Buckets
+  api: object-storage
+  actions: *id015
+  workflows:
+  - infrastructure-management
+  - data-platform
+- resource: Objects
+  api: object-storage
+  actions: *id016
+  workflows:
+  - infrastructure-management
+  - data-platform
+- resource: Preauthenticated Requests
+  api: object-storage
+  actions: *id017
+  workflows:
+  - infrastructure-management
+  - data-platform
+- resource: Instances
+  api: compute
+  actions: *id018
+  workflows:
+  - infrastructure-management
+- resource: Images
+  api: compute
+  actions: *id019
+  workflows:
+  - infrastructure-management
+- resource: Shapes
+  api: compute
+  actions: *id020
+  workflows:
+  - infrastructure-management
+- resource: Volume Attachments
+  api: compute
+  actions: *id021
+  workflows:
+  - infrastructure-management
+- resource: Users
+  api: iam
+  actions: *id022
+  workflows:
+  - security-and-compliance
+- resource: Groups
+  api: iam
+  actions: *id023
+  workflows:
+  - security-and-compliance
+- resource: Policies
+  api: iam
+  actions: *id024
+  workflows:
+  - security-and-compliance
+- resource: Compartments
+  api: iam
+  actions: *id025
+  workflows:
+  - security-and-compliance

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/oke-create-cluster-details-structure.json",
+  "name": "CreateClusterDetails",
+  "description": "CreateClusterDetails schema from oracle-cloud-oke-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "example": "v1.28.2"
+    }
+  },
+  "required": [
+    "compartmentId",
+    "name",
+    "vcnId",
+    "kubernetesVersion"
+  ]
+}

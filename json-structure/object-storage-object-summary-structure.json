@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/object-storage-object-summary-structure.json",
+  "name": "ObjectSummary",
+  "description": "Summary of an object in a bucket.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the object.",
+      "example": "documents/report.pdf"
+    },
+    "size": {
+      "type": "int32",
+      "description": "Size of the object in bytes.",
+      "example": 1048576
+    },
+    "md5": {
+      "type": "string",
+      "description": "Base64-encoded MD5 hash.",
+      "example": "aGVsbG93b3JsZA=="
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "description": "The date and time the object was created.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "timeModified": {
+      "type": "datetime",
+      "description": "The date and time the object was last modified.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "storageTier": {
+      "type": "string",
+      "description": "The storage tier of the object.",
+      "enum": "['Standard', 'InfrequentAccess', 'Archive']",
+      "example": "Standard"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/database-db-system-summary-structure.json",
+  "name": "DbSystemSummary",
+  "description": "Summary of a DB system.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "shape": {
+      "type": "string",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

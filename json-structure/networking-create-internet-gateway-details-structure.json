@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/networking-create-internet-gateway-details-structure.json",
+  "name": "CreateInternetGatewayDetails",
+  "description": "CreateInternetGatewayDetails schema from oracle-cloud-networking-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "default": true,
+      "example": true
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    }
+  },
+  "required": [
+    "compartmentId",
+    "vcnId",
+    "isEnabled"
+  ]
+}

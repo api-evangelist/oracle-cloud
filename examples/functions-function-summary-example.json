@@ -1,0 +1,9 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "applicationId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "image": "ocid1.image.oc1.iad.abcdefg123456",
+  "memoryInMBs": 1,
+  "lifecycleState": "example-value",
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

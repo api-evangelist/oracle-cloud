@@ -1,0 +1,13 @@
+{
+  "id": "ocid1.alarm.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "High CPU Alarm",
+  "metricCompartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "namespace": "oci_computeagent",
+  "query": "CpuUtilization[1m].mean() > 90",
+  "severity": "CRITICAL",
+  "isEnabled": true,
+  "lifecycleState": "ACTIVE",
+  "destinations": "['example-value']",
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

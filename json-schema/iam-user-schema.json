@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/iam-user-schema.json",
+  "title": "User",
+  "description": "An IAM user in Oracle Cloud Infrastructure.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the user.",
+      "example": "ocid1.user.oc1..abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the tenancy.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the user.",
+      "example": "jsmith@example.com"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the user.",
+      "example": "John Smith"
+    },
+    "email": {
+      "type": "string",
+      "description": "The email address.",
+      "format": "email",
+      "example": "jsmith@example.com"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['CREATING', 'ACTIVE', 'INACTIVE', 'DELETING', 'DELETED']",
+      "example": "CREATING"
+    },
+    "isMfaActivated": {
+      "type": "boolean",
+      "description": "Whether MFA is activated.",
+      "example": true
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

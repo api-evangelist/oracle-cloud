@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/compute-attach-volume-details-structure.json",
+  "name": "AttachVolumeDetails",
+  "description": "Details for attaching a volume.",
+  "type": "object",
+  "properties": {
+    "instanceId": {
+      "type": "string",
+      "description": "The OCID of the instance.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "volumeId": {
+      "type": "string",
+      "description": "The OCID of the volume.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of volume attachment.",
+      "enum": "['iscsi', 'paravirtualized']",
+      "example": "iscsi"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-resource"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "description": "Whether the attachment is read-only.",
+      "default": false,
+      "example": false
+    }
+  },
+  "required": [
+    "instanceId",
+    "volumeId",
+    "type"
+  ]
+}

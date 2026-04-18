@@ -1,0 +1,46 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateAutonomousDatabaseDetails": "oci:CreateAutonomousDatabaseDetails",
+    "adminPassword": {
+      "@id": "oci:adminPassword",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "cpuCoreCount": {
+      "@id": "oci:cpuCoreCount",
+      "@type": "xsd:integer"
+    },
+    "dataStorageSizeInTBs": {
+      "@id": "oci:dataStorageSizeInTBs",
+      "@type": "xsd:integer"
+    },
+    "dbName": {
+      "@id": "oci:dbName",
+      "@type": "xsd:string"
+    },
+    "dbWorkload": {
+      "@id": "oci:dbWorkload",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "isAutoScalingEnabled": {
+      "@id": "oci:isAutoScalingEnabled",
+      "@type": "xsd:boolean"
+    },
+    "isFreeTier": {
+      "@id": "oci:isFreeTier",
+      "@type": "xsd:boolean"
+    }
+  }
+}

@@ -1,0 +1,213 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud Monitoring API
+  description: Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.
+  tags:
+  - Alarms
+  - Metrics
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - type: http
+    namespace: monitoring
+    baseUri: https://telemetry.{region}.oraclecloud.com/20180401
+    description: Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: metrics
+      path: metrics
+      description: Metrics
+      operations:
+      - name: summarizeMetricsData
+        method: POST
+        description: Oracle Cloud Summarize Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: listMetrics
+        method: GET
+        description: Oracle Cloud List Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: The metric name.
+        - name: namespace
+          in: query
+          type: string
+          required: false
+          description: The metric namespace.
+    - name: alarms
+      path: alarms
+      description: Alarms
+      operations:
+      - name: listAlarms
+        method: GET
+        description: Oracle Cloud List Alarms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createAlarm
+        method: POST
+        description: Oracle Cloud Create Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getAlarm
+        method: GET
+        description: Oracle Cloud Get Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the alarm.
+      - name: updateAlarm
+        method: PUT
+        description: Oracle Cloud Update Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the alarm.
+      - name: deleteAlarm
+        method: DELETE
+        description: Oracle Cloud Delete Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the alarm.
+  exposes:
+  - type: rest
+    port: 8107
+    namespace: monitoring-api
+    resources:
+    - path: /v1/metrics
+      name: metrics
+      description: Metrics
+    - path: /v1/alarms
+      name: alarms
+      description: Alarms
+  - type: mcp
+    port: 9107
+    namespace: monitoring-mcp
+    transport: http
+    tools:
+    - name: summarizeMetricsData
+      description: Oracle Cloud Summarize Metrics Data
+      hints:
+        readOnly: false
+        destructive: false
+      call: monitoring.summarizeMetricsData
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listMetrics
+      description: Oracle Cloud List Metrics
+      hints:
+        readOnly: true
+        destructive: false
+      call: monitoring.listMetrics
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listAlarms
+      description: Oracle Cloud List Alarms
+      hints:
+        readOnly: true
+        destructive: false
+      call: monitoring.listAlarms
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createAlarm
+      description: Oracle Cloud Create Alarm
+      hints:
+        readOnly: false
+        destructive: false
+      call: monitoring.createAlarm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getAlarm
+      description: Oracle Cloud Get Alarm
+      hints:
+        readOnly: true
+        destructive: false
+      call: monitoring.getAlarm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateAlarm
+      description: Oracle Cloud Update Alarm
+      hints:
+        readOnly: false
+        destructive: false
+      call: monitoring.updateAlarm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteAlarm
+      description: Oracle Cloud Delete Alarm
+      hints:
+        readOnly: false
+        destructive: true
+      call: monitoring.deleteAlarm
+      outputParameters:
+      - type: object
+        mapping: $.

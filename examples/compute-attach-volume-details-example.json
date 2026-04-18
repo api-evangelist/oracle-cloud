@@ -1,0 +1,7 @@
+{
+  "instanceId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "volumeId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "type": "iscsi",
+  "displayName": "my-resource",
+  "isReadOnly": false
+}

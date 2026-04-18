@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/networking-subnet-schema.json",
+  "title": "Subnet",
+  "description": "A subnet in a virtual cloud network.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the subnet.",
+      "example": "ocid1.subnet.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "description": "The OCID of the VCN.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "public-subnet-1"
+    },
+    "cidrBlock": {
+      "type": "string",
+      "description": "The CIDR block of the subnet.",
+      "example": "10.0.0.0/24"
+    },
+    "availabilityDomain": {
+      "type": "string",
+      "description": "The availability domain.",
+      "example": "Uocm:US-ASHBURN-AD-1"
+    },
+    "dnsLabel": {
+      "type": "string",
+      "example": "myresource"
+    },
+    "prohibitPublicIpOnVnic": {
+      "type": "boolean",
+      "description": "Whether VNICs can have public IPs.",
+      "example": true
+    },
+    "routeTableId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "securityListIds": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['PROVISIONING', 'AVAILABLE', 'TERMINATING', 'TERMINATED']",
+      "example": "PROVISIONING"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

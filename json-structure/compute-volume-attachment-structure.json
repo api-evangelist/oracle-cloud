@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/compute-volume-attachment-structure.json",
+  "name": "VolumeAttachment",
+  "description": "A volume attached to a compute instance.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the volume attachment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "instanceId": {
+      "type": "string",
+      "description": "The OCID of the instance.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "volumeId": {
+      "type": "string",
+      "description": "The OCID of the volume.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-resource"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['ATTACHING', 'ATTACHED', 'DETACHING', 'DETACHED']",
+      "example": "ATTACHING"
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "attachmentType": {
+      "type": "string",
+      "description": "The type of volume attachment.",
+      "enum": "['iscsi', 'paravirtualized']",
+      "example": "iscsi"
+    }
+  }
+}

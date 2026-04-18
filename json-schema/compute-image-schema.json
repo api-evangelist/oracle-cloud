@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/compute-image-schema.json",
+  "title": "Image",
+  "description": "A boot disk image for launching compute instances.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the image.",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "Oracle-Linux-8.8-2026.01.01-0"
+    },
+    "operatingSystem": {
+      "type": "string",
+      "description": "The image operating system.",
+      "example": "Oracle Linux"
+    },
+    "operatingSystemVersion": {
+      "type": "string",
+      "description": "The image operating system version.",
+      "example": "8.8"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['PROVISIONING', 'IMPORTING', 'AVAILABLE', 'EXPORTING', 'DISABLED', 'DELETED']",
+      "example": "PROVISIONING"
+    },
+    "sizeInMBs": {
+      "type": "integer",
+      "description": "Size of the image in megabytes.",
+      "example": 47694
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

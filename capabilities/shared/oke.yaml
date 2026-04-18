@@ -1,0 +1,248 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud OKE API
+  description: Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.
+  tags:
+  - Node Pools
+  - Clusters
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - type: http
+    namespace: oke
+    baseUri: https://containerengine.{region}.oraclecloud.com/20180222
+    description: Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: clusters
+      path: clusters
+      description: Clusters
+      operations:
+      - name: listClusters
+        method: GET
+        description: Oracle Cloud List Clusters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createCluster
+        method: POST
+        description: Oracle Cloud Create Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getCluster
+        method: GET
+        description: Oracle Cloud Get Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the cluster.
+      - name: updateCluster
+        method: PUT
+        description: Oracle Cloud Update Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the cluster.
+      - name: deleteCluster
+        method: DELETE
+        description: Oracle Cloud Delete Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the cluster.
+    - name: node-pools
+      path: nodePools
+      description: Node Pools
+      operations:
+      - name: listNodePools
+        method: GET
+        description: Oracle Cloud List Node Pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: clusterId
+          in: query
+          type: string
+          required: false
+          description: The OCID of the cluster.
+      - name: createNodePool
+        method: POST
+        description: Oracle Cloud Create Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getNodePool
+        method: GET
+        description: Oracle Cloud Get Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nodePoolId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the node pool.
+      - name: deleteNodePool
+        method: DELETE
+        description: Oracle Cloud Delete Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nodePoolId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the node pool.
+  exposes:
+  - type: rest
+    port: 8105
+    namespace: oke-api
+    resources:
+    - path: /v1/clusters
+      name: clusters
+      description: Clusters
+    - path: /v1/node-pools
+      name: node-pools
+      description: Node Pools
+  - type: mcp
+    port: 9105
+    namespace: oke-mcp
+    transport: http
+    tools:
+    - name: listClusters
+      description: Oracle Cloud List Clusters
+      hints:
+        readOnly: true
+        destructive: false
+      call: oke.listClusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createCluster
+      description: Oracle Cloud Create Cluster
+      hints:
+        readOnly: false
+        destructive: false
+      call: oke.createCluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getCluster
+      description: Oracle Cloud Get Cluster
+      hints:
+        readOnly: true
+        destructive: false
+      call: oke.getCluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateCluster
+      description: Oracle Cloud Update Cluster
+      hints:
+        readOnly: false
+        destructive: false
+      call: oke.updateCluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteCluster
+      description: Oracle Cloud Delete Cluster
+      hints:
+        readOnly: false
+        destructive: true
+      call: oke.deleteCluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listNodePools
+      description: Oracle Cloud List Node Pools
+      hints:
+        readOnly: true
+        destructive: false
+      call: oke.listNodePools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createNodePool
+      description: Oracle Cloud Create Node Pool
+      hints:
+        readOnly: false
+        destructive: false
+      call: oke.createNodePool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getNodePool
+      description: Oracle Cloud Get Node Pool
+      hints:
+        readOnly: true
+        destructive: false
+      call: oke.getNodePool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteNodePool
+      description: Oracle Cloud Delete Node Pool
+      hints:
+        readOnly: false
+        destructive: true
+      call: oke.deleteNodePool
+      outputParameters:
+      - type: object
+        mapping: $.

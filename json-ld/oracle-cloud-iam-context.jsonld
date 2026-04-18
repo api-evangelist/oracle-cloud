@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Policy": "oci:Policy",
+    "Compartment": "oci:Compartment",
+    "Group": "oci:Group",
+    "User": "oci:User",
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "isMfaActivated": {
+      "@id": "oci:isMfaActivated",
+      "@type": "xsd:boolean"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "statements": {
+      "@id": "oci:statements",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

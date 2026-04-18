@@ -1,0 +1,4 @@
+{
+  "name": "example-value",
+  "kubernetesVersion": "v1.28.2"
+}

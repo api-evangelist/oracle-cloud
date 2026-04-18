@@ -1,0 +1,11 @@
+{
+  "name": "example-value",
+  "namespace": "oci_computeagent",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "publicAccessType": "NoPublicAccess",
+  "objectEventsEnabled": true,
+  "versioning": "Enabled",
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

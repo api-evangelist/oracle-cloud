@@ -1,0 +1,21 @@
+{
+  "id": "ocid1.autonomousdatabase.oc1.iad.abcdefg",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-adb",
+  "dbName": "MYADB",
+  "cpuCoreCount": 2,
+  "dataStorageSizeInTBs": 1,
+  "dbWorkload": "OLTP",
+  "lifecycleState": "PROVISIONING",
+  "isFreeTier": true,
+  "isAutoScalingEnabled": true,
+  "connectionUrls": {
+    "sqlDevWebUrl": "example-value",
+    "apexUrl": "example-value",
+    "graphStudioUrl": "example-value"
+  },
+  "timeCreated": "2026-04-18T10:30:00Z",
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

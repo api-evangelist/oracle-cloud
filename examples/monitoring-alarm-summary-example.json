@@ -1,0 +1,7 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "severity": "example-value",
+  "isEnabled": true,
+  "lifecycleState": "example-value"
+}

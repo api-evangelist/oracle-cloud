@@ -1,0 +1,30 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud Cloud Native Development
+  description: Workflow for building and deploying containerized and serverless applications on OCI. Used by application developers.
+  tags:
+  - Oracle Cloud
+  - Cloud Native Development
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - import: oke
+    location: ./shared/oke.yaml
+  - import: functions
+    location: ./shared/functions.yaml
+  exposes:
+  - type: rest
+    port: 8082
+    namespace: cloud-native-development-api
+    description: Unified REST API for workflow for building and deploying containerized and serverless applications on oci.
+  - type: mcp
+    port: 9092
+    namespace: cloud-native-development-mcp
+    transport: http
+    description: MCP server for AI-assisted cloud native development.

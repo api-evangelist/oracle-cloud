@@ -1,0 +1,15 @@
+{
+  "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+  "availabilityDomain": "Uocm:US-ASHBURN-AD-1",
+  "shape": "VM.Standard.E4.Flex",
+  "displayName": "my-new-instance",
+  "imageId": "ocid1.image.oc1.iad.abcdefg123456",
+  "subnetId": "ocid1.subnet.oc1.iad.abcdefg123456",
+  "shapeConfig": {
+    "ocpus": 2.0,
+    "memoryInGBs": 16.0
+  },
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "name": "example-value",
+  "objectName": "example-value",
+  "accessType": "ObjectRead",
+  "timeExpires": "2026-04-18T10:30:00Z",
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

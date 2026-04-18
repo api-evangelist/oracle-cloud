@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/networking-update-vcn-details-schema.json",
+  "title": "UpdateVcnDetails",
+  "description": "UpdateVcnDetails schema from oracle-cloud-networking-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

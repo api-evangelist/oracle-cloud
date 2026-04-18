@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/networking-create-subnet-details-structure.json",
+  "name": "CreateSubnetDetails",
+  "description": "CreateSubnetDetails schema from oracle-cloud-networking-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "cidrBlock": {
+      "type": "string",
+      "example": "10.0.0.0/24"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "public-subnet-1"
+    },
+    "dnsLabel": {
+      "type": "string",
+      "example": "myresource"
+    },
+    "prohibitPublicIpOnVnic": {
+      "type": "boolean",
+      "default": false,
+      "example": false
+    },
+    "routeTableId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "securityListIds": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "compartmentId",
+    "vcnId",
+    "cidrBlock"
+  ]
+}

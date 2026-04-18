@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/iam-policy-structure.json",
+  "name": "Policy",
+  "description": "An IAM policy with authorization statements.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "AllowAdmins"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "statements": {
+      "type": "array",
+      "example": "['Allow group Administrators to manage all-resources in tenancy']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['CREATING', 'ACTIVE', 'INACTIVE', 'DELETING', 'DELETED']",
+      "example": "CREATING"
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

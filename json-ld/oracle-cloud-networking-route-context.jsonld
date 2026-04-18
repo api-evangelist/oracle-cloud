@@ -1,0 +1,39 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "RouteTable": "oci:RouteTable",
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "routeRules": {
+      "@id": "oci:routeRules",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "vcnId": {
+      "@id": "oci:vcnId",
+      "@type": "xsd:string"
+    }
+  }
+}

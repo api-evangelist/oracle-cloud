@@ -1,0 +1,11 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "dbName": "MYADB",
+  "displayName": "my-adb",
+  "cpuCoreCount": 2,
+  "dataStorageSizeInTBs": 1,
+  "adminPassword": "********",
+  "dbWorkload": "OLTP",
+  "isFreeTier": false,
+  "isAutoScalingEnabled": false
+}

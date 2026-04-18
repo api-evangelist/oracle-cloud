@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/monitoring-metric-structure.json",
+  "name": "Metric",
+  "description": "A metric definition.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "CpuUtilization"
+    },
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dimensions": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

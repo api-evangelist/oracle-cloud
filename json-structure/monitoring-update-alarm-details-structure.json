@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/monitoring-update-alarm-details-structure.json",
+  "name": "UpdateAlarmDetails",
+  "description": "UpdateAlarmDetails schema from oracle-cloud-monitoring-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "query": {
+      "type": "string",
+      "example": "CpuUtilization[1m].mean()"
+    },
+    "severity": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "example": true
+    }
+  }
+}

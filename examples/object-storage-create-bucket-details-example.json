@@ -1,0 +1,11 @@
+{
+  "name": "my-new-bucket",
+  "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+  "publicAccessType": "NoPublicAccess",
+  "storageTier": "Standard",
+  "objectEventsEnabled": false,
+  "versioning": "Enabled",
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

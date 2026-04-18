@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "UpdateAutonomousDatabaseDetails": "oci:UpdateAutonomousDatabaseDetails",
+    "adminPassword": {
+      "@id": "oci:adminPassword",
+      "@type": "xsd:string"
+    },
+    "cpuCoreCount": {
+      "@id": "oci:cpuCoreCount",
+      "@type": "xsd:integer"
+    },
+    "dataStorageSizeInTBs": {
+      "@id": "oci:dataStorageSizeInTBs",
+      "@type": "xsd:integer"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "isAutoScalingEnabled": {
+      "@id": "oci:isAutoScalingEnabled",
+      "@type": "xsd:boolean"
+    }
+  }
+}

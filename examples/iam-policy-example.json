@@ -1,0 +1,9 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "name": "AllowAdmins",
+  "description": "example-value",
+  "statements": "['Allow group Administrators to manage all-resources in tenancy']",
+  "lifecycleState": "CREATING",
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

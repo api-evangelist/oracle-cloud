@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/compute-update-instance-details-structure.json",
+  "name": "UpdateInstanceDetails",
+  "description": "Details for updating an instance.",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "updated-instance-name"
+    },
+    "shape": {
+      "type": "string",
+      "description": "The shape of the instance.",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "shapeConfig": {
+      "type": "object",
+      "example": {
+        "ocpus": 4.0,
+        "memoryInGBs": 32.0
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

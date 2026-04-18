@@ -1,0 +1,8 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "subnetIds": "['example-value']",
+  "config": {
+    "key1": "value1"
+  }
+}

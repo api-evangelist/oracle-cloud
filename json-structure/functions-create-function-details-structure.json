@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/functions-create-function-details-structure.json",
+  "name": "CreateFunctionDetails",
+  "description": "CreateFunctionDetails schema from oracle-cloud-functions-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "image": {
+      "type": "string",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "memoryInMBs": {
+      "type": "int32",
+      "example": 1
+    },
+    "timeoutInSeconds": {
+      "type": "int32",
+      "default": 30,
+      "example": 30
+    },
+    "config": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  },
+  "required": [
+    "applicationId",
+    "displayName",
+    "image",
+    "memoryInMBs"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/compute-instance-structure.json",
+  "name": "Instance",
+  "description": "A compute instance running in Oracle Cloud Infrastructure.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the instance.",
+      "example": "ocid1.instance.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.compartment.oc1..abcdefg123456"
+    },
+    "availabilityDomain": {
+      "type": "string",
+      "description": "The availability domain the instance is running in.",
+      "example": "Uocm:US-ASHBURN-AD-1"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-instance-01"
+    },
+    "shape": {
+      "type": "string",
+      "description": "The shape of the instance.",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "description": "The current state of the instance.",
+      "enum": "['PROVISIONING', 'RUNNING', 'STARTING', 'STOPPING', 'STOPPED', 'CREATING_IMAGE', 'TERMINATING', 'TERMINATED']",
+      "example": "RUNNING"
+    },
+    "region": {
+      "type": "string",
+      "description": "The region that contains the availability domain.",
+      "example": "us-ashburn-1"
+    },
+    "imageId": {
+      "type": "string",
+      "description": "The OCID of the image used to boot the instance.",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "description": "The date and time the instance was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "freeformTags": {
+      "type": "object",
+      "description": "Free-form tags for the instance.",
+      "example": {
+        "key1": "value1"
+      }
+    },
+    "definedTags": {
+      "type": "object",
+      "description": "Defined tags for the instance.",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

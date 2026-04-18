@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/iam-create-user-details-structure.json",
+  "name": "CreateUserDetails",
+  "description": "CreateUserDetails schema from oracle-cloud-iam-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "jsmith@example.com"
+    },
+    "description": {
+      "type": "string",
+      "example": "John Smith"
+    },
+    "email": {
+      "type": "string",
+      "example": "admin@example.com"
+    }
+  },
+  "required": [
+    "compartmentId",
+    "name",
+    "description"
+  ]
+}

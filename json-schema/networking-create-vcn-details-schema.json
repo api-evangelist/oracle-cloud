@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/networking-create-vcn-details-schema.json",
+  "title": "CreateVcnDetails",
+  "description": "CreateVcnDetails schema from oracle-cloud-networking-openapi.yaml",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "cidrBlocks"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "cidrBlocks": {
+      "type": "array",
+      "description": "List of CIDR blocks for the VCN.",
+      "example": "['10.0.0.0/16']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-vcn"
+    },
+    "dnsLabel": {
+      "type": "string",
+      "description": "DNS label for the VCN.",
+      "example": "myvcn"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

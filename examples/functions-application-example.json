@@ -1,0 +1,11 @@
+{
+  "id": "ocid1.fnapp.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-app",
+  "subnetIds": "['example-value']",
+  "lifecycleState": "CREATING",
+  "timeCreated": "2026-04-18T10:30:00Z",
+  "config": {
+    "key1": "value1"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/object-storage-update-bucket-details-structure.json",
+  "name": "UpdateBucketDetails",
+  "description": "Details for updating a bucket.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the bucket.",
+      "example": "example-value"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The Object Storage namespace.",
+      "example": "oci_computeagent"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "publicAccessType": {
+      "type": "string",
+      "enum": "['NoPublicAccess', 'ObjectRead', 'ObjectReadWithoutList']",
+      "example": "NoPublicAccess"
+    },
+    "objectEventsEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "versioning": {
+      "type": "string",
+      "enum": "['Enabled', 'Suspended']",
+      "example": "Enabled"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

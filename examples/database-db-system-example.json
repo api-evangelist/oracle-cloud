@@ -1,0 +1,13 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "shape": "VM.Standard.E4.Flex",
+  "availabilityDomain": "Uocm:US-ASHBURN-AD-1",
+  "cpuCoreCount": 1,
+  "nodeCount": 1,
+  "dataStorageSizeInGBs": 1,
+  "databaseEdition": "STANDARD_EDITION",
+  "lifecycleState": "example-value",
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

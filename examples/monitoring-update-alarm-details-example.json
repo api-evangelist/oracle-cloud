@@ -1,0 +1,6 @@
+{
+  "displayName": "my-resource",
+  "query": "CpuUtilization[1m].mean()",
+  "severity": "example-value",
+  "isEnabled": true
+}

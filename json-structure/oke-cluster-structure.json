@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/oke-cluster-structure.json",
+  "name": "Cluster",
+  "description": "A Kubernetes cluster managed by OKE.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the cluster.",
+      "example": "ocid1.cluster.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "my-cluster"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "example": "v1.28.2"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['CREATING', 'ACTIVE', 'FAILED', 'DELETING', 'DELETED', 'UPDATING']",
+      "example": "CREATING"
+    },
+    "endpoints": {
+      "type": "object",
+      "example": {
+        "kubernetes": "example-value",
+        "publicEndpoint": "example-value",
+        "privateEndpoint": "example-value"
+      }
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

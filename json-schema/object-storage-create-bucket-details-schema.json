@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/object-storage-create-bucket-details-schema.json",
+  "title": "CreateBucketDetails",
+  "description": "Details for creating a new bucket.",
+  "type": "object",
+  "required": [
+    "name",
+    "compartmentId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the bucket.",
+      "example": "my-new-bucket"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.compartment.oc1..abcdefg123456"
+    },
+    "publicAccessType": {
+      "type": "string",
+      "description": "The public access type.",
+      "enum": "['NoPublicAccess', 'ObjectRead', 'ObjectReadWithoutList']",
+      "example": "NoPublicAccess",
+      "default": "NoPublicAccess"
+    },
+    "storageTier": {
+      "type": "string",
+      "description": "The storage tier type.",
+      "enum": "['Standard', 'Archive']",
+      "example": "Standard",
+      "default": "Standard"
+    },
+    "objectEventsEnabled": {
+      "type": "boolean",
+      "description": "Whether events are emitted for object state changes.",
+      "example": false,
+      "default": false
+    },
+    "versioning": {
+      "type": "string",
+      "description": "The versioning status.",
+      "enum": "['Enabled', 'Disabled']",
+      "example": "Enabled"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

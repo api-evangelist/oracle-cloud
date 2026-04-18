@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/oke-create-cluster-details-schema.json",
+  "title": "CreateClusterDetails",
+  "description": "CreateClusterDetails schema from oracle-cloud-oke-openapi.yaml",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "name",
+    "vcnId",
+    "kubernetesVersion"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "example": "v1.28.2"
+    }
+  }
+}

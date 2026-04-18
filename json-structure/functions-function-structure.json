@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/functions-function-structure.json",
+  "name": "Function",
+  "description": "A serverless function.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "applicationId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-function"
+    },
+    "image": {
+      "type": "string",
+      "example": "iad.ocir.io/my-namespace/my-app/my-function:0.0.1"
+    },
+    "memoryInMBs": {
+      "type": "int32",
+      "example": 256
+    },
+    "timeoutInSeconds": {
+      "type": "int32",
+      "example": 30
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['CREATING', 'ACTIVE', 'INACTIVE', 'UPDATING', 'DELETING', 'DELETED', 'FAILED']",
+      "example": "CREATING"
+    },
+    "invokeEndpoint": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "config": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

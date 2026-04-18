@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/object-storage-bucket-schema.json",
+  "title": "Bucket",
+  "description": "A bucket is a container for storing objects in Object Storage.",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "The Object Storage namespace.",
+      "example": "my-namespace"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the bucket.",
+      "example": "my-bucket"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.compartment.oc1..abcdefg123456"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The OCID of the user who created the bucket.",
+      "example": "example-value"
+    },
+    "timeCreated": {
+      "type": "string",
+      "description": "The date and time the bucket was created.",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "publicAccessType": {
+      "type": "string",
+      "description": "The type of public access enabled on this bucket.",
+      "enum": "['NoPublicAccess', 'ObjectRead', 'ObjectReadWithoutList']",
+      "example": "NoPublicAccess"
+    },
+    "storageTier": {
+      "type": "string",
+      "description": "The storage tier type.",
+      "enum": "['Standard', 'Archive']",
+      "example": "Standard"
+    },
+    "objectEventsEnabled": {
+      "type": "boolean",
+      "description": "Whether events are emitted for object state changes.",
+      "example": false
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "definedTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "objectLifecyclePolicyEtag": {
+      "type": "string",
+      "description": "The entity tag for the object lifecycle policy.",
+      "example": "example-value"
+    },
+    "approximateCount": {
+      "type": "integer",
+      "description": "Approximate number of objects in the bucket.",
+      "example": 1500
+    },
+    "approximateSize": {
+      "type": "integer",
+      "description": "Approximate total size in bytes.",
+      "example": 1073741824
+    },
+    "versioning": {
+      "type": "string",
+      "description": "The versioning status of the bucket.",
+      "enum": "['Enabled', 'Suspended', 'Disabled']",
+      "example": "Enabled"
+    }
+  }
+}

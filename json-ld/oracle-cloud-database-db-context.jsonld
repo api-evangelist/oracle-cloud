@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "DbSystem": "oci:DbSystem",
+    "DbSystemSummary": "oci:DbSystemSummary",
+    "availabilityDomain": {
+      "@id": "oci:availabilityDomain",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "cpuCoreCount": {
+      "@id": "oci:cpuCoreCount",
+      "@type": "xsd:integer"
+    },
+    "dataStorageSizeInGBs": {
+      "@id": "oci:dataStorageSizeInGBs",
+      "@type": "xsd:integer"
+    },
+    "databaseEdition": {
+      "@id": "oci:databaseEdition",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "nodeCount": {
+      "@id": "oci:nodeCount",
+      "@type": "xsd:integer"
+    },
+    "shape": {
+      "@id": "oci:shape",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

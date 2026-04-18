@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/database-db-system-schema.json",
+  "title": "DbSystem",
+  "description": "A DB system.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "shape": {
+      "type": "string",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "availabilityDomain": {
+      "type": "string",
+      "example": "Uocm:US-ASHBURN-AD-1"
+    },
+    "cpuCoreCount": {
+      "type": "integer",
+      "example": 1
+    },
+    "nodeCount": {
+      "type": "integer",
+      "example": 1
+    },
+    "dataStorageSizeInGBs": {
+      "type": "integer",
+      "example": 1
+    },
+    "databaseEdition": {
+      "type": "string",
+      "enum": "['STANDARD_EDITION', 'ENTERPRISE_EDITION', 'ENTERPRISE_EDITION_HIGH_PERFORMANCE', 'ENTERPRISE_EDITION_EXTREME_PERFORMANCE']",
+      "example": "STANDARD_EDITION"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

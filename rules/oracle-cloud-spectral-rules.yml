@@ -1,0 +1,178 @@
+rules:
+  info-title-format:
+    description: Info title must start with "Oracle Cloud"
+    severity: error
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: ^Oracle Cloud.*
+  info-description-required:
+    description: Info description is required
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  info-version-required:
+    description: API version is required
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  openapi-version:
+    description: OpenAPI version must be 3.0.x
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: ^3\.0\.\d+$
+  servers-defined:
+    description: Servers array must be defined
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+  server-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  paths-kebab-case:
+    description: Path segments should use camelCase (OCI convention)
+    severity: info
+    given: $.paths
+    then:
+      function: truthy
+  operation-operationid-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: truthy
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: summary
+      function: truthy
+  operation-summary-prefix:
+    description: Operation summaries must start with "Oracle Cloud"
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: ^Oracle Cloud.*
+  operation-description-required:
+    description: Every operation must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: description
+      function: truthy
+  operation-tags-required:
+    description: Every operation must have tags
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  operation-operationid-camel-case:
+    description: OperationId should use camelCase
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-zA-Z0-9]*$
+  parameter-description-required:
+    description: Every parameter must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].parameters[*]
+    then:
+      field: description
+      function: truthy
+  parameter-schema-required:
+    description: Every parameter must have a schema
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].parameters[*]
+    then:
+      field: schema
+      function: truthy
+  response-success-required:
+    description: Operations must define at least one success response (2xx)
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].responses
+    then:
+      function: truthy
+  response-description-required:
+    description: Every response must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].responses[*]
+    then:
+      field: description
+      function: truthy
+  schema-properties-camel-case:
+    description: Schema property names should use camelCase (OCI convention)
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      function: truthy
+  schema-description-required:
+    description: Top-level schemas should have descriptions
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+  security-global-defined:
+    description: Global security must be defined
+    severity: error
+    given: $
+    then:
+      field: security
+      function: truthy
+  security-schemes-defined:
+    description: Security schemes must be defined
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  get-no-request-body:
+    description: GET operations must not have a request body
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+  delete-no-request-body:
+    description: DELETE operations should not have a request body
+    severity: warn
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy
+  no-empty-descriptions:
+    description: Descriptions must not be empty
+    severity: error
+    given: $..description
+    then:
+      function: truthy
+  microcks-operation-extension:
+    description: Operations should include x-microcks-operation extension
+    severity: info
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: x-microcks-operation
+      function: truthy

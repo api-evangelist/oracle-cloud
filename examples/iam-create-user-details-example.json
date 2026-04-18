@@ -1,0 +1,6 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "name": "jsmith@example.com",
+  "description": "John Smith",
+  "email": "admin@example.com"
+}

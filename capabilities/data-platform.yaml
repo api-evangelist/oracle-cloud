@@ -1,0 +1,30 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud Data Platform
+  description: Workflow for managing databases, data storage, and data processing across OCI. Used by data engineers and DBAs.
+  tags:
+  - Oracle Cloud
+  - Data Platform
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - import: database
+    location: ./shared/database.yaml
+  - import: object-storage
+    location: ./shared/object-storage.yaml
+  exposes:
+  - type: rest
+    port: 8081
+    namespace: data-platform-api
+    description: Unified REST API for workflow for managing databases, data storage, and data processing across oci.
+  - type: mcp
+    port: 9091
+    namespace: data-platform-mcp
+    transport: http
+    description: MCP server for AI-assisted data platform.

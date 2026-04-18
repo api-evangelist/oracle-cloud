@@ -1,0 +1,6 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "isEnabled": true,
+  "displayName": "my-resource"
+}

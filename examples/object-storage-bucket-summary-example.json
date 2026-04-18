@@ -1,0 +1,8 @@
+{
+  "namespace": "my-namespace",
+  "name": "my-bucket",
+  "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+  "createdBy": "example-value",
+  "timeCreated": "2026-01-15T10:30:00Z",
+  "etag": "example-value"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/database-update-autonomous-database-details-structure.json",
+  "name": "UpdateAutonomousDatabaseDetails",
+  "description": "UpdateAutonomousDatabaseDetails schema from oracle-cloud-database-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "cpuCoreCount": {
+      "type": "int32",
+      "example": 1
+    },
+    "dataStorageSizeInTBs": {
+      "type": "int32",
+      "example": 1
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "adminPassword": {
+      "type": "string",
+      "example": "********"
+    }
+  }
+}

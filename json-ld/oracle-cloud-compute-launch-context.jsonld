@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "LaunchInstanceDetails": "oci:LaunchInstanceDetails",
+    "availabilityDomain": {
+      "@id": "oci:availabilityDomain",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    },
+    "imageId": {
+      "@id": "oci:imageId",
+      "@type": "xsd:string"
+    },
+    "shape": {
+      "@id": "oci:shape",
+      "@type": "xsd:string"
+    },
+    "shapeConfig": {
+      "@id": "oci:shapeConfig"
+    },
+    "subnetId": {
+      "@id": "oci:subnetId",
+      "@type": "xsd:string"
+    }
+  }
+}

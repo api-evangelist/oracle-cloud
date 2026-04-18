@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/networking-route-table-structure.json",
+  "name": "RouteTable",
+  "description": "A route table for a VCN.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "Default Route Table"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": "['PROVISIONING', 'AVAILABLE', 'TERMINATING', 'TERMINATED']",
+      "example": "PROVISIONING"
+    },
+    "routeRules": {
+      "type": "array",
+      "example": "[{'destination': '0.0.0.0/0', 'destinationType': 'CIDR_BLOCK', 'networkEntityId': 'ocid1.resource.oc1.iad.abcdefg123456'}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

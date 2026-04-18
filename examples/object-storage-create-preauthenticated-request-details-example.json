@@ -1,0 +1,6 @@
+{
+  "name": "my-par",
+  "objectName": "example-value",
+  "accessType": "ObjectRead",
+  "timeExpires": "2026-12-31T23:59:59Z"
+}

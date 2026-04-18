@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/iam-update-user-details-structure.json",
+  "name": "UpdateUserDetails",
+  "description": "UpdateUserDetails schema from oracle-cloud-iam-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "email": {
+      "type": "string",
+      "example": "admin@example.com"
+    }
+  }
+}

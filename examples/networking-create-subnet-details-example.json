@@ -1,0 +1,10 @@
+{
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "cidrBlock": "10.0.0.0/24",
+  "displayName": "public-subnet-1",
+  "dnsLabel": "myresource",
+  "prohibitPublicIpOnVnic": false,
+  "routeTableId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "securityListIds": "['example-value']"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/iam-update-user-details-schema.json",
+  "title": "UpdateUserDetails",
+  "description": "UpdateUserDetails schema from oracle-cloud-iam-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "example": "admin@example.com"
+    }
+  }
+}

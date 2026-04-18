@@ -1,0 +1,12 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-resource",
+  "dbName": "example-value",
+  "cpuCoreCount": 1,
+  "dataStorageSizeInTBs": 1,
+  "dbWorkload": "example-value",
+  "lifecycleState": "example-value",
+  "isFreeTier": true,
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

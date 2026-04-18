@@ -1,0 +1,9 @@
+{
+  "namespace": "oci_computeagent",
+  "name": "CpuUtilization",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "dimensions": {
+    "key1": "value1"
+  },
+  "aggregatedDatapoints": "[{'timestamp': '2026-04-18T10:30:00Z', 'value': 42.5}]"
+}

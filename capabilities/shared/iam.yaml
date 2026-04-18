@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Oracle Cloud IAM API
+  description: Manage users, groups, policies, and authentication in Oracle Cloud Infrastructure.
+  tags:
+  - Policies
+  - Compartments
+  - Users
+  - Groups
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+- namespace: env
+  keys:
+    OCI_API_KEY: OCI_API_KEY
+    OCI_TENANCY_OCID: OCI_TENANCY_OCID
+capability:
+  consumes:
+  - type: http
+    namespace: iam
+    baseUri: https://identity.{region}.oraclecloud.com/20160918
+    description: Manage users, groups, policies, and authentication in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: users
+      path: users
+      description: Users
+      operations:
+      - name: listUsers
+        method: GET
+        description: Oracle Cloud List Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the tenancy.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+      - name: createUser
+        method: POST
+        description: Oracle Cloud Create User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getUser
+        method: GET
+        description: Oracle Cloud Get User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the user.
+      - name: updateUser
+        method: PUT
+        description: Oracle Cloud Update User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the user.
+      - name: deleteUser
+        method: DELETE
+        description: Oracle Cloud Delete User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the user.
+    - name: groups
+      path: groups
+      description: Groups
+      operations:
+      - name: listGroups
+        method: GET
+        description: Oracle Cloud List Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the tenancy.
+      - name: createGroup
+        method: POST
+        description: Oracle Cloud Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: policies
+      path: policies
+      description: Policies
+      operations:
+      - name: listPolicies
+        method: GET
+        description: Oracle Cloud List Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createPolicy
+        method: POST
+        description: Oracle Cloud Create Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: compartments
+      path: compartments
+      description: Compartments
+      operations:
+      - name: listCompartments
+        method: GET
+        description: Oracle Cloud List Compartments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the tenancy.
+  exposes:
+  - type: rest
+    port: 8104
+    namespace: iam-api
+    resources:
+    - path: /v1/users
+      name: users
+      description: Users
+    - path: /v1/groups
+      name: groups
+      description: Groups
+    - path: /v1/policies
+      name: policies
+      description: Policies
+    - path: /v1/compartments
+      name: compartments
+      description: Compartments
+  - type: mcp
+    port: 9104
+    namespace: iam-mcp
+    transport: http
+    tools:
+    - name: listUsers
+      description: Oracle Cloud List Users
+      hints:
+        readOnly: true
+        destructive: false
+      call: iam.listUsers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createUser
+      description: Oracle Cloud Create User
+      hints:
+        readOnly: false
+        destructive: false
+      call: iam.createUser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getUser
+      description: Oracle Cloud Get User
+      hints:
+        readOnly: true
+        destructive: false
+      call: iam.getUser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateUser
+      description: Oracle Cloud Update User
+      hints:
+        readOnly: false
+        destructive: false
+      call: iam.updateUser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteUser
+      description: Oracle Cloud Delete User
+      hints:
+        readOnly: false
+        destructive: true
+      call: iam.deleteUser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listGroups
+      description: Oracle Cloud List Groups
+      hints:
+        readOnly: true
+        destructive: false
+      call: iam.listGroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createGroup
+      description: Oracle Cloud Create Group
+      hints:
+        readOnly: false
+        destructive: false
+      call: iam.createGroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listPolicies
+      description: Oracle Cloud List Policies
+      hints:
+        readOnly: true
+        destructive: false
+      call: iam.listPolicies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createPolicy
+      description: Oracle Cloud Create Policy
+      hints:
+        readOnly: false
+        destructive: false
+      call: iam.createPolicy
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listCompartments
+      description: Oracle Cloud List Compartments
+      hints:
+        readOnly: true
+        destructive: false
+      call: iam.listCompartments
+      outputParameters:
+      - type: object
+        mapping: $.

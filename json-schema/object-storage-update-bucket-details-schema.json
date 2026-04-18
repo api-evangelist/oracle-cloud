@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/object-storage-update-bucket-details-schema.json",
+  "title": "UpdateBucketDetails",
+  "description": "Details for updating a bucket.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the bucket.",
+      "example": "example-value"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The Object Storage namespace.",
+      "example": "oci_computeagent"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "publicAccessType": {
+      "type": "string",
+      "enum": "['NoPublicAccess', 'ObjectRead', 'ObjectReadWithoutList']",
+      "example": "NoPublicAccess"
+    },
+    "objectEventsEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "versioning": {
+      "type": "string",
+      "enum": "['Enabled', 'Suspended']",
+      "example": "Enabled"
+    },
+    "freeformTags": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

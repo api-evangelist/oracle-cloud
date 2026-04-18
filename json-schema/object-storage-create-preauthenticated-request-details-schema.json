@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-schema/object-storage-create-preauthenticated-request-details-schema.json",
+  "title": "CreatePreauthenticatedRequestDetails",
+  "description": "Details for creating a preauthenticated request.",
+  "type": "object",
+  "required": [
+    "name",
+    "accessType",
+    "timeExpires"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A user-specified name for the pre-authenticated request.",
+      "example": "my-par"
+    },
+    "objectName": {
+      "type": "string",
+      "description": "Name of object to grant access to. Omit for bucket-level access.",
+      "example": "example-value"
+    },
+    "accessType": {
+      "type": "string",
+      "description": "The operation that can be performed.",
+      "enum": "['ObjectRead', 'ObjectWrite', 'ObjectReadWrite', 'AnyObjectRead', 'AnyObjectWrite', 'AnyObjectReadWrite']",
+      "example": "ObjectRead"
+    },
+    "timeExpires": {
+      "type": "string",
+      "description": "The expiration date for the pre-authenticated request.",
+      "format": "date-time",
+      "example": "2026-12-31T23:59:59Z"
+    }
+  }
+}

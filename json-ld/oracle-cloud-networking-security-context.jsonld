@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SecurityList": "oci:SecurityList",
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "egressSecurityRules": {
+      "@id": "oci:egressSecurityRules",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "ingressSecurityRules": {
+      "@id": "oci:ingressSecurityRules",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "vcnId": {
+      "@id": "oci:vcnId",
+      "@type": "xsd:string"
+    }
+  }
+}

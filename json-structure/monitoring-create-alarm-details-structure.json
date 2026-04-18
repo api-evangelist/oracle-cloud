@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/monitoring-create-alarm-details-structure.json",
+  "name": "CreateAlarmDetails",
+  "description": "CreateAlarmDetails schema from oracle-cloud-monitoring-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "metricCompartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "query": {
+      "type": "string",
+      "example": "CpuUtilization[1m].mean()"
+    },
+    "severity": {
+      "type": "string",
+      "enum": "['CRITICAL', 'ERROR', 'WARNING', 'INFO']",
+      "example": "CRITICAL"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "destinations": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "compartmentId",
+    "displayName",
+    "metricCompartmentId",
+    "namespace",
+    "query",
+    "severity",
+    "isEnabled",
+    "destinations"
+  ]
+}

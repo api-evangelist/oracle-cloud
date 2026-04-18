@@ -1,0 +1,61 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AutonomousDatabase": "oci:AutonomousDatabase",
+    "AutonomousDatabaseSummary": "oci:AutonomousDatabaseSummary",
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "connectionUrls": {
+      "@id": "oci:connectionUrls"
+    },
+    "cpuCoreCount": {
+      "@id": "oci:cpuCoreCount",
+      "@type": "xsd:integer"
+    },
+    "dataStorageSizeInTBs": {
+      "@id": "oci:dataStorageSizeInTBs",
+      "@type": "xsd:integer"
+    },
+    "dbName": {
+      "@id": "oci:dbName",
+      "@type": "xsd:string"
+    },
+    "dbWorkload": {
+      "@id": "oci:dbWorkload",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "isAutoScalingEnabled": {
+      "@id": "oci:isAutoScalingEnabled",
+      "@type": "xsd:boolean"
+    },
+    "isFreeTier": {
+      "@id": "oci:isFreeTier",
+      "@type": "xsd:boolean"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

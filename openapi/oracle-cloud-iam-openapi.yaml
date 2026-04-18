@@ -1,0 +1,642 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Identity and Access Management API
+  description: Manage users, groups, policies, and authentication in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Identity/home.htm
+servers:
+- url: https://identity.{region}.oraclecloud.com/20160918
+  description: OCI IAM API server
+  variables:
+    region:
+      default: us-ashburn-1
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: Oracle Cloud List Users
+      description: Lists the users in the tenancy.
+      tags:
+      - Users
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the tenancy.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              examples:
+                ListUsers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.user.oc1..abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: jsmith@example.com
+                    description: John Smith
+                    email: jsmith@example.com
+                    lifecycleState: CREATING
+                    isMfaActivated: true
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createUser
+      summary: Oracle Cloud Create User
+      description: Creates a new user in the tenancy.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDetails'
+            examples:
+              CreateUserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  name: jsmith@example.com
+                  description: John Smith
+                  email: admin@example.com
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                CreateUser200Example:
+                  summary: Default createUser 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.user.oc1..abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: jsmith@example.com
+                    description: John Smith
+                    email: jsmith@example.com
+                    lifecycleState: CREATING
+                    isMfaActivated: true
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users/{userId}:
+    get:
+      operationId: getUser
+      summary: Oracle Cloud Get User
+      description: Gets the specified user.
+      tags:
+      - Users
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The OCID of the user.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                GetUser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.user.oc1..abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: jsmith@example.com
+                    description: John Smith
+                    email: jsmith@example.com
+                    lifecycleState: CREATING
+                    isMfaActivated: true
+                    timeCreated: '2026-04-18T10:30:00Z'
+        '404':
+          description: Not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateUser
+      summary: Oracle Cloud Update User
+      description: Updates the specified user.
+      tags:
+      - Users
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The OCID of the user.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDetails'
+            examples:
+              UpdateUserRequestExample:
+                summary: Default updateUser request
+                x-microcks-default: true
+                value:
+                  description: example-value
+                  email: admin@example.com
+      responses:
+        '200':
+          description: Successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                UpdateUser200Example:
+                  summary: Default updateUser 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.user.oc1..abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: jsmith@example.com
+                    description: John Smith
+                    email: jsmith@example.com
+                    lifecycleState: CREATING
+                    isMfaActivated: true
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteUser
+      summary: Oracle Cloud Delete User
+      description: Deletes the specified user.
+      tags:
+      - Users
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The OCID of the user.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groups:
+    get:
+      operationId: listGroups
+      summary: Oracle Cloud List Groups
+      description: Lists the groups in the tenancy.
+      tags:
+      - Groups
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the tenancy.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+              examples:
+                ListGroups200Example:
+                  summary: Default listGroups 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: Administrators
+                    description: example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createGroup
+      summary: Oracle Cloud Create Group
+      description: Creates a new group.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupDetails'
+            examples:
+              CreateGroupRequestExample:
+                summary: Default createGroup request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  name: example-value
+                  description: example-value
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+              examples:
+                CreateGroup200Example:
+                  summary: Default createGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: Administrators
+                    description: example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /policies:
+    get:
+      operationId: listPolicies
+      summary: Oracle Cloud List Policies
+      description: Lists the policies in the specified compartment.
+      tags:
+      - Policies
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+              examples:
+                ListPolicies200Example:
+                  summary: Default listPolicies 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: AllowAdmins
+                    description: example-value
+                    statements: &id001
+                    - Allow group Administrators to manage all-resources in tenancy
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createPolicy
+      summary: Oracle Cloud Create Policy
+      description: Creates a new IAM policy.
+      tags:
+      - Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePolicyDetails'
+            examples:
+              CreatePolicyRequestExample:
+                summary: Default createPolicy request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  name: example-value
+                  description: example-value
+                  statements: &id002
+                  - example-value
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+              examples:
+                CreatePolicy200Example:
+                  summary: Default createPolicy 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: AllowAdmins
+                    description: example-value
+                    statements: *id001
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /compartments:
+    get:
+      operationId: listCompartments
+      summary: Oracle Cloud List Compartments
+      description: Lists the compartments in the tenancy.
+      tags:
+      - Compartments
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the tenancy.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Compartment'
+              examples:
+                ListCompartments200Example:
+                  summary: Default listCompartments 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: my-compartment
+                    description: example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication.
+  schemas:
+    User:
+      type: object
+      description: An IAM user in Oracle Cloud Infrastructure.
+      properties:
+        id:
+          type: string
+          description: The OCID of the user.
+          example: ocid1.user.oc1..abcdefg123456
+        compartmentId:
+          type: string
+          description: The OCID of the tenancy.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          description: The name of the user.
+          example: jsmith@example.com
+        description:
+          type: string
+          description: The description of the user.
+          example: John Smith
+        email:
+          type: string
+          format: email
+          description: The email address.
+          example: jsmith@example.com
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        isMfaActivated:
+          type: boolean
+          description: Whether MFA is activated.
+          example: true
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateUserDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: jsmith@example.com
+        description:
+          type: string
+          example: John Smith
+        email:
+          type: string
+          format: email
+          example: admin@example.com
+    UpdateUserDetails:
+      type: object
+      properties:
+        description:
+          type: string
+          example: example-value
+        email:
+          type: string
+          format: email
+          example: admin@example.com
+    Group:
+      type: object
+      description: An IAM group.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: Administrators
+        description:
+          type: string
+          example: example-value
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateGroupDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        description:
+          type: string
+          example: example-value
+    Policy:
+      type: object
+      description: An IAM policy with authorization statements.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: AllowAdmins
+        description:
+          type: string
+          example: example-value
+        statements:
+          type: array
+          items:
+            type: string
+          example: *id001
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreatePolicyDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      - statements
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        description:
+          type: string
+          example: example-value
+        statements:
+          type: array
+          items:
+            type: string
+          example: *id002
+    Compartment:
+      type: object
+      description: A compartment for organizing cloud resources.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: my-compartment
+        description:
+          type: string
+          example: example-value
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example-value
+        message:
+          type: string
+          example: example-value
+        status:
+          type: integer
+          example: 1
+security:
+- ociSignature: []

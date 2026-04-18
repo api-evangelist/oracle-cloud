@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/database-autonomous-database-summary-structure.json",
+  "name": "AutonomousDatabaseSummary",
+  "description": "Summary of an Autonomous Database.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "dbName": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "cpuCoreCount": {
+      "type": "int32",
+      "example": 1
+    },
+    "dataStorageSizeInTBs": {
+      "type": "int32",
+      "example": 1
+    },
+    "dbWorkload": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "isFreeTier": {
+      "type": "boolean",
+      "example": true
+    },
+    "timeCreated": {
+      "type": "datetime",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

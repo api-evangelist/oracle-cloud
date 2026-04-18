@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Vcn": "oci:Vcn",
+    "Subnet": "oci:Subnet",
+    "availabilityDomain": {
+      "@id": "oci:availabilityDomain",
+      "@type": "xsd:string"
+    },
+    "cidrBlock": {
+      "@id": "oci:cidrBlock",
+      "@type": "xsd:string"
+    },
+    "cidrBlocks": {
+      "@id": "oci:cidrBlocks",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "defaultDhcpOptionsId": {
+      "@id": "oci:defaultDhcpOptionsId",
+      "@type": "xsd:string"
+    },
+    "defaultRouteTableId": {
+      "@id": "oci:defaultRouteTableId",
+      "@type": "xsd:string"
+    },
+    "defaultSecurityListId": {
+      "@id": "oci:defaultSecurityListId",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "dnsLabel": {
+      "@id": "oci:dnsLabel",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    },
+    "id": {
+      "@id": "oci:id",
+      "@type": "xsd:string"
+    },
+    "lifecycleState": {
+      "@id": "oci:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "prohibitPublicIpOnVnic": {
+      "@id": "oci:prohibitPublicIpOnVnic",
+      "@type": "xsd:boolean"
+    },
+    "routeTableId": {
+      "@id": "oci:routeTableId",
+      "@type": "xsd:string"
+    },
+    "securityListIds": {
+      "@id": "oci:securityListIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "vcnId": {
+      "@id": "oci:vcnId",
+      "@type": "xsd:string"
+    }
+  }
+}

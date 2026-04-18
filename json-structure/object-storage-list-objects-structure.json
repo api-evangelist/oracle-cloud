@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/object-storage-list-objects-structure.json",
+  "name": "ListObjects",
+  "description": "Response containing a list of objects.",
+  "type": "object",
+  "properties": {
+    "objects": {
+      "type": "array",
+      "description": "List of object summaries.",
+      "example": "[{'name': 'documents/report.pdf', 'size': 1048576, 'md5': 'aGVsbG93b3JsZA==', 'timeCreated': '2026-04-18T10:30:00Z', 'timeModified': '2026-04-18T10:30:00Z', 'storageTier': 'Standard'}]",
+      "items": {
+        "type": "object"
+      }
+    },
+    "prefixes": {
+      "type": "array",
+      "description": "Prefixes for pseudo-directory grouping.",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextStartWith": {
+      "type": "string",
+      "description": "Object name to resume listing.",
+      "example": "example-value"
+    }
+  }
+}

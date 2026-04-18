@@ -1,0 +1,57 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateVcnDetails": "oci:CreateVcnDetails",
+    "CreateSubnetDetails": "oci:CreateSubnetDetails",
+    "CreateInternetGatewayDetails": "oci:CreateInternetGatewayDetails",
+    "cidrBlock": {
+      "@id": "oci:cidrBlock",
+      "@type": "xsd:string"
+    },
+    "cidrBlocks": {
+      "@id": "oci:cidrBlocks",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "dnsLabel": {
+      "@id": "oci:dnsLabel",
+      "@type": "xsd:string"
+    },
+    "freeformTags": {
+      "@id": "oci:freeformTags"
+    },
+    "isEnabled": {
+      "@id": "oci:isEnabled",
+      "@type": "xsd:boolean"
+    },
+    "prohibitPublicIpOnVnic": {
+      "@id": "oci:prohibitPublicIpOnVnic",
+      "@type": "xsd:boolean"
+    },
+    "routeTableId": {
+      "@id": "oci:routeTableId",
+      "@type": "xsd:string"
+    },
+    "securityListIds": {
+      "@id": "oci:securityListIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "vcnId": {
+      "@id": "oci:vcnId",
+      "@type": "xsd:string"
+    }
+  }
+}

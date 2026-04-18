@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/functions-create-application-details-structure.json",
+  "name": "CreateApplicationDetails",
+  "description": "CreateApplicationDetails schema from oracle-cloud-functions-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "subnetIds": {
+      "type": "array",
+      "example": "['example-value']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "config": {
+      "type": "object",
+      "example": {
+        "key1": "value1"
+      }
+    }
+  },
+  "required": [
+    "compartmentId",
+    "displayName",
+    "subnetIds"
+  ]
+}

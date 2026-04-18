@@ -1,0 +1,16 @@
+{
+  "id": "ocid1.vcn.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "my-vcn",
+  "cidrBlock": "10.0.0.0/16",
+  "cidrBlocks": "['10.0.0.0/16']",
+  "defaultDhcpOptionsId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "defaultRouteTableId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "defaultSecurityListId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "dnsLabel": "myvcn",
+  "lifecycleState": "PROVISIONING",
+  "timeCreated": "2026-04-18T10:30:00Z",
+  "freeformTags": {
+    "key1": "value1"
+  }
+}

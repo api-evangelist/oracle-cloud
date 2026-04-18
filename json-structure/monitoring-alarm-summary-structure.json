@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/json-structure/monitoring-alarm-summary-structure.json",
+  "name": "AlarmSummary",
+  "description": "AlarmSummary schema from oracle-cloud-monitoring-openapi.yaml",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "severity": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "lifecycleState": {
+      "type": "string",
+      "example": "example-value"
+    }
+  }
+}

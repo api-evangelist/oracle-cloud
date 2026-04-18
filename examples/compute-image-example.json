@@ -1,0 +1,10 @@
+{
+  "id": "ocid1.image.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "Oracle-Linux-8.8-2026.01.01-0",
+  "operatingSystem": "Oracle Linux",
+  "operatingSystemVersion": "8.8",
+  "lifecycleState": "PROVISIONING",
+  "sizeInMBs": 47694,
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

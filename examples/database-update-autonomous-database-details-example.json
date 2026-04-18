@@ -1,0 +1,7 @@
+{
+  "displayName": "my-resource",
+  "cpuCoreCount": 1,
+  "dataStorageSizeInTBs": 1,
+  "isAutoScalingEnabled": true,
+  "adminPassword": "********"
+}

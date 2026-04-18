@@ -1,0 +1,10 @@
+{
+  "id": "ocid1.resource.oc1.iad.abcdefg123456",
+  "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+  "displayName": "Default Security List",
+  "lifecycleState": "PROVISIONING",
+  "ingressSecurityRules": "[{'protocol': '6', 'source': '0.0.0.0/0', 'isStateless': True}]",
+  "egressSecurityRules": "[{'protocol': 'example-value', 'destination': 'example-value', 'isStateless': True}]",
+  "timeCreated": "2026-04-18T10:30:00Z"
+}

@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oci": "https://docs.oracle.com/en-us/iaas/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateAlarmDetails": "oci:CreateAlarmDetails",
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "xsd:string"
+    },
+    "destinations": {
+      "@id": "oci:destinations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oci:displayName",
+      "@type": "xsd:string"
+    },
+    "isEnabled": {
+      "@id": "oci:isEnabled",
+      "@type": "xsd:boolean"
+    },
+    "metricCompartmentId": {
+      "@id": "oci:metricCompartmentId",
+      "@type": "xsd:string"
+    },
+    "namespace": {
+      "@id": "oci:namespace",
+      "@type": "xsd:string"
+    },
+    "query": {
+      "@id": "oci:query",
+      "@type": "xsd:string"
+    },
+    "severity": {
+      "@id": "oci:severity",
+      "@type": "xsd:string"
+    }
+  }
+}
