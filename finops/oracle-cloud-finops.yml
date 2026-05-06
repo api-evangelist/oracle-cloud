@@ -1,189 +1,113 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - Cloud Computing
+  - Infrastructure as a Service
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: 'FOCUS-aligned FinOps for Oracle Cloud Infrastructure: per-service pay-as-you-go (compute
+  OCPU/ECPU-hour, storage GB-month, network egress, autonomous DB) plus committed-use Universal Credits
+  (1- or 3-year) and BYOL discounts. Always Free tier provides perpetual allocation. Cost data accessible
+  via Cost Analysis, Usage Reports (CSV / Object Storage), and the FOCUS Cost and Usage exports.'
+sources:
+  - https://www.oracle.com/cloud/price-list/
+  - https://www.oracle.com/cloud/free/
+  - https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/billingoverview.htm
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Oracle Cloud Infrastructure
-providerId: oracle-cloud
-publisherName: Oracle Cloud Infrastructure
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Cloud Computing
-  - Enterprise Cloud
-  - Infrastructure as a Service
-  - Oracle
-  - Platform as a Service
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Oracle Cloud Infrastructure API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Oracle Corporation
+serviceCategory: Cloud Infrastructure
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Pay-As-You-Go + Committed Use + BYOL
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
   ServiceName: Oracle Cloud Infrastructure
-  ServiceCategory: Developer Tools / API
-  ProviderName: Oracle Cloud Infrastructure
-  PublisherName: Oracle Cloud Infrastructure
-  InvoiceIssuerName: Oracle Cloud Infrastructure
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Cloud Infrastructure
+  ProviderName: Oracle
+  PublisherName: Oracle Corporation
+  InvoiceIssuerName: Oracle America, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  RegionId: e.g. us-ashburn-1, eu-frankfurt-1, ap-tokyo-1
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: compute_ocpu_hours
+    unit: OCPU-hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - shape
       - region
-      - consumer
+      - tenancy
+      - compartment
+  - name: ecpu_hours
+    unit: ECPU-hour
+    aggregation: sum
+    dimensions:
+      - service
+      - region
+      - autonomous_db
+  - name: block_storage
+    unit: GB-month
+    aggregation: sum
+    dimensions:
+      - region
+      - performance_tier
+  - name: object_storage
+    unit: GB-month
+    aggregation: sum
+    dimensions:
+      - region
+      - storage_tier
   - name: data_egress
-    description: Bytes returned over the network in API responses
     unit: GB
     aggregation: sum
     dimensions:
-      - api
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - destination
+  - name: load_balancer_hours
+    unit: shape-hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Compute API
-    baseURL: https://iaas.{region}.oraclecloud.com
-    tags:
-      - Compute
-      - Instances
-      - Virtual Machines
-    serviceName: Compute API
-    serviceCategory: API
-  - name: Object Storage API
-    baseURL: https://objectstorage.{region}.oraclecloud.com
-    tags:
-      - Buckets
-      - Object Storage
-      - Storage
-    serviceName: Object Storage API
-    serviceCategory: API
-  - name: Networking API
-    baseURL: https://iaas.{region}.oraclecloud.com
-    tags:
-      - Load Balancer
-      - Networking
-      - VCN
-    serviceName: Networking API
-    serviceCategory: API
-  - name: Database API
-    baseURL: https://database.{region}.oraclecloud.com
-    tags:
-      - Autonomous Database
-      - Database
-      - DBaaS
-    serviceName: Database API
-    serviceCategory: API
-  - name: Identity and Access Management API
-    baseURL: https://identity.{region}.oraclecloud.com
-    tags:
-      - Authentication
-      - Authorization
-      - IAM
-      - Security
-    serviceName: Identity and Access Management API
-    serviceCategory: API
-  - name: Container Engine for Kubernetes API
-    baseURL: https://containerengine.{region}.oraclecloud.com
-    tags:
-      - Containers
-      - Kubernetes
-      - OKE
-    serviceName: Container Engine for Kubernetes API
-    serviceCategory: API
-  - name: Functions API
-    baseURL: https://functions.{region}.oraclecloud.com
-    tags:
-      - FaaS
-      - Functions
-      - Serverless
-    serviceName: Functions API
-    serviceCategory: API
-  - name: Monitoring API
-    baseURL: https://telemetry.{region}.oraclecloud.com
-    tags:
-      - Alarms
-      - Metrics
-      - Monitoring
-    serviceName: Monitoring API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - shape
+      - region
+  - name: database_storage
+    unit: GB-month
+    aggregation: sum
+    dimensions:
+      - autonomous_db
+      - region
+principles:
+  - name: Visibility
+    description: Use OCI Cost Analysis, scheduled Usage Reports to Object Storage (CSV), and the FOCUS
+      Cost and Usage export to attribute spend to compartments and tags in near real-time.
+  - name: Allocation
+    description: Tag every resource with cost-center / environment / app metadata; use OCI compartments
+      as the primary allocation boundary and tag-based budgets to alert per group.
+  - name: Optimization
+    description: Convert sustained workloads to Universal Credits (1y / 3y commitment); apply BYOL on
+      Oracle Database / WebLogic for ~70%+ savings; consolidate Autonomous Databases into Elastic Pools
+      (up to ~87% off); right-size to Arm Ampere A1 shapes where workloads permit; clean up unattached
+      block volumes and orphaned reserved IPs.
+  - name: Accountability
+    description: Cloud / platform team owns the OCI tenancy invoice; compartment owners review monthly
+      Cost Analysis reports and respond to budget alerts. Use OCI Quotas to enforce hard caps on optional
+      services.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

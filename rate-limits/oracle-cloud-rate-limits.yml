@@ -4,121 +4,58 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Cloud Infrastructure
 providerId: oracle-cloud
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Cloud Computing
-  - Enterprise Cloud
-  - Infrastructure as a Service
-  - Oracle
-  - Platform as a Service
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Oracle Cloud Infrastructure API surface.
-  Captures per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold
-  values to be replaced with published provider limits.
+  - Oracle
+notes: OCI publishes per-service limits and quotas in the Service Limits, Quotas, and Usage documentation
+  rather than a single global table. Limits vary by tenancy, region, and service (Compute, Networking,
+  Object Storage, IAM, etc.) and many can be raised by submitting a service-limit-increase request.
+description: Oracle Cloud Infrastructure enforces service-specific limits and quotas per tenancy and per
+  region (e.g. number of compute instances, VCNs, autonomous databases). API request throttling is per-service,
+  per-region, and applied at the API endpoint; clients receive HTTP 429 with Retry-After. Many limits
+  are soft and raisable via a service-limit-increase request from the OCI Console.
+sources:
+  - https://docs.oracle.com/en-us/iaas/Content/General/Concepts/servicelimits.htm
+  - https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
+  requestId: opc-request-id
   retryAfter: Retry-After
-  policy: RateLimit-Policy
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  notAuthenticated: 401
+  unavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Compute API
-      - Object Storage API
-      - Networking API
-      - Database API
-      - Identity and Access Management API
-      - Container Engine for Kubernetes API
-      - Functions API
-      - Monitoring API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Compute API
-      - Object Storage API
-      - Networking API
-      - Database API
-      - Identity and Access Management API
-      - Container Engine for Kubernetes API
-      - Functions API
-      - Monitoring API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Compute API
-      - Object Storage API
-      - Networking API
-      - Database API
-      - Identity and Access Management API
-      - Container Engine for Kubernetes API
-      - Functions API
-      - Monitoring API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Compute API
-      - Object Storage API
-      - Networking API
-      - Database API
-      - Identity and Access Management API
-      - Container Engine for Kubernetes API
-      - Functions API
-      - Monitoring API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Compute API
-      - Object Storage API
-      - Networking API
-      - Database API
-      - Identity and Access Management API
-      - Container Engine for Kubernetes API
-      - Functions API
-      - Monitoring API
+  - name: Service-specific quotas
+    scope: tenancy/region/service
+    metric: varies
+    limit: see Service Limits, Quotas, and Usage docs
+    notes: Each OCI service has its own limit set; many are raisable via support request.
+  - name: API request throttling
+    scope: tenancy/service
+    metric: requests_per_second
+    limit: varies per service endpoint
+    notes: Throttling responses include 429 with Retry-After.
+  - name: Eventual consistency
+    scope: service
+    metric: varies
+    limit: see service docs
+    notes: Some services (Object Storage list operations, IAM) are eventually consistent and require
+      retry-on-stale.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Backoff
+    description: Use exponential backoff with jitter on 429 / 503; SDKs ship default retry strategies.
+  - name: Service-limit increase
+    description: Request quota increases via the OCI Console (Governance > Limits, Quotas, and Usage)
+      with justification.
+  - name: Compartment quotas
+    description: Use compartment policies to set per-compartment quota policies (separate from tenancy
+      service limits).
+  - name: Idempotency
+    description: Many OCI APIs accept opc-retry-token to make POST/PUT operations idempotent for safe
+      retries.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
