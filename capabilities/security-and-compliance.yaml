@@ -1,4 +1,4 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
   label: Oracle Cloud Security and Compliance
   description: Workflow for managing identity, access control, and monitoring across OCI. Used by security engineers.
@@ -6,7 +6,7 @@ info:
   - Oracle Cloud
   - Security And Compliance
   created: '2026-04-18'
-  modified: '2026-04-18'
+  modified: '2026-05-06'
 binds:
 - namespace: env
   keys:
@@ -14,10 +14,275 @@ binds:
     OCI_TENANCY_OCID: OCI_TENANCY_OCID
 capability:
   consumes:
-  - import: iam
-    location: ./shared/iam.yaml
-  - import: monitoring
-    location: ./shared/monitoring.yaml
+  - type: http
+    namespace: iam
+    baseUri: https://identity.{region}.oraclecloud.com/20160918
+    description: Manage users, groups, policies, and authentication in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: users
+      path: users
+      description: Users
+      operations:
+      - name: listUsers
+        method: GET
+        description: Oracle Cloud List Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the tenancy.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+      - name: createUser
+        method: POST
+        description: Oracle Cloud Create User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getUser
+        method: GET
+        description: Oracle Cloud Get User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the user.
+      - name: updateUser
+        method: PUT
+        description: Oracle Cloud Update User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the user.
+      - name: deleteUser
+        method: DELETE
+        description: Oracle Cloud Delete User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the user.
+    - name: groups
+      path: groups
+      description: Groups
+      operations:
+      - name: listGroups
+        method: GET
+        description: Oracle Cloud List Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the tenancy.
+      - name: createGroup
+        method: POST
+        description: Oracle Cloud Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: policies
+      path: policies
+      description: Policies
+      operations:
+      - name: listPolicies
+        method: GET
+        description: Oracle Cloud List Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createPolicy
+        method: POST
+        description: Oracle Cloud Create Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: compartments
+      path: compartments
+      description: Compartments
+      operations:
+      - name: listCompartments
+        method: GET
+        description: Oracle Cloud List Compartments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the tenancy.
+  - type: http
+    namespace: monitoring
+    baseUri: https://telemetry.{region}.oraclecloud.com/20180401
+    description: Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: metrics
+      path: metrics
+      description: Metrics
+      operations:
+      - name: summarizeMetricsData
+        method: POST
+        description: Oracle Cloud Summarize Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: listMetrics
+        method: GET
+        description: Oracle Cloud List Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: The metric name.
+        - name: namespace
+          in: query
+          type: string
+          required: false
+          description: The metric namespace.
+    - name: alarms
+      path: alarms
+      description: Alarms
+      operations:
+      - name: listAlarms
+        method: GET
+        description: Oracle Cloud List Alarms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createAlarm
+        method: POST
+        description: Oracle Cloud Create Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getAlarm
+        method: GET
+        description: Oracle Cloud Get Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the alarm.
+      - name: updateAlarm
+        method: PUT
+        description: Oracle Cloud Update Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the alarm.
+      - name: deleteAlarm
+        method: DELETE
+        description: Oracle Cloud Delete Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the alarm.
   exposes:
   - type: rest
     port: 8083

@@ -1,4 +1,4 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
   label: Oracle Cloud Data Platform
   description: Workflow for managing databases, data storage, and data processing across OCI. Used by data engineers and DBAs.
@@ -6,7 +6,7 @@ info:
   - Oracle Cloud
   - Data Platform
   created: '2026-04-18'
-  modified: '2026-04-18'
+  modified: '2026-05-06'
 binds:
 - namespace: env
   keys:
@@ -14,10 +14,453 @@ binds:
     OCI_TENANCY_OCID: OCI_TENANCY_OCID
 capability:
   consumes:
-  - import: database
-    location: ./shared/database.yaml
-  - import: object-storage
-    location: ./shared/object-storage.yaml
+  - type: http
+    namespace: database
+    baseUri: https://database.{region}.oraclecloud.com/20160918
+    description: Manage Oracle Database Cloud Services and Autonomous Databases in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: autonomous-databases
+      path: autonomousDatabases
+      description: Autonomous Databases
+      operations:
+      - name: listAutonomousDatabases
+        method: GET
+        description: Oracle Cloud List Autonomous Databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+        - name: page
+          in: query
+          type: string
+          required: false
+          description: Pagination token.
+      - name: createAutonomousDatabase
+        method: POST
+        description: Oracle Cloud Create Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getAutonomousDatabase
+        method: GET
+        description: Oracle Cloud Get Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: autonomousDatabaseId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the Autonomous Database.
+      - name: updateAutonomousDatabase
+        method: PUT
+        description: Oracle Cloud Update Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: autonomousDatabaseId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the Autonomous Database.
+      - name: deleteAutonomousDatabase
+        method: DELETE
+        description: Oracle Cloud Delete Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: autonomousDatabaseId
+          in: path
+          type: string
+          required: true
+          description: The OCID.
+      - name: startAutonomousDatabase
+        method: POST
+        description: Oracle Cloud Start Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: autonomousDatabaseId
+          in: path
+          type: string
+          required: true
+          description: The OCID.
+      - name: stopAutonomousDatabase
+        method: POST
+        description: Oracle Cloud Stop Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: autonomousDatabaseId
+          in: path
+          type: string
+          required: true
+          description: The OCID.
+    - name: db-systems
+      path: dbSystems
+      description: DB Systems
+      operations:
+      - name: listDbSystems
+        method: GET
+        description: Oracle Cloud List DB Systems
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+      - name: getDbSystem
+        method: GET
+        description: Oracle Cloud Get DB System
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dbSystemId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the DB system.
+  - type: http
+    namespace: object-storage
+    baseUri: https://objectstorage.{region}.oraclecloud.com
+    description: Store and retrieve large amounts of unstructured data in Oracle Cloud Infrastructure Object Storage.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: namespaces
+      path: n
+      description: Namespaces
+      operations:
+      - name: getNamespace
+        method: GET
+        description: Oracle Cloud Get Namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: buckets
+      path: n
+      description: Buckets
+      operations:
+      - name: listBuckets
+        method: GET
+        description: Oracle Cloud List Buckets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+        - name: page
+          in: query
+          type: string
+          required: false
+          description: Pagination token.
+      - name: createBucket
+        method: POST
+        description: Oracle Cloud Create Bucket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+      - name: getBucket
+        method: GET
+        description: Oracle Cloud Get Bucket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+      - name: updateBucket
+        method: PUT
+        description: Oracle Cloud Update Bucket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+      - name: deleteBucket
+        method: DELETE
+        description: Oracle Cloud Delete Bucket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+    - name: objects
+      path: n
+      description: Objects
+      operations:
+      - name: listObjects
+        method: GET
+        description: Oracle Cloud List Objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+        - name: prefix
+          in: query
+          type: string
+          required: false
+          description: Filter objects whose name begins with this prefix.
+        - name: delimiter
+          in: query
+          type: string
+          required: false
+          description: Delimiter for pseudo-directory grouping.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+        - name: start
+          in: query
+          type: string
+          required: false
+          description: Object name to start listing from.
+      - name: getObject
+        method: GET
+        description: Oracle Cloud Get Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: The name of the object.
+      - name: putObject
+        method: PUT
+        description: Oracle Cloud Put Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: The name of the object.
+        - name: Content-Type
+          in: header
+          type: string
+          required: false
+          description: The content type of the body.
+        - name: Content-Length
+          in: header
+          type: integer
+          required: false
+          description: The content length of the body.
+      - name: deleteObject
+        method: DELETE
+        description: Oracle Cloud Delete Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: The name of the object.
+    - name: preauthenticated-requests
+      path: n
+      description: Preauthenticated Requests
+      operations:
+      - name: listPreauthenticatedRequests
+        method: GET
+        description: Oracle Cloud List Preauthenticated Requests
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of items to return.
+      - name: createPreauthenticatedRequest
+        method: POST
+        description: Oracle Cloud Create Preauthenticated Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespaceName
+          in: path
+          type: string
+          required: true
+          description: The Object Storage namespace.
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: The name of the bucket.
   exposes:
   - type: rest
     port: 8081

@@ -1,4 +1,4 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
   label: Oracle Cloud Cloud Native Development
   description: Workflow for building and deploying containerized and serverless applications on OCI. Used by application developers.
@@ -6,7 +6,7 @@ info:
   - Oracle Cloud
   - Cloud Native Development
   created: '2026-04-18'
-  modified: '2026-04-18'
+  modified: '2026-05-06'
 binds:
 - namespace: env
   keys:
@@ -14,10 +14,271 @@ binds:
     OCI_TENANCY_OCID: OCI_TENANCY_OCID
 capability:
   consumes:
-  - import: oke
-    location: ./shared/oke.yaml
-  - import: functions
-    location: ./shared/functions.yaml
+  - type: http
+    namespace: oke
+    baseUri: https://containerengine.{region}.oraclecloud.com/20180222
+    description: Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: clusters
+      path: clusters
+      description: Clusters
+      operations:
+      - name: listClusters
+        method: GET
+        description: Oracle Cloud List Clusters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createCluster
+        method: POST
+        description: Oracle Cloud Create Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getCluster
+        method: GET
+        description: Oracle Cloud Get Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the cluster.
+      - name: updateCluster
+        method: PUT
+        description: Oracle Cloud Update Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the cluster.
+      - name: deleteCluster
+        method: DELETE
+        description: Oracle Cloud Delete Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the cluster.
+    - name: node-pools
+      path: nodePools
+      description: Node Pools
+      operations:
+      - name: listNodePools
+        method: GET
+        description: Oracle Cloud List Node Pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+        - name: clusterId
+          in: query
+          type: string
+          required: false
+          description: The OCID of the cluster.
+      - name: createNodePool
+        method: POST
+        description: Oracle Cloud Create Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getNodePool
+        method: GET
+        description: Oracle Cloud Get Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nodePoolId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the node pool.
+      - name: deleteNodePool
+        method: DELETE
+        description: Oracle Cloud Delete Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nodePoolId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the node pool.
+  - type: http
+    namespace: functions
+    baseUri: https://functions.{region}.oraclecloud.com/20181201
+    description: Serverless platform for building and running applications on Oracle Cloud Infrastructure.
+    authentication:
+      type: bearer
+      token: '{{OCI_API_KEY}}'
+    resources:
+    - name: applications
+      path: applications
+      description: Applications
+      operations:
+      - name: listApplications
+        method: GET
+        description: Oracle Cloud List Applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the compartment.
+      - name: createApplication
+        method: POST
+        description: Oracle Cloud Create Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getApplication
+        method: GET
+        description: Oracle Cloud Get Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the application.
+      - name: deleteApplication
+        method: DELETE
+        description: Oracle Cloud Delete Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the application.
+    - name: functions
+      path: functions
+      description: Functions
+      operations:
+      - name: listFunctions
+        method: GET
+        description: Oracle Cloud List Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: query
+          type: string
+          required: true
+          description: The OCID of the application.
+      - name: createFunction
+        method: POST
+        description: Oracle Cloud Create Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getFunction
+        method: GET
+        description: Oracle Cloud Get Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: functionId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the function.
+      - name: deleteFunction
+        method: DELETE
+        description: Oracle Cloud Delete Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: functionId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the function.
+      - name: invokeFunction
+        method: POST
+        description: Oracle Cloud Invoke Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: functionId
+          in: path
+          type: string
+          required: true
+          description: The OCID of the function.
   exposes:
   - type: rest
     port: 8082
