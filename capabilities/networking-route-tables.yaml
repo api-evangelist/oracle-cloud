@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Networking API — Route Tables
+  description: 'Oracle Cloud Networking API — Route Tables. 1 operations. Lead operation: Oracle Cloud List Route Tables.
+    Self-contained Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Route Tables
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-route-tables
+    baseUri: https://iaas.{region}.oraclecloud.com/20160918
+    description: Oracle Cloud Networking API — Route Tables business capability. Self-contained, no shared references.
+    resources:
+    - name: routeTables
+      path: /routeTables
+      operations:
+      - name: listroutetables
+        method: GET
+        description: Oracle Cloud List Route Tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+        - name: vcnId
+          in: query
+          type: string
+          description: The OCID of the VCN.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-route-tables-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Networking API — Route Tables. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/routetables
+      name: routetables
+      description: REST surface for routeTables.
+      operations:
+      - method: GET
+        name: listroutetables
+        description: Oracle Cloud List Route Tables
+        call: networking-route-tables.listroutetables
+        with:
+          compartmentId: rest.compartmentId
+          vcnId: rest.vcnId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-route-tables-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Networking API — Route Tables. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-route-tables
+      description: Oracle Cloud List Route Tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-route-tables.listroutetables
+      with:
+        compartmentId: tools.compartmentId
+        vcnId: tools.vcnId
+      outputParameters:
+      - type: object
+        mapping: $.

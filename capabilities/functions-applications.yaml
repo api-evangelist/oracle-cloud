@@ -1,0 +1,192 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Functions API — Applications
+  description: 'Oracle Cloud Functions API — Applications. 4 operations. Lead operation: Oracle Cloud List Applications. Self-contained
+    Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: functions-applications
+    baseUri: https://functions.{region}.oraclecloud.com/20181201
+    description: Oracle Cloud Functions API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: Oracle Cloud List Applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+      - name: createapplication
+        method: POST
+        description: Oracle Cloud Create Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationId
+      path: /applications/{applicationId}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Oracle Cloud Get Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The OCID of the application.
+          required: true
+      - name: deleteapplication
+        method: DELETE
+        description: Oracle Cloud Delete Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The OCID of the application.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: functions-applications-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Functions API — Applications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: listapplications
+        description: Oracle Cloud List Applications
+        call: functions-applications.listapplications
+        with:
+          compartmentId: rest.compartmentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapplication
+        description: Oracle Cloud Create Application
+        call: functions-applications.createapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationid}
+      name: applications-applicationid
+      description: REST surface for applications-applicationId.
+      operations:
+      - method: GET
+        name: getapplication
+        description: Oracle Cloud Get Application
+        call: functions-applications.getapplication
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplication
+        description: Oracle Cloud Delete Application
+        call: functions-applications.deleteapplication
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: functions-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Functions API — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-applications
+      description: Oracle Cloud List Applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: functions-applications.listapplications
+      with:
+        compartmentId: tools.compartmentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-create-application
+      description: Oracle Cloud Create Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: functions-applications.createapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-get-application
+      description: Oracle Cloud Get Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: functions-applications.getapplication
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-delete-application
+      description: Oracle Cloud Delete Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: functions-applications.deleteapplication
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.

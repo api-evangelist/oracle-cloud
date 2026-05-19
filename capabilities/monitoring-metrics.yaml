@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Monitoring API — Metrics
+  description: 'Oracle Cloud Monitoring API — Metrics. 2 operations. Lead operation: Oracle Cloud List Metrics. Self-contained
+    Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Metrics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: monitoring-metrics
+    baseUri: https://telemetry.{region}.oraclecloud.com/20180401
+    description: Oracle Cloud Monitoring API — Metrics business capability. Self-contained, no shared references.
+    resources:
+    - name: metrics
+      path: /metrics
+      operations:
+      - name: listmetrics
+        method: GET
+        description: Oracle Cloud List Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+        - name: name
+          in: query
+          type: string
+          description: The metric name.
+        - name: namespace
+          in: query
+          type: string
+          description: The metric namespace.
+    - name: metrics-actions-summarizeMetricsData
+      path: /metrics/actions/summarizeMetricsData
+      operations:
+      - name: summarizemetricsdata
+        method: POST
+        description: Oracle Cloud Summarize Metrics Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: monitoring-metrics-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Monitoring API — Metrics. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/metrics
+      name: metrics
+      description: REST surface for metrics.
+      operations:
+      - method: GET
+        name: listmetrics
+        description: Oracle Cloud List Metrics
+        call: monitoring-metrics.listmetrics
+        with:
+          compartmentId: rest.compartmentId
+          name: rest.name
+          namespace: rest.namespace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metrics/actions/summarizemetricsdata
+      name: metrics-actions-summarizemetricsdata
+      description: REST surface for metrics-actions-summarizeMetricsData.
+      operations:
+      - method: POST
+        name: summarizemetricsdata
+        description: Oracle Cloud Summarize Metrics Data
+        call: monitoring-metrics.summarizemetricsdata
+        with:
+          compartmentId: rest.compartmentId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: monitoring-metrics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Monitoring API — Metrics. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-metrics
+      description: Oracle Cloud List Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: monitoring-metrics.listmetrics
+      with:
+        compartmentId: tools.compartmentId
+        name: tools.name
+        namespace: tools.namespace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-summarize-metrics-data
+      description: Oracle Cloud Summarize Metrics Data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-metrics.summarizemetricsdata
+      with:
+        compartmentId: tools.compartmentId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

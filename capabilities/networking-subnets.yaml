@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Networking API — Subnets
+  description: 'Oracle Cloud Networking API — Subnets. 4 operations. Lead operation: Oracle Cloud List Subnets. Self-contained
+    Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Subnets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-subnets
+    baseUri: https://iaas.{region}.oraclecloud.com/20160918
+    description: Oracle Cloud Networking API — Subnets business capability. Self-contained, no shared references.
+    resources:
+    - name: subnets
+      path: /subnets
+      operations:
+      - name: listsubnets
+        method: GET
+        description: Oracle Cloud List Subnets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+        - name: vcnId
+          in: query
+          type: string
+          description: The OCID of the VCN.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of items to return.
+      - name: createsubnet
+        method: POST
+        description: Oracle Cloud Create Subnet
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subnets-subnetId
+      path: /subnets/{subnetId}
+      operations:
+      - name: getsubnet
+        method: GET
+        description: Oracle Cloud Get Subnet
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: subnetId
+          in: path
+          type: string
+          description: The OCID of the subnet.
+          required: true
+      - name: deletesubnet
+        method: DELETE
+        description: Oracle Cloud Delete Subnet
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: subnetId
+          in: path
+          type: string
+          description: The OCID of the subnet.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-subnets-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Networking API — Subnets. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/subnets
+      name: subnets
+      description: REST surface for subnets.
+      operations:
+      - method: GET
+        name: listsubnets
+        description: Oracle Cloud List Subnets
+        call: networking-subnets.listsubnets
+        with:
+          compartmentId: rest.compartmentId
+          vcnId: rest.vcnId
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsubnet
+        description: Oracle Cloud Create Subnet
+        call: networking-subnets.createsubnet
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subnets/{subnetid}
+      name: subnets-subnetid
+      description: REST surface for subnets-subnetId.
+      operations:
+      - method: GET
+        name: getsubnet
+        description: Oracle Cloud Get Subnet
+        call: networking-subnets.getsubnet
+        with:
+          subnetId: rest.subnetId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesubnet
+        description: Oracle Cloud Delete Subnet
+        call: networking-subnets.deletesubnet
+        with:
+          subnetId: rest.subnetId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-subnets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Networking API — Subnets. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-subnets
+      description: Oracle Cloud List Subnets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-subnets.listsubnets
+      with:
+        compartmentId: tools.compartmentId
+        vcnId: tools.vcnId
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-create-subnet
+      description: Oracle Cloud Create Subnet
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: networking-subnets.createsubnet
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-get-subnet
+      description: Oracle Cloud Get Subnet
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-subnets.getsubnet
+      with:
+        subnetId: tools.subnetId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-delete-subnet
+      description: Oracle Cloud Delete Subnet
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: networking-subnets.deletesubnet
+      with:
+        subnetId: tools.subnetId
+      outputParameters:
+      - type: object
+        mapping: $.

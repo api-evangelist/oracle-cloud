@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Networking API — Security Lists
+  description: 'Oracle Cloud Networking API — Security Lists. 1 operations. Lead operation: Oracle Cloud List Security Lists.
+    Self-contained Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Security Lists
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: networking-security-lists
+    baseUri: https://iaas.{region}.oraclecloud.com/20160918
+    description: Oracle Cloud Networking API — Security Lists business capability. Self-contained, no shared references.
+    resources:
+    - name: securityLists
+      path: /securityLists
+      operations:
+      - name: listsecuritylists
+        method: GET
+        description: Oracle Cloud List Security Lists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+        - name: vcnId
+          in: query
+          type: string
+          description: The OCID of the VCN.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: networking-security-lists-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Networking API — Security Lists. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/securitylists
+      name: securitylists
+      description: REST surface for securityLists.
+      operations:
+      - method: GET
+        name: listsecuritylists
+        description: Oracle Cloud List Security Lists
+        call: networking-security-lists.listsecuritylists
+        with:
+          compartmentId: rest.compartmentId
+          vcnId: rest.vcnId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: networking-security-lists-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Networking API — Security Lists. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-security-lists
+      description: Oracle Cloud List Security Lists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: networking-security-lists.listsecuritylists
+      with:
+        compartmentId: tools.compartmentId
+        vcnId: tools.vcnId
+      outputParameters:
+      - type: object
+        mapping: $.

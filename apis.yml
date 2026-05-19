@@ -501,6 +501,8 @@ apis:
   - type: Example
     url: examples/monitoring-metric-example.json
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/showcase/oracle-cloud
 - type: Portal
   url: https://cloud.oracle.com/
 - type: Console

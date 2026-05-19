@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Container Engine for Kubernetes API — Node Pools
+  description: 'Oracle Cloud Container Engine for Kubernetes API — Node Pools. 4 operations. Lead operation: Oracle Cloud
+    List Node Pools. Self-contained Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Node Pools
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: oke-node-pools
+    baseUri: https://containerengine.{region}.oraclecloud.com/20180222
+    description: Oracle Cloud Container Engine for Kubernetes API — Node Pools business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: nodePools
+      path: /nodePools
+      operations:
+      - name: listnodepools
+        method: GET
+        description: Oracle Cloud List Node Pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+        - name: clusterId
+          in: query
+          type: string
+          description: The OCID of the cluster.
+      - name: createnodepool
+        method: POST
+        description: Oracle Cloud Create Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: nodePools-nodePoolId
+      path: /nodePools/{nodePoolId}
+      operations:
+      - name: getnodepool
+        method: GET
+        description: Oracle Cloud Get Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nodePoolId
+          in: path
+          type: string
+          description: The OCID of the node pool.
+          required: true
+      - name: deletenodepool
+        method: DELETE
+        description: Oracle Cloud Delete Node Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nodePoolId
+          in: path
+          type: string
+          description: The OCID of the node pool.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: oke-node-pools-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Container Engine for Kubernetes API — Node Pools. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/nodepools
+      name: nodepools
+      description: REST surface for nodePools.
+      operations:
+      - method: GET
+        name: listnodepools
+        description: Oracle Cloud List Node Pools
+        call: oke-node-pools.listnodepools
+        with:
+          compartmentId: rest.compartmentId
+          clusterId: rest.clusterId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createnodepool
+        description: Oracle Cloud Create Node Pool
+        call: oke-node-pools.createnodepool
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/nodepools/{nodepoolid}
+      name: nodepools-nodepoolid
+      description: REST surface for nodePools-nodePoolId.
+      operations:
+      - method: GET
+        name: getnodepool
+        description: Oracle Cloud Get Node Pool
+        call: oke-node-pools.getnodepool
+        with:
+          nodePoolId: rest.nodePoolId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletenodepool
+        description: Oracle Cloud Delete Node Pool
+        call: oke-node-pools.deletenodepool
+        with:
+          nodePoolId: rest.nodePoolId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: oke-node-pools-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Container Engine for Kubernetes API — Node Pools. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-node-pools
+      description: Oracle Cloud List Node Pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oke-node-pools.listnodepools
+      with:
+        compartmentId: tools.compartmentId
+        clusterId: tools.clusterId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-create-node-pool
+      description: Oracle Cloud Create Node Pool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oke-node-pools.createnodepool
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-get-node-pool
+      description: Oracle Cloud Get Node Pool
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oke-node-pools.getnodepool
+      with:
+        nodePoolId: tools.nodePoolId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-delete-node-pool
+      description: Oracle Cloud Delete Node Pool
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oke-node-pools.deletenodepool
+      with:
+        nodePoolId: tools.nodePoolId
+      outputParameters:
+      - type: object
+        mapping: $.

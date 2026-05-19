@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Monitoring API — Alarms
+  description: 'Oracle Cloud Monitoring API — Alarms. 5 operations. Lead operation: Oracle Cloud List Alarms. Self-contained
+    Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Alarms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: monitoring-alarms
+    baseUri: https://telemetry.{region}.oraclecloud.com/20180401
+    description: Oracle Cloud Monitoring API — Alarms business capability. Self-contained, no shared references.
+    resources:
+    - name: alarms
+      path: /alarms
+      operations:
+      - name: listalarms
+        method: GET
+        description: Oracle Cloud List Alarms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the compartment.
+          required: true
+      - name: createalarm
+        method: POST
+        description: Oracle Cloud Create Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: alarms-alarmId
+      path: /alarms/{alarmId}
+      operations:
+      - name: getalarm
+        method: GET
+        description: Oracle Cloud Get Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          description: The OCID of the alarm.
+          required: true
+      - name: updatealarm
+        method: PUT
+        description: Oracle Cloud Update Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          description: The OCID of the alarm.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletealarm
+        method: DELETE
+        description: Oracle Cloud Delete Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alarmId
+          in: path
+          type: string
+          description: The OCID of the alarm.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: monitoring-alarms-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Monitoring API — Alarms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/alarms
+      name: alarms
+      description: REST surface for alarms.
+      operations:
+      - method: GET
+        name: listalarms
+        description: Oracle Cloud List Alarms
+        call: monitoring-alarms.listalarms
+        with:
+          compartmentId: rest.compartmentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createalarm
+        description: Oracle Cloud Create Alarm
+        call: monitoring-alarms.createalarm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alarms/{alarmid}
+      name: alarms-alarmid
+      description: REST surface for alarms-alarmId.
+      operations:
+      - method: GET
+        name: getalarm
+        description: Oracle Cloud Get Alarm
+        call: monitoring-alarms.getalarm
+        with:
+          alarmId: rest.alarmId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatealarm
+        description: Oracle Cloud Update Alarm
+        call: monitoring-alarms.updatealarm
+        with:
+          alarmId: rest.alarmId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletealarm
+        description: Oracle Cloud Delete Alarm
+        call: monitoring-alarms.deletealarm
+        with:
+          alarmId: rest.alarmId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: monitoring-alarms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Monitoring API — Alarms. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-alarms
+      description: Oracle Cloud List Alarms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: monitoring-alarms.listalarms
+      with:
+        compartmentId: tools.compartmentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-create-alarm
+      description: Oracle Cloud Create Alarm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-alarms.createalarm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-get-alarm
+      description: Oracle Cloud Get Alarm
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: monitoring-alarms.getalarm
+      with:
+        alarmId: tools.alarmId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-update-alarm
+      description: Oracle Cloud Update Alarm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: monitoring-alarms.updatealarm
+      with:
+        alarmId: tools.alarmId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-delete-alarm
+      description: Oracle Cloud Delete Alarm
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: monitoring-alarms.deletealarm
+      with:
+        alarmId: tools.alarmId
+      outputParameters:
+      - type: object
+        mapping: $.

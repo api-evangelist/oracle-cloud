@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Identity and Access Management API — Groups
+  description: 'Oracle Cloud Identity and Access Management API — Groups. 2 operations. Lead operation: Oracle Cloud List
+    Groups. Self-contained Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: iam-groups
+    baseUri: https://identity.{region}.oraclecloud.com/20160918
+    description: Oracle Cloud Identity and Access Management API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: groups
+      path: /groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: Oracle Cloud List Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: compartmentId
+          in: query
+          type: string
+          description: The OCID of the tenancy.
+          required: true
+      - name: creategroup
+        method: POST
+        description: Oracle Cloud Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: iam-groups-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Identity and Access Management API — Groups. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/groups
+      name: groups
+      description: REST surface for groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: Oracle Cloud List Groups
+        call: iam-groups.listgroups
+        with:
+          compartmentId: rest.compartmentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: Oracle Cloud Create Group
+        call: iam-groups.creategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: iam-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Identity and Access Management API — Groups. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-groups
+      description: Oracle Cloud List Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: iam-groups.listgroups
+      with:
+        compartmentId: tools.compartmentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-create-group
+      description: Oracle Cloud Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: iam-groups.creategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

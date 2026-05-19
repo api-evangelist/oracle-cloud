@@ -1,0 +1,241 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Cloud Functions API — Functions
+  description: 'Oracle Cloud Functions API — Functions. 5 operations. Lead operation: Oracle Cloud List Functions. Self-contained
+    Naftiko capability covering one Oracle Cloud business surface.'
+  tags:
+  - Oracle Cloud
+  - Functions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_CLOUD_API_KEY: ORACLE_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: functions-functions
+    baseUri: https://functions.{region}.oraclecloud.com/20181201
+    description: Oracle Cloud Functions API — Functions business capability. Self-contained, no shared references.
+    resources:
+    - name: functions
+      path: /functions
+      operations:
+      - name: listfunctions
+        method: GET
+        description: Oracle Cloud List Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: query
+          type: string
+          description: The OCID of the application.
+          required: true
+      - name: createfunction
+        method: POST
+        description: Oracle Cloud Create Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: functions-functionId
+      path: /functions/{functionId}
+      operations:
+      - name: getfunction
+        method: GET
+        description: Oracle Cloud Get Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: functionId
+          in: path
+          type: string
+          description: The OCID of the function.
+          required: true
+      - name: deletefunction
+        method: DELETE
+        description: Oracle Cloud Delete Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: functionId
+          in: path
+          type: string
+          description: The OCID of the function.
+          required: true
+    - name: functions-functionId-actions-invoke
+      path: /functions/{functionId}/actions/invoke
+      operations:
+      - name: invokefunction
+        method: POST
+        description: Oracle Cloud Invoke Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: functionId
+          in: path
+          type: string
+          description: The OCID of the function.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: functions-functions-rest
+    port: 8080
+    description: REST adapter for Oracle Cloud Functions API — Functions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/functions
+      name: functions
+      description: REST surface for functions.
+      operations:
+      - method: GET
+        name: listfunctions
+        description: Oracle Cloud List Functions
+        call: functions-functions.listfunctions
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createfunction
+        description: Oracle Cloud Create Function
+        call: functions-functions.createfunction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/functions/{functionid}
+      name: functions-functionid
+      description: REST surface for functions-functionId.
+      operations:
+      - method: GET
+        name: getfunction
+        description: Oracle Cloud Get Function
+        call: functions-functions.getfunction
+        with:
+          functionId: rest.functionId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefunction
+        description: Oracle Cloud Delete Function
+        call: functions-functions.deletefunction
+        with:
+          functionId: rest.functionId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/functions/{functionid}/actions/invoke
+      name: functions-functionid-actions-invoke
+      description: REST surface for functions-functionId-actions-invoke.
+      operations:
+      - method: POST
+        name: invokefunction
+        description: Oracle Cloud Invoke Function
+        call: functions-functions.invokefunction
+        with:
+          functionId: rest.functionId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: functions-functions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Cloud Functions API — Functions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-cloud-list-functions
+      description: Oracle Cloud List Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: functions-functions.listfunctions
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-create-function
+      description: Oracle Cloud Create Function
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: functions-functions.createfunction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-get-function
+      description: Oracle Cloud Get Function
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: functions-functions.getfunction
+      with:
+        functionId: tools.functionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-delete-function
+      description: Oracle Cloud Delete Function
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: functions-functions.deletefunction
+      with:
+        functionId: tools.functionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-cloud-invoke-function
+      description: Oracle Cloud Invoke Function
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: functions-functions.invokefunction
+      with:
+        functionId: tools.functionId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
