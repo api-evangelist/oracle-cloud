@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricData",
+  "title": "MetricData",
+  "type": "object",
+  "description": "Aggregated metric data points.",
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "name": {
+      "type": "string",
+      "example": "CpuUtilization"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    },
+    "aggregatedDatapoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "value": {
+            "type": "number",
+            "example": 42.5
+          }
+        }
+      },
+      "example": [
+        {
+          "timestamp": "2026-04-18T10:30:00Z",
+          "value": 42.5
+        }
+      ]
+    }
+  }
+}

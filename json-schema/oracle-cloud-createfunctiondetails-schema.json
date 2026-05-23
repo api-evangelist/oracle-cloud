@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateFunctionDetails",
+  "title": "CreateFunctionDetails",
+  "type": "object",
+  "required": [
+    "applicationId",
+    "displayName",
+    "image",
+    "memoryInMBs"
+  ],
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "image": {
+      "type": "string",
+      "example": "ocid1.image.oc1.iad.abcdefg123456"
+    },
+    "memoryInMBs": {
+      "type": "integer",
+      "example": 1
+    },
+    "timeoutInSeconds": {
+      "type": "integer",
+      "default": 30,
+      "example": 30
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

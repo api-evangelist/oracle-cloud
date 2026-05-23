@@ -1,0 +1,30 @@
+{
+  "operationId": "listObjects",
+  "method": "GET",
+  "path": "/n/{namespaceName}/b/{bucketName}/o",
+  "summary": "Oracle Cloud List Objects",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListObjects200Example",
+      "example": {
+        "objects": [
+          {
+            "name": "documents/report.pdf",
+            "size": 1048576,
+            "md5": "aGVsbG93b3JsZA==",
+            "timeCreated": "2026-04-18T10:30:00Z",
+            "timeModified": "2026-04-18T10:30:00Z",
+            "storageTier": "Standard"
+          }
+        ],
+        "prefixes": [
+          "example-value"
+        ],
+        "nextStartWith": "example-value"
+      }
+    }
+  ]
+}

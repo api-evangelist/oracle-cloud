@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateAutonomousDatabaseDetails",
+  "title": "UpdateAutonomousDatabaseDetails",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "cpuCoreCount": {
+      "type": "integer",
+      "example": 1
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer",
+      "example": 1
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "adminPassword": {
+      "type": "string",
+      "format": "password",
+      "example": "********"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Compartment",
+  "title": "Compartment",
+  "type": "object",
+  "description": "A compartment for organizing cloud resources.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "my-compartment"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "ACTIVE",
+        "INACTIVE",
+        "DELETING",
+        "DELETED"
+      ],
+      "example": "CREATING"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Application",
+  "title": "Application",
+  "type": "object",
+  "description": "A Functions application containing one or more functions.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the application.",
+      "example": "ocid1.fnapp.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-app"
+    },
+    "subnetIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "example-value"
+      ]
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "DELETED",
+        "FAILED"
+      ],
+      "example": "CREATING"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

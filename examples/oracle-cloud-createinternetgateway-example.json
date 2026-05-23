@@ -1,0 +1,34 @@
+{
+  "operationId": "createInternetGateway",
+  "method": "POST",
+  "path": "/internetGateways",
+  "summary": "Oracle Cloud Create Internet Gateway",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateInternetGatewayRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "isEnabled": true,
+        "displayName": "my-resource"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateInternetGateway200Example",
+      "example": {
+        "id": "ocid1.resource.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-internet-gateway",
+        "isEnabled": true,
+        "lifecycleState": "PROVISIONING",
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

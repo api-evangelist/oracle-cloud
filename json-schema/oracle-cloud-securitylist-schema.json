@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityList",
+  "title": "SecurityList",
+  "type": "object",
+  "description": "A set of firewall rules for a VCN subnet.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "Default Security List"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": [
+        "PROVISIONING",
+        "AVAILABLE",
+        "TERMINATING",
+        "TERMINATED"
+      ],
+      "example": "PROVISIONING"
+    },
+    "ingressSecurityRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "protocol": {
+            "type": "string",
+            "example": "6"
+          },
+          "source": {
+            "type": "string",
+            "example": "0.0.0.0/0"
+          },
+          "isStateless": {
+            "type": "boolean"
+          }
+        }
+      },
+      "example": [
+        {
+          "protocol": "6",
+          "source": "0.0.0.0/0",
+          "isStateless": true
+        }
+      ]
+    },
+    "egressSecurityRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "protocol": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "isStateless": {
+            "type": "boolean"
+          }
+        }
+      },
+      "example": [
+        {
+          "protocol": "example-value",
+          "destination": "example-value",
+          "isStateless": true
+        }
+      ]
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

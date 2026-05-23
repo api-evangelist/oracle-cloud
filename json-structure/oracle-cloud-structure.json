@@ -1,0 +1,176 @@
+{
+  "provider": "Oracle Cloud Infrastructure",
+  "providerId": "oracle-cloud",
+  "kind": "json-structure",
+  "description": "Structural overview of the Oracle Cloud Infrastructure API surface; extracted from openapi/.",
+  "schemaCount": 8,
+  "operationCount": 12,
+  "schemas": [
+    {
+      "name": "Instance",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "LaunchInstanceDetails",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "compartmentId",
+        "shape",
+        "availabilityDomain"
+      ]
+    },
+    {
+      "name": "UpdateInstanceDetails",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Image",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "Shape",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "VolumeAttachment",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "AttachVolumeDetails",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "instanceId",
+        "volumeId",
+        "type"
+      ]
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/instances",
+      "operationId": "listInstances",
+      "summary": "Oracle Cloud List Instances",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/instances",
+      "operationId": "launchInstance",
+      "summary": "Oracle Cloud Launch Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/instances/{instanceId}",
+      "operationId": "getInstance",
+      "summary": "Oracle Cloud Get Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/instances/{instanceId}",
+      "operationId": "updateInstance",
+      "summary": "Oracle Cloud Update Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/instances/{instanceId}",
+      "operationId": "terminateInstance",
+      "summary": "Oracle Cloud Terminate Instance",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/instances/{instanceId}/actions/{action}",
+      "operationId": "instanceAction",
+      "summary": "Oracle Cloud Instance Action",
+      "tags": [
+        "Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/images",
+      "operationId": "listImages",
+      "summary": "Oracle Cloud List Images",
+      "tags": [
+        "Images"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/images/{imageId}",
+      "operationId": "getImage",
+      "summary": "Oracle Cloud Get Image",
+      "tags": [
+        "Images"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/shapes",
+      "operationId": "listShapes",
+      "summary": "Oracle Cloud List Shapes",
+      "tags": [
+        "Shapes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/volumeAttachments",
+      "operationId": "listVolumeAttachments",
+      "summary": "Oracle Cloud List Volume Attachments",
+      "tags": [
+        "Volume Attachments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/volumeAttachments",
+      "operationId": "attachVolume",
+      "summary": "Oracle Cloud Attach Volume",
+      "tags": [
+        "Volume Attachments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/volumeAttachments/{volumeAttachmentId}",
+      "operationId": "detachVolume",
+      "summary": "Oracle Cloud Detach Volume",
+      "tags": [
+        "Volume Attachments"
+      ]
+    }
+  ]
+}

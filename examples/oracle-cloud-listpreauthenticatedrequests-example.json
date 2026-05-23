@@ -1,0 +1,24 @@
+{
+  "operationId": "listPreauthenticatedRequests",
+  "method": "GET",
+  "path": "/n/{namespaceName}/b/{bucketName}/p",
+  "summary": "Oracle Cloud List Preauthenticated Requests",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListPreauthenticatedRequests200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "name": "example-value",
+          "objectName": "example-value",
+          "accessType": "ObjectRead",
+          "timeExpires": "2026-04-18T10:30:00Z",
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    }
+  ]
+}

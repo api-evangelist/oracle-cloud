@@ -1,0 +1,32 @@
+{
+  "operationId": "createGroup",
+  "method": "POST",
+  "path": "/groups",
+  "summary": "Oracle Cloud Create Group",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateGroupRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "example-value",
+        "description": "example-value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateGroup200Example",
+      "example": {
+        "id": "ocid1.resource.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "Administrators",
+        "description": "example-value",
+        "lifecycleState": "CREATING",
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "operationId": "terminateInstance",
+  "method": "DELETE",
+  "path": "/instances/{instanceId}",
+  "summary": "Oracle Cloud Terminate Instance",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "TerminateInstance404Example",
+      "example": {
+        "code": "NotAuthorizedOrNotFound",
+        "message": "Authorization failed or requested resource not found.",
+        "status": 404
+      }
+    }
+  ]
+}

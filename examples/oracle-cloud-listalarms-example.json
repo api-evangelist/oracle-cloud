@@ -1,0 +1,23 @@
+{
+  "operationId": "listAlarms",
+  "method": "GET",
+  "path": "/alarms",
+  "summary": "Oracle Cloud List Alarms",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListAlarms200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "displayName": "my-resource",
+          "severity": "example-value",
+          "isEnabled": true,
+          "lifecycleState": "example-value"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "operationId": "summarizeMetricsData",
+  "method": "POST",
+  "path": "/metrics/actions/summarizeMetricsData",
+  "summary": "Oracle Cloud Summarize Metrics Data",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "SummarizeMetricsDataRequestExample",
+      "example": {
+        "namespace": "oci_computeagent",
+        "query": "CpuUtilization[1m].mean()",
+        "startTime": "2026-04-18T10:30:00Z",
+        "endTime": "2026-04-18T10:30:00Z",
+        "resolution": "1m"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "SummarizeMetricsData200Example",
+      "example": [
+        {
+          "namespace": "oci_computeagent",
+          "name": "CpuUtilization",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "dimensions": {
+            "key1": "value1"
+          },
+          "aggregatedDatapoints": [
+            {
+              "timestamp": "2026-04-18T10:30:00Z",
+              "value": 42.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

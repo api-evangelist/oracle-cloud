@@ -1,0 +1,38 @@
+{
+  "operationId": "listSecurityLists",
+  "method": "GET",
+  "path": "/securityLists",
+  "summary": "Oracle Cloud List Security Lists",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListSecurityLists200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "displayName": "Default Security List",
+          "lifecycleState": "PROVISIONING",
+          "ingressSecurityRules": [
+            {
+              "protocol": "6",
+              "source": "0.0.0.0/0",
+              "isStateless": true
+            }
+          ],
+          "egressSecurityRules": [
+            {
+              "protocol": "example-value",
+              "destination": "example-value",
+              "isStateless": true
+            }
+          ],
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    }
+  ]
+}

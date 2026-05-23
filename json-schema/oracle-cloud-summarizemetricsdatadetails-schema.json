@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SummarizeMetricsDataDetails",
+  "title": "SummarizeMetricsDataDetails",
+  "type": "object",
+  "description": "Details for summarizing metrics data.",
+  "required": [
+    "namespace",
+    "query"
+  ],
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "The metric namespace.",
+      "example": "oci_computeagent"
+    },
+    "query": {
+      "type": "string",
+      "description": "The Monitoring Query Language expression.",
+      "example": "CpuUtilization[1m].mean()"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the time range.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the time range.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "resolution": {
+      "type": "string",
+      "description": "The time interval for aggregation.",
+      "example": "1m"
+    }
+  }
+}

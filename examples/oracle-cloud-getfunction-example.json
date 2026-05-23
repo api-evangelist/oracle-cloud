@@ -1,0 +1,29 @@
+{
+  "operationId": "getFunction",
+  "method": "GET",
+  "path": "/functions/{functionId}",
+  "summary": "Oracle Cloud Get Function",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetFunction200Example",
+      "example": {
+        "id": "ocid1.resource.oc1.iad.abcdefg123456",
+        "applicationId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-function",
+        "image": "iad.ocir.io/my-namespace/my-app/my-function:0.0.1",
+        "memoryInMBs": 256,
+        "timeoutInSeconds": 30,
+        "lifecycleState": "CREATING",
+        "invokeEndpoint": "example-value",
+        "timeCreated": "2026-04-18T10:30:00Z",
+        "config": {
+          "key1": "value1"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGroupDetails",
+  "title": "CreateGroupDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "name",
+    "description"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    }
+  }
+}

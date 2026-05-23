@@ -1,0 +1,28 @@
+{
+  "operationId": "getCluster",
+  "method": "GET",
+  "path": "/clusters/{clusterId}",
+  "summary": "Oracle Cloud Get Cluster",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetCluster200Example",
+      "example": {
+        "id": "ocid1.cluster.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "my-cluster",
+        "kubernetesVersion": "v1.28.2",
+        "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "lifecycleState": "CREATING",
+        "endpoints": {
+          "kubernetes": "example-value",
+          "publicEndpoint": "example-value",
+          "privateEndpoint": "example-value"
+        },
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

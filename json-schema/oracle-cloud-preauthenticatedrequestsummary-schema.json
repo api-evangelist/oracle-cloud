@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PreauthenticatedRequestSummary",
+  "title": "PreauthenticatedRequestSummary",
+  "type": "object",
+  "description": "Summary of a preauthenticated request.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "description": "The user-provided name.",
+      "example": "example-value"
+    },
+    "objectName": {
+      "type": "string",
+      "description": "The name of the object.",
+      "example": "example-value"
+    },
+    "accessType": {
+      "type": "string",
+      "description": "The operation that can be performed.",
+      "enum": [
+        "ObjectRead",
+        "ObjectWrite",
+        "ObjectReadWrite",
+        "AnyObjectRead",
+        "AnyObjectWrite",
+        "AnyObjectReadWrite"
+      ],
+      "example": "ObjectRead"
+    },
+    "timeExpires": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The expiration date.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-04-18T10:30:00Z"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListObjects",
+  "title": "ListObjects",
+  "type": "object",
+  "description": "Response containing a list of objects.",
+  "properties": {
+    "objects": {
+      "type": "array",
+      "description": "List of object summaries.",
+      "items": {
+        "$ref": "#/components/schemas/ObjectSummary"
+      },
+      "example": [
+        {
+          "name": "documents/report.pdf",
+          "size": 1048576,
+          "md5": "aGVsbG93b3JsZA==",
+          "timeCreated": "2026-04-18T10:30:00Z",
+          "timeModified": "2026-04-18T10:30:00Z",
+          "storageTier": "Standard"
+        }
+      ]
+    },
+    "prefixes": {
+      "type": "array",
+      "description": "Prefixes for pseudo-directory grouping.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "example-value"
+      ]
+    },
+    "nextStartWith": {
+      "type": "string",
+      "description": "Object name to resume listing.",
+      "example": "example-value"
+    }
+  }
+}

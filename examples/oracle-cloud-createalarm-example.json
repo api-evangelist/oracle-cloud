@@ -1,0 +1,46 @@
+{
+  "operationId": "createAlarm",
+  "method": "POST",
+  "path": "/alarms",
+  "summary": "Oracle Cloud Create Alarm",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateAlarmRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-resource",
+        "metricCompartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "namespace": "oci_computeagent",
+        "query": "CpuUtilization[1m].mean()",
+        "severity": "CRITICAL",
+        "isEnabled": true,
+        "destinations": [
+          "example-value"
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateAlarm200Example",
+      "example": {
+        "id": "ocid1.alarm.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "High CPU Alarm",
+        "metricCompartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "namespace": "oci_computeagent",
+        "query": "CpuUtilization[1m].mean() > 90",
+        "severity": "CRITICAL",
+        "isEnabled": true,
+        "lifecycleState": "ACTIVE",
+        "destinations": [
+          "example-value"
+        ],
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

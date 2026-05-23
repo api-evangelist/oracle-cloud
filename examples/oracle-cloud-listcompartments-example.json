@@ -1,0 +1,24 @@
+{
+  "operationId": "listCompartments",
+  "method": "GET",
+  "path": "/compartments",
+  "summary": "Oracle Cloud List Compartments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListCompartments200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "name": "my-compartment",
+          "description": "example-value",
+          "lifecycleState": "CREATING",
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    }
+  ]
+}

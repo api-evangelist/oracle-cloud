@@ -1,0 +1,17 @@
+{
+  "operationId": "updateCluster",
+  "method": "PUT",
+  "path": "/clusters/{clusterId}",
+  "summary": "Oracle Cloud Update Cluster",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UpdateClusterRequestExample",
+      "example": {
+        "name": "example-value",
+        "kubernetesVersion": "v1.28.2"
+      }
+    }
+  ],
+  "responseExamples": []
+}

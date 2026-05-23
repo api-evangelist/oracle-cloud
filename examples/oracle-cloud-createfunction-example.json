@@ -1,0 +1,44 @@
+{
+  "operationId": "createFunction",
+  "method": "POST",
+  "path": "/functions",
+  "summary": "Oracle Cloud Create Function",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateFunctionRequestExample",
+      "example": {
+        "applicationId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-resource",
+        "image": "ocid1.image.oc1.iad.abcdefg123456",
+        "memoryInMBs": 1,
+        "timeoutInSeconds": 30,
+        "config": {
+          "key1": "value1"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateFunction200Example",
+      "example": {
+        "id": "ocid1.resource.oc1.iad.abcdefg123456",
+        "applicationId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-function",
+        "image": "iad.ocir.io/my-namespace/my-app/my-function:0.0.1",
+        "memoryInMBs": 256,
+        "timeoutInSeconds": 30,
+        "lifecycleState": "CREATING",
+        "invokeEndpoint": "example-value",
+        "timeCreated": "2026-04-18T10:30:00Z",
+        "config": {
+          "key1": "value1"
+        }
+      }
+    }
+  ]
+}

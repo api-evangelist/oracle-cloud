@@ -1,0 +1,15 @@
+{
+  "operationId": "getNamespace",
+  "method": "GET",
+  "path": "/n",
+  "summary": "Oracle Cloud Get Namespace",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetNamespace200Example",
+      "example": "my-namespace"
+    }
+  ]
+}

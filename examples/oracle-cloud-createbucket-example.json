@@ -1,0 +1,60 @@
+{
+  "operationId": "createBucket",
+  "method": "POST",
+  "path": "/n/{namespaceName}/b",
+  "summary": "Oracle Cloud Create Bucket",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateBucketRequestExample",
+      "example": {
+        "name": "my-new-bucket",
+        "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+        "publicAccessType": "NoPublicAccess",
+        "storageTier": "Standard",
+        "objectEventsEnabled": false,
+        "versioning": "Enabled",
+        "freeformTags": {
+          "key1": "value1"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateBucket200Example",
+      "example": {
+        "namespace": "my-namespace",
+        "name": "my-bucket",
+        "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+        "createdBy": "example-value",
+        "timeCreated": "2026-04-18T10:30:00Z",
+        "publicAccessType": "NoPublicAccess",
+        "storageTier": "Standard",
+        "objectEventsEnabled": false,
+        "freeformTags": {
+          "key1": "value1"
+        },
+        "definedTags": {
+          "key1": "value1"
+        },
+        "objectLifecyclePolicyEtag": "example-value",
+        "approximateCount": 1500,
+        "approximateSize": 1073741824,
+        "versioning": "Enabled"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "CreateBucket400Example",
+      "example": {
+        "code": "BucketNotFound",
+        "message": "The bucket does not exist.",
+        "status": 404
+      }
+    }
+  ]
+}

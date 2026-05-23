@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateVcnDetails",
+  "title": "CreateVcnDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "cidrBlocks"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "cidrBlocks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of CIDR blocks for the VCN.",
+      "example": [
+        "10.0.0.0/16"
+      ]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-vcn"
+    },
+    "dnsLabel": {
+      "type": "string",
+      "description": "DNS label for the VCN.",
+      "example": "myvcn"
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

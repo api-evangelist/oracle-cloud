@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateClusterDetails",
+  "title": "UpdateClusterDetails",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "example": "v1.28.2"
+    }
+  }
+}

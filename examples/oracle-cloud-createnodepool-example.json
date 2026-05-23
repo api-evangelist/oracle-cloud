@@ -1,0 +1,21 @@
+{
+  "operationId": "createNodePool",
+  "method": "POST",
+  "path": "/nodePools",
+  "summary": "Oracle Cloud Create Node Pool",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateNodePoolRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "clusterId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "example-value",
+        "kubernetesVersion": "v1.28.2",
+        "nodeShape": "VM.Standard.E4.Flex",
+        "quantityPerSubnet": 1
+      }
+    }
+  ],
+  "responseExamples": []
+}

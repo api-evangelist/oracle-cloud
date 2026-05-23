@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAlarmDetails",
+  "title": "CreateAlarmDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "displayName",
+    "metricCompartmentId",
+    "namespace",
+    "query",
+    "severity",
+    "isEnabled",
+    "destinations"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "metricCompartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "query": {
+      "type": "string",
+      "example": "CpuUtilization[1m].mean()"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "CRITICAL",
+        "ERROR",
+        "WARNING",
+        "INFO"
+      ],
+      "example": "CRITICAL"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "example": true
+    },
+    "destinations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "example-value"
+      ]
+    }
+  }
+}

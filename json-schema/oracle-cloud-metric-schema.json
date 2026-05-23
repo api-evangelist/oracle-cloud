@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Metric",
+  "title": "Metric",
+  "type": "object",
+  "description": "A metric definition.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "CpuUtilization"
+    },
+    "namespace": {
+      "type": "string",
+      "example": "oci_computeagent"
+    },
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

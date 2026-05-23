@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ObjectSummary",
+  "title": "ObjectSummary",
+  "type": "object",
+  "description": "Summary of an object in a bucket.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the object.",
+      "example": "documents/report.pdf"
+    },
+    "size": {
+      "type": "integer",
+      "description": "Size of the object in bytes.",
+      "example": 1048576
+    },
+    "md5": {
+      "type": "string",
+      "description": "Base64-encoded MD5 hash.",
+      "example": "aGVsbG93b3JsZA=="
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the object was created.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "timeModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the object was last modified.",
+      "example": "2026-04-18T10:30:00Z"
+    },
+    "storageTier": {
+      "type": "string",
+      "description": "The storage tier of the object.",
+      "enum": [
+        "Standard",
+        "InfrequentAccess",
+        "Archive"
+      ],
+      "example": "Standard"
+    }
+  }
+}

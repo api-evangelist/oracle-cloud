@@ -1,0 +1,19 @@
+{
+  "operationId": "createCluster",
+  "method": "POST",
+  "path": "/clusters",
+  "summary": "Oracle Cloud Create Cluster",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateClusterRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "example-value",
+        "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "kubernetesVersion": "v1.28.2"
+      }
+    }
+  ],
+  "responseExamples": []
+}

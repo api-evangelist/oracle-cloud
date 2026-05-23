@@ -1,0 +1,25 @@
+{
+  "operationId": "getNodePool",
+  "method": "GET",
+  "path": "/nodePools/{nodePoolId}",
+  "summary": "Oracle Cloud Get Node Pool",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetNodePool200Example",
+      "example": {
+        "id": "ocid1.resource.oc1.iad.abcdefg123456",
+        "clusterId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "pool1",
+        "kubernetesVersion": "v1.28.2",
+        "nodeShape": "VM.Standard.E4.Flex",
+        "quantityPerSubnet": 3,
+        "lifecycleState": "example-value",
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

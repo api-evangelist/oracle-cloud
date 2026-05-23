@@ -1,0 +1,24 @@
+{
+  "operationId": "listMetrics",
+  "method": "GET",
+  "path": "/metrics",
+  "summary": "Oracle Cloud List Metrics",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListMetrics200Example",
+      "example": [
+        {
+          "name": "CpuUtilization",
+          "namespace": "oci_computeagent",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "dimensions": {
+            "key1": "value1"
+          }
+        }
+      ]
+    }
+  ]
+}

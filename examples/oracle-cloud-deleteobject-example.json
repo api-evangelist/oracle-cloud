@@ -1,0 +1,19 @@
+{
+  "operationId": "deleteObject",
+  "method": "DELETE",
+  "path": "/n/{namespaceName}/b/{bucketName}/o/{objectName}",
+  "summary": "Oracle Cloud Delete Object",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "DeleteObject404Example",
+      "example": {
+        "code": "BucketNotFound",
+        "message": "The bucket does not exist.",
+        "status": 404
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttachVolumeDetails",
+  "title": "AttachVolumeDetails",
+  "type": "object",
+  "description": "Details for attaching a volume.",
+  "required": [
+    "instanceId",
+    "volumeId",
+    "type"
+  ],
+  "properties": {
+    "instanceId": {
+      "type": "string",
+      "description": "The OCID of the instance.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "volumeId": {
+      "type": "string",
+      "description": "The OCID of the volume.",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of volume attachment.",
+      "enum": [
+        "iscsi",
+        "paravirtualized"
+      ],
+      "example": "iscsi"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "my-resource"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "description": "Whether the attachment is read-only.",
+      "default": false,
+      "example": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "operationId": "createUser",
+  "method": "POST",
+  "path": "/users",
+  "summary": "Oracle Cloud Create User",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateUserRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "jsmith@example.com",
+        "description": "John Smith",
+        "email": "admin@example.com"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateUser200Example",
+      "example": {
+        "id": "ocid1.user.oc1..abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "jsmith@example.com",
+        "description": "John Smith",
+        "email": "jsmith@example.com",
+        "lifecycleState": "CREATING",
+        "isMfaActivated": true,
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

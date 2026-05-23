@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateSubnetDetails",
+  "title": "CreateSubnetDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "vcnId",
+    "cidrBlock"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "cidrBlock": {
+      "type": "string",
+      "example": "10.0.0.0/24"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "public-subnet-1"
+    },
+    "dnsLabel": {
+      "type": "string",
+      "example": "myresource"
+    },
+    "prohibitPublicIpOnVnic": {
+      "type": "boolean",
+      "default": false,
+      "example": false
+    },
+    "routeTableId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "securityListIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "example-value"
+      ]
+    }
+  }
+}

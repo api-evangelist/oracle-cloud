@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAutonomousDatabaseDetails",
+  "title": "CreateAutonomousDatabaseDetails",
+  "type": "object",
+  "description": "Details for creating an Autonomous Database.",
+  "required": [
+    "compartmentId",
+    "dbName",
+    "cpuCoreCount",
+    "dataStorageSizeInTBs",
+    "adminPassword"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "dbName": {
+      "type": "string",
+      "example": "MYADB"
+    },
+    "displayName": {
+      "type": "string",
+      "example": "my-adb"
+    },
+    "cpuCoreCount": {
+      "type": "integer",
+      "example": 2
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer",
+      "example": 1
+    },
+    "adminPassword": {
+      "type": "string",
+      "format": "password",
+      "example": "********"
+    },
+    "dbWorkload": {
+      "type": "string",
+      "enum": [
+        "OLTP",
+        "DW",
+        "AJD",
+        "APEX"
+      ],
+      "example": "OLTP"
+    },
+    "isFreeTier": {
+      "type": "boolean",
+      "default": false,
+      "example": false
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean",
+      "default": false,
+      "example": false
+    }
+  }
+}

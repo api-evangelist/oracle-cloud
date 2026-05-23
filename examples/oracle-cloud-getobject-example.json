@@ -1,0 +1,19 @@
+{
+  "operationId": "getObject",
+  "method": "GET",
+  "path": "/n/{namespaceName}/b/{bucketName}/o/{objectName}",
+  "summary": "Oracle Cloud Get Object",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "GetObject404Example",
+      "example": {
+        "code": "BucketNotFound",
+        "message": "The bucket does not exist.",
+        "status": 404
+      }
+    }
+  ]
+}

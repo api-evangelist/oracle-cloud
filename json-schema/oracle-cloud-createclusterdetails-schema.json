@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateClusterDetails",
+  "title": "CreateClusterDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "name",
+    "vcnId",
+    "kubernetesVersion"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "vcnId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "example": "v1.28.2"
+    }
+  }
+}

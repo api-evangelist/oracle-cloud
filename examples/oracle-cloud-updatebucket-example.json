@@ -1,0 +1,50 @@
+{
+  "operationId": "updateBucket",
+  "method": "PUT",
+  "path": "/n/{namespaceName}/b/{bucketName}",
+  "summary": "Oracle Cloud Update Bucket",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UpdateBucketRequestExample",
+      "example": {
+        "name": "example-value",
+        "namespace": "oci_computeagent",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "publicAccessType": "NoPublicAccess",
+        "objectEventsEnabled": true,
+        "versioning": "Enabled",
+        "freeformTags": {
+          "key1": "value1"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "UpdateBucket200Example",
+      "example": {
+        "namespace": "my-namespace",
+        "name": "my-bucket",
+        "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+        "createdBy": "example-value",
+        "timeCreated": "2026-04-18T10:30:00Z",
+        "publicAccessType": "NoPublicAccess",
+        "storageTier": "Standard",
+        "objectEventsEnabled": false,
+        "freeformTags": {
+          "key1": "value1"
+        },
+        "definedTags": {
+          "key1": "value1"
+        },
+        "objectLifecyclePolicyEtag": "example-value",
+        "approximateCount": 1500,
+        "approximateSize": 1073741824,
+        "versioning": "Enabled"
+      }
+    }
+  ]
+}

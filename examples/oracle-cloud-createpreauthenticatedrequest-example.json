@@ -1,0 +1,34 @@
+{
+  "operationId": "createPreauthenticatedRequest",
+  "method": "POST",
+  "path": "/n/{namespaceName}/b/{bucketName}/p",
+  "summary": "Oracle Cloud Create Preauthenticated Request",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreatePreauthenticatedRequestRequestExample",
+      "example": {
+        "name": "my-par",
+        "objectName": "example-value",
+        "accessType": "ObjectRead",
+        "timeExpires": "2026-12-31T23:59:59Z"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreatePreauthenticatedRequest200Example",
+      "example": {
+        "id": "ocid1.resource.oc1.iad.abcdefg123456",
+        "name": "example-value",
+        "accessUri": "example-value",
+        "objectName": "example-value",
+        "accessType": "ObjectRead",
+        "timeExpires": "2026-04-18T10:30:00Z",
+        "timeCreated": "2026-04-18T10:30:00Z"
+      }
+    }
+  ]
+}

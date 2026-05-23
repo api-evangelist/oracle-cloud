@@ -1,0 +1,27 @@
+{
+  "operationId": "getApplication",
+  "method": "GET",
+  "path": "/applications/{applicationId}",
+  "summary": "Oracle Cloud Get Application",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetApplication200Example",
+      "example": {
+        "id": "ocid1.fnapp.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-app",
+        "subnetIds": [
+          "example-value"
+        ],
+        "lifecycleState": "CREATING",
+        "timeCreated": "2026-04-18T10:30:00Z",
+        "config": {
+          "key1": "value1"
+        }
+      }
+    }
+  ]
+}

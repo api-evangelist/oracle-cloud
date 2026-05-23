@@ -1,0 +1,25 @@
+{
+  "operationId": "listInternetGateways",
+  "method": "GET",
+  "path": "/internetGateways",
+  "summary": "Oracle Cloud List Internet Gateways",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListInternetGateways200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "displayName": "my-internet-gateway",
+          "isEnabled": true,
+          "lifecycleState": "PROVISIONING",
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    }
+  ]
+}

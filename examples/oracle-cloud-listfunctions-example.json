@@ -1,0 +1,25 @@
+{
+  "operationId": "listFunctions",
+  "method": "GET",
+  "path": "/functions",
+  "summary": "Oracle Cloud List Functions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListFunctions200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "applicationId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "displayName": "my-resource",
+          "image": "ocid1.image.oc1.iad.abcdefg123456",
+          "memoryInMBs": 1,
+          "lifecycleState": "example-value",
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    }
+  ]
+}

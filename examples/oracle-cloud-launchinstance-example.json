@@ -1,0 +1,81 @@
+{
+  "operationId": "launchInstance",
+  "method": "POST",
+  "path": "/instances",
+  "summary": "Oracle Cloud Launch Instance",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "LaunchInstanceRequestExample",
+      "example": {
+        "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+        "availabilityDomain": "Uocm:US-ASHBURN-AD-1",
+        "shape": "VM.Standard.E4.Flex",
+        "displayName": "my-new-instance",
+        "imageId": "ocid1.image.oc1.iad.abcdefg123456",
+        "subnetId": "ocid1.subnet.oc1.iad.abcdefg123456",
+        "shapeConfig": {
+          "ocpus": 2.0,
+          "memoryInGBs": 16.0
+        },
+        "freeformTags": {
+          "key1": "value1"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "LaunchInstance200Example",
+      "example": {
+        "id": "ocid1.instance.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+        "availabilityDomain": "Uocm:US-ASHBURN-AD-1",
+        "displayName": "my-instance-01",
+        "shape": "VM.Standard.E4.Flex",
+        "lifecycleState": "RUNNING",
+        "region": "us-ashburn-1",
+        "imageId": "ocid1.image.oc1.iad.abcdefg123456",
+        "timeCreated": "2026-01-15T10:30:00Z",
+        "freeformTags": {
+          "key1": "value1"
+        },
+        "definedTags": {
+          "key1": "value1"
+        }
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "LaunchInstance400Example",
+      "example": {
+        "code": "NotAuthorizedOrNotFound",
+        "message": "Authorization failed or requested resource not found.",
+        "status": 404
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "LaunchInstance401Example",
+      "example": {
+        "code": "NotAuthorizedOrNotFound",
+        "message": "Authorization failed or requested resource not found.",
+        "status": 404
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "LaunchInstance500Example",
+      "example": {
+        "code": "NotAuthorizedOrNotFound",
+        "message": "Authorization failed or requested resource not found.",
+        "status": 404
+      }
+    }
+  ]
+}

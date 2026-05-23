@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateVcnDetails",
+  "title": "UpdateVcnDetails",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "example": "my-resource"
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

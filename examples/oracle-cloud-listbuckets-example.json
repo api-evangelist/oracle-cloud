@@ -1,0 +1,44 @@
+{
+  "operationId": "listBuckets",
+  "method": "GET",
+  "path": "/n/{namespaceName}/b",
+  "summary": "Oracle Cloud List Buckets",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListBuckets200Example",
+      "example": [
+        {
+          "namespace": "my-namespace",
+          "name": "my-bucket",
+          "compartmentId": "ocid1.compartment.oc1..abcdefg123456",
+          "createdBy": "example-value",
+          "timeCreated": "2026-01-15T10:30:00Z",
+          "etag": "example-value"
+        }
+      ]
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "ListBuckets400Example",
+      "example": {
+        "code": "BucketNotFound",
+        "message": "The bucket does not exist.",
+        "status": 404
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "ListBuckets401Example",
+      "example": {
+        "code": "BucketNotFound",
+        "message": "The bucket does not exist.",
+        "status": 404
+      }
+    }
+  ]
+}

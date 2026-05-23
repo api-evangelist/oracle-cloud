@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePolicyDetails",
+  "title": "CreatePolicyDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "name",
+    "description",
+    "statements"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string",
+      "example": "ocid1.resource.oc1.iad.abcdefg123456"
+    },
+    "name": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "statements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "example-value"
+      ]
+    }
+  }
+}

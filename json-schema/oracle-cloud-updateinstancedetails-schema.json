@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateInstanceDetails",
+  "title": "UpdateInstanceDetails",
+  "type": "object",
+  "description": "Details for updating an instance.",
+  "properties": {
+    "displayName": {
+      "type": "string",
+      "description": "A user-friendly name.",
+      "example": "updated-instance-name"
+    },
+    "shape": {
+      "type": "string",
+      "description": "The shape of the instance.",
+      "example": "VM.Standard.E4.Flex"
+    },
+    "shapeConfig": {
+      "type": "object",
+      "properties": {
+        "ocpus": {
+          "type": "number",
+          "example": 4.0
+        },
+        "memoryInGBs": {
+          "type": "number",
+          "example": 32.0
+        }
+      },
+      "example": {
+        "ocpus": 4.0,
+        "memoryInGBs": 32.0
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": {
+        "key1": "value1"
+      }
+    }
+  }
+}

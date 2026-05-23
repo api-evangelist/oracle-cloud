@@ -1,0 +1,38 @@
+{
+  "operationId": "listAutonomousDatabases",
+  "method": "GET",
+  "path": "/autonomousDatabases",
+  "summary": "Oracle Cloud List Autonomous Databases",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListAutonomousDatabases200Example",
+      "example": [
+        {
+          "id": "ocid1.resource.oc1.iad.abcdefg123456",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "displayName": "my-resource",
+          "dbName": "example-value",
+          "cpuCoreCount": 1,
+          "dataStorageSizeInTBs": 1,
+          "dbWorkload": "example-value",
+          "lifecycleState": "example-value",
+          "isFreeTier": true,
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "ListAutonomousDatabases401Example",
+      "example": {
+        "code": "example-value",
+        "message": "example-value",
+        "status": 1
+      }
+    }
+  ]
+}

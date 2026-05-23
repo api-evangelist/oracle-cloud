@@ -1,0 +1,32 @@
+{
+  "operationId": "listSubnets",
+  "method": "GET",
+  "path": "/subnets",
+  "summary": "Oracle Cloud List Subnets",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListSubnets200Example",
+      "example": [
+        {
+          "id": "ocid1.subnet.oc1.iad.abcdefg123456",
+          "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "vcnId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "displayName": "public-subnet-1",
+          "cidrBlock": "10.0.0.0/24",
+          "availabilityDomain": "Uocm:US-ASHBURN-AD-1",
+          "dnsLabel": "myresource",
+          "prohibitPublicIpOnVnic": true,
+          "routeTableId": "ocid1.resource.oc1.iad.abcdefg123456",
+          "securityListIds": [
+            "example-value"
+          ],
+          "lifecycleState": "PROVISIONING",
+          "timeCreated": "2026-04-18T10:30:00Z"
+        }
+      ]
+    }
+  ]
+}

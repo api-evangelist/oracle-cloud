@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateUserDetails",
+  "title": "UpdateUserDetails",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "example": "example-value"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "example": "admin@example.com"
+    }
+  }
+}

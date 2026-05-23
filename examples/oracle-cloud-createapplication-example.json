@@ -1,0 +1,42 @@
+{
+  "operationId": "createApplication",
+  "method": "POST",
+  "path": "/applications",
+  "summary": "Oracle Cloud Create Application",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateApplicationRequestExample",
+      "example": {
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-resource",
+        "subnetIds": [
+          "example-value"
+        ],
+        "config": {
+          "key1": "value1"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "CreateApplication200Example",
+      "example": {
+        "id": "ocid1.fnapp.oc1.iad.abcdefg123456",
+        "compartmentId": "ocid1.resource.oc1.iad.abcdefg123456",
+        "displayName": "my-app",
+        "subnetIds": [
+          "example-value"
+        ],
+        "lifecycleState": "CREATING",
+        "timeCreated": "2026-04-18T10:30:00Z",
+        "config": {
+          "key1": "value1"
+        }
+      }
+    }
+  ]
+}
