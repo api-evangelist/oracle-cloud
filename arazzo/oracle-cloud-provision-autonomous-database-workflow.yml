@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Provision Autonomous Database
+  summary: Create an Autonomous Database and poll until it is AVAILABLE with connection URLs.
+  description: >-
+    Provisions an Oracle Autonomous Database and waits for it to become usable.
+    The workflow creates the database in the requested compartment, then polls
+    the database until its lifecycle state reaches AVAILABLE so the connection
+    URLs are populated. Every step spells out its request inline so the
+    provisioning flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: databaseApi
+  url: ../openapi/oracle-cloud-database-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: provision-autonomous-database
+  summary: Create an Autonomous Database and wait for it to be AVAILABLE.
+  description: >-
+    Creates an Autonomous Database and polls getAutonomousDatabase until the
+    lifecycle state is AVAILABLE, surfacing the connection URLs.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - dbName
+    - cpuCoreCount
+    - dataStorageSizeInTBs
+    - adminPassword
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment to create the database in.
+      dbName:
+        type: string
+        description: The database name (e.g. MYADB).
+      displayName:
+        type: string
+        description: A user-friendly name for the database.
+      cpuCoreCount:
+        type: integer
+        description: The number of CPU cores to allocate.
+      dataStorageSizeInTBs:
+        type: integer
+        description: The data storage size in terabytes.
+      adminPassword:
+        type: string
+        description: The ADMIN user password.
+      dbWorkload:
+        type: string
+        description: The workload type (OLTP, DW, AJD, or APEX).
+      isAutoScalingEnabled:
+        type: boolean
+        description: Whether compute auto scaling is enabled.
+  steps:
+  - stepId: createDatabase
+    description: Create a new Autonomous Database in the requested compartment.
+    operationId: createAutonomousDatabase
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        dbName: $inputs.dbName
+        displayName: $inputs.displayName
+        cpuCoreCount: $inputs.cpuCoreCount
+        dataStorageSizeInTBs: $inputs.dataStorageSizeInTBs
+        adminPassword: $inputs.adminPassword
+        dbWorkload: $inputs.dbWorkload
+        isAutoScalingEnabled: $inputs.isAutoScalingEnabled
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      databaseId: $response.body#/id
+      createState: $response.body#/lifecycleState
+  - stepId: pollDatabase
+    description: >-
+      Poll the database until it reports the AVAILABLE lifecycle state and the
+      connection URLs are populated.
+    operationId: getAutonomousDatabase
+    parameters:
+    - name: autonomousDatabaseId
+      in: path
+      value: $steps.createDatabase.outputs.databaseId
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lifecycleState == "AVAILABLE"
+      type: jsonpath
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+      connectionUrls: $response.body#/connectionUrls
+  outputs:
+    databaseId: $steps.createDatabase.outputs.databaseId
+    lifecycleState: $steps.pollDatabase.outputs.lifecycleState
+    connectionUrls: $steps.pollDatabase.outputs.connectionUrls

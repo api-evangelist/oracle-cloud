@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Teardown OKE Cluster
+  summary: List a cluster's node pools, delete the first node pool, then delete the cluster.
+  description: >-
+    Decommissions a managed Kubernetes (OKE) cluster by removing its node pools
+    first. The workflow confirms the cluster, lists its node pools, deletes the
+    first node pool returned, and then deletes the cluster. Every step spells out
+    its request inline so the teardown flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: okeApi
+  url: ../openapi/oracle-cloud-oke-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: teardown-oke-cluster
+  summary: Delete an OKE cluster's node pool, then delete the cluster.
+  description: >-
+    Confirms the cluster, lists its node pools, deletes the first node pool, and
+    deletes the cluster.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - clusterId
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment containing the cluster.
+      clusterId:
+        type: string
+        description: The OCID of the cluster to tear down.
+  steps:
+  - stepId: getCluster
+    description: Confirm the cluster exists before deleting its node pools.
+    operationId: getCluster
+    parameters:
+    - name: clusterId
+      in: path
+      value: $inputs.clusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterName: $response.body#/name
+  - stepId: listNodePools
+    description: List the node pools that belong to the cluster.
+    operationId: listNodePools
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: clusterId
+      in: query
+      value: $inputs.clusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nodePoolId: $response.body#/0/id
+  - stepId: deleteNodePool
+    description: Delete the first node pool returned for the cluster.
+    operationId: deleteNodePool
+    parameters:
+    - name: nodePoolId
+      in: path
+      value: $steps.listNodePools.outputs.nodePoolId
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: deleteCluster
+    description: Delete the cluster once its node pools are removed.
+    operationId: deleteCluster
+    parameters:
+    - name: clusterId
+      in: path
+      value: $inputs.clusterId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    deletedClusterId: $inputs.clusterId
+    deletedNodePoolId: $steps.listNodePools.outputs.nodePoolId

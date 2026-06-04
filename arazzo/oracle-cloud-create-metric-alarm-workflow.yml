@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Create Metric Alarm
+  summary: Discover a metric in a namespace, create an alarm on it, then confirm the alarm.
+  description: >-
+    Builds a monitoring alarm grounded in a metric that actually exists. The
+    workflow lists the metrics in a compartment and namespace, creates an alarm
+    whose query targets the discovered metric, and reads the alarm back to
+    confirm it is active. Every step spells out its request inline so the
+    alerting flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: monitoringApi
+  url: ../openapi/oracle-cloud-monitoring-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: create-metric-alarm
+  summary: Discover a metric, create an alarm on it, then confirm the alarm.
+  description: >-
+    Lists metrics to find a target metric, creates an alarm with a threshold
+    query, and reads the alarm back with getAlarm.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - namespace
+    - alarmDisplayName
+    - query
+    - severity
+    - destinations
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment for the metrics and alarm.
+      namespace:
+        type: string
+        description: The metric namespace (e.g. oci_computeagent).
+      metricName:
+        type: string
+        description: Optional metric name filter for the metric listing.
+      alarmDisplayName:
+        type: string
+        description: A user-friendly name for the alarm.
+      query:
+        type: string
+        description: The Monitoring Query Language threshold expression for the alarm.
+      severity:
+        type: string
+        description: The alarm severity (CRITICAL, ERROR, WARNING, or INFO).
+      destinations:
+        type: array
+        description: The notification destination OCIDs for the alarm.
+        items:
+          type: string
+  steps:
+  - stepId: listMetrics
+    description: >-
+      List the metrics available in the compartment and namespace to confirm the
+      target metric exists.
+    operationId: listMetrics
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: name
+      in: query
+      value: $inputs.metricName
+    - name: namespace
+      in: query
+      value: $inputs.namespace
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      discoveredMetricName: $response.body#/0/name
+  - stepId: createAlarm
+    description: >-
+      Create an alarm in the compartment that evaluates the threshold query
+      against the metric namespace.
+    operationId: createAlarm
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        displayName: $inputs.alarmDisplayName
+        metricCompartmentId: $inputs.compartmentId
+        namespace: $inputs.namespace
+        query: $inputs.query
+        severity: $inputs.severity
+        isEnabled: true
+        destinations: $inputs.destinations
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      alarmId: $response.body#/id
+  - stepId: getAlarm
+    description: Read the alarm back to confirm it was created and is enabled.
+    operationId: getAlarm
+    parameters:
+    - name: alarmId
+      in: path
+      value: $steps.createAlarm.outputs.alarmId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+      isEnabled: $response.body#/isEnabled
+  outputs:
+    alarmId: $steps.createAlarm.outputs.alarmId
+    lifecycleState: $steps.getAlarm.outputs.lifecycleState

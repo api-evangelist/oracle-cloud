@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Restart Autonomous Database
+  summary: Stop an Autonomous Database, confirm it stopped, then start it again.
+  description: >-
+    Performs a controlled restart of an Oracle Autonomous Database. The workflow
+    stops the database, polls until its lifecycle state reaches STOPPED, then
+    starts it again and polls until it returns to AVAILABLE. Every step spells
+    out its request inline so the restart flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: databaseApi
+  url: ../openapi/oracle-cloud-database-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: restart-autonomous-database
+  summary: Stop an Autonomous Database, wait for STOPPED, then start it back up.
+  description: >-
+    Stops the database and polls until STOPPED, then starts it and polls until
+    the database returns to AVAILABLE.
+  inputs:
+    type: object
+    required:
+    - autonomousDatabaseId
+    properties:
+      autonomousDatabaseId:
+        type: string
+        description: The OCID of the Autonomous Database to restart.
+  steps:
+  - stepId: stopDatabase
+    description: Stop the running Autonomous Database.
+    operationId: stopAutonomousDatabase
+    parameters:
+    - name: autonomousDatabaseId
+      in: path
+      value: $inputs.autonomousDatabaseId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stopState: $response.body#/lifecycleState
+  - stepId: pollStopped
+    description: Poll the database until it reports the STOPPED lifecycle state.
+    operationId: getAutonomousDatabase
+    parameters:
+    - name: autonomousDatabaseId
+      in: path
+      value: $inputs.autonomousDatabaseId
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lifecycleState == "STOPPED"
+      type: jsonpath
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+  - stepId: startDatabase
+    description: Start the stopped Autonomous Database again.
+    operationId: startAutonomousDatabase
+    parameters:
+    - name: autonomousDatabaseId
+      in: path
+      value: $inputs.autonomousDatabaseId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      startState: $response.body#/lifecycleState
+  - stepId: pollAvailable
+    description: Poll the database until it returns to the AVAILABLE lifecycle state.
+    operationId: getAutonomousDatabase
+    parameters:
+    - name: autonomousDatabaseId
+      in: path
+      value: $inputs.autonomousDatabaseId
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lifecycleState == "AVAILABLE"
+      type: jsonpath
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+  outputs:
+    autonomousDatabaseId: $inputs.autonomousDatabaseId
+    finalState: $steps.pollAvailable.outputs.lifecycleState

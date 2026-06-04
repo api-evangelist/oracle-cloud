@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Create Bucket And Upload Object
+  summary: Resolve the namespace, create a bucket, upload an object, then confirm it is listed.
+  description: >-
+    Bootstraps Object Storage for a new workload. The workflow resolves the
+    tenancy Object Storage namespace, creates a bucket in the requested
+    compartment, uploads an object into the bucket, and lists the bucket to
+    confirm the object is present. Every step spells out its request inline so
+    the storage flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: objectStorageApi
+  url: ../openapi/oracle-cloud-object-storage-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: create-bucket-and-upload-object
+  summary: Resolve namespace, create a bucket, upload an object, and confirm it.
+  description: >-
+    Gets the namespace, creates a bucket, puts an object into it, and lists the
+    bucket objects to confirm the upload succeeded.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - bucketName
+    - objectName
+    - objectContent
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment to create the bucket in.
+      bucketName:
+        type: string
+        description: The name of the bucket to create.
+      objectName:
+        type: string
+        description: The name (key) of the object to upload.
+      objectContent:
+        type: string
+        description: The body content to upload as the object.
+      contentType:
+        type: string
+        description: The Content-Type header for the uploaded object.
+  steps:
+  - stepId: getNamespace
+    description: Resolve the Object Storage namespace for the requesting tenancy.
+    operationId: getNamespace
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      namespaceName: $response.body
+  - stepId: createBucket
+    description: Create a private, versioning-enabled bucket in the namespace.
+    operationId: createBucket
+    parameters:
+    - name: namespaceName
+      in: path
+      value: $steps.getNamespace.outputs.namespaceName
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.bucketName
+        compartmentId: $inputs.compartmentId
+        publicAccessType: NoPublicAccess
+        storageTier: Standard
+        versioning: Enabled
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bucketName: $response.body#/name
+  - stepId: putObject
+    description: Upload the supplied content as an object into the new bucket.
+    operationId: putObject
+    parameters:
+    - name: namespaceName
+      in: path
+      value: $steps.getNamespace.outputs.namespaceName
+    - name: bucketName
+      in: path
+      value: $steps.createBucket.outputs.bucketName
+    - name: objectName
+      in: path
+      value: $inputs.objectName
+    - name: Content-Type
+      in: header
+      value: $inputs.contentType
+    requestBody:
+      contentType: application/octet-stream
+      payload: $inputs.objectContent
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: listObjects
+    description: List the bucket objects to confirm the uploaded object is present.
+    operationId: listObjects
+    parameters:
+    - name: namespaceName
+      in: path
+      value: $steps.getNamespace.outputs.namespaceName
+    - name: bucketName
+      in: path
+      value: $steps.createBucket.outputs.bucketName
+    - name: prefix
+      in: query
+      value: $inputs.objectName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstObjectName: $response.body#/objects/0/name
+  outputs:
+    namespaceName: $steps.getNamespace.outputs.namespaceName
+    bucketName: $steps.createBucket.outputs.bucketName
+    uploadedObjectName: $steps.listObjects.outputs.firstObjectName

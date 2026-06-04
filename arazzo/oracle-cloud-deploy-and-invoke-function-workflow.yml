@@ -1,0 +1,99 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Deploy And Invoke Function
+  summary: Create a Functions application, create a function in it, then invoke the function.
+  description: >-
+    Deploys a serverless function on Oracle Functions and exercises it. The
+    workflow creates an application bound to the supplied subnet, creates a
+    function from a container image inside that application, and then invokes the
+    function with a payload. Every step spells out its request inline so the
+    deploy-and-invoke flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: functionsApi
+  url: ../openapi/oracle-cloud-functions-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: deploy-and-invoke-function
+  summary: Create an application, create a function, then invoke it.
+  description: >-
+    Creates a Functions application, creates a function in it from an image, and
+    invokes the function synchronously.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - appDisplayName
+    - subnetId
+    - functionDisplayName
+    - image
+    - memoryInMBs
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment to deploy into.
+      appDisplayName:
+        type: string
+        description: The display name for the Functions application.
+      subnetId:
+        type: string
+        description: The OCID of the subnet the application runs in.
+      functionDisplayName:
+        type: string
+        description: The display name for the function.
+      image:
+        type: string
+        description: The container image reference for the function.
+      memoryInMBs:
+        type: integer
+        description: The memory allocation for the function in megabytes.
+      invokePayload:
+        type: string
+        description: The request body to send when invoking the function.
+  steps:
+  - stepId: createApplication
+    description: Create a Functions application bound to the supplied subnet.
+    operationId: createApplication
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        displayName: $inputs.appDisplayName
+        subnetIds:
+        - $inputs.subnetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/id
+  - stepId: createFunction
+    description: Create a function from a container image within the application.
+    operationId: createFunction
+    requestBody:
+      contentType: application/json
+      payload:
+        applicationId: $steps.createApplication.outputs.applicationId
+        displayName: $inputs.functionDisplayName
+        image: $inputs.image
+        memoryInMBs: $inputs.memoryInMBs
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      functionId: $response.body#/id
+      invokeEndpoint: $response.body#/invokeEndpoint
+  - stepId: invokeFunction
+    description: Invoke the newly created function with the supplied payload.
+    operationId: invokeFunction
+    parameters:
+    - name: functionId
+      in: path
+      value: $steps.createFunction.outputs.functionId
+    requestBody:
+      contentType: application/octet-stream
+      payload: $inputs.invokePayload
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    applicationId: $steps.createApplication.outputs.applicationId
+    functionId: $steps.createFunction.outputs.functionId
+    invokeEndpoint: $steps.createFunction.outputs.invokeEndpoint

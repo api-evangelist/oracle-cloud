@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Find Image And Launch Instance
+  summary: Pick a compatible shape and image in a compartment, then launch an instance with them.
+  description: >-
+    Resolves the inputs needed to launch a compute instance from catalog data
+    rather than hard-coded OCIDs. The workflow lists the available shapes in the
+    compartment, lists images for the requested operating system, then launches
+    a new instance wired to the first matching shape and image. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: computeApi
+  url: ../openapi/oracle-cloud-compute-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: find-image-and-launch-instance
+  summary: Discover a shape and image, then launch a compute instance using them.
+  description: >-
+    Lists shapes and images in the compartment, selects the first of each, and
+    launches an instance referencing the discovered shape and image OCIDs.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - availabilityDomain
+    - subnetId
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment to search and launch into.
+      availabilityDomain:
+        type: string
+        description: The availability domain for the new instance.
+      operatingSystem:
+        type: string
+        description: Operating system filter for the image search (e.g. Oracle Linux).
+      subnetId:
+        type: string
+        description: The OCID of the subnet for the primary VNIC.
+      displayName:
+        type: string
+        description: A user-friendly name for the new instance.
+  steps:
+  - stepId: listShapes
+    description: List the compute shapes available in the compartment.
+    operationId: listShapes
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: limit
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      shapeName: $response.body#/0/shape
+  - stepId: listImages
+    description: >-
+      List images in the compartment filtered by operating system, taking the
+      first match as the boot image.
+    operationId: listImages
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: operatingSystem
+      in: query
+      value: $inputs.operatingSystem
+    - name: limit
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      imageId: $response.body#/0/id
+  - stepId: launchInstance
+    description: >-
+      Launch a new instance referencing the discovered shape and image in the
+      requested subnet and availability domain.
+    operationId: launchInstance
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        availabilityDomain: $inputs.availabilityDomain
+        shape: $steps.listShapes.outputs.shapeName
+        imageId: $steps.listImages.outputs.imageId
+        subnetId: $inputs.subnetId
+        displayName: $inputs.displayName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      instanceId: $response.body#/id
+      lifecycleState: $response.body#/lifecycleState
+  outputs:
+    instanceId: $steps.launchInstance.outputs.instanceId
+    shapeName: $steps.listShapes.outputs.shapeName
+    imageId: $steps.listImages.outputs.imageId

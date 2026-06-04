@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Provision VCN Network
+  summary: Create a VCN, poll until available, add an internet gateway, and create a public subnet.
+  description: >-
+    Stands up a baseline virtual cloud network. The workflow creates a VCN,
+    polls the VCN until its lifecycle state is AVAILABLE, attaches an internet
+    gateway, and then creates a public subnet inside the VCN. Every step spells
+    out its request inline so the network provisioning flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: networkingApi
+  url: ../openapi/oracle-cloud-networking-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: provision-vcn-network
+  summary: Create a VCN, wait for AVAILABLE, add an internet gateway, and a subnet.
+  description: >-
+    Creates a VCN, polls getVcn until AVAILABLE, creates an internet gateway,
+    and creates a public subnet within the VCN.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - vcnCidrBlock
+    - subnetCidrBlock
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment to provision the network in.
+      vcnCidrBlock:
+        type: string
+        description: The CIDR block for the VCN (e.g. 10.0.0.0/16).
+      subnetCidrBlock:
+        type: string
+        description: The CIDR block for the subnet (e.g. 10.0.0.0/24).
+      vcnDisplayName:
+        type: string
+        description: A user-friendly name for the VCN.
+      dnsLabel:
+        type: string
+        description: A DNS label for the VCN.
+      subnetDisplayName:
+        type: string
+        description: A user-friendly name for the subnet.
+  steps:
+  - stepId: createVcn
+    description: Create a new virtual cloud network with the supplied CIDR block.
+    operationId: createVcn
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        cidrBlocks:
+        - $inputs.vcnCidrBlock
+        displayName: $inputs.vcnDisplayName
+        dnsLabel: $inputs.dnsLabel
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      vcnId: $response.body#/id
+      createState: $response.body#/lifecycleState
+  - stepId: pollVcn
+    description: Poll the VCN until it reports the AVAILABLE lifecycle state.
+    operationId: getVcn
+    parameters:
+    - name: vcnId
+      in: path
+      value: $steps.createVcn.outputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lifecycleState == "AVAILABLE"
+      type: jsonpath
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+  - stepId: createInternetGateway
+    description: Create an enabled internet gateway for the new VCN.
+    operationId: createInternetGateway
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        vcnId: $steps.createVcn.outputs.vcnId
+        isEnabled: true
+        displayName: $inputs.vcnDisplayName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      internetGatewayId: $response.body#/id
+  - stepId: createSubnet
+    description: Create a public subnet within the VCN.
+    operationId: createSubnet
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        vcnId: $steps.createVcn.outputs.vcnId
+        cidrBlock: $inputs.subnetCidrBlock
+        displayName: $inputs.subnetDisplayName
+        prohibitPublicIpOnVnic: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subnetId: $response.body#/id
+  outputs:
+    vcnId: $steps.createVcn.outputs.vcnId
+    internetGatewayId: $steps.createInternetGateway.outputs.internetGatewayId
+    subnetId: $steps.createSubnet.outputs.subnetId

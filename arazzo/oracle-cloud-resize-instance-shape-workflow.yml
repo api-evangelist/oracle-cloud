@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Resize Instance Shape
+  summary: Stop an instance, update its flexible shape configuration, then start it back up.
+  description: >-
+    Rescales a flexible-shape compute instance safely. The workflow stops the
+    instance, polls until it is STOPPED, updates the instance shape
+    configuration with new OCPU and memory values, and starts the instance again
+    so the new sizing takes effect. Every step spells out its request inline so
+    the resize flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: computeApi
+  url: ../openapi/oracle-cloud-compute-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: resize-instance-shape
+  summary: Stop an instance, resize its shape config, then start it again.
+  description: >-
+    Stops the instance and polls until STOPPED, updates its shapeConfig OCPUs
+    and memory, then starts it back up.
+  inputs:
+    type: object
+    required:
+    - instanceId
+    - ocpus
+    - memoryInGBs
+    properties:
+      instanceId:
+        type: string
+        description: The OCID of the instance to resize.
+      ocpus:
+        type: number
+        description: The new total number of OCPUs.
+      memoryInGBs:
+        type: number
+        description: The new total amount of memory in gigabytes.
+  steps:
+  - stepId: stopInstance
+    description: Issue a STOP action to power down the instance before resizing.
+    operationId: instanceAction
+    parameters:
+    - name: instanceId
+      in: path
+      value: $inputs.instanceId
+    - name: action
+      in: path
+      value: STOP
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: pollStopped
+    description: Poll the instance until it reports the STOPPED lifecycle state.
+    operationId: getInstance
+    parameters:
+    - name: instanceId
+      in: path
+      value: $inputs.instanceId
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lifecycleState == "STOPPED"
+      type: jsonpath
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+  - stepId: updateInstance
+    description: Update the instance flexible shape configuration with new sizing.
+    operationId: updateInstance
+    parameters:
+    - name: instanceId
+      in: path
+      value: $inputs.instanceId
+    requestBody:
+      contentType: application/json
+      payload:
+        shapeConfig:
+          ocpus: $inputs.ocpus
+          memoryInGBs: $inputs.memoryInGBs
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedShape: $response.body#/shape
+  - stepId: startInstance
+    description: Start the resized instance so the new shape configuration takes effect.
+    operationId: instanceAction
+    parameters:
+    - name: instanceId
+      in: path
+      value: $inputs.instanceId
+    - name: action
+      in: path
+      value: START
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+  outputs:
+    instanceId: $inputs.instanceId
+    updatedShape: $steps.updateInstance.outputs.updatedShape
+    finalState: $steps.startInstance.outputs.lifecycleState

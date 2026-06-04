@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Onboard IAM User
+  summary: Create an IAM group, create a user, then create a policy granting the group access.
+  description: >-
+    Onboards a new identity in Oracle Cloud Infrastructure IAM. The workflow
+    creates a group, creates a user in the tenancy, and creates a policy whose
+    statements grant the new group access to a compartment. Every step spells out
+    its request inline so the onboarding flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: iamApi
+  url: ../openapi/oracle-cloud-iam-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: onboard-iam-user
+  summary: Create a group, create a user, then create a policy for the group.
+  description: >-
+    Creates an IAM group and user, then creates a policy with statements
+    granting the group access.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - groupName
+    - userName
+    - userDescription
+    - policyName
+    - policyStatements
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment (tenancy) for the identities.
+      groupName:
+        type: string
+        description: The name of the IAM group to create.
+      groupDescription:
+        type: string
+        description: A description for the group.
+      userName:
+        type: string
+        description: The login name for the user (typically an email address).
+      userDescription:
+        type: string
+        description: A description for the user.
+      userEmail:
+        type: string
+        description: The email address for the user.
+      policyName:
+        type: string
+        description: The name of the policy to create.
+      policyDescription:
+        type: string
+        description: A description for the policy.
+      policyStatements:
+        type: array
+        description: The list of policy statements granting access.
+        items:
+          type: string
+  steps:
+  - stepId: createGroup
+    description: Create a new IAM group in the compartment.
+    operationId: createGroup
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        name: $inputs.groupName
+        description: $inputs.groupDescription
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      groupId: $response.body#/id
+      groupName: $response.body#/name
+  - stepId: createUser
+    description: Create a new IAM user in the compartment.
+    operationId: createUser
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        name: $inputs.userName
+        description: $inputs.userDescription
+        email: $inputs.userEmail
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/id
+  - stepId: createPolicy
+    description: >-
+      Create a policy whose statements grant the new group access within the
+      compartment.
+    operationId: createPolicy
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        name: $inputs.policyName
+        description: $inputs.policyDescription
+        statements: $inputs.policyStatements
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      policyId: $response.body#/id
+  outputs:
+    groupId: $steps.createGroup.outputs.groupId
+    userId: $steps.createUser.outputs.userId
+    policyId: $steps.createPolicy.outputs.policyId

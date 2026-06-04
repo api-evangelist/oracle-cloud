@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Share Object Via Preauthenticated Request
+  summary: Resolve the namespace, confirm an object exists, then mint a read-only pre-authenticated URL.
+  description: >-
+    Generates a time-limited shareable link for an object in Object Storage. The
+    workflow resolves the namespace, confirms the target object exists in the
+    bucket, and creates a read-only pre-authenticated request whose access URI
+    can be embedded in a download URL. Every step spells out its request inline
+    so the sharing flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: objectStorageApi
+  url: ../openapi/oracle-cloud-object-storage-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: share-object-via-par
+  summary: Confirm an object then create a read-only pre-authenticated request for it.
+  description: >-
+    Gets the namespace, fetches the object to confirm it exists, and creates an
+    ObjectRead pre-authenticated request returning the access URI.
+  inputs:
+    type: object
+    required:
+    - bucketName
+    - objectName
+    - parName
+    - timeExpires
+    properties:
+      bucketName:
+        type: string
+        description: The name of the bucket holding the object.
+      objectName:
+        type: string
+        description: The name (key) of the object to share.
+      parName:
+        type: string
+        description: A user-specified name for the pre-authenticated request.
+      timeExpires:
+        type: string
+        description: The RFC 3339 expiration timestamp for the link.
+  steps:
+  - stepId: getNamespace
+    description: Resolve the Object Storage namespace for the requesting tenancy.
+    operationId: getNamespace
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      namespaceName: $response.body
+  - stepId: getObject
+    description: Confirm the target object exists in the bucket before sharing it.
+    operationId: getObject
+    parameters:
+    - name: namespaceName
+      in: path
+      value: $steps.getNamespace.outputs.namespaceName
+    - name: bucketName
+      in: path
+      value: $inputs.bucketName
+    - name: objectName
+      in: path
+      value: $inputs.objectName
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: createPar
+    description: Create a read-only pre-authenticated request scoped to the object.
+    operationId: createPreauthenticatedRequest
+    parameters:
+    - name: namespaceName
+      in: path
+      value: $steps.getNamespace.outputs.namespaceName
+    - name: bucketName
+      in: path
+      value: $inputs.bucketName
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.parName
+        objectName: $inputs.objectName
+        accessType: ObjectRead
+        timeExpires: $inputs.timeExpires
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      parId: $response.body#/id
+      accessUri: $response.body#/accessUri
+  outputs:
+    namespaceName: $steps.getNamespace.outputs.namespaceName
+    parId: $steps.createPar.outputs.parId
+    accessUri: $steps.createPar.outputs.accessUri

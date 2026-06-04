@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Provision OKE Cluster With Node Pool
+  summary: Create a Kubernetes cluster, poll until active, then add a node pool to it.
+  description: >-
+    Stands up a managed Kubernetes (OKE) cluster ready to schedule workloads.
+    The workflow creates a cluster in the supplied VCN, polls the cluster until
+    its lifecycle state reaches ACTIVE, and then creates a node pool attached to
+    the cluster. Every step spells out its request inline so the provisioning
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: okeApi
+  url: ../openapi/oracle-cloud-oke-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: provision-oke-cluster
+  summary: Create an OKE cluster, wait for ACTIVE, then add a node pool.
+  description: >-
+    Creates a Kubernetes cluster, polls getCluster until ACTIVE, and creates a
+    node pool in the cluster.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - clusterName
+    - vcnId
+    - kubernetesVersion
+    - nodePoolName
+    - nodeShape
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment to create the cluster in.
+      clusterName:
+        type: string
+        description: The name of the Kubernetes cluster.
+      vcnId:
+        type: string
+        description: The OCID of the VCN to deploy the cluster into.
+      kubernetesVersion:
+        type: string
+        description: The Kubernetes version (e.g. v1.28.2).
+      nodePoolName:
+        type: string
+        description: The name of the node pool.
+      nodeShape:
+        type: string
+        description: The compute shape for worker nodes (e.g. VM.Standard.E4.Flex).
+      quantityPerSubnet:
+        type: integer
+        description: The number of worker nodes per subnet.
+  steps:
+  - stepId: createCluster
+    description: Create a new Kubernetes cluster in the supplied VCN.
+    operationId: createCluster
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        name: $inputs.clusterName
+        vcnId: $inputs.vcnId
+        kubernetesVersion: $inputs.kubernetesVersion
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: listClusters
+    description: >-
+      List clusters in the compartment to resolve the OCID of the newly created
+      cluster by name.
+    operationId: listClusters
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterId: $response.body#/0/id
+  - stepId: pollCluster
+    description: Poll the cluster until it reports the ACTIVE lifecycle state.
+    operationId: getCluster
+    parameters:
+    - name: clusterId
+      in: path
+      value: $steps.listClusters.outputs.clusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lifecycleState == "ACTIVE"
+      type: jsonpath
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+  - stepId: createNodePool
+    description: Create a node pool attached to the active cluster.
+    operationId: createNodePool
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        clusterId: $steps.listClusters.outputs.clusterId
+        name: $inputs.nodePoolName
+        kubernetesVersion: $inputs.kubernetesVersion
+        nodeShape: $inputs.nodeShape
+        quantityPerSubnet: $inputs.quantityPerSubnet
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    clusterId: $steps.listClusters.outputs.clusterId
+    lifecycleState: $steps.pollCluster.outputs.lifecycleState

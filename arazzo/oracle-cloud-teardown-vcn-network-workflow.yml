@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Teardown VCN Network
+  summary: List subnets in a VCN, delete the first subnet, then delete the VCN itself.
+  description: >-
+    Cleanly decommissions a virtual cloud network by removing dependent
+    resources first. The workflow reads the VCN, lists its subnets, deletes the
+    first subnet returned, and then deletes the VCN. Every step spells out its
+    request inline so the teardown flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: networkingApi
+  url: ../openapi/oracle-cloud-networking-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: teardown-vcn-network
+  summary: Delete a VCN's subnet, then delete the VCN.
+  description: >-
+    Confirms the VCN, lists its subnets, deletes the first subnet, then deletes
+    the VCN to release the network.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - vcnId
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment containing the VCN.
+      vcnId:
+        type: string
+        description: The OCID of the VCN to tear down.
+  steps:
+  - stepId: getVcn
+    description: Confirm the VCN exists before deleting dependent resources.
+    operationId: getVcn
+    parameters:
+    - name: vcnId
+      in: path
+      value: $inputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      vcnName: $response.body#/displayName
+  - stepId: listSubnets
+    description: List the subnets that belong to the VCN.
+    operationId: listSubnets
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: vcnId
+      in: query
+      value: $inputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subnetId: $response.body#/0/id
+  - stepId: deleteSubnet
+    description: Delete the first subnet returned for the VCN.
+    operationId: deleteSubnet
+    parameters:
+    - name: subnetId
+      in: path
+      value: $steps.listSubnets.outputs.subnetId
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: deleteVcn
+    description: Delete the now-empty VCN.
+    operationId: deleteVcn
+    parameters:
+    - name: vcnId
+      in: path
+      value: $inputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    deletedVcnId: $inputs.vcnId
+    deletedSubnetId: $steps.listSubnets.outputs.subnetId

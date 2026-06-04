@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Teardown Functions Application
+  summary: List functions in an application, delete the first function, then delete the application.
+  description: >-
+    Removes a serverless deployment from Oracle Functions. The workflow confirms
+    the application, lists its functions, deletes the first function returned,
+    and then deletes the application. Every step spells out its request inline so
+    the teardown flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: functionsApi
+  url: ../openapi/oracle-cloud-functions-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: teardown-functions-application
+  summary: Delete an application's function, then delete the application.
+  description: >-
+    Confirms the application, lists its functions, deletes the first function,
+    and deletes the application.
+  inputs:
+    type: object
+    required:
+    - applicationId
+    properties:
+      applicationId:
+        type: string
+        description: The OCID of the Functions application to tear down.
+  steps:
+  - stepId: getApplication
+    description: Confirm the application exists before deleting its functions.
+    operationId: getApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $inputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appName: $response.body#/displayName
+  - stepId: listFunctions
+    description: List the functions belonging to the application.
+    operationId: listFunctions
+    parameters:
+    - name: applicationId
+      in: query
+      value: $inputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      functionId: $response.body#/0/id
+  - stepId: deleteFunction
+    description: Delete the first function returned for the application.
+    operationId: deleteFunction
+    parameters:
+    - name: functionId
+      in: path
+      value: $steps.listFunctions.outputs.functionId
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: deleteApplication
+    description: Delete the now-empty application.
+    operationId: deleteApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $inputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    deletedApplicationId: $inputs.applicationId
+    deletedFunctionId: $steps.listFunctions.outputs.functionId

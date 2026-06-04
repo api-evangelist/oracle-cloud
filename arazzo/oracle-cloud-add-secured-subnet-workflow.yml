@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Add Secured Subnet
+  summary: Resolve a VCN's route table and security list, then create a subnet wired to both.
+  description: >-
+    Adds a network segment to an existing VCN with explicit routing and
+    firewall rules. The workflow confirms the VCN, lists its route tables and
+    security lists, and creates a subnet that references the discovered route
+    table and security list. Every step spells out its request inline so the
+    segmentation flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: networkingApi
+  url: ../openapi/oracle-cloud-networking-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: add-secured-subnet
+  summary: Resolve a VCN's route table and security list, then create a subnet using them.
+  description: >-
+    Confirms the VCN, lists its route tables and security lists, and creates a
+    subnet referencing the first route table and security list.
+  inputs:
+    type: object
+    required:
+    - compartmentId
+    - vcnId
+    - cidrBlock
+    properties:
+      compartmentId:
+        type: string
+        description: The OCID of the compartment containing the VCN.
+      vcnId:
+        type: string
+        description: The OCID of the VCN to add the subnet to.
+      cidrBlock:
+        type: string
+        description: The CIDR block for the new subnet (e.g. 10.0.1.0/24).
+      displayName:
+        type: string
+        description: A user-friendly name for the subnet.
+      prohibitPublicIpOnVnic:
+        type: boolean
+        description: Whether to prohibit public IPs on VNICs in the subnet.
+  steps:
+  - stepId: getVcn
+    description: Confirm the VCN exists before creating a subnet in it.
+    operationId: getVcn
+    parameters:
+    - name: vcnId
+      in: path
+      value: $inputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      vcnName: $response.body#/displayName
+  - stepId: listRouteTables
+    description: List the route tables in the VCN and select the first one.
+    operationId: listRouteTables
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: vcnId
+      in: query
+      value: $inputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      routeTableId: $response.body#/0/id
+  - stepId: listSecurityLists
+    description: List the security lists in the VCN and select the first one.
+    operationId: listSecurityLists
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    - name: vcnId
+      in: query
+      value: $inputs.vcnId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      securityListId: $response.body#/0/id
+  - stepId: createSubnet
+    description: >-
+      Create a subnet in the VCN wired to the discovered route table and
+      security list.
+    operationId: createSubnet
+    requestBody:
+      contentType: application/json
+      payload:
+        compartmentId: $inputs.compartmentId
+        vcnId: $inputs.vcnId
+        cidrBlock: $inputs.cidrBlock
+        displayName: $inputs.displayName
+        prohibitPublicIpOnVnic: $inputs.prohibitPublicIpOnVnic
+        routeTableId: $steps.listRouteTables.outputs.routeTableId
+        securityListIds:
+        - $steps.listSecurityLists.outputs.securityListId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subnetId: $response.body#/id
+  outputs:
+    vcnName: $steps.getVcn.outputs.vcnName
+    routeTableId: $steps.listRouteTables.outputs.routeTableId
+    securityListId: $steps.listSecurityLists.outputs.securityListId
+    subnetId: $steps.createSubnet.outputs.subnetId

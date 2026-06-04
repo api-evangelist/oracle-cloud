@@ -501,6 +501,63 @@ apis:
     - type: Example
       url: examples/monitoring-metric-example.json
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/oracle-cloud-add-secured-subnet-workflow.yml
+      name: Oracle Cloud Add Secured Subnet
+      summary: Resolve a VCN's route table and security list, then create a subnet wired to both.
+    - url: arazzo/oracle-cloud-create-bucket-and-upload-object-workflow.yml
+      name: Oracle Cloud Create Bucket And Upload Object
+      summary: Resolve the namespace, create a bucket, upload an object, then confirm it is listed.
+    - url: arazzo/oracle-cloud-create-metric-alarm-workflow.yml
+      name: Oracle Cloud Create Metric Alarm
+      summary: Discover a metric in a namespace, create an alarm on it, then confirm the alarm.
+    - url: arazzo/oracle-cloud-deploy-and-invoke-function-workflow.yml
+      name: Oracle Cloud Deploy And Invoke Function
+      summary: Create a Functions application, create a function in it, then invoke the function.
+    - url: arazzo/oracle-cloud-find-image-and-launch-instance-workflow.yml
+      name: Oracle Cloud Find Image And Launch Instance
+      summary: Pick a compatible shape and image in a compartment, then launch an instance with them.
+    - url: arazzo/oracle-cloud-launch-instance-with-volume-workflow.yml
+      name: Oracle Cloud Launch Instance With Attached Volume
+      summary: Launch a compute instance, poll until it is running, then attach a block volume.
+    - url: arazzo/oracle-cloud-onboard-iam-user-workflow.yml
+      name: Oracle Cloud Onboard IAM User
+      summary: Create an IAM group, create a user, then create a policy granting the group access.
+    - url: arazzo/oracle-cloud-provision-autonomous-database-workflow.yml
+      name: Oracle Cloud Provision Autonomous Database
+      summary: Create an Autonomous Database and poll until it is AVAILABLE with connection URLs.
+    - url: arazzo/oracle-cloud-provision-oke-cluster-workflow.yml
+      name: Oracle Cloud Provision OKE Cluster With Node Pool
+      summary: Create a Kubernetes cluster, poll until active, then add a node pool to it.
+    - url: arazzo/oracle-cloud-provision-vcn-network-workflow.yml
+      name: Oracle Cloud Provision VCN Network
+      summary: Create a VCN, poll until available, add an internet gateway, and create a public subnet.
+    - url: arazzo/oracle-cloud-resize-instance-shape-workflow.yml
+      name: Oracle Cloud Resize Instance Shape
+      summary: Stop an instance, update its flexible shape configuration, then start it back up.
+    - url: arazzo/oracle-cloud-restart-autonomous-database-workflow.yml
+      name: Oracle Cloud Restart Autonomous Database
+      summary: Stop an Autonomous Database, confirm it stopped, then start it again.
+    - url: arazzo/oracle-cloud-share-object-via-par-workflow.yml
+      name: Oracle Cloud Share Object Via Preauthenticated Request
+      summary: Resolve the namespace, confirm an object exists, then mint a read-only pre-authenticated URL.
+    - url: arazzo/oracle-cloud-stop-and-terminate-instance-workflow.yml
+      name: Oracle Cloud Stop And Terminate Instance
+      summary: Gracefully stop a running instance, confirm it stopped, then terminate it.
+    - url: arazzo/oracle-cloud-summarize-instance-cpu-metrics-workflow.yml
+      name: Oracle Cloud Summarize Instance CPU Metrics
+      summary: Confirm a running instance, then query summarized CPU metrics for its compartment.
+    - url: arazzo/oracle-cloud-teardown-functions-application-workflow.yml
+      name: Oracle Cloud Teardown Functions Application
+      summary: List functions in an application, delete the first function, then delete the application.
+    - url: arazzo/oracle-cloud-teardown-oke-cluster-workflow.yml
+      name: Oracle Cloud Teardown OKE Cluster
+      summary: List a cluster's node pools, delete the first node pool, then delete the cluster.
+    - url: arazzo/oracle-cloud-teardown-vcn-network-workflow.yml
+      name: Oracle Cloud Teardown VCN Network
+      summary: List subnets in a VCN, delete the first subnet, then delete the VCN itself.
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/oracle-cloud
   - type: Portal

@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Oracle Cloud Summarize Instance CPU Metrics
+  summary: Confirm a running instance, then query summarized CPU metrics for its compartment.
+  description: >-
+    Correlates compute and monitoring data to report on instance utilization.
+    The workflow reads a compute instance to confirm it is running, then queries
+    summarized metric data over a time range so the caller can inspect CPU
+    utilization for the instance's compartment. Every step spells out its request
+    inline so the observability flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: computeApi
+  url: ../openapi/oracle-cloud-compute-openapi.yaml
+  type: openapi
+- name: monitoringApi
+  url: ../openapi/oracle-cloud-monitoring-openapi.yaml
+  type: openapi
+workflows:
+- workflowId: summarize-instance-cpu-metrics
+  summary: Confirm an instance, then summarize CPU metric data for its compartment.
+  description: >-
+    Reads the instance to confirm it exists, then calls summarizeMetricsData for
+    the compartment over the supplied time range.
+  inputs:
+    type: object
+    required:
+    - instanceId
+    - compartmentId
+    - namespace
+    - query
+    properties:
+      instanceId:
+        type: string
+        description: The OCID of the compute instance to report on.
+      compartmentId:
+        type: string
+        description: The OCID of the compartment the metrics belong to.
+      namespace:
+        type: string
+        description: The metric namespace (e.g. oci_computeagent).
+      query:
+        type: string
+        description: The Monitoring Query Language expression (e.g. CpuUtilization[1m].mean()).
+      startTime:
+        type: string
+        description: The RFC 3339 start of the time range.
+      endTime:
+        type: string
+        description: The RFC 3339 end of the time range.
+      resolution:
+        type: string
+        description: The aggregation interval (e.g. 1m).
+  steps:
+  - stepId: getInstance
+    description: Confirm the compute instance exists before querying its metrics.
+    operationId: getInstance
+    parameters:
+    - name: instanceId
+      in: path
+      value: $inputs.instanceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      lifecycleState: $response.body#/lifecycleState
+      instanceName: $response.body#/displayName
+  - stepId: summarizeMetrics
+    description: >-
+      Query summarized metric data for the compartment over the supplied time
+      range and resolution.
+    operationId: summarizeMetricsData
+    parameters:
+    - name: compartmentId
+      in: query
+      value: $inputs.compartmentId
+    requestBody:
+      contentType: application/json
+      payload:
+        namespace: $inputs.namespace
+        query: $inputs.query
+        startTime: $inputs.startTime
+        endTime: $inputs.endTime
+        resolution: $inputs.resolution
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metricName: $response.body#/0/name
+      datapoints: $response.body#/0/aggregatedDatapoints
+  outputs:
+    instanceName: $steps.getInstance.outputs.instanceName
+    metricName: $steps.summarizeMetrics.outputs.metricName
+    datapoints: $steps.summarizeMetrics.outputs.datapoints
