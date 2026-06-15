@@ -1,0 +1,1892 @@
+{
+  "info": {
+    "_postman_id": "cdab0775-89e3-4d74-9535-7d5321d0c8cd",
+    "name": "Oracle Cloud Object Storage API",
+    "description": "Store and retrieve large amounts of unstructured data in Oracle Cloud Infrastructure Object Storage.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:32.000Z",
+    "updatedAt": "2026-06-05T15:01:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cdab0775-89e3-4d74-9535-7d5321d0c8cd"
+  },
+  "item": [
+    {
+      "name": "n",
+      "item": [
+        {
+          "name": "{namespaceName}",
+          "item": [
+            {
+              "name": "b",
+              "item": [
+                {
+                  "name": "{bucketName}",
+                  "item": [
+                    {
+                      "name": "o",
+                      "item": [
+                        {
+                          "name": "{objectName}",
+                          "item": [
+                            {
+                              "name": "Oracle Cloud Get Object",
+                              "id": "8c3ab91a-8a24-4b05-aaab-24534b11a06b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "n",
+                                    ":namespaceName",
+                                    "b",
+                                    ":bucketName",
+                                    "o",
+                                    ":objectName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e3a3477f-7cfd-40b1-9d82-43418a7871e1",
+                                      "key": "namespaceName",
+                                      "value": "<string>",
+                                      "description": "(Required) The Object Storage namespace."
+                                    },
+                                    {
+                                      "id": "f9a02916-3e36-4ece-a0dc-b9c54c3b8a6b",
+                                      "key": "bucketName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the bucket."
+                                    },
+                                    {
+                                      "id": "b9f207ea-481b-4657-a7b8-df04c200df6a",
+                                      "key": "objectName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the object."
+                                    }
+                                  ]
+                                },
+                                "description": "Gets the metadata and body of an object."
+                              },
+                              "response": [
+                                {
+                                  "id": "9cb90c95-a87b-4cac-aa87-8ceae3071bf9",
+                                  "name": "Successfully retrieved object.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/octet-stream"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "n",
+                                        ":namespaceName",
+                                        "b",
+                                        ":bucketName",
+                                        "o",
+                                        ":objectName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespaceName"
+                                        },
+                                        {
+                                          "key": "bucketName"
+                                        },
+                                        {
+                                          "key": "objectName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/octet-stream"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "<binary>",
+                                  "createdAt": "2026-06-05T15:01:32.000Z",
+                                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                                  "uid": "35240-9cb90c95-a87b-4cac-aa87-8ceae3071bf9"
+                                },
+                                {
+                                  "id": "76c90b91-e624-4988-b2e3-6b8ae89b4dcc",
+                                  "name": "Not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "n",
+                                        ":namespaceName",
+                                        "b",
+                                        ":bucketName",
+                                        "o",
+                                        ":objectName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespaceName"
+                                        },
+                                        {
+                                          "key": "bucketName"
+                                        },
+                                        {
+                                          "key": "objectName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                                  "createdAt": "2026-06-05T15:01:32.000Z",
+                                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                                  "uid": "35240-76c90b91-e624-4988-b2e3-6b8ae89b4dcc"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:01:32.000Z",
+                              "updatedAt": "2026-06-05T15:01:32.000Z",
+                              "uid": "35240-8c3ab91a-8a24-4b05-aaab-24534b11a06b"
+                            },
+                            {
+                              "name": "Oracle Cloud Put Object",
+                              "id": "e6526c5c-7b64-4175-a007-6fa01a29870f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "The content length of the body.",
+                                    "key": "Content-Length",
+                                    "value": "<integer>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/octet-stream"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "file",
+                                  "file": {}
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "n",
+                                    ":namespaceName",
+                                    "b",
+                                    ":bucketName",
+                                    "o",
+                                    ":objectName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6b34fc69-a47b-4384-9c81-1911a7289724",
+                                      "key": "namespaceName",
+                                      "value": "<string>",
+                                      "description": "(Required) The Object Storage namespace."
+                                    },
+                                    {
+                                      "id": "73b3ac94-fab2-4e4e-8052-96b21661b3ef",
+                                      "key": "bucketName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the bucket."
+                                    },
+                                    {
+                                      "id": "91a19413-e4c6-4d5c-b4c3-21e1b2a167c6",
+                                      "key": "objectName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the object."
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new object or overwrites an existing object."
+                              },
+                              "response": [
+                                {
+                                  "id": "35b34683-6179-4f2f-9897-85d784848ce7",
+                                  "name": "Successfully uploaded object.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "The content length of the body.",
+                                        "key": "Content-Length",
+                                        "value": "<integer>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/octet-stream"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "file",
+                                      "file": {}
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "n",
+                                        ":namespaceName",
+                                        "b",
+                                        ":bucketName",
+                                        "o",
+                                        ":objectName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespaceName"
+                                        },
+                                        {
+                                          "key": "bucketName"
+                                        },
+                                        {
+                                          "key": "objectName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:01:32.000Z",
+                                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                                  "uid": "35240-35b34683-6179-4f2f-9897-85d784848ce7"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:01:32.000Z",
+                              "updatedAt": "2026-06-05T15:01:32.000Z",
+                              "uid": "35240-e6526c5c-7b64-4175-a007-6fa01a29870f"
+                            },
+                            {
+                              "name": "Oracle Cloud Delete Object",
+                              "id": "4c169ee5-0171-4f4e-86a8-d262383dbc93",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "n",
+                                    ":namespaceName",
+                                    "b",
+                                    ":bucketName",
+                                    "o",
+                                    ":objectName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3e37e672-8d20-4ace-a55e-77f72f9eb9db",
+                                      "key": "namespaceName",
+                                      "value": "<string>",
+                                      "description": "(Required) The Object Storage namespace."
+                                    },
+                                    {
+                                      "id": "328caad0-9b81-4ea0-a425-d52d3b8fa8c0",
+                                      "key": "bucketName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the bucket."
+                                    },
+                                    {
+                                      "id": "bb2c2f8d-4ef4-4de5-887c-5e3ce6f3e724",
+                                      "key": "objectName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the object."
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes an object."
+                              },
+                              "response": [
+                                {
+                                  "id": "e8e01205-ffb7-4870-8b59-3819be262adc",
+                                  "name": "Successfully deleted object.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "n",
+                                        ":namespaceName",
+                                        "b",
+                                        ":bucketName",
+                                        "o",
+                                        ":objectName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespaceName"
+                                        },
+                                        {
+                                          "key": "bucketName"
+                                        },
+                                        {
+                                          "key": "objectName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:01:32.000Z",
+                                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                                  "uid": "35240-e8e01205-ffb7-4870-8b59-3819be262adc"
+                                },
+                                {
+                                  "id": "ce48234a-c987-4dfd-a7e1-88bfaf327d93",
+                                  "name": "Not found.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o/:objectName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "n",
+                                        ":namespaceName",
+                                        "b",
+                                        ":bucketName",
+                                        "o",
+                                        ":objectName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "namespaceName"
+                                        },
+                                        {
+                                          "key": "bucketName"
+                                        },
+                                        {
+                                          "key": "objectName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                                  "createdAt": "2026-06-05T15:01:32.000Z",
+                                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                                  "uid": "35240-ce48234a-c987-4dfd-a7e1-88bfaf327d93"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:01:32.000Z",
+                              "updatedAt": "2026-06-05T15:01:32.000Z",
+                              "uid": "35240-4c169ee5-0171-4f4e-86a8-d262383dbc93"
+                            }
+                          ],
+                          "id": "52d96659-51fd-4b95-8b4b-a1ffb9b83481",
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-52d96659-51fd-4b95-8b4b-a1ffb9b83481"
+                        },
+                        {
+                          "name": "Oracle Cloud List Objects",
+                          "id": "79afa6b7-0d93-4d8e-9372-c9105db9fb13",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o?prefix=<string>&delimiter=<string>&limit=<integer>&start=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName",
+                                "o"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter objects whose name begins with this prefix.",
+                                  "key": "prefix",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Delimiter for pseudo-directory grouping.",
+                                  "key": "delimiter",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of items to return.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Object name to start listing from.",
+                                  "key": "start",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "925fcdb7-de06-4d7a-abbc-deeb6cfabc5d",
+                                  "key": "namespaceName",
+                                  "value": "<string>",
+                                  "description": "(Required) The Object Storage namespace."
+                                },
+                                {
+                                  "id": "cb42208c-be40-4b3d-bfb3-1d0dc1780308",
+                                  "key": "bucketName",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the bucket."
+                                }
+                              ]
+                            },
+                            "description": "Lists the objects in the specified bucket."
+                          },
+                          "response": [
+                            {
+                              "id": "93702bf6-24fb-4099-b763-fb784dd7fab9",
+                              "name": "Successfully retrieved list of objects.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/o?prefix=<string>&delimiter=<string>&limit=<integer>&start=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "n",
+                                    ":namespaceName",
+                                    "b",
+                                    ":bucketName",
+                                    "o"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter objects whose name begins with this prefix.",
+                                      "key": "prefix",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Delimiter for pseudo-directory grouping.",
+                                      "key": "delimiter",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Maximum number of items to return.",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Object name to start listing from.",
+                                      "key": "start",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespaceName"
+                                    },
+                                    {
+                                      "key": "bucketName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"objects\": [\n    {\n      \"name\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"md5\": \"<string>\",\n      \"timeCreated\": \"<dateTime>\",\n      \"timeModified\": \"<dateTime>\",\n      \"storageTier\": \"Archive\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"md5\": \"<string>\",\n      \"timeCreated\": \"<dateTime>\",\n      \"timeModified\": \"<dateTime>\",\n      \"storageTier\": \"InfrequentAccess\"\n    }\n  ],\n  \"prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nextStartWith\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:01:32.000Z",
+                              "updatedAt": "2026-06-05T15:01:32.000Z",
+                              "uid": "35240-93702bf6-24fb-4099-b763-fb784dd7fab9"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-79afa6b7-0d93-4d8e-9372-c9105db9fb13"
+                        }
+                      ],
+                      "id": "46bd0fe9-69e5-4408-8106-ff144019b76c",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-46bd0fe9-69e5-4408-8106-ff144019b76c"
+                    },
+                    {
+                      "name": "p",
+                      "item": [
+                        {
+                          "name": "Oracle Cloud List Preauthenticated Requests",
+                          "id": "e8bc543a-c2cb-4858-9722-133e82dd79ec",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/p?limit=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName",
+                                "p"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of items to return.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d7efcef3-a77e-482e-984f-70dbd4a8556e",
+                                  "key": "namespaceName",
+                                  "value": "<string>",
+                                  "description": "(Required) The Object Storage namespace."
+                                },
+                                {
+                                  "id": "8de7db09-d365-430c-a105-e72317fdab0d",
+                                  "key": "bucketName",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the bucket."
+                                }
+                              ]
+                            },
+                            "description": "Lists pre-authenticated requests for the bucket."
+                          },
+                          "response": [
+                            {
+                              "id": "f15a29e9-c0c4-4c26-af9a-efeb98d29b53",
+                              "name": "Successfully retrieved preauthenticated requests.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/p?limit=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "n",
+                                    ":namespaceName",
+                                    "b",
+                                    ":bucketName",
+                                    "p"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Maximum number of items to return.",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespaceName"
+                                    },
+                                    {
+                                      "key": "bucketName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"objectName\": \"<string>\",\n    \"accessType\": \"ObjectRead\",\n    \"timeExpires\": \"<dateTime>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"objectName\": \"<string>\",\n    \"accessType\": \"ObjectReadWrite\",\n    \"timeExpires\": \"<dateTime>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-06-05T15:01:32.000Z",
+                              "updatedAt": "2026-06-05T15:01:32.000Z",
+                              "uid": "35240-f15a29e9-c0c4-4c26-af9a-efeb98d29b53"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-e8bc543a-c2cb-4858-9722-133e82dd79ec"
+                        },
+                        {
+                          "name": "Oracle Cloud Create Preauthenticated Request",
+                          "id": "efe2fe92-e910-4ff5-a1c1-37dfecda6b62",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"accessType\": \"AnyObjectRead\",\n  \"timeExpires\": \"<dateTime>\",\n  \"objectName\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/p",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName",
+                                "p"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "52be0750-68c7-49ef-8dcc-4fa8228ef425",
+                                  "key": "namespaceName",
+                                  "value": "<string>",
+                                  "description": "(Required) The Object Storage namespace."
+                                },
+                                {
+                                  "id": "08583786-eb18-412b-bcb8-1390b53b7a47",
+                                  "key": "bucketName",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the bucket."
+                                }
+                              ]
+                            },
+                            "description": "Creates a pre-authenticated request for the bucket."
+                          },
+                          "response": [
+                            {
+                              "id": "f8290aef-42e5-4517-acdc-34c47088b83b",
+                              "name": "Successfully created preauthenticated request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"accessType\": \"AnyObjectRead\",\n  \"timeExpires\": \"<dateTime>\",\n  \"objectName\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName/p",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "n",
+                                    ":namespaceName",
+                                    "b",
+                                    ":bucketName",
+                                    "p"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "namespaceName"
+                                    },
+                                    {
+                                      "key": "bucketName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"accessUri\": \"<string>\",\n  \"objectName\": \"<string>\",\n  \"accessType\": \"ObjectReadWrite\",\n  \"timeExpires\": \"<dateTime>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:01:32.000Z",
+                              "updatedAt": "2026-06-05T15:01:32.000Z",
+                              "uid": "35240-f8290aef-42e5-4517-acdc-34c47088b83b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-efe2fe92-e910-4ff5-a1c1-37dfecda6b62"
+                        }
+                      ],
+                      "id": "5c9ace52-d555-4139-be85-221753046beb",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-5c9ace52-d555-4139-be85-221753046beb"
+                    },
+                    {
+                      "name": "Oracle Cloud Get Bucket",
+                      "id": "11c3ac1e-be01-4516-b3f6-606d1d3cee4d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b",
+                            ":bucketName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9cf64423-fc1a-405b-8e6c-4c572224b782",
+                              "key": "namespaceName",
+                              "value": "<string>",
+                              "description": "(Required) The Object Storage namespace."
+                            },
+                            {
+                              "id": "089d8f06-6c98-45bf-97af-3f67edd1312c",
+                              "key": "bucketName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the bucket."
+                            }
+                          ]
+                        },
+                        "description": "Gets the current representation of the given bucket."
+                      },
+                      "response": [
+                        {
+                          "id": "f723708d-0610-4237-913a-7bf6acc3a3bd",
+                          "name": "Successfully retrieved bucket.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespaceName"
+                                },
+                                {
+                                  "key": "bucketName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"namespace\": \"<string>\",\n  \"name\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"publicAccessType\": \"ObjectReadWithoutList\",\n  \"storageTier\": \"Standard\",\n  \"objectEventsEnabled\": \"<boolean>\",\n  \"freeformTags\": {\n    \"dolore3c\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"laboris_81\": {},\n    \"voluptate_d51\": {}\n  },\n  \"objectLifecyclePolicyEtag\": \"<string>\",\n  \"approximateCount\": \"<integer>\",\n  \"approximateSize\": \"<integer>\",\n  \"versioning\": \"Suspended\"\n}",
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-f723708d-0610-4237-913a-7bf6acc3a3bd"
+                        },
+                        {
+                          "id": "70e31d4c-16ae-4787-8dd0-9db1fa072b0c",
+                          "name": "Not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespaceName"
+                                },
+                                {
+                                  "key": "bucketName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-70e31d4c-16ae-4787-8dd0-9db1fa072b0c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-11c3ac1e-be01-4516-b3f6-606d1d3cee4d"
+                    },
+                    {
+                      "name": "Oracle Cloud Update Bucket",
+                      "id": "344609f9-78f6-4b48-9bc8-f29496b0279f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"publicAccessType\": \"ObjectReadWithoutList\",\n  \"objectEventsEnabled\": \"<boolean>\",\n  \"versioning\": \"Suspended\",\n  \"freeformTags\": {\n    \"Excepteure\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b",
+                            ":bucketName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8f2ef10e-4a19-4ecc-95c7-dde5e853b779",
+                              "key": "namespaceName",
+                              "value": "<string>",
+                              "description": "(Required) The Object Storage namespace."
+                            },
+                            {
+                              "id": "e6bcd253-0023-4fc0-a3d0-14b16223e012",
+                              "key": "bucketName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the bucket."
+                            }
+                          ]
+                        },
+                        "description": "Performs a partial or full update of a bucket's metadata."
+                      },
+                      "response": [
+                        {
+                          "id": "e7a445ff-160f-4bfc-9b9e-d371c70a5df3",
+                          "name": "Successfully updated bucket.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"publicAccessType\": \"ObjectReadWithoutList\",\n  \"objectEventsEnabled\": \"<boolean>\",\n  \"versioning\": \"Suspended\",\n  \"freeformTags\": {\n    \"Excepteure\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespaceName"
+                                },
+                                {
+                                  "key": "bucketName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"namespace\": \"<string>\",\n  \"name\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"publicAccessType\": \"ObjectReadWithoutList\",\n  \"storageTier\": \"Standard\",\n  \"objectEventsEnabled\": \"<boolean>\",\n  \"freeformTags\": {\n    \"dolore3c\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"laboris_81\": {},\n    \"voluptate_d51\": {}\n  },\n  \"objectLifecyclePolicyEtag\": \"<string>\",\n  \"approximateCount\": \"<integer>\",\n  \"approximateSize\": \"<integer>\",\n  \"versioning\": \"Suspended\"\n}",
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-e7a445ff-160f-4bfc-9b9e-d371c70a5df3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-344609f9-78f6-4b48-9bc8-f29496b0279f"
+                    },
+                    {
+                      "name": "Oracle Cloud Delete Bucket",
+                      "id": "bab2b30b-9db9-48d2-943e-c8a7259347df",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b",
+                            ":bucketName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "da3cbc44-94cd-4624-a157-5eb688259463",
+                              "key": "namespaceName",
+                              "value": "<string>",
+                              "description": "(Required) The Object Storage namespace."
+                            },
+                            {
+                              "id": "42901096-a919-468e-ae3d-73d36c8d3786",
+                              "key": "bucketName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the bucket."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a bucket if the bucket is already empty."
+                      },
+                      "response": [
+                        {
+                          "id": "cd652e4e-3d45-453b-97a3-1c3dff49579b",
+                          "name": "Successfully deleted bucket.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespaceName"
+                                },
+                                {
+                                  "key": "bucketName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-cd652e4e-3d45-453b-97a3-1c3dff49579b"
+                        },
+                        {
+                          "id": "45285026-49e0-49f5-a665-4a42aa9c2fb2",
+                          "name": "Not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/n/:namespaceName/b/:bucketName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "n",
+                                ":namespaceName",
+                                "b",
+                                ":bucketName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "namespaceName"
+                                },
+                                {
+                                  "key": "bucketName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:01:32.000Z",
+                          "updatedAt": "2026-06-05T15:01:32.000Z",
+                          "uid": "35240-45285026-49e0-49f5-a665-4a42aa9c2fb2"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-bab2b30b-9db9-48d2-943e-c8a7259347df"
+                    }
+                  ],
+                  "id": "b2ad1633-5946-4ac5-9c50-cf0832299ffe",
+                  "createdAt": "2026-06-05T15:01:32.000Z",
+                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                  "uid": "35240-b2ad1633-5946-4ac5-9c50-cf0832299ffe"
+                },
+                {
+                  "name": "Oracle Cloud List Buckets",
+                  "id": "b0791476-471d-42b0-96da-35cfdf3d7b95",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/n/:namespaceName/b?compartmentId=<string>&limit=<integer>&page=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "n",
+                        ":namespaceName",
+                        "b"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The OCID of the compartment.",
+                          "key": "compartmentId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination token.",
+                          "key": "page",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "930d20e8-935a-4242-9fef-cd5f72037a6e",
+                          "key": "namespaceName",
+                          "value": "<string>",
+                          "description": "(Required) The Object Storage namespace."
+                        }
+                      ]
+                    },
+                    "description": "Gets a list of all BucketSummary items in a compartment."
+                  },
+                  "response": [
+                    {
+                      "id": "25b4dec7-ca3f-483c-9f7d-7d114e6dad4d",
+                      "name": "Successfully retrieved list of buckets.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b?compartmentId=<string>&limit=<integer>&page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The OCID of the compartment.",
+                              "key": "compartmentId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of items to return.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination token.",
+                              "key": "page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "namespaceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"namespace\": \"<string>\",\n    \"name\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"createdBy\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\",\n    \"etag\": \"<string>\"\n  },\n  {\n    \"namespace\": \"<string>\",\n    \"name\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"createdBy\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\",\n    \"etag\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-25b4dec7-ca3f-483c-9f7d-7d114e6dad4d"
+                    },
+                    {
+                      "id": "d7b705d4-23be-4c20-a9a0-5adabd85350b",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b?compartmentId=<string>&limit=<integer>&page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The OCID of the compartment.",
+                              "key": "compartmentId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of items to return.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination token.",
+                              "key": "page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "namespaceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-d7b705d4-23be-4c20-a9a0-5adabd85350b"
+                    },
+                    {
+                      "id": "61bb7e31-481e-461d-b14f-aaa829fb6d29",
+                      "name": "Unauthorized.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b?compartmentId=<string>&limit=<integer>&page=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The OCID of the compartment.",
+                              "key": "compartmentId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of items to return.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination token.",
+                              "key": "page",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "namespaceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-61bb7e31-481e-461d-b14f-aaa829fb6d29"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:32.000Z",
+                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                  "uid": "35240-b0791476-471d-42b0-96da-35cfdf3d7b95"
+                },
+                {
+                  "name": "Oracle Cloud Create Bucket",
+                  "id": "a5ec8843-50f7-4fe4-bd17-b145f196b671",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"publicAccessType\": \"NoPublicAccess\",\n  \"storageTier\": \"Standard\",\n  \"objectEventsEnabled\": false,\n  \"versioning\": \"Enabled\",\n  \"freeformTags\": {\n    \"Excepteur_02\": \"<string>\",\n    \"exercitation_6\": \"<string>\",\n    \"Excepteur79\": \"<string>\",\n    \"id_3c0\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/n/:namespaceName/b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "n",
+                        ":namespaceName",
+                        "b"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2fca579a-ee54-4747-957e-3deba3815ed0",
+                          "key": "namespaceName",
+                          "value": "<string>",
+                          "description": "(Required) The Object Storage namespace."
+                        }
+                      ]
+                    },
+                    "description": "Creates a bucket in the given namespace with a bucket name and compartment ID."
+                  },
+                  "response": [
+                    {
+                      "id": "b4c6d109-3b08-4bf6-a440-7cd3f9105a8c",
+                      "name": "Successfully created bucket.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"publicAccessType\": \"NoPublicAccess\",\n  \"storageTier\": \"Standard\",\n  \"objectEventsEnabled\": false,\n  \"versioning\": \"Enabled\",\n  \"freeformTags\": {\n    \"Excepteur_02\": \"<string>\",\n    \"exercitation_6\": \"<string>\",\n    \"Excepteur79\": \"<string>\",\n    \"id_3c0\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b"
+                          ],
+                          "variable": [
+                            {
+                              "key": "namespaceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"namespace\": \"<string>\",\n  \"name\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"publicAccessType\": \"ObjectReadWithoutList\",\n  \"storageTier\": \"Standard\",\n  \"objectEventsEnabled\": \"<boolean>\",\n  \"freeformTags\": {\n    \"dolore3c\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"laboris_81\": {},\n    \"voluptate_d51\": {}\n  },\n  \"objectLifecyclePolicyEtag\": \"<string>\",\n  \"approximateCount\": \"<integer>\",\n  \"approximateSize\": \"<integer>\",\n  \"versioning\": \"Suspended\"\n}",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-b4c6d109-3b08-4bf6-a440-7cd3f9105a8c"
+                    },
+                    {
+                      "id": "d029bca7-9c3a-4932-8fec-f9aaa10486bc",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"publicAccessType\": \"NoPublicAccess\",\n  \"storageTier\": \"Standard\",\n  \"objectEventsEnabled\": false,\n  \"versioning\": \"Enabled\",\n  \"freeformTags\": {\n    \"Excepteur_02\": \"<string>\",\n    \"exercitation_6\": \"<string>\",\n    \"Excepteur79\": \"<string>\",\n    \"id_3c0\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/n/:namespaceName/b",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "n",
+                            ":namespaceName",
+                            "b"
+                          ],
+                          "variable": [
+                            {
+                              "key": "namespaceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:01:32.000Z",
+                      "updatedAt": "2026-06-05T15:01:32.000Z",
+                      "uid": "35240-d029bca7-9c3a-4932-8fec-f9aaa10486bc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:32.000Z",
+                  "updatedAt": "2026-06-05T15:01:32.000Z",
+                  "uid": "35240-a5ec8843-50f7-4fe4-bd17-b145f196b671"
+                }
+              ],
+              "id": "f81255f0-32cf-4193-a9bc-e5876b306f84",
+              "createdAt": "2026-06-05T15:01:32.000Z",
+              "updatedAt": "2026-06-05T15:01:32.000Z",
+              "uid": "35240-f81255f0-32cf-4193-a9bc-e5876b306f84"
+            }
+          ],
+          "id": "2177743c-51d9-4707-80cf-01351fb7b7f2",
+          "createdAt": "2026-06-05T15:01:32.000Z",
+          "updatedAt": "2026-06-05T15:01:32.000Z",
+          "uid": "35240-2177743c-51d9-4707-80cf-01351fb7b7f2"
+        },
+        {
+          "name": "Oracle Cloud Get Namespace",
+          "id": "5d12767a-2196-417e-8a57-5b88ead20bce",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/n",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "n"
+              ]
+            },
+            "description": "Gets the name of the Object Storage namespace for the user making the request."
+          },
+          "response": [
+            {
+              "id": "f2cd60ec-7e3b-4b77-b2f1-be8da1fc20f5",
+              "name": "Successfully retrieved namespace.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/n",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "n"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-06-05T15:01:32.000Z",
+              "updatedAt": "2026-06-05T15:01:32.000Z",
+              "uid": "35240-f2cd60ec-7e3b-4b77-b2f1-be8da1fc20f5"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:32.000Z",
+          "updatedAt": "2026-06-05T15:01:32.000Z",
+          "uid": "35240-5d12767a-2196-417e-8a57-5b88ead20bce"
+        }
+      ],
+      "id": "779a1875-8a07-4d27-b4f4-25b7a5697772",
+      "createdAt": "2026-06-05T15:01:32.000Z",
+      "updatedAt": "2026-06-05T15:01:32.000Z",
+      "uid": "35240-779a1875-8a07-4d27-b4f4-25b7a5697772"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://objectstorage.{{region}}.oraclecloud.com"
+    }
+  ]
+}

@@ -1,0 +1,896 @@
+{
+  "info": {
+    "_postman_id": "675ccaf4-a35d-4b37-b23a-7defd2da98dc",
+    "name": "Oracle Cloud Functions API",
+    "description": "Serverless platform for building and running applications on Oracle Cloud Infrastructure.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:43.000Z",
+    "updatedAt": "2026-06-05T15:01:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-675ccaf4-a35d-4b37-b23a-7defd2da98dc"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get Application",
+              "id": "a90d299e-fd9c-47fd-bb73-bc37f15fa5a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5bcf3ec3-abfb-4af8-ad1a-1c1554ca55d1",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the application."
+                    }
+                  ]
+                },
+                "description": "Gets a Functions application."
+              },
+              "response": [
+                {
+                  "id": "acfe4816-83eb-4f34-8e5d-91e7808b7247",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lifecycleState\": \"DELETING\",\n  \"timeCreated\": \"<dateTime>\",\n  \"config\": {\n    \"uta\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:44.000Z",
+                  "updatedAt": "2026-06-05T15:01:44.000Z",
+                  "uid": "35240-acfe4816-83eb-4f34-8e5d-91e7808b7247"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-a90d299e-fd9c-47fd-bb73-bc37f15fa5a9"
+            },
+            {
+              "name": "Oracle Cloud Delete Application",
+              "id": "3532ac58-b89a-4134-96fa-e42ded3063a6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bb81b81c-5f6b-43ef-a512-24bcd64e10ba",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the application."
+                    }
+                  ]
+                },
+                "description": "Deletes a Functions application."
+              },
+              "response": [
+                {
+                  "id": "b1d69911-fc16-404f-a79d-7c87fdd5fee0",
+                  "name": "Successfully deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:44.000Z",
+                  "updatedAt": "2026-06-05T15:01:44.000Z",
+                  "uid": "35240-b1d69911-fc16-404f-a79d-7c87fdd5fee0"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-3532ac58-b89a-4134-96fa-e42ded3063a6"
+            }
+          ],
+          "id": "80be862e-36f3-4121-b92a-cd14b3540601",
+          "createdAt": "2026-06-05T15:01:44.000Z",
+          "updatedAt": "2026-06-05T15:01:44.000Z",
+          "uid": "35240-80be862e-36f3-4121-b92a-cd14b3540601"
+        },
+        {
+          "name": "Oracle Cloud List Applications",
+          "id": "483eb0c9-d499-428c-9e82-a479d8bcdda6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications?compartmentId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists Functions applications in a compartment."
+          },
+          "response": [
+            {
+              "id": "6399cda7-a0ab-49d0-9e01-39e2a99490e5",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?compartmentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-6399cda7-a0ab-49d0-9e01-39e2a99490e5"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:44.000Z",
+          "updatedAt": "2026-06-05T15:01:44.000Z",
+          "uid": "35240-483eb0c9-d499-428c-9e82-a479d8bcdda6"
+        },
+        {
+          "name": "Oracle Cloud Create Application",
+          "id": "fa291ef7-bee1-450a-a02a-20eb99e88c80",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"config\": {\n    \"esse_f19\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/applications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ]
+            },
+            "description": "Creates a new Functions application."
+          },
+          "response": [
+            {
+              "id": "c4e9cc75-2e62-4202-aeef-de8c468cd03e",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"config\": {\n    \"esse_f19\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lifecycleState\": \"DELETING\",\n  \"timeCreated\": \"<dateTime>\",\n  \"config\": {\n    \"uta\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-c4e9cc75-2e62-4202-aeef-de8c468cd03e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:44.000Z",
+          "updatedAt": "2026-06-05T15:01:44.000Z",
+          "uid": "35240-fa291ef7-bee1-450a-a02a-20eb99e88c80"
+        }
+      ],
+      "id": "5608bb35-ff95-436a-ae40-f132f1cfc730",
+      "createdAt": "2026-06-05T15:01:44.000Z",
+      "updatedAt": "2026-06-05T15:01:44.000Z",
+      "uid": "35240-5608bb35-ff95-436a-ae40-f132f1cfc730"
+    },
+    {
+      "name": "functions",
+      "item": [
+        {
+          "name": "{functionId}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "invoke",
+                  "item": [
+                    {
+                      "name": "Oracle Cloud Invoke Function",
+                      "id": "d07f6caf-9b10-46b4-a15d-19097206eba4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/octet-stream"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "body": {
+                          "mode": "file",
+                          "file": {}
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/functions/:functionId/actions/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "functions",
+                            ":functionId",
+                            "actions",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "id": "efc15a4b-c40f-4824-bf53-675e40cab134",
+                              "key": "functionId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID of the function."
+                            }
+                          ]
+                        },
+                        "description": "Invokes a function synchronously."
+                      },
+                      "response": [
+                        {
+                          "id": "54a952d7-c4f1-4068-82e9-c004229cd5ef",
+                          "name": "Function invoked successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "file",
+                              "file": {}
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/functions/:functionId/actions/invoke",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "functions",
+                                ":functionId",
+                                "actions",
+                                "invoke"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "functionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-06-05T15:01:44.000Z",
+                          "updatedAt": "2026-06-05T15:01:44.000Z",
+                          "uid": "35240-54a952d7-c4f1-4068-82e9-c004229cd5ef"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:44.000Z",
+                      "updatedAt": "2026-06-05T15:01:44.000Z",
+                      "uid": "35240-d07f6caf-9b10-46b4-a15d-19097206eba4"
+                    }
+                  ],
+                  "id": "56793d74-f81f-46b1-bd58-e49b4812335b",
+                  "createdAt": "2026-06-05T15:01:44.000Z",
+                  "updatedAt": "2026-06-05T15:01:44.000Z",
+                  "uid": "35240-56793d74-f81f-46b1-bd58-e49b4812335b"
+                }
+              ],
+              "id": "c6bc5300-64ff-405f-9d97-343456b6e91f",
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-c6bc5300-64ff-405f-9d97-343456b6e91f"
+            },
+            {
+              "name": "Oracle Cloud Get Function",
+              "id": "b5dba9c9-1830-49eb-83b7-c287728d4e0a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/functions/:functionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "functions",
+                    ":functionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "069f7f3c-a056-4c6e-b651-4f371bd89359",
+                      "key": "functionId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the function."
+                    }
+                  ]
+                },
+                "description": "Gets a function."
+              },
+              "response": [
+                {
+                  "id": "fc0158e8-2d30-4f4a-92f9-a3b218ceb767",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/functions/:functionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "functions",
+                        ":functionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "functionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"image\": \"<string>\",\n  \"memoryInMBs\": \"<integer>\",\n  \"timeoutInSeconds\": \"<integer>\",\n  \"lifecycleState\": \"CREATING\",\n  \"invokeEndpoint\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"config\": {\n    \"incididunt1d\": \"<string>\",\n    \"proident_f\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:44.000Z",
+                  "updatedAt": "2026-06-05T15:01:44.000Z",
+                  "uid": "35240-fc0158e8-2d30-4f4a-92f9-a3b218ceb767"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-b5dba9c9-1830-49eb-83b7-c287728d4e0a"
+            },
+            {
+              "name": "Oracle Cloud Delete Function",
+              "id": "b4b83b06-56a7-45de-875e-692a0426deac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/functions/:functionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "functions",
+                    ":functionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "332919c7-b74d-4cac-8e59-0f790876365d",
+                      "key": "functionId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the function."
+                    }
+                  ]
+                },
+                "description": "Deletes a function."
+              },
+              "response": [
+                {
+                  "id": "b4dc139f-a6fb-4b25-9c7a-232b9acac1fe",
+                  "name": "Successfully deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/functions/:functionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "functions",
+                        ":functionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "functionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:44.000Z",
+                  "updatedAt": "2026-06-05T15:01:44.000Z",
+                  "uid": "35240-b4dc139f-a6fb-4b25-9c7a-232b9acac1fe"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-b4b83b06-56a7-45de-875e-692a0426deac"
+            }
+          ],
+          "id": "29ec5870-a646-45dd-ba2a-0cc7e546b95a",
+          "createdAt": "2026-06-05T15:01:44.000Z",
+          "updatedAt": "2026-06-05T15:01:44.000Z",
+          "uid": "35240-29ec5870-a646-45dd-ba2a-0cc7e546b95a"
+        },
+        {
+          "name": "Oracle Cloud List Functions",
+          "id": "e7373263-ab47-426d-89c0-66175301f099",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/functions?applicationId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "functions"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the application.",
+                  "key": "applicationId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists functions in an application."
+          },
+          "response": [
+            {
+              "id": "5a01a9ae-a436-4e46-80bd-98e6c63cd4be",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/functions?applicationId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "functions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the application.",
+                      "key": "applicationId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"image\": \"<string>\",\n    \"memoryInMBs\": \"<integer>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"applicationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"image\": \"<string>\",\n    \"memoryInMBs\": \"<integer>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-5a01a9ae-a436-4e46-80bd-98e6c63cd4be"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:44.000Z",
+          "updatedAt": "2026-06-05T15:01:44.000Z",
+          "uid": "35240-e7373263-ab47-426d-89c0-66175301f099"
+        },
+        {
+          "name": "Oracle Cloud Create Function",
+          "id": "9d0a851a-cb0a-45f4-9f1d-5f3c7f4af464",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"image\": \"<string>\",\n  \"memoryInMBs\": \"<integer>\",\n  \"timeoutInSeconds\": 30,\n  \"config\": {\n    \"deserunt_630\": \"<string>\",\n    \"velitb98\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/functions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "functions"
+              ]
+            },
+            "description": "Creates a new function."
+          },
+          "response": [
+            {
+              "id": "cb36f41c-05e5-4a15-8995-1761b6bacd21",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"image\": \"<string>\",\n  \"memoryInMBs\": \"<integer>\",\n  \"timeoutInSeconds\": 30,\n  \"config\": {\n    \"deserunt_630\": \"<string>\",\n    \"velitb98\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/functions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "functions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"image\": \"<string>\",\n  \"memoryInMBs\": \"<integer>\",\n  \"timeoutInSeconds\": \"<integer>\",\n  \"lifecycleState\": \"CREATING\",\n  \"invokeEndpoint\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"config\": {\n    \"incididunt1d\": \"<string>\",\n    \"proident_f\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:01:44.000Z",
+              "updatedAt": "2026-06-05T15:01:44.000Z",
+              "uid": "35240-cb36f41c-05e5-4a15-8995-1761b6bacd21"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:44.000Z",
+          "updatedAt": "2026-06-05T15:01:44.000Z",
+          "uid": "35240-9d0a851a-cb0a-45f4-9f1d-5f3c7f4af464"
+        }
+      ],
+      "id": "31596035-1af0-48a3-9f2b-12e04803d32a",
+      "createdAt": "2026-06-05T15:01:44.000Z",
+      "updatedAt": "2026-06-05T15:01:44.000Z",
+      "uid": "35240-31596035-1af0-48a3-9f2b-12e04803d32a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://functions.{{region}}.oraclecloud.com/20181201"
+    }
+  ]
+}

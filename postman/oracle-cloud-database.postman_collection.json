@@ -1,0 +1,1115 @@
+{
+  "info": {
+    "_postman_id": "6c650adf-df60-4e07-a910-44be392d5b22",
+    "name": "Oracle Cloud Database API",
+    "description": "Manage Oracle Database Cloud Services and Autonomous Databases in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:39.000Z",
+    "updatedAt": "2026-06-05T15:01:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c650adf-df60-4e07-a910-44be392d5b22"
+  },
+  "item": [
+    {
+      "name": "autonomousDatabases",
+      "item": [
+        {
+          "name": "{autonomousDatabaseId}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "start",
+                  "item": [
+                    {
+                      "name": "Oracle Cloud Start Autonomous Database",
+                      "id": "b2c635c9-4919-4e4e-954d-ce52758650eb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "autonomousDatabases",
+                            ":autonomousDatabaseId",
+                            "actions",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2a2c1bb5-dc08-4e65-8dfa-1dbc28a66536",
+                              "key": "autonomousDatabaseId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID."
+                            }
+                          ]
+                        },
+                        "description": "Starts the specified Autonomous Database."
+                      },
+                      "response": [
+                        {
+                          "id": "810a6a2c-67f2-4472-bb47-6e6a67b6154c",
+                          "name": "Successfully started.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/start",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "start"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"STOPPED\",\n  \"isFreeTier\": \"<boolean>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<string>\",\n    \"apexUrl\": \"<string>\",\n    \"graphStudioUrl\": \"<string>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"Lorem_cc\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:01:39.000Z",
+                          "updatedAt": "2026-06-05T15:01:39.000Z",
+                          "uid": "35240-810a6a2c-67f2-4472-bb47-6e6a67b6154c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:39.000Z",
+                      "updatedAt": "2026-06-05T15:01:39.000Z",
+                      "uid": "35240-b2c635c9-4919-4e4e-954d-ce52758650eb"
+                    }
+                  ],
+                  "id": "401e212f-c0bd-4c66-bc5c-0a67ca96f2cd",
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-401e212f-c0bd-4c66-bc5c-0a67ca96f2cd"
+                },
+                {
+                  "name": "stop",
+                  "item": [
+                    {
+                      "name": "Oracle Cloud Stop Autonomous Database",
+                      "id": "e11c6ef9-1a86-44e1-be6a-9d5a5854a7ac",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "autonomousDatabases",
+                            ":autonomousDatabaseId",
+                            "actions",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "id": "80ec062b-a700-4b31-adfe-7bfe8601db7f",
+                              "key": "autonomousDatabaseId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID."
+                            }
+                          ]
+                        },
+                        "description": "Stops the specified Autonomous Database."
+                      },
+                      "response": [
+                        {
+                          "id": "ae9f3f8d-a688-422b-b367-739336425b8c",
+                          "name": "Successfully stopped.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "stop"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"STOPPED\",\n  \"isFreeTier\": \"<boolean>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<string>\",\n    \"apexUrl\": \"<string>\",\n    \"graphStudioUrl\": \"<string>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"Lorem_cc\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:01:39.000Z",
+                          "updatedAt": "2026-06-05T15:01:39.000Z",
+                          "uid": "35240-ae9f3f8d-a688-422b-b367-739336425b8c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:39.000Z",
+                      "updatedAt": "2026-06-05T15:01:39.000Z",
+                      "uid": "35240-e11c6ef9-1a86-44e1-be6a-9d5a5854a7ac"
+                    }
+                  ],
+                  "id": "fab34796-2476-4730-93fe-aaa3de497067",
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-fab34796-2476-4730-93fe-aaa3de497067"
+                }
+              ],
+              "id": "03a8e114-60b8-410a-ae82-f88a10ec4054",
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-03a8e114-60b8-410a-ae82-f88a10ec4054"
+            },
+            {
+              "name": "Oracle Cloud Get Autonomous Database",
+              "id": "f1124060-5050-4468-95b1-36e5aa62e8e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fd7208be-fc0f-48f7-9f69-c80b46f91d9f",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the Autonomous Database."
+                    }
+                  ]
+                },
+                "description": "Gets the specified Autonomous Database."
+              },
+              "response": [
+                {
+                  "id": "155a41a8-7b91-4947-96b4-ae2d63e8709d",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"STOPPED\",\n  \"isFreeTier\": \"<boolean>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<string>\",\n    \"apexUrl\": \"<string>\",\n    \"graphStudioUrl\": \"<string>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"Lorem_cc\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-155a41a8-7b91-4947-96b4-ae2d63e8709d"
+                },
+                {
+                  "id": "df726988-11ff-4ddb-bb0f-1479b9eaf951",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-df726988-11ff-4ddb-bb0f-1479b9eaf951"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-f1124060-5050-4468-95b1-36e5aa62e8e8"
+            },
+            {
+              "name": "Oracle Cloud Update Autonomous Database",
+              "id": "00d16581-76d4-44e1-a137-a1eff469caa4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fd6d61d9-f9dd-45e4-8af7-10e3b4627399",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the Autonomous Database."
+                    }
+                  ]
+                },
+                "description": "Updates the specified Autonomous Database."
+              },
+              "response": [
+                {
+                  "id": "c3c917b9-5386-421f-a5c1-b11688eb0954",
+                  "name": "Successfully updated.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"STOPPED\",\n  \"isFreeTier\": \"<boolean>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<string>\",\n    \"apexUrl\": \"<string>\",\n    \"graphStudioUrl\": \"<string>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"Lorem_cc\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-c3c917b9-5386-421f-a5c1-b11688eb0954"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-00d16581-76d4-44e1-a137-a1eff469caa4"
+            },
+            {
+              "name": "Oracle Cloud Delete Autonomous Database",
+              "id": "ecdc9bf6-c3e3-47b8-aa22-664d749b1507",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6fff0ecd-95f0-4e0e-b016-818c7200ac9d",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified Autonomous Database."
+              },
+              "response": [
+                {
+                  "id": "ee700c8f-8cbe-46da-8edc-6046c77c5583",
+                  "name": "Successfully deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-ee700c8f-8cbe-46da-8edc-6046c77c5583"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-ecdc9bf6-c3e3-47b8-aa22-664d749b1507"
+            }
+          ],
+          "id": "0cbb1313-10b0-4ed6-a43b-db4c19783ef2",
+          "createdAt": "2026-06-05T15:01:39.000Z",
+          "updatedAt": "2026-06-05T15:01:39.000Z",
+          "uid": "35240-0cbb1313-10b0-4ed6-a43b-db4c19783ef2"
+        },
+        {
+          "name": "Oracle Cloud List Autonomous Databases",
+          "id": "886afe3a-0cd4-4f9e-9393-90bb71ae8918",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "autonomousDatabases"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token.",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Gets a list of Autonomous Databases in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "4c0dbf95-4c53-45d4-9c1c-3f6e5331cc61",
+              "name": "Successfully retrieved list.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"cpuCoreCount\": \"<integer>\",\n    \"dataStorageSizeInTBs\": \"<integer>\",\n    \"dbWorkload\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"isFreeTier\": \"<boolean>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"cpuCoreCount\": \"<integer>\",\n    \"dataStorageSizeInTBs\": \"<integer>\",\n    \"dbWorkload\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"isFreeTier\": \"<boolean>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-4c0dbf95-4c53-45d4-9c1c-3f6e5331cc61"
+            },
+            {
+              "id": "ae90f23d-9d28-4ee0-b529-e3266fdc7249",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-ae90f23d-9d28-4ee0-b529-e3266fdc7249"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:39.000Z",
+          "updatedAt": "2026-06-05T15:01:39.000Z",
+          "uid": "35240-886afe3a-0cd4-4f9e-9393-90bb71ae8918"
+        },
+        {
+          "name": "Oracle Cloud Create Autonomous Database",
+          "id": "91907e62-bf35-4a36-ba2e-b4ac1277185f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isFreeTier\": false,\n  \"isAutoScalingEnabled\": false\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/autonomousDatabases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "autonomousDatabases"
+              ]
+            },
+            "description": "Creates a new Autonomous Database."
+          },
+          "response": [
+            {
+              "id": "93efb090-0677-4d9d-9d44-d4a7b8c9ea97",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isFreeTier\": false,\n  \"isAutoScalingEnabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"STOPPED\",\n  \"isFreeTier\": \"<boolean>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<string>\",\n    \"apexUrl\": \"<string>\",\n    \"graphStudioUrl\": \"<string>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"Lorem_cc\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-93efb090-0677-4d9d-9d44-d4a7b8c9ea97"
+            },
+            {
+              "id": "a3ce5573-f7ac-4e0c-9972-c98c60907e8e",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isFreeTier\": false,\n  \"isAutoScalingEnabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-a3ce5573-f7ac-4e0c-9972-c98c60907e8e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:39.000Z",
+          "updatedAt": "2026-06-05T15:01:39.000Z",
+          "uid": "35240-91907e62-bf35-4a36-ba2e-b4ac1277185f"
+        }
+      ],
+      "id": "9cdc9e37-e9ae-45fa-a355-c9ebf13ad025",
+      "createdAt": "2026-06-05T15:01:39.000Z",
+      "updatedAt": "2026-06-05T15:01:39.000Z",
+      "uid": "35240-9cdc9e37-e9ae-45fa-a355-c9ebf13ad025"
+    },
+    {
+      "name": "dbSystems",
+      "item": [
+        {
+          "name": "{dbSystemId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get DB System",
+              "id": "eb2b3712-f0c8-4298-a77a-76ecf2438876",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "add3a519-41bd-4a32-81bb-ad5b9cbe562f",
+                      "key": "dbSystemId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the DB system."
+                    }
+                  ]
+                },
+                "description": "Gets the specified DB system."
+              },
+              "response": [
+                {
+                  "id": "9403bfb2-b808-4c2a-93e5-b6b672a5a851",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"nodeCount\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"databaseEdition\": \"STANDARD_EDITION\",\n  \"lifecycleState\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:39.000Z",
+                  "updatedAt": "2026-06-05T15:01:39.000Z",
+                  "uid": "35240-9403bfb2-b808-4c2a-93e5-b6b672a5a851"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-eb2b3712-f0c8-4298-a77a-76ecf2438876"
+            }
+          ],
+          "id": "3b3dd532-36e8-4173-ad9e-d2efc3b4e6f1",
+          "createdAt": "2026-06-05T15:01:39.000Z",
+          "updatedAt": "2026-06-05T15:01:39.000Z",
+          "uid": "35240-3b3dd532-36e8-4173-ad9e-d2efc3b4e6f1"
+        },
+        {
+          "name": "Oracle Cloud List DB Systems",
+          "id": "fb70ede2-b41c-4fbf-8bd0-119bc06a44c8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dbSystems?compartmentId=<string>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dbSystems"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Gets a list of DB systems in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "036093e8-48c6-40d5-8909-89225c042574",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems?compartmentId=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:39.000Z",
+              "updatedAt": "2026-06-05T15:01:39.000Z",
+              "uid": "35240-036093e8-48c6-40d5-8909-89225c042574"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:39.000Z",
+          "updatedAt": "2026-06-05T15:01:39.000Z",
+          "uid": "35240-fb70ede2-b41c-4fbf-8bd0-119bc06a44c8"
+        }
+      ],
+      "id": "fc5b20b8-c29a-4edb-b492-c73432983814",
+      "createdAt": "2026-06-05T15:01:39.000Z",
+      "updatedAt": "2026-06-05T15:01:39.000Z",
+      "uid": "35240-fc5b20b8-c29a-4edb-b492-c73432983814"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

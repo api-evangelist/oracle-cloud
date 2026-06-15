@@ -1,0 +1,1508 @@
+{
+  "info": {
+    "_postman_id": "093c63c0-faca-42a2-a34e-508b16c5957d",
+    "name": "Oracle Cloud Networking API",
+    "description": "Manage virtual cloud networks, subnets, security lists, and network resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:38.000Z",
+    "updatedAt": "2026-06-05T15:01:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-093c63c0-faca-42a2-a34e-508b16c5957d"
+  },
+  "item": [
+    {
+      "name": "vcns",
+      "item": [
+        {
+          "name": "{vcnId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get VCN",
+              "id": "ca041afd-ff03-4977-a5ec-0521c3e12100",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vcns/:vcnId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5b474007-4573-4d27-9728-4beb25c663cb",
+                      "key": "vcnId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the VCN."
+                    }
+                  ]
+                },
+                "description": "Gets the specified VCN."
+              },
+              "response": [
+                {
+                  "id": "0e86821c-172c-49b5-8abd-7b49866519f4",
+                  "name": "Successfully retrieved VCN.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vcns/:vcnId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vcns",
+                        ":vcnId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "vcnId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultDhcpOptionsId\": \"<string>\",\n  \"defaultRouteTableId\": \"<string>\",\n  \"defaultSecurityListId\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"laboris1f\": \"<string>\",\n    \"dolore_a4c\": \"<string>\",\n    \"voluptatec2\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:38.000Z",
+                  "updatedAt": "2026-06-05T15:01:38.000Z",
+                  "uid": "35240-0e86821c-172c-49b5-8abd-7b49866519f4"
+                },
+                {
+                  "id": "bfa3c403-ec74-4847-96af-d1741d64d6f7",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vcns/:vcnId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vcns",
+                        ":vcnId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "vcnId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:01:38.000Z",
+                  "updatedAt": "2026-06-05T15:01:38.000Z",
+                  "uid": "35240-bfa3c403-ec74-4847-96af-d1741d64d6f7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-ca041afd-ff03-4977-a5ec-0521c3e12100"
+            },
+            {
+              "name": "Oracle Cloud Update VCN",
+              "id": "ece38cb7-77dc-4be0-b7f9-23f0ad438bb3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"freeformTags\": {\n    \"cillum736\": \"<string>\",\n    \"enim__\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/vcns/:vcnId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0f414215-4804-48fe-b03b-4bb3a4f2ce0c",
+                      "key": "vcnId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the VCN."
+                    }
+                  ]
+                },
+                "description": "Updates the specified VCN."
+              },
+              "response": [
+                {
+                  "id": "36253b90-07e5-43c8-ac28-fee46afcb81f",
+                  "name": "Successfully updated VCN.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"freeformTags\": {\n    \"cillum736\": \"<string>\",\n    \"enim__\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/vcns/:vcnId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vcns",
+                        ":vcnId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "vcnId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultDhcpOptionsId\": \"<string>\",\n  \"defaultRouteTableId\": \"<string>\",\n  \"defaultSecurityListId\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"laboris1f\": \"<string>\",\n    \"dolore_a4c\": \"<string>\",\n    \"voluptatec2\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:38.000Z",
+                  "updatedAt": "2026-06-05T15:01:38.000Z",
+                  "uid": "35240-36253b90-07e5-43c8-ac28-fee46afcb81f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-ece38cb7-77dc-4be0-b7f9-23f0ad438bb3"
+            },
+            {
+              "name": "Oracle Cloud Delete VCN",
+              "id": "0e2812e6-c1c4-4371-8e40-bb483d4dcab7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/vcns/:vcnId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "12bfb641-fa7e-4bc0-876f-0e92e345d28b",
+                      "key": "vcnId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the VCN."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified VCN."
+              },
+              "response": [
+                {
+                  "id": "92719f44-6026-45fb-8f02-51a2f0d26e2a",
+                  "name": "Successfully deleted VCN.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vcns/:vcnId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vcns",
+                        ":vcnId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "vcnId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:38.000Z",
+                  "updatedAt": "2026-06-05T15:01:38.000Z",
+                  "uid": "35240-92719f44-6026-45fb-8f02-51a2f0d26e2a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-0e2812e6-c1c4-4371-8e40-bb483d4dcab7"
+            }
+          ],
+          "id": "c17fdd1e-c123-4740-86b7-6560674b14bd",
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-c17fdd1e-c123-4740-86b7-6560674b14bd"
+        },
+        {
+          "name": "Oracle Cloud List VCNs",
+          "id": "5eecc331-d2f4-4ade-8936-3d4b9eafadeb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/vcns?compartmentId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vcns"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token.",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the virtual cloud networks in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "c05404d6-1ca2-4e0a-9a4a-870f7257afc8",
+              "name": "Successfully retrieved list of VCNs.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vcns?compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"cidrBlock\": \"<string>\",\n    \"cidrBlocks\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"defaultDhcpOptionsId\": \"<string>\",\n    \"defaultRouteTableId\": \"<string>\",\n    \"defaultSecurityListId\": \"<string>\",\n    \"dnsLabel\": \"<string>\",\n    \"lifecycleState\": \"TERMINATED\",\n    \"timeCreated\": \"<dateTime>\",\n    \"freeformTags\": {\n      \"nisi_c89\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"cidrBlock\": \"<string>\",\n    \"cidrBlocks\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"defaultDhcpOptionsId\": \"<string>\",\n    \"defaultRouteTableId\": \"<string>\",\n    \"defaultSecurityListId\": \"<string>\",\n    \"dnsLabel\": \"<string>\",\n    \"lifecycleState\": \"AVAILABLE\",\n    \"timeCreated\": \"<dateTime>\",\n    \"freeformTags\": {\n      \"nullad4\": \"<string>\",\n      \"tempor_308\": \"<string>\",\n      \"ut96\": \"<string>\"\n    }\n  }\n]",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-c05404d6-1ca2-4e0a-9a4a-870f7257afc8"
+            },
+            {
+              "id": "41c2145c-d65b-4d4c-84f8-05d328631635",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vcns?compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-41c2145c-d65b-4d4c-84f8-05d328631635"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-5eecc331-d2f4-4ade-8936-3d4b9eafadeb"
+        },
+        {
+          "name": "Oracle Cloud Create VCN",
+          "id": "6c4e58e4-b9a4-4799-9e81-b900498828c4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"freeformTags\": {\n    \"deserunt48\": \"<string>\",\n    \"doa\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vcns",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vcns"
+              ]
+            },
+            "description": "Creates a new virtual cloud network."
+          },
+          "response": [
+            {
+              "id": "4f5157b1-b922-4f6c-a38c-e3d23607c11e",
+              "name": "Successfully created VCN.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"freeformTags\": {\n    \"deserunt48\": \"<string>\",\n    \"doa\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/vcns",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultDhcpOptionsId\": \"<string>\",\n  \"defaultRouteTableId\": \"<string>\",\n  \"defaultSecurityListId\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"laboris1f\": \"<string>\",\n    \"dolore_a4c\": \"<string>\",\n    \"voluptatec2\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-4f5157b1-b922-4f6c-a38c-e3d23607c11e"
+            },
+            {
+              "id": "464fc04d-a6c1-4b1a-b0b9-5e1cf1b60013",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"freeformTags\": {\n    \"deserunt48\": \"<string>\",\n    \"doa\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/vcns",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vcns"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-464fc04d-a6c1-4b1a-b0b9-5e1cf1b60013"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-6c4e58e4-b9a4-4799-9e81-b900498828c4"
+        }
+      ],
+      "id": "14b4f2f8-b999-449b-80d2-4f5ed52461ba",
+      "createdAt": "2026-06-05T15:01:38.000Z",
+      "updatedAt": "2026-06-05T15:01:38.000Z",
+      "uid": "35240-14b4f2f8-b999-449b-80d2-4f5ed52461ba"
+    },
+    {
+      "name": "subnets",
+      "item": [
+        {
+          "name": "{subnetId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get Subnet",
+              "id": "cf20e0f7-bf34-470b-be19-6cb879491c6d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subnets/:subnetId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subnets",
+                    ":subnetId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0690af75-9406-4845-a42a-ea543cf05439",
+                      "key": "subnetId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the subnet."
+                    }
+                  ]
+                },
+                "description": "Gets the specified subnet."
+              },
+              "response": [
+                {
+                  "id": "d792d3e1-3ac1-4598-834a-ab2601c955b7",
+                  "name": "Successfully retrieved subnet.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subnets/:subnetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subnets",
+                        ":subnetId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subnetId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"prohibitPublicIpOnVnic\": \"<boolean>\",\n  \"routeTableId\": \"<string>\",\n  \"securityListIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lifecycleState\": \"TERMINATED\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:38.000Z",
+                  "updatedAt": "2026-06-05T15:01:38.000Z",
+                  "uid": "35240-d792d3e1-3ac1-4598-834a-ab2601c955b7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-cf20e0f7-bf34-470b-be19-6cb879491c6d"
+            },
+            {
+              "name": "Oracle Cloud Delete Subnet",
+              "id": "4d202100-4bd7-4350-9f6a-b2b371f03e9b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/subnets/:subnetId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subnets",
+                    ":subnetId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "eb87979f-6032-43f3-8e3a-1731b7548122",
+                      "key": "subnetId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the subnet."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified subnet."
+              },
+              "response": [
+                {
+                  "id": "264c3317-0817-4dbd-8156-aa002eb354e9",
+                  "name": "Successfully deleted subnet.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subnets/:subnetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subnets",
+                        ":subnetId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subnetId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:38.000Z",
+                  "updatedAt": "2026-06-05T15:01:38.000Z",
+                  "uid": "35240-264c3317-0817-4dbd-8156-aa002eb354e9"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-4d202100-4bd7-4350-9f6a-b2b371f03e9b"
+            }
+          ],
+          "id": "5de53ea2-b6e2-4981-b500-78c6ebabf9e4",
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-5de53ea2-b6e2-4981-b500-78c6ebabf9e4"
+        },
+        {
+          "name": "Oracle Cloud List Subnets",
+          "id": "4ae1b332-2072-4dbf-8e79-d09c9546efa6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subnets?compartmentId=<string>&vcnId=<string>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subnets"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The OCID of the VCN.",
+                  "key": "vcnId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Lists the subnets in the specified VCN and compartment."
+          },
+          "response": [
+            {
+              "id": "43c6de13-45cf-45d1-8d7b-1ee6f290c90a",
+              "name": "Successfully retrieved list of subnets.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subnets?compartmentId=<string>&vcnId=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subnets"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OCID of the VCN.",
+                      "key": "vcnId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"cidrBlock\": \"<string>\",\n    \"availabilityDomain\": \"<string>\",\n    \"dnsLabel\": \"<string>\",\n    \"prohibitPublicIpOnVnic\": \"<boolean>\",\n    \"routeTableId\": \"<string>\",\n    \"securityListIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lifecycleState\": \"PROVISIONING\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"cidrBlock\": \"<string>\",\n    \"availabilityDomain\": \"<string>\",\n    \"dnsLabel\": \"<string>\",\n    \"prohibitPublicIpOnVnic\": \"<boolean>\",\n    \"routeTableId\": \"<string>\",\n    \"securityListIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lifecycleState\": \"AVAILABLE\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-43c6de13-45cf-45d1-8d7b-1ee6f290c90a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-4ae1b332-2072-4dbf-8e79-d09c9546efa6"
+        },
+        {
+          "name": "Oracle Cloud Create Subnet",
+          "id": "92dd417e-55bd-4fc8-96d4-e1956731f76f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"prohibitPublicIpOnVnic\": false,\n  \"routeTableId\": \"<string>\",\n  \"securityListIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subnets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subnets"
+              ]
+            },
+            "description": "Creates a new subnet in the specified VCN."
+          },
+          "response": [
+            {
+              "id": "4afecf4a-83dc-455b-b4a7-4291204a9bc1",
+              "name": "Successfully created subnet.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"prohibitPublicIpOnVnic\": false,\n  \"routeTableId\": \"<string>\",\n  \"securityListIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subnets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subnets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"prohibitPublicIpOnVnic\": \"<boolean>\",\n  \"routeTableId\": \"<string>\",\n  \"securityListIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lifecycleState\": \"TERMINATED\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-4afecf4a-83dc-455b-b4a7-4291204a9bc1"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-92dd417e-55bd-4fc8-96d4-e1956731f76f"
+        }
+      ],
+      "id": "e0e93729-1627-41a5-9097-1164a5d1f9e5",
+      "createdAt": "2026-06-05T15:01:38.000Z",
+      "updatedAt": "2026-06-05T15:01:38.000Z",
+      "uid": "35240-e0e93729-1627-41a5-9097-1164a5d1f9e5"
+    },
+    {
+      "name": "securityLists",
+      "item": [
+        {
+          "name": "Oracle Cloud List Security Lists",
+          "id": "71194599-0b73-4624-aaf0-c8fd8f3d1eeb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/securityLists?compartmentId=<string>&vcnId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "securityLists"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The OCID of the VCN.",
+                  "key": "vcnId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the security lists in the specified VCN and compartment."
+          },
+          "response": [
+            {
+              "id": "14dd1041-913d-409a-a700-b9829ec7155f",
+              "name": "Successfully retrieved security lists.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/securityLists?compartmentId=<string>&vcnId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "securityLists"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OCID of the VCN.",
+                      "key": "vcnId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"TERMINATED\",\n    \"ingressSecurityRules\": [\n      {\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      },\n      {\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      }\n    ],\n    \"egressSecurityRules\": [\n      {\n        \"protocol\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      },\n      {\n        \"protocol\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      }\n    ],\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"PROVISIONING\",\n    \"ingressSecurityRules\": [\n      {\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      },\n      {\n        \"protocol\": \"<string>\",\n        \"source\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      }\n    ],\n    \"egressSecurityRules\": [\n      {\n        \"protocol\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      },\n      {\n        \"protocol\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"isStateless\": \"<boolean>\"\n      }\n    ],\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-14dd1041-913d-409a-a700-b9829ec7155f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-71194599-0b73-4624-aaf0-c8fd8f3d1eeb"
+        }
+      ],
+      "id": "8bbf4ddb-aec4-447f-a9e6-60f5ebcd6e77",
+      "createdAt": "2026-06-05T15:01:38.000Z",
+      "updatedAt": "2026-06-05T15:01:38.000Z",
+      "uid": "35240-8bbf4ddb-aec4-447f-a9e6-60f5ebcd6e77"
+    },
+    {
+      "name": "internetGateways",
+      "item": [
+        {
+          "name": "Oracle Cloud List Internet Gateways",
+          "id": "834b441f-b142-4c22-9610-ef860ec50c4c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/internetGateways?compartmentId=<string>&vcnId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "internetGateways"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The OCID of the VCN.",
+                  "key": "vcnId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the internet gateways in the specified VCN and compartment."
+          },
+          "response": [
+            {
+              "id": "667e7b3f-e2f8-451a-9ee0-4e1ce675ab6b",
+              "name": "Successfully retrieved internet gateways.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/internetGateways?compartmentId=<string>&vcnId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "internetGateways"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OCID of the VCN.",
+                      "key": "vcnId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"isEnabled\": \"<boolean>\",\n    \"lifecycleState\": \"TERMINATED\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"isEnabled\": \"<boolean>\",\n    \"lifecycleState\": \"TERMINATING\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-667e7b3f-e2f8-451a-9ee0-4e1ce675ab6b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-834b441f-b142-4c22-9610-ef860ec50c4c"
+        },
+        {
+          "name": "Oracle Cloud Create Internet Gateway",
+          "id": "aad1420d-8241-4900-8d03-58a390e13847",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"isEnabled\": true,\n  \"displayName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/internetGateways",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "internetGateways"
+              ]
+            },
+            "description": "Creates a new internet gateway for the specified VCN."
+          },
+          "response": [
+            {
+              "id": "aa252a67-1877-46ee-9dcf-f1342945c9ea",
+              "name": "Successfully created internet gateway.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"isEnabled\": true,\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/internetGateways",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "internetGateways"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"lifecycleState\": \"TERMINATING\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-aa252a67-1877-46ee-9dcf-f1342945c9ea"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-aad1420d-8241-4900-8d03-58a390e13847"
+        }
+      ],
+      "id": "a6abefc3-3492-4daf-a050-787f61c88b52",
+      "createdAt": "2026-06-05T15:01:38.000Z",
+      "updatedAt": "2026-06-05T15:01:38.000Z",
+      "uid": "35240-a6abefc3-3492-4daf-a050-787f61c88b52"
+    },
+    {
+      "name": "routeTables",
+      "item": [
+        {
+          "name": "Oracle Cloud List Route Tables",
+          "id": "9eb89421-9bc0-41e2-bd75-b8248396c309",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/routeTables?compartmentId=<string>&vcnId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "routeTables"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The OCID of the VCN.",
+                  "key": "vcnId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the route tables in the specified VCN and compartment."
+          },
+          "response": [
+            {
+              "id": "c5543099-547c-4e33-83a2-518ac7151fee",
+              "name": "Successfully retrieved route tables.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/routeTables?compartmentId=<string>&vcnId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routeTables"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OCID of the VCN.",
+                      "key": "vcnId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"AVAILABLE\",\n    \"routeRules\": [\n      {\n        \"destination\": \"<string>\",\n        \"destinationType\": \"SERVICE_CIDR_BLOCK\",\n        \"networkEntityId\": \"<string>\"\n      },\n      {\n        \"destination\": \"<string>\",\n        \"destinationType\": \"SERVICE_CIDR_BLOCK\",\n        \"networkEntityId\": \"<string>\"\n      }\n    ],\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"vcnId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"TERMINATED\",\n    \"routeRules\": [\n      {\n        \"destination\": \"<string>\",\n        \"destinationType\": \"CIDR_BLOCK\",\n        \"networkEntityId\": \"<string>\"\n      },\n      {\n        \"destination\": \"<string>\",\n        \"destinationType\": \"CIDR_BLOCK\",\n        \"networkEntityId\": \"<string>\"\n      }\n    ],\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:38.000Z",
+              "updatedAt": "2026-06-05T15:01:38.000Z",
+              "uid": "35240-c5543099-547c-4e33-83a2-518ac7151fee"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:38.000Z",
+          "updatedAt": "2026-06-05T15:01:38.000Z",
+          "uid": "35240-9eb89421-9bc0-41e2-bd75-b8248396c309"
+        }
+      ],
+      "id": "1808a244-99de-4a6f-bd83-c9166cc1c7f5",
+      "createdAt": "2026-06-05T15:01:38.000Z",
+      "updatedAt": "2026-06-05T15:01:38.000Z",
+      "uid": "35240-1808a244-99de-4a6f-bd83-c9166cc1c7f5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

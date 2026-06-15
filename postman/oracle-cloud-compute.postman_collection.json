@@ -1,0 +1,2001 @@
+{
+  "info": {
+    "_postman_id": "3a7bfa60-1d0c-470b-9fcd-54c0df87c127",
+    "name": "Oracle Cloud Compute API",
+    "description": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:30.000Z",
+    "updatedAt": "2026-06-05T15:01:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3a7bfa60-1d0c-470b-9fcd-54c0df87c127"
+  },
+  "item": [
+    {
+      "name": "instances",
+      "item": [
+        {
+          "name": "{instanceId}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "{action}",
+                  "item": [
+                    {
+                      "name": "Oracle Cloud Instance Action",
+                      "id": "0fff2e65-1b52-4086-aa2b-8b72669a59b5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/actions/:action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "actions",
+                            ":action"
+                          ],
+                          "variable": [
+                            {
+                              "id": "17d7995f-5ef8-44f6-b221-125240810c05",
+                              "key": "instanceId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID of the instance."
+                            },
+                            {
+                              "id": "b192d0d5-88fc-471a-9475-1bc647fb46c6",
+                              "key": "action",
+                              "value": "STOP",
+                              "description": "(Required) The action to perform on the instance."
+                            }
+                          ]
+                        },
+                        "description": "Performs an action on the specified instance such as start, stop, reset, or soft reset."
+                      },
+                      "response": [
+                        {
+                          "id": "f076a521-51e5-49e0-bad8-6f5115759560",
+                          "name": "Action performed successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/instances/:instanceId/actions/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "instances",
+                                ":instanceId",
+                                "actions",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instanceId"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"aliqua_3ed\": \"<string>\",\n    \"tempord5a\": \"<string>\",\n    \"velit_e\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"ipsum_e\": {},\n    \"consequat_e\": {}\n  }\n}",
+                          "createdAt": "2026-06-05T15:01:31.000Z",
+                          "updatedAt": "2026-06-05T15:01:31.000Z",
+                          "uid": "35240-f076a521-51e5-49e0-bad8-6f5115759560"
+                        },
+                        {
+                          "id": "c0f26909-2349-4e45-99c6-5de10e56ff4a",
+                          "name": "Not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/instances/:instanceId/actions/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "instances",
+                                ":instanceId",
+                                "actions",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instanceId"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:01:31.000Z",
+                          "updatedAt": "2026-06-05T15:01:31.000Z",
+                          "uid": "35240-c0f26909-2349-4e45-99c6-5de10e56ff4a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:31.000Z",
+                      "updatedAt": "2026-06-05T15:01:31.000Z",
+                      "uid": "35240-0fff2e65-1b52-4086-aa2b-8b72669a59b5"
+                    }
+                  ],
+                  "id": "4103a88a-cb18-48ee-a5fd-f0f9106851f2",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-4103a88a-cb18-48ee-a5fd-f0f9106851f2"
+                }
+              ],
+              "id": "4e8586a5-a4b0-49d9-92d3-5f1a03f1ebe9",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-4e8586a5-a4b0-49d9-92d3-5f1a03f1ebe9"
+            },
+            {
+              "name": "Oracle Cloud Get Instance",
+              "id": "d76a3aba-374c-4867-8ddd-0e148ea3963f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:instanceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "368f8134-7a0a-470b-8255-8c87f26291b3",
+                      "key": "instanceId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the instance."
+                    }
+                  ]
+                },
+                "description": "Gets information about the specified instance."
+              },
+              "response": [
+                {
+                  "id": "5f17c564-5744-49b2-bcd7-20f8124ee94f",
+                  "name": "Successfully retrieved instance.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"aliqua_3ed\": \"<string>\",\n    \"tempord5a\": \"<string>\",\n    \"velit_e\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"ipsum_e\": {},\n    \"consequat_e\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-5f17c564-5744-49b2-bcd7-20f8124ee94f"
+                },
+                {
+                  "id": "c56f88ec-a9e5-4b42-8592-f5336c736d43",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-c56f88ec-a9e5-4b42-8592-f5336c736d43"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-d76a3aba-374c-4867-8ddd-0e148ea3963f"
+            },
+            {
+              "name": "Oracle Cloud Update Instance",
+              "id": "e5d394ac-263e-4611-8ce2-5ac732060e81",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"esta4\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:instanceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1a925fe1-25f4-4398-ac64-4d76e25de845",
+                      "key": "instanceId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the instance."
+                    }
+                  ]
+                },
+                "description": "Updates certain fields on the specified instance."
+              },
+              "response": [
+                {
+                  "id": "379e7449-d776-4c46-80c6-a408563dbded",
+                  "name": "Successfully updated instance.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"esta4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"aliqua_3ed\": \"<string>\",\n    \"tempord5a\": \"<string>\",\n    \"velit_e\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"ipsum_e\": {},\n    \"consequat_e\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-379e7449-d776-4c46-80c6-a408563dbded"
+                },
+                {
+                  "id": "e7850b32-6e0e-42a7-9c37-db2aa31c2abd",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"esta4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-e7850b32-6e0e-42a7-9c37-db2aa31c2abd"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-e5d394ac-263e-4611-8ce2-5ac732060e81"
+            },
+            {
+              "name": "Oracle Cloud Terminate Instance",
+              "id": "68abcef6-eca9-4178-adf8-c44fcfa7a11b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:instanceId?preserveBootVolume=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "query": [
+                    {
+                      "description": "Whether to preserve the boot volume when terminating.",
+                      "key": "preserveBootVolume",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "fbd79c94-0638-4aa6-945e-1bb1b4c38411",
+                      "key": "instanceId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the instance."
+                    }
+                  ]
+                },
+                "description": "Terminates the specified instance."
+              },
+              "response": [
+                {
+                  "id": "46d4c0d9-5fe4-4053-9e45-18ebc72a1cc5",
+                  "name": "Successfully terminated instance.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId?preserveBootVolume=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to preserve the boot volume when terminating.",
+                          "key": "preserveBootVolume",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-46d4c0d9-5fe4-4053-9e45-18ebc72a1cc5"
+                },
+                {
+                  "id": "15c1c366-f1a0-4fa5-8f3e-dfc1482cba9b",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId?preserveBootVolume=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to preserve the boot volume when terminating.",
+                          "key": "preserveBootVolume",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-15c1c366-f1a0-4fa5-8f3e-dfc1482cba9b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-68abcef6-eca9-4178-adf8-c44fcfa7a11b"
+            }
+          ],
+          "id": "981fc15f-bddc-4d39-8e2d-2701a9141ad1",
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-981fc15f-bddc-4d39-8e2d-2701a9141ad1"
+        },
+        {
+          "name": "Oracle Cloud List Instances",
+          "id": "70d8c338-65b3-4edd-93d0-9b97f70c14ca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/instances?compartmentId=<string>&availabilityDomain=<string>&displayName=<string>&lifecycleState=RUNNING&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instances"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the availability domain.",
+                  "key": "availabilityDomain",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A filter to return only resources matching the display name.",
+                  "key": "displayName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A filter to return only resources matching the lifecycle state.",
+                  "key": "lifecycleState",
+                  "value": "RUNNING"
+                },
+                {
+                  "description": "The maximum number of items to return per page.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous list call.",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the instances in the specified compartment and availability domain."
+          },
+          "response": [
+            {
+              "id": "2d0fef0b-0e8b-43b3-8573-b58008ffa7af",
+              "name": "Successfully retrieved list of instances.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?compartmentId=<string>&availabilityDomain=<string>&displayName=<string>&lifecycleState=RUNNING&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the availability domain.",
+                      "key": "availabilityDomain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the display name.",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the lifecycle state.",
+                      "key": "lifecycleState",
+                      "value": "RUNNING"
+                    },
+                    {
+                      "description": "The maximum number of items to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous list call.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"availabilityDomain\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"lifecycleState\": \"TERMINATING\",\n    \"region\": \"<string>\",\n    \"imageId\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\",\n    \"freeformTags\": {\n      \"labore3f\": \"<string>\",\n      \"Duis_871\": \"<string>\",\n      \"proident_b02\": \"<string>\"\n    },\n    \"definedTags\": {\n      \"sinteac\": {}\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"availabilityDomain\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"lifecycleState\": \"STOPPING\",\n    \"region\": \"<string>\",\n    \"imageId\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\",\n    \"freeformTags\": {\n      \"pariatur_47\": \"<string>\"\n    },\n    \"definedTags\": {\n      \"reprehenderit31\": {},\n      \"in6f\": {}\n    }\n  }\n]",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-2d0fef0b-0e8b-43b3-8573-b58008ffa7af"
+            },
+            {
+              "id": "b94cdf2b-432e-4cfb-885a-70660868fadd",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?compartmentId=<string>&availabilityDomain=<string>&displayName=<string>&lifecycleState=RUNNING&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the availability domain.",
+                      "key": "availabilityDomain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the display name.",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the lifecycle state.",
+                      "key": "lifecycleState",
+                      "value": "RUNNING"
+                    },
+                    {
+                      "description": "The maximum number of items to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous list call.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-b94cdf2b-432e-4cfb-885a-70660868fadd"
+            },
+            {
+              "id": "ec8221b1-0003-4043-a194-b67a616f05e5",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?compartmentId=<string>&availabilityDomain=<string>&displayName=<string>&lifecycleState=RUNNING&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the availability domain.",
+                      "key": "availabilityDomain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the display name.",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the lifecycle state.",
+                      "key": "lifecycleState",
+                      "value": "RUNNING"
+                    },
+                    {
+                      "description": "The maximum number of items to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous list call.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-ec8221b1-0003-4043-a194-b67a616f05e5"
+            },
+            {
+              "id": "1c2dd148-0546-4e83-8e6e-57199913276b",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?compartmentId=<string>&availabilityDomain=<string>&displayName=<string>&lifecycleState=RUNNING&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the availability domain.",
+                      "key": "availabilityDomain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the display name.",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A filter to return only resources matching the lifecycle state.",
+                      "key": "lifecycleState",
+                      "value": "RUNNING"
+                    },
+                    {
+                      "description": "The maximum number of items to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous list call.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-1c2dd148-0546-4e83-8e6e-57199913276b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-70d8c338-65b3-4edd-93d0-9b97f70c14ca"
+        },
+        {
+          "name": "Oracle Cloud Launch Instance",
+          "id": "2ea0467d-737c-4337-b843-9d4cd58c2500",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"veniame\": \"<string>\",\n    \"officia_ed\": \"<string>\",\n    \"nisi_d_6\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/instances",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instances"
+              ]
+            },
+            "description": "Creates a new instance in the specified compartment and availability domain."
+          },
+          "response": [
+            {
+              "id": "15314c6e-64bf-4045-898c-5070ea0d5aee",
+              "name": "Successfully launched instance.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"veniame\": \"<string>\",\n    \"officia_ed\": \"<string>\",\n    \"nisi_d_6\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\",\n  \"freeformTags\": {\n    \"aliqua_3ed\": \"<string>\",\n    \"tempord5a\": \"<string>\",\n    \"velit_e\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"ipsum_e\": {},\n    \"consequat_e\": {}\n  }\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-15314c6e-64bf-4045-898c-5070ea0d5aee"
+            },
+            {
+              "id": "072f8636-23c8-4a73-9aa8-019b196879ff",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"veniame\": \"<string>\",\n    \"officia_ed\": \"<string>\",\n    \"nisi_d_6\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-072f8636-23c8-4a73-9aa8-019b196879ff"
+            },
+            {
+              "id": "c536b169-0316-4327-be60-b368696e870c",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"veniame\": \"<string>\",\n    \"officia_ed\": \"<string>\",\n    \"nisi_d_6\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-c536b169-0316-4327-be60-b368696e870c"
+            },
+            {
+              "id": "8f34fd0a-c140-4d5f-ac4a-734e25881a1d",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"veniame\": \"<string>\",\n    \"officia_ed\": \"<string>\",\n    \"nisi_d_6\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-8f34fd0a-c140-4d5f-ac4a-734e25881a1d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-2ea0467d-737c-4337-b843-9d4cd58c2500"
+        }
+      ],
+      "id": "2b137e7c-82b0-4038-a3c6-76be386ffa3d",
+      "createdAt": "2026-06-05T15:01:31.000Z",
+      "updatedAt": "2026-06-05T15:01:31.000Z",
+      "uid": "35240-2b137e7c-82b0-4038-a3c6-76be386ffa3d"
+    },
+    {
+      "name": "images",
+      "item": [
+        {
+          "name": "{imageId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get Image",
+              "id": "73cefdf4-b22f-4648-b643-10f117f64424",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/images/:imageId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "images",
+                    ":imageId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2a76cb79-de9f-42dd-9fed-67450552cf26",
+                      "key": "imageId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the image."
+                    }
+                  ]
+                },
+                "description": "Gets the specified image."
+              },
+              "response": [
+                {
+                  "id": "5c33e351-4159-4ef4-9642-c0fc6caac5b3",
+                  "name": "Successfully retrieved image.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/images/:imageId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "images",
+                        ":imageId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "imageId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"operatingSystem\": \"<string>\",\n  \"operatingSystemVersion\": \"<string>\",\n  \"lifecycleState\": \"DELETED\",\n  \"sizeInMBs\": \"<integer>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-5c33e351-4159-4ef4-9642-c0fc6caac5b3"
+                },
+                {
+                  "id": "7e3c0121-383c-473f-91ec-c040ab044530",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/images/:imageId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "images",
+                        ":imageId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "imageId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-7e3c0121-383c-473f-91ec-c040ab044530"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-73cefdf4-b22f-4648-b643-10f117f64424"
+            }
+          ],
+          "id": "3303d8a7-2081-4123-b331-f6acfd09ed22",
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-3303d8a7-2081-4123-b331-f6acfd09ed22"
+        },
+        {
+          "name": "Oracle Cloud List Images",
+          "id": "2d31ca5b-aa99-4199-ba75-e4827a38ec8c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/images?compartmentId=<string>&operatingSystem=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "images"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The image operating system.",
+                  "key": "operatingSystem",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token.",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists available images in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "0821c27b-f63b-4f45-83ca-b3ce86b52742",
+              "name": "Successfully retrieved list of images.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/images?compartmentId=<string>&operatingSystem=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "images"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The image operating system.",
+                      "key": "operatingSystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"operatingSystemVersion\": \"<string>\",\n    \"lifecycleState\": \"EXPORTING\",\n    \"sizeInMBs\": \"<integer>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"operatingSystemVersion\": \"<string>\",\n    \"lifecycleState\": \"IMPORTING\",\n    \"sizeInMBs\": \"<integer>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-0821c27b-f63b-4f45-83ca-b3ce86b52742"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-2d31ca5b-aa99-4199-ba75-e4827a38ec8c"
+        }
+      ],
+      "id": "49ea30ab-adab-4b84-80a3-e5d53c2b9d07",
+      "createdAt": "2026-06-05T15:01:31.000Z",
+      "updatedAt": "2026-06-05T15:01:31.000Z",
+      "uid": "35240-49ea30ab-adab-4b84-80a3-e5d53c2b9d07"
+    },
+    {
+      "name": "shapes",
+      "item": [
+        {
+          "name": "Oracle Cloud List Shapes",
+          "id": "05bddf9a-a0b6-48bf-a12a-1ad4e445f120",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/shapes?compartmentId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shapes"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token.",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the shapes that can be used to launch an instance within the specified compartment."
+          },
+          "response": [
+            {
+              "id": "552ca66c-65a0-4c4c-baf4-6c509e5eb6bb",
+              "name": "Successfully retrieved list of shapes.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/shapes?compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "shapes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token.",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"shape\": \"<string>\",\n    \"processorDescription\": \"<string>\",\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\",\n    \"gpus\": \"<integer>\",\n    \"networkingBandwidthInGbps\": \"<number>\",\n    \"isFlexible\": \"<boolean>\"\n  },\n  {\n    \"shape\": \"<string>\",\n    \"processorDescription\": \"<string>\",\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\",\n    \"gpus\": \"<integer>\",\n    \"networkingBandwidthInGbps\": \"<number>\",\n    \"isFlexible\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-552ca66c-65a0-4c4c-baf4-6c509e5eb6bb"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-05bddf9a-a0b6-48bf-a12a-1ad4e445f120"
+        }
+      ],
+      "id": "cb30c3e8-0bf9-48ba-a64c-c6d52bf3e498",
+      "createdAt": "2026-06-05T15:01:31.000Z",
+      "updatedAt": "2026-06-05T15:01:31.000Z",
+      "uid": "35240-cb30c3e8-0bf9-48ba-a64c-c6d52bf3e498"
+    },
+    {
+      "name": "volumeAttachments",
+      "item": [
+        {
+          "name": "{volumeAttachmentId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Detach Volume",
+              "id": "6bf9e794-ad02-403f-917f-31a0a3bab175",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/volumeAttachments/:volumeAttachmentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "volumeAttachments",
+                    ":volumeAttachmentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "001c276d-02fe-4521-a2ef-e10eaebe2fa6",
+                      "key": "volumeAttachmentId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the volume attachment."
+                    }
+                  ]
+                },
+                "description": "Detaches a storage volume from an instance."
+              },
+              "response": [
+                {
+                  "id": "7568859e-bf5c-4897-8602-e38eb0f3d6fc",
+                  "name": "Successfully detached volume.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/volumeAttachments/:volumeAttachmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "volumeAttachments",
+                        ":volumeAttachmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "volumeAttachmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:31.000Z",
+                  "updatedAt": "2026-06-05T15:01:31.000Z",
+                  "uid": "35240-7568859e-bf5c-4897-8602-e38eb0f3d6fc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-6bf9e794-ad02-403f-917f-31a0a3bab175"
+            }
+          ],
+          "id": "0f66a290-8620-4bb8-ab40-ef62ec75e888",
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-0f66a290-8620-4bb8-ab40-ef62ec75e888"
+        },
+        {
+          "name": "Oracle Cloud List Volume Attachments",
+          "id": "a30d14c9-ac8b-466e-9e1d-448f6f5a3e7a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/volumeAttachments?compartmentId=<string>&instanceId=<string>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "volumeAttachments"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The OCID of the instance.",
+                  "key": "instanceId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Lists the volume attachments in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "1d2982fe-e5fc-4bce-ace3-bf4b12c95a82",
+              "name": "Successfully retrieved volume attachments.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/volumeAttachments?compartmentId=<string>&instanceId=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "volumeAttachments"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OCID of the instance.",
+                      "key": "instanceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"instanceId\": \"<string>\",\n    \"volumeId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"DETACHING\",\n    \"timeCreated\": \"<dateTime>\",\n    \"attachmentType\": \"iscsi\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"instanceId\": \"<string>\",\n    \"volumeId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"lifecycleState\": \"ATTACHED\",\n    \"timeCreated\": \"<dateTime>\",\n    \"attachmentType\": \"paravirtualized\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-1d2982fe-e5fc-4bce-ace3-bf4b12c95a82"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-a30d14c9-ac8b-466e-9e1d-448f6f5a3e7a"
+        },
+        {
+          "name": "Oracle Cloud Attach Volume",
+          "id": "0e272016-1686-4d14-b3c5-9dc7e0c39e4f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instanceId\": \"<string>\",\n  \"volumeId\": \"<string>\",\n  \"type\": \"iscsi\",\n  \"displayName\": \"<string>\",\n  \"isReadOnly\": false\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/volumeAttachments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "volumeAttachments"
+              ]
+            },
+            "description": "Attaches the specified storage volume to the specified instance."
+          },
+          "response": [
+            {
+              "id": "86a8a501-9470-4a1e-ae17-be3e5a2d6f52",
+              "name": "Successfully attached volume.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instanceId\": \"<string>\",\n  \"volumeId\": \"<string>\",\n  \"type\": \"iscsi\",\n  \"displayName\": \"<string>\",\n  \"isReadOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/volumeAttachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "volumeAttachments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"instanceId\": \"<string>\",\n  \"volumeId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"lifecycleState\": \"DETACHING\",\n  \"timeCreated\": \"<dateTime>\",\n  \"attachmentType\": \"iscsi\"\n}",
+              "createdAt": "2026-06-05T15:01:31.000Z",
+              "updatedAt": "2026-06-05T15:01:31.000Z",
+              "uid": "35240-86a8a501-9470-4a1e-ae17-be3e5a2d6f52"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:31.000Z",
+          "updatedAt": "2026-06-05T15:01:31.000Z",
+          "uid": "35240-0e272016-1686-4d14-b3c5-9dc7e0c39e4f"
+        }
+      ],
+      "id": "29bc8760-4f7a-4848-ba2c-1a7d79e76f84",
+      "createdAt": "2026-06-05T15:01:31.000Z",
+      "updatedAt": "2026-06-05T15:01:31.000Z",
+      "uid": "35240-29bc8760-4f7a-4848-ba2c-1a7d79e76f84"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

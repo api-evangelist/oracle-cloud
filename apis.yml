@@ -501,6 +501,8 @@ apis:
     - type: Example
       url: examples/monitoring-metric-example.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/oracle-cloud-infrastructure/overview
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:

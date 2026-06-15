@@ -1,0 +1,1057 @@
+{
+  "info": {
+    "_postman_id": "6c8436b9-7bc7-4eb7-b42a-a19a8c05d872",
+    "name": "Oracle Cloud Identity and Access Management API",
+    "description": "Manage users, groups, policies, and authentication in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:40.000Z",
+    "updatedAt": "2026-06-05T15:01:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c8436b9-7bc7-4eb7-b42a-a19a8c05d872"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{userId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get User",
+              "id": "22ffaf7a-4768-4b35-89da-645196373f16",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d239a4b3-865d-4071-bf46-04016980114f",
+                      "key": "userId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the user."
+                    }
+                  ]
+                },
+                "description": "Gets the specified user."
+              },
+              "response": [
+                {
+                  "id": "16ec17fb-ebcd-43a3-b65e-dff76cd69fb0",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email\": \"<email>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"isMfaActivated\": \"<boolean>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:41.000Z",
+                  "updatedAt": "2026-06-05T15:01:41.000Z",
+                  "uid": "35240-16ec17fb-ebcd-43a3-b65e-dff76cd69fb0"
+                },
+                {
+                  "id": "500c1c34-c403-417f-8f89-9a7f5b5973a3",
+                  "name": "Not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:41.000Z",
+                  "updatedAt": "2026-06-05T15:01:41.000Z",
+                  "uid": "35240-500c1c34-c403-417f-8f89-9a7f5b5973a3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-22ffaf7a-4768-4b35-89da-645196373f16"
+            },
+            {
+              "name": "Oracle Cloud Update User",
+              "id": "aeebc99b-3a55-41b4-9536-f203f3f89fa9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "286b97b5-0cd4-42f0-b3b7-57f259a74204",
+                      "key": "userId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the user."
+                    }
+                  ]
+                },
+                "description": "Updates the specified user."
+              },
+              "response": [
+                {
+                  "id": "b9d61918-b439-4ed2-9743-f3c73210f81a",
+                  "name": "Successfully updated.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email\": \"<email>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"isMfaActivated\": \"<boolean>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:41.000Z",
+                  "updatedAt": "2026-06-05T15:01:41.000Z",
+                  "uid": "35240-b9d61918-b439-4ed2-9743-f3c73210f81a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-aeebc99b-3a55-41b4-9536-f203f3f89fa9"
+            },
+            {
+              "name": "Oracle Cloud Delete User",
+              "id": "fc18e9db-2672-47ba-a729-af23120539d9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "75aea162-9f9b-412d-83b9-91038e92534d",
+                      "key": "userId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the user."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified user."
+              },
+              "response": [
+                {
+                  "id": "945fae5b-4504-46dd-9e01-6498491ca22a",
+                  "name": "Successfully deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:41.000Z",
+                  "updatedAt": "2026-06-05T15:01:41.000Z",
+                  "uid": "35240-945fae5b-4504-46dd-9e01-6498491ca22a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-fc18e9db-2672-47ba-a729-af23120539d9"
+            }
+          ],
+          "id": "93166dad-e48b-4886-b2e6-131a9e564998",
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-93166dad-e48b-4886-b2e6-131a9e564998"
+        },
+        {
+          "name": "Oracle Cloud List Users",
+          "id": "c39ad7a0-0d55-4f21-af25-605e525058c6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users?compartmentId=<string>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the tenancy.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Lists the users in the tenancy."
+          },
+          "response": [
+            {
+              "id": "54c798fc-0234-40dc-92fe-c20a0fe2be0f",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?compartmentId=<string>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the tenancy.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"email\": \"<email>\",\n    \"lifecycleState\": \"DELETED\",\n    \"isMfaActivated\": \"<boolean>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"email\": \"<email>\",\n    \"lifecycleState\": \"DELETED\",\n    \"isMfaActivated\": \"<boolean>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-54c798fc-0234-40dc-92fe-c20a0fe2be0f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-c39ad7a0-0d55-4f21-af25-605e525058c6"
+        },
+        {
+          "name": "Oracle Cloud Create User",
+          "id": "ba879f9d-d237-4664-892f-2a3be74ecead",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Creates a new user in the tenancy."
+          },
+          "response": [
+            {
+              "id": "8f450967-7d30-439e-8518-e5f6da454201",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"email\": \"<email>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"isMfaActivated\": \"<boolean>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-8f450967-7d30-439e-8518-e5f6da454201"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-ba879f9d-d237-4664-892f-2a3be74ecead"
+        }
+      ],
+      "id": "6ec4137c-3fd5-4135-9a51-e3146a94310d",
+      "createdAt": "2026-06-05T15:01:41.000Z",
+      "updatedAt": "2026-06-05T15:01:41.000Z",
+      "uid": "35240-6ec4137c-3fd5-4135-9a51-e3146a94310d"
+    },
+    {
+      "name": "groups",
+      "item": [
+        {
+          "name": "Oracle Cloud List Groups",
+          "id": "a1d557d3-5f2b-417e-9b48-51456a18d1b7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/groups?compartmentId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the tenancy.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the groups in the tenancy."
+          },
+          "response": [
+            {
+              "id": "c1c83b57-3b0f-46a5-a14c-f6c7322a0657",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups?compartmentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the tenancy.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lifecycleState\": \"ACTIVE\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lifecycleState\": \"DELETING\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-c1c83b57-3b0f-46a5-a14c-f6c7322a0657"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-a1d557d3-5f2b-417e-9b48-51456a18d1b7"
+        },
+        {
+          "name": "Oracle Cloud Create Group",
+          "id": "3771d2c9-5364-468d-b579-db92c7339a56",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ]
+            },
+            "description": "Creates a new group."
+          },
+          "response": [
+            {
+              "id": "e78a31ca-4aec-4c79-8d55-90a839c4dadf",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"lifecycleState\": \"INACTIVE\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-e78a31ca-4aec-4c79-8d55-90a839c4dadf"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-3771d2c9-5364-468d-b579-db92c7339a56"
+        }
+      ],
+      "id": "f0e119bd-f77d-4595-b265-3eed28b91b57",
+      "createdAt": "2026-06-05T15:01:41.000Z",
+      "updatedAt": "2026-06-05T15:01:41.000Z",
+      "uid": "35240-f0e119bd-f77d-4595-b265-3eed28b91b57"
+    },
+    {
+      "name": "policies",
+      "item": [
+        {
+          "name": "Oracle Cloud List Policies",
+          "id": "b51dcb39-bbb5-467c-9dc5-d55fd25598f5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/policies?compartmentId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policies"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the policies in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "60a79125-be44-47b4-b92d-911f84288edc",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies?compartmentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"statements\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lifecycleState\": \"INACTIVE\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"statements\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lifecycleState\": \"INACTIVE\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-60a79125-be44-47b4-b92d-911f84288edc"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-b51dcb39-bbb5-467c-9dc5-d55fd25598f5"
+        },
+        {
+          "name": "Oracle Cloud Create Policy",
+          "id": "1607fdfa-e31c-407a-a649-165a4eeaffff",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statements\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/policies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policies"
+              ]
+            },
+            "description": "Creates a new IAM policy."
+          },
+          "response": [
+            {
+              "id": "a1ae6dc7-14c7-4f02-b915-c0bf60e21d93",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statements\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lifecycleState\": \"ACTIVE\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-a1ae6dc7-14c7-4f02-b915-c0bf60e21d93"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-1607fdfa-e31c-407a-a649-165a4eeaffff"
+        }
+      ],
+      "id": "52f40678-0fd9-4c38-bc22-1c44fa70c136",
+      "createdAt": "2026-06-05T15:01:41.000Z",
+      "updatedAt": "2026-06-05T15:01:41.000Z",
+      "uid": "35240-52f40678-0fd9-4c38-bc22-1c44fa70c136"
+    },
+    {
+      "name": "compartments",
+      "item": [
+        {
+          "name": "Oracle Cloud List Compartments",
+          "id": "649e6275-51af-4eef-90af-c73f042f4c9b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/compartments?compartmentId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "compartments"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the tenancy.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the compartments in the tenancy."
+          },
+          "response": [
+            {
+              "id": "961deee8-9a3e-4a3e-acad-5446cf901d68",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/compartments?compartmentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "compartments"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the tenancy.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lifecycleState\": \"ACTIVE\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lifecycleState\": \"DELETED\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:41.000Z",
+              "updatedAt": "2026-06-05T15:01:41.000Z",
+              "uid": "35240-961deee8-9a3e-4a3e-acad-5446cf901d68"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:41.000Z",
+          "updatedAt": "2026-06-05T15:01:41.000Z",
+          "uid": "35240-649e6275-51af-4eef-90af-c73f042f4c9b"
+        }
+      ],
+      "id": "13134b3b-0f5e-49d5-8b2a-3b11edca2f48",
+      "createdAt": "2026-06-05T15:01:41.000Z",
+      "updatedAt": "2026-06-05T15:01:41.000Z",
+      "uid": "35240-13134b3b-0f5e-49d5-8b2a-3b11edca2f48"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://identity.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

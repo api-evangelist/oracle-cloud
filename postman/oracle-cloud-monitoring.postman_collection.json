@@ -1,0 +1,771 @@
+{
+  "info": {
+    "_postman_id": "15baca73-ad62-4bd7-badd-397b69c49cdd",
+    "name": "Oracle Cloud Monitoring API",
+    "description": "Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:45.000Z",
+    "updatedAt": "2026-06-05T15:01:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-15baca73-ad62-4bd7-badd-397b69c49cdd"
+  },
+  "item": [
+    {
+      "name": "metrics",
+      "item": [
+        {
+          "name": "actions",
+          "item": [
+            {
+              "name": "summarizeMetricsData",
+              "item": [
+                {
+                  "name": "Oracle Cloud Summarize Metrics Data",
+                  "id": "193ea004-8519-47ad-9d5e-b0b741c1c098",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"resolution\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metrics/actions/summarizeMetricsData?compartmentId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metrics",
+                        "actions",
+                        "summarizeMetricsData"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The OCID of the compartment.",
+                          "key": "compartmentId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Returns aggregated metric data that match the criteria specified in the request."
+                  },
+                  "response": [
+                    {
+                      "id": "bd454b89-6865-4629-8adf-215658410738",
+                      "name": "Successfully retrieved metrics data.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"resolution\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/actions/summarizeMetricsData?compartmentId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "actions",
+                            "summarizeMetricsData"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The OCID of the compartment.",
+                              "key": "compartmentId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"namespace\": \"<string>\",\n    \"name\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"dimensions\": {\n      \"id_e7c\": \"<string>\"\n    },\n    \"aggregatedDatapoints\": [\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"value\": \"<number>\"\n      },\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"value\": \"<number>\"\n      }\n    ]\n  },\n  {\n    \"namespace\": \"<string>\",\n    \"name\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"dimensions\": {\n      \"veniam89\": \"<string>\",\n      \"dolor3fc\": \"<string>\"\n    },\n    \"aggregatedDatapoints\": [\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"value\": \"<number>\"\n      },\n      {\n        \"timestamp\": \"<dateTime>\",\n        \"value\": \"<number>\"\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:01:45.000Z",
+                      "updatedAt": "2026-06-05T15:01:45.000Z",
+                      "uid": "35240-bd454b89-6865-4629-8adf-215658410738"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:45.000Z",
+                  "updatedAt": "2026-06-05T15:01:45.000Z",
+                  "uid": "35240-193ea004-8519-47ad-9d5e-b0b741c1c098"
+                }
+              ],
+              "id": "3f7ab7a4-b667-4365-89c0-ee935a1d89cd",
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-3f7ab7a4-b667-4365-89c0-ee935a1d89cd"
+            }
+          ],
+          "id": "0b5aae52-389f-44c7-886d-2be317cfbeda",
+          "createdAt": "2026-06-05T15:01:45.000Z",
+          "updatedAt": "2026-06-05T15:01:45.000Z",
+          "uid": "35240-0b5aae52-389f-44c7-886d-2be317cfbeda"
+        },
+        {
+          "name": "Oracle Cloud List Metrics",
+          "id": "6e3fb306-5af6-4cdf-ba44-7bdab954e605",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/metrics?compartmentId=<string>&name=<string>&namespace=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metrics"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The metric name.",
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The metric namespace.",
+                  "key": "namespace",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns metric definitions that match the criteria."
+          },
+          "response": [
+            {
+              "id": "823bbaf3-28a8-4ce1-9c78-24c7678a1ec7",
+              "name": "Successfully retrieved metrics.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metrics?compartmentId=<string>&name=<string>&namespace=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metrics"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The metric name.",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The metric namespace.",
+                      "key": "namespace",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"dimensions\": {\n      \"tempor_2_\": \"<string>\",\n      \"occaecatc\": \"<string>\",\n      \"in3\": \"<string>\",\n      \"in4\": \"<string>\"\n    }\n  },\n  {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"dimensions\": {\n      \"veniam62\": \"<string>\"\n    }\n  }\n]",
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-823bbaf3-28a8-4ce1-9c78-24c7678a1ec7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:45.000Z",
+          "updatedAt": "2026-06-05T15:01:45.000Z",
+          "uid": "35240-6e3fb306-5af6-4cdf-ba44-7bdab954e605"
+        }
+      ],
+      "id": "b29e17f6-2731-4747-a9dc-bc53e3bc8bb0",
+      "createdAt": "2026-06-05T15:01:45.000Z",
+      "updatedAt": "2026-06-05T15:01:45.000Z",
+      "uid": "35240-b29e17f6-2731-4747-a9dc-bc53e3bc8bb0"
+    },
+    {
+      "name": "alarms",
+      "item": [
+        {
+          "name": "{alarmId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get Alarm",
+              "id": "fa9178c8-dc89-410d-84c5-fa4cf0fb3032",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alarms/:alarmId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alarms",
+                    ":alarmId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d74f6a0c-aedd-44d1-8751-0da7766ac779",
+                      "key": "alarmId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the alarm."
+                    }
+                  ]
+                },
+                "description": "Gets the specified alarm."
+              },
+              "response": [
+                {
+                  "id": "f266db22-2fb2-4d17-9560-196cdd3dea87",
+                  "name": "Successfully retrieved alarm.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/alarms/:alarmId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alarms",
+                        ":alarmId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alarmId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"metricCompartmentId\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": \"<boolean>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"destinations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:45.000Z",
+                  "updatedAt": "2026-06-05T15:01:45.000Z",
+                  "uid": "35240-f266db22-2fb2-4d17-9560-196cdd3dea87"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-fa9178c8-dc89-410d-84c5-fa4cf0fb3032"
+            },
+            {
+              "name": "Oracle Cloud Update Alarm",
+              "id": "c1b46ce3-4f96-46e5-841e-03a672846fd4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"isEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alarms/:alarmId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alarms",
+                    ":alarmId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "942336b7-3d95-4938-bd9c-401e2b112187",
+                      "key": "alarmId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the alarm."
+                    }
+                  ]
+                },
+                "description": "Updates the specified alarm."
+              },
+              "response": [
+                {
+                  "id": "d1fe3e5d-f7f1-4a9a-a5fb-c81ac631581f",
+                  "name": "Successfully updated alarm.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"isEnabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alarms/:alarmId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alarms",
+                        ":alarmId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alarmId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"metricCompartmentId\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": \"<boolean>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"destinations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:45.000Z",
+                  "updatedAt": "2026-06-05T15:01:45.000Z",
+                  "uid": "35240-d1fe3e5d-f7f1-4a9a-a5fb-c81ac631581f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-c1b46ce3-4f96-46e5-841e-03a672846fd4"
+            },
+            {
+              "name": "Oracle Cloud Delete Alarm",
+              "id": "679276d7-2460-4d6f-b1db-98b586c65537",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/alarms/:alarmId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alarms",
+                    ":alarmId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "74b964f5-a28c-4c4d-95d1-499de0d2e69d",
+                      "key": "alarmId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the alarm."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified alarm."
+              },
+              "response": [
+                {
+                  "id": "e49c3b7c-e6e4-4078-80a8-d53f505dd886",
+                  "name": "Successfully deleted alarm.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/alarms/:alarmId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alarms",
+                        ":alarmId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alarmId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:45.000Z",
+                  "updatedAt": "2026-06-05T15:01:45.000Z",
+                  "uid": "35240-e49c3b7c-e6e4-4078-80a8-d53f505dd886"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-679276d7-2460-4d6f-b1db-98b586c65537"
+            }
+          ],
+          "id": "292d0bad-4a78-4c89-9cb5-ccf492f053c0",
+          "createdAt": "2026-06-05T15:01:45.000Z",
+          "updatedAt": "2026-06-05T15:01:45.000Z",
+          "uid": "35240-292d0bad-4a78-4c89-9cb5-ccf492f053c0"
+        },
+        {
+          "name": "Oracle Cloud List Alarms",
+          "id": "5242f31b-70c3-4288-85a5-87d5b6728027",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/alarms?compartmentId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alarms"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists the alarms in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "151729fe-6c4c-4965-85b3-0cd386fb8d94",
+              "name": "Successfully retrieved alarms.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alarms?compartmentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alarms"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"isEnabled\": \"<boolean>\",\n    \"lifecycleState\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"isEnabled\": \"<boolean>\",\n    \"lifecycleState\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-151729fe-6c4c-4965-85b3-0cd386fb8d94"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:45.000Z",
+          "updatedAt": "2026-06-05T15:01:45.000Z",
+          "uid": "35240-5242f31b-70c3-4288-85a5-87d5b6728027"
+        },
+        {
+          "name": "Oracle Cloud Create Alarm",
+          "id": "4979b8f8-2cae-4bc6-9129-013b73f717dc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"metricCompartmentId\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"WARNING\",\n  \"isEnabled\": \"<boolean>\",\n  \"destinations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/alarms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alarms"
+              ]
+            },
+            "description": "Creates a new monitoring alarm."
+          },
+          "response": [
+            {
+              "id": "d6cf3d50-bd8c-4293-92dc-96c1f1353fc4",
+              "name": "Successfully created alarm.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"metricCompartmentId\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"WARNING\",\n  \"isEnabled\": \"<boolean>\",\n  \"destinations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alarms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alarms"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"metricCompartmentId\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": \"<boolean>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"destinations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:45.000Z",
+              "updatedAt": "2026-06-05T15:01:45.000Z",
+              "uid": "35240-d6cf3d50-bd8c-4293-92dc-96c1f1353fc4"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:45.000Z",
+          "updatedAt": "2026-06-05T15:01:45.000Z",
+          "uid": "35240-4979b8f8-2cae-4bc6-9129-013b73f717dc"
+        }
+      ],
+      "id": "c97b6e35-8adf-4324-a803-e1686c68d5a8",
+      "createdAt": "2026-06-05T15:01:45.000Z",
+      "updatedAt": "2026-06-05T15:01:45.000Z",
+      "uid": "35240-c97b6e35-8adf-4324-a803-e1686c68d5a8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://telemetry.{{region}}.oraclecloud.com/20180401"
+    }
+  ]
+}

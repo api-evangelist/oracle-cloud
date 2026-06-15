@@ -1,0 +1,857 @@
+{
+  "info": {
+    "_postman_id": "1ed610e6-2039-4739-858f-b2ea55479309",
+    "name": "Oracle Cloud Container Engine for Kubernetes API",
+    "description": "Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:42.000Z",
+    "updatedAt": "2026-06-05T15:01:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1ed610e6-2039-4739-858f-b2ea55479309"
+  },
+  "item": [
+    {
+      "name": "clusters",
+      "item": [
+        {
+          "name": "{clusterId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get Cluster",
+              "id": "4acab613-d791-4275-88b6-f26c2b1a4a14",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/clusters/:clusterId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters",
+                    ":clusterId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8bfe61a3-b859-4e3b-a7f9-2ed04f77b094",
+                      "key": "clusterId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the cluster."
+                    }
+                  ]
+                },
+                "description": "Get the specified Kubernetes cluster."
+              },
+              "response": [
+                {
+                  "id": "0beefbbe-2275-4ae7-98cb-95e7c1343510",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/clusters/:clusterId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "clusters",
+                        ":clusterId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "clusterId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"lifecycleState\": \"FAILED\",\n  \"endpoints\": {\n    \"kubernetes\": \"<string>\",\n    \"publicEndpoint\": \"<string>\",\n    \"privateEndpoint\": \"<string>\"\n  },\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:43.000Z",
+                  "updatedAt": "2026-06-05T15:01:43.000Z",
+                  "uid": "35240-0beefbbe-2275-4ae7-98cb-95e7c1343510"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-4acab613-d791-4275-88b6-f26c2b1a4a14"
+            },
+            {
+              "name": "Oracle Cloud Update Cluster",
+              "id": "0ea04b97-a726-46d2-8b6f-c07bae6b7f83",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/clusters/:clusterId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters",
+                    ":clusterId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1ca9d967-12ad-4965-b1ff-3349ef3417c6",
+                      "key": "clusterId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the cluster."
+                    }
+                  ]
+                },
+                "description": "Update the specified Kubernetes cluster."
+              },
+              "response": [
+                {
+                  "id": "61fced1b-76b3-4635-8db1-67c6480f38e0",
+                  "name": "Successfully updated.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/clusters/:clusterId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "clusters",
+                        ":clusterId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "clusterId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:43.000Z",
+                  "updatedAt": "2026-06-05T15:01:43.000Z",
+                  "uid": "35240-61fced1b-76b3-4635-8db1-67c6480f38e0"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-0ea04b97-a726-46d2-8b6f-c07bae6b7f83"
+            },
+            {
+              "name": "Oracle Cloud Delete Cluster",
+              "id": "23e2b9ba-b570-4db0-ad17-27be6ac3b686",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/clusters/:clusterId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters",
+                    ":clusterId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "297d6f3e-4897-4eaf-b955-9468b37cdf49",
+                      "key": "clusterId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the cluster."
+                    }
+                  ]
+                },
+                "description": "Delete a Kubernetes cluster."
+              },
+              "response": [
+                {
+                  "id": "f3c3873f-aaf9-4beb-8ada-4d62ba6a2060",
+                  "name": "Successfully deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/clusters/:clusterId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "clusters",
+                        ":clusterId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "clusterId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:43.000Z",
+                  "updatedAt": "2026-06-05T15:01:43.000Z",
+                  "uid": "35240-f3c3873f-aaf9-4beb-8ada-4d62ba6a2060"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-23e2b9ba-b570-4db0-ad17-27be6ac3b686"
+            }
+          ],
+          "id": "d76adb20-1c11-4d4c-ba43-40f3d272c9d8",
+          "createdAt": "2026-06-05T15:01:43.000Z",
+          "updatedAt": "2026-06-05T15:01:43.000Z",
+          "uid": "35240-d76adb20-1c11-4d4c-ba43-40f3d272c9d8"
+        },
+        {
+          "name": "Oracle Cloud List Clusters",
+          "id": "3ea97a8f-7e15-4bf6-9ae8-0a6f6c143e75",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clusters?compartmentId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clusters"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List all Kubernetes clusters in a compartment."
+          },
+          "response": [
+            {
+              "id": "b9a1c75f-3857-4c56-85f5-492236c20973",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/clusters?compartmentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"kubernetesVersion\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"kubernetesVersion\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-b9a1c75f-3857-4c56-85f5-492236c20973"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:43.000Z",
+          "updatedAt": "2026-06-05T15:01:43.000Z",
+          "uid": "35240-3ea97a8f-7e15-4bf6-9ae8-0a6f6c143e75"
+        },
+        {
+          "name": "Oracle Cloud Create Cluster",
+          "id": "35b3e39b-10ca-403f-b983-3ac8e248abbb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clusters",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clusters"
+              ]
+            },
+            "description": "Create a new Kubernetes cluster."
+          },
+          "response": [
+            {
+              "id": "2ec9f827-df1d-4062-b1fd-e9666e9e0e92",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/clusters",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-2ec9f827-df1d-4062-b1fd-e9666e9e0e92"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:43.000Z",
+          "updatedAt": "2026-06-05T15:01:43.000Z",
+          "uid": "35240-35b3e39b-10ca-403f-b983-3ac8e248abbb"
+        }
+      ],
+      "id": "a47602e8-efef-452c-a3ca-3a9347264dc2",
+      "createdAt": "2026-06-05T15:01:43.000Z",
+      "updatedAt": "2026-06-05T15:01:43.000Z",
+      "uid": "35240-a47602e8-efef-452c-a3ca-3a9347264dc2"
+    },
+    {
+      "name": "nodePools",
+      "item": [
+        {
+          "name": "{nodePoolId}",
+          "item": [
+            {
+              "name": "Oracle Cloud Get Node Pool",
+              "id": "3b2c023b-d93d-421f-a694-81a5f6dcc787",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/nodePools/:nodePoolId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodePools",
+                    ":nodePoolId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a0c85e99-efd5-4765-8c37-15a1fac914e0",
+                      "key": "nodePoolId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the node pool."
+                    }
+                  ]
+                },
+                "description": "Get the specified node pool."
+              },
+              "response": [
+                {
+                  "id": "3832920f-3d23-4f73-94c2-b8cc449fa80c",
+                  "name": "Successfully retrieved.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nodePools/:nodePoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nodePools",
+                        ":nodePoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "nodePoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"clusterId\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\",\n  \"nodeShape\": \"<string>\",\n  \"quantityPerSubnet\": \"<integer>\",\n  \"lifecycleState\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:43.000Z",
+                  "updatedAt": "2026-06-05T15:01:43.000Z",
+                  "uid": "35240-3832920f-3d23-4f73-94c2-b8cc449fa80c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-3b2c023b-d93d-421f-a694-81a5f6dcc787"
+            },
+            {
+              "name": "Oracle Cloud Delete Node Pool",
+              "id": "2c9f7d7b-cd65-4e17-afaf-0c462514096c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/nodePools/:nodePoolId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodePools",
+                    ":nodePoolId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7cf50306-37d4-44ba-99e3-3cabb2ced51f",
+                      "key": "nodePoolId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the node pool."
+                    }
+                  ]
+                },
+                "description": "Delete a node pool."
+              },
+              "response": [
+                {
+                  "id": "98a2bed0-d7dd-48f3-919e-7b924aa108ed",
+                  "name": "Successfully deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nodePools/:nodePoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nodePools",
+                        ":nodePoolId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "nodePoolId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:43.000Z",
+                  "updatedAt": "2026-06-05T15:01:43.000Z",
+                  "uid": "35240-98a2bed0-d7dd-48f3-919e-7b924aa108ed"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-2c9f7d7b-cd65-4e17-afaf-0c462514096c"
+            }
+          ],
+          "id": "9a3e03be-65b6-4b97-8d40-9536d0be2506",
+          "createdAt": "2026-06-05T15:01:43.000Z",
+          "updatedAt": "2026-06-05T15:01:43.000Z",
+          "uid": "35240-9a3e03be-65b6-4b97-8d40-9536d0be2506"
+        },
+        {
+          "name": "Oracle Cloud List Node Pools",
+          "id": "eac217cc-9c03-47eb-9368-bec3c9a97c48",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/nodePools?compartmentId=<string>&clusterId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "nodePools"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment.",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The OCID of the cluster.",
+                  "key": "clusterId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List all node pools in a compartment."
+          },
+          "response": [
+            {
+              "id": "08c25b5c-6733-498c-8d3d-963d83767498",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/nodePools?compartmentId=<string>&clusterId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodePools"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment.",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OCID of the cluster.",
+                      "key": "clusterId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"clusterId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"kubernetesVersion\": \"<string>\",\n    \"nodeShape\": \"<string>\",\n    \"lifecycleState\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"clusterId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"kubernetesVersion\": \"<string>\",\n    \"nodeShape\": \"<string>\",\n    \"lifecycleState\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-08c25b5c-6733-498c-8d3d-963d83767498"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:43.000Z",
+          "updatedAt": "2026-06-05T15:01:43.000Z",
+          "uid": "35240-eac217cc-9c03-47eb-9368-bec3c9a97c48"
+        },
+        {
+          "name": "Oracle Cloud Create Node Pool",
+          "id": "de58e37a-1d2f-403d-bd05-68b9528b9358",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"clusterId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\",\n  \"nodeShape\": \"<string>\",\n  \"quantityPerSubnet\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/nodePools",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "nodePools"
+              ]
+            },
+            "description": "Create a new node pool in a cluster."
+          },
+          "response": [
+            {
+              "id": "4eee1f5f-5633-49d8-8d37-68fa33d5eb3f",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"clusterId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"kubernetesVersion\": \"<string>\",\n  \"nodeShape\": \"<string>\",\n  \"quantityPerSubnet\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/nodePools",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodePools"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:01:43.000Z",
+              "updatedAt": "2026-06-05T15:01:43.000Z",
+              "uid": "35240-4eee1f5f-5633-49d8-8d37-68fa33d5eb3f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:43.000Z",
+          "updatedAt": "2026-06-05T15:01:43.000Z",
+          "uid": "35240-de58e37a-1d2f-403d-bd05-68b9528b9358"
+        }
+      ],
+      "id": "8b8a68f5-ea12-462c-b96a-2eb0531644ce",
+      "createdAt": "2026-06-05T15:01:43.000Z",
+      "updatedAt": "2026-06-05T15:01:43.000Z",
+      "uid": "35240-8b8a68f5-ea12-462c-b96a-2eb0531644ce"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://containerengine.{{region}}.oraclecloud.com/20180222"
+    }
+  ]
+}
