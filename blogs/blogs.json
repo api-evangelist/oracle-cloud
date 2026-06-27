@@ -2,17 +2,11 @@
   "repo": "oracle-cloud",
   "feeds": [
     {
-      "source": "https://blogs.oracle.com/cloud-infrastructure/feed",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm",
-      "feed_url": "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm",
-      "title": "",
+      "source": "https://blogs.oracle.com/cloud-infrastructure/",
       "saved": 0,
-      "method": "none"
+      "error": "HTTP 403 Forbidden"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:57:58Z"
 }
