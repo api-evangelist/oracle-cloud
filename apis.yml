@@ -501,6 +501,10 @@ apis:
     - type: Examples
       url: examples/monitoring-metric-example.json
 common:
+  - type: DomainSecurity
+    url: security/oracle-cloud-domain-security.yml
+  - type: Authentication
+    url: authentication/oracle-cloud-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/oracle-cloud-infrastructure/overview
   - type: Arazzo

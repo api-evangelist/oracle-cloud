@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-cloud-compute-openapi.yaml, openapi/oracle-cloud-database-openapi.yaml,
+  openapi/oracle-cloud-functions-openapi.yaml, openapi/oracle-cloud-iam-openapi.yaml, openapi/oracle-cloud-monitoring-openapi.yaml,
+  openapi/oracle-cloud-networking-openapi.yaml, openapi/oracle-cloud-object-storage-openapi.yaml,
+  openapi/oracle-cloud-oke-openapi.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: ociSignature
+  type: http
+  scheme: bearer
+  description: OCI request signature authentication using API signing keys.
+  sources:
+  - openapi/oracle-cloud-compute-openapi.yaml
+  - openapi/oracle-cloud-database-openapi.yaml
+  - openapi/oracle-cloud-functions-openapi.yaml
+  - openapi/oracle-cloud-iam-openapi.yaml
+  - openapi/oracle-cloud-monitoring-openapi.yaml
+  - openapi/oracle-cloud-networking-openapi.yaml
+  - openapi/oracle-cloud-object-storage-openapi.yaml
+  - openapi/oracle-cloud-oke-openapi.yaml
