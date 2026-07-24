@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Policies API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Policies
+paths:
+  /policies:
+    get:
+      operationId: listPolicies
+      summary: Oracle Cloud List Policies
+      description: Lists the policies in the specified compartment.
+      tags:
+      - Policies
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+              examples:
+                ListPolicies200Example:
+                  summary: Default listPolicies 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: AllowAdmins
+                    description: example-value
+                    statements:
+                    - Allow group Administrators to manage all-resources in tenancy
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createPolicy
+      summary: Oracle Cloud Create Policy
+      description: Creates a new IAM policy.
+      tags:
+      - Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePolicyDetails'
+            examples:
+              CreatePolicyRequestExample:
+                summary: Default createPolicy request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  name: example-value
+                  description: example-value
+                  statements:
+                  - example-value
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+              examples:
+                CreatePolicy200Example:
+                  summary: Default createPolicy 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: AllowAdmins
+                    description: example-value
+                    statements:
+                    - Allow group Administrators to manage all-resources in tenancy
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CreatePolicyDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      - statements
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        description:
+          type: string
+          example: example-value
+        statements:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+    Policy:
+      type: object
+      description: An IAM policy with authorization statements.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: AllowAdmins
+        description:
+          type: string
+          example: example-value
+        statements:
+          type: array
+          items:
+            type: string
+          example:
+          - Allow group Administrators to manage all-resources in tenancy
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

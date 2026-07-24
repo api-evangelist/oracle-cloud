@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Shapes API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Shapes
+paths:
+  /shapes:
+    get:
+      operationId: listShapes
+      summary: Oracle Cloud List Shapes
+      description: Lists the shapes that can be used to launch an instance within the specified compartment.
+      tags:
+      - Shapes
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of shapes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shape'
+              examples:
+                ListShapes200Example:
+                  summary: Default listShapes 200 response
+                  x-microcks-default: true
+                  value:
+                  - shape: VM.Standard.E4.Flex
+                    processorDescription: 2.55 GHz AMD EPYC 7J13
+                    ocpus: 1.0
+                    memoryInGBs: 16.0
+                    gpus: 0
+                    networkingBandwidthInGbps: 1.0
+                    isFlexible: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Shape:
+      type: object
+      description: A compute shape defining the resources available for an instance.
+      properties:
+        shape:
+          type: string
+          description: The name of the shape.
+          example: VM.Standard.E4.Flex
+        processorDescription:
+          type: string
+          description: Description of the processor.
+          example: 2.55 GHz AMD EPYC 7J13
+        ocpus:
+          type: number
+          description: Default number of OCPUs.
+          example: 1.0
+        memoryInGBs:
+          type: number
+          description: Default amount of memory in gigabytes.
+          example: 16.0
+        gpus:
+          type: integer
+          description: Number of GPUs.
+          example: 0
+        networkingBandwidthInGbps:
+          type: number
+          description: Networking bandwidth in Gbps.
+          example: 1.0
+        isFlexible:
+          type: boolean
+          description: Whether the shape is flexible.
+          example: true
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

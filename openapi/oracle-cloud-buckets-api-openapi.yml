@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Buckets API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Buckets
+paths:
+  /n/{namespaceName}/b:
+    get:
+      operationId: listBuckets
+      summary: Oracle Cloud List Buckets
+      description: Gets a list of all BucketSummary items in a compartment.
+      tags:
+      - Buckets
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of buckets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BucketSummary'
+              examples:
+                ListBuckets200Example:
+                  summary: Default listBuckets 200 response
+                  x-microcks-default: true
+                  value:
+                  - namespace: my-namespace
+                    name: my-bucket
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    createdBy: example-value
+                    timeCreated: '2026-01-15T10:30:00Z'
+                    etag: example-value
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListBuckets400Example:
+                  summary: Default listBuckets 400 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListBuckets401Example:
+                  summary: Default listBuckets 401 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createBucket
+      summary: Oracle Cloud Create Bucket
+      description: Creates a bucket in the given namespace with a bucket name and compartment ID.
+      tags:
+      - Buckets
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBucketDetails'
+            examples:
+              CreateBucketRequestExample:
+                summary: Default createBucket request
+                x-microcks-default: true
+                value:
+                  name: my-new-bucket
+                  compartmentId: ocid1.compartment.oc1..abcdefg123456
+                  publicAccessType: NoPublicAccess
+                  storageTier: Standard
+                  objectEventsEnabled: false
+                  versioning: Enabled
+                  freeformTags:
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully created bucket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bucket'
+              examples:
+                CreateBucket200Example:
+                  summary: Default createBucket 200 response
+                  x-microcks-default: true
+                  value:
+                    namespace: my-namespace
+                    name: my-bucket
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    createdBy: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    publicAccessType: NoPublicAccess
+                    storageTier: Standard
+                    objectEventsEnabled: false
+                    freeformTags:
+                      key1: value1
+                    definedTags:
+                      key1: value1
+                    objectLifecyclePolicyEtag: example-value
+                    approximateCount: 1500
+                    approximateSize: 1073741824
+                    versioning: Enabled
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CreateBucket400Example:
+                  summary: Default createBucket 400 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /n/{namespaceName}/b/{bucketName}:
+    get:
+      operationId: getBucket
+      summary: Oracle Cloud Get Bucket
+      description: Gets the current representation of the given bucket.
+      tags:
+      - Buckets
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved bucket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bucket'
+              examples:
+                GetBucket200Example:
+                  summary: Default getBucket 200 response
+                  x-microcks-default: true
+                  value:
+                    namespace: my-namespace
+                    name: my-bucket
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    createdBy: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    publicAccessType: NoPublicAccess
+                    storageTier: Standard
+                    objectEventsEnabled: false
+                    freeformTags:
+                      key1: value1
+                    definedTags:
+                      key1: value1
+                    objectLifecyclePolicyEtag: example-value
+                    approximateCount: 1500
+                    approximateSize: 1073741824
+                    versioning: Enabled
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetBucket404Example:
+                  summary: Default getBucket 404 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateBucket
+      summary: Oracle Cloud Update Bucket
+      description: Performs a partial or full update of a bucket's metadata.
+      tags:
+      - Buckets
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBucketDetails'
+            examples:
+              UpdateBucketRequestExample:
+                summary: Default updateBucket request
+                x-microcks-default: true
+                value:
+                  name: example-value
+                  namespace: oci_computeagent
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  publicAccessType: NoPublicAccess
+                  objectEventsEnabled: true
+                  versioning: Enabled
+                  freeformTags:
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully updated bucket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bucket'
+              examples:
+                UpdateBucket200Example:
+                  summary: Default updateBucket 200 response
+                  x-microcks-default: true
+                  value:
+                    namespace: my-namespace
+                    name: my-bucket
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    createdBy: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    publicAccessType: NoPublicAccess
+                    storageTier: Standard
+                    objectEventsEnabled: false
+                    freeformTags:
+                      key1: value1
+                    definedTags:
+                      key1: value1
+                    objectLifecyclePolicyEtag: example-value
+                    approximateCount: 1500
+                    approximateSize: 1073741824
+                    versioning: Enabled
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteBucket
+      summary: Oracle Cloud Delete Bucket
+      description: Deletes a bucket if the bucket is already empty.
+      tags:
+      - Buckets
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '204':
+          description: Successfully deleted bucket.
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                DeleteBucket404Example:
+                  summary: Default deleteBucket 404 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UpdateBucketDetails:
+      type: object
+      description: Details for updating a bucket.
+      properties:
+        name:
+          type: string
+          description: The name of the bucket.
+          example: example-value
+        namespace:
+          type: string
+          description: The Object Storage namespace.
+          example: oci_computeagent
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        publicAccessType:
+          type: string
+          enum:
+          - NoPublicAccess
+          - ObjectRead
+          - ObjectReadWithoutList
+          example: NoPublicAccess
+        objectEventsEnabled:
+          type: boolean
+          example: true
+        versioning:
+          type: string
+          enum:
+          - Enabled
+          - Suspended
+          example: Enabled
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    CreateBucketDetails:
+      type: object
+      description: Details for creating a new bucket.
+      required:
+      - name
+      - compartmentId
+      properties:
+        name:
+          type: string
+          description: The name of the bucket.
+          example: my-new-bucket
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.compartment.oc1..abcdefg123456
+        publicAccessType:
+          type: string
+          description: The public access type.
+          enum:
+          - NoPublicAccess
+          - ObjectRead
+          - ObjectReadWithoutList
+          default: NoPublicAccess
+          example: NoPublicAccess
+        storageTier:
+          type: string
+          description: The storage tier type.
+          enum:
+          - Standard
+          - Archive
+          default: Standard
+          example: Standard
+        objectEventsEnabled:
+          type: boolean
+          description: Whether events are emitted for object state changes.
+          default: false
+          example: false
+        versioning:
+          type: string
+          description: The versioning status.
+          enum:
+          - Enabled
+          - Disabled
+          example: Enabled
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    Error:
+      type: object
+      description: Error response from OCI API.
+      properties:
+        code:
+          type: string
+          description: A short error code.
+          example: BucketNotFound
+        message:
+          type: string
+          description: A human-readable error message.
+          example: The bucket does not exist.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+    BucketSummary:
+      type: object
+      description: Summary information about a bucket.
+      properties:
+        namespace:
+          type: string
+          description: The Object Storage namespace.
+          example: my-namespace
+        name:
+          type: string
+          description: The name of the bucket.
+          example: my-bucket
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.compartment.oc1..abcdefg123456
+        createdBy:
+          type: string
+          description: The OCID of the user who created the bucket.
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          description: The date and time the bucket was created.
+          example: '2026-01-15T10:30:00Z'
+        etag:
+          type: string
+          description: The entity tag (ETag) for the bucket.
+          example: example-value
+    Bucket:
+      type: object
+      description: A bucket is a container for storing objects in Object Storage.
+      properties:
+        namespace:
+          type: string
+          description: The Object Storage namespace.
+          example: my-namespace
+        name:
+          type: string
+          description: The name of the bucket.
+          example: my-bucket
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.compartment.oc1..abcdefg123456
+        createdBy:
+          type: string
+          description: The OCID of the user who created the bucket.
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          description: The date and time the bucket was created.
+          example: '2026-04-18T10:30:00Z'
+        publicAccessType:
+          type: string
+          description: The type of public access enabled on this bucket.
+          enum:
+          - NoPublicAccess
+          - ObjectRead
+          - ObjectReadWithoutList
+          example: NoPublicAccess
+        storageTier:
+          type: string
+          description: The storage tier type.
+          enum:
+          - Standard
+          - Archive
+          example: Standard
+        objectEventsEnabled:
+          type: boolean
+          description: Whether events are emitted for object state changes.
+          example: false
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+        definedTags:
+          type: object
+          additionalProperties:
+            type: object
+          example:
+            key1: value1
+        objectLifecyclePolicyEtag:
+          type: string
+          description: The entity tag for the object lifecycle policy.
+          example: example-value
+        approximateCount:
+          type: integer
+          description: Approximate number of objects in the bucket.
+          example: 1500
+        approximateSize:
+          type: integer
+          description: Approximate total size in bytes.
+          example: 1073741824
+        versioning:
+          type: string
+          description: The versioning status of the bucket.
+          enum:
+          - Enabled
+          - Suspended
+          - Disabled
+          example: Enabled
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

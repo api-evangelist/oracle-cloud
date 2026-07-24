@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Groups API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Groups
+paths:
+  /groups:
+    get:
+      operationId: listGroups
+      summary: Oracle Cloud List Groups
+      description: Lists the groups in the tenancy.
+      tags:
+      - Groups
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the tenancy.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+              examples:
+                ListGroups200Example:
+                  summary: Default listGroups 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: Administrators
+                    description: example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createGroup
+      summary: Oracle Cloud Create Group
+      description: Creates a new group.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupDetails'
+            examples:
+              CreateGroupRequestExample:
+                summary: Default createGroup request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  name: example-value
+                  description: example-value
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+              examples:
+                CreateGroup200Example:
+                  summary: Default createGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: Administrators
+                    description: example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CreateGroupDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        description:
+          type: string
+          example: example-value
+    Group:
+      type: object
+      description: An IAM group.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: Administrators
+        description:
+          type: string
+          example: example-value
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

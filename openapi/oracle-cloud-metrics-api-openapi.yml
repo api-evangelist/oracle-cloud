@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Metrics API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Metrics
+paths:
+  /metrics/actions/summarizeMetricsData:
+    post:
+      operationId: summarizeMetricsData
+      summary: Oracle Cloud Summarize Metrics Data
+      description: Returns aggregated metric data that match the criteria specified in the request.
+      tags:
+      - Metrics
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizeMetricsDataDetails'
+            examples:
+              SummarizeMetricsDataRequestExample:
+                summary: Default summarizeMetricsData request
+                x-microcks-default: true
+                value:
+                  namespace: oci_computeagent
+                  query: CpuUtilization[1m].mean()
+                  startTime: '2026-04-18T10:30:00Z'
+                  endTime: '2026-04-18T10:30:00Z'
+                  resolution: 1m
+      responses:
+        '200':
+          description: Successfully retrieved metrics data.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetricData'
+              examples:
+                SummarizeMetricsData200Example:
+                  summary: Default summarizeMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                  - namespace: oci_computeagent
+                    name: CpuUtilization
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    dimensions:
+                      key1: value1
+                    aggregatedDatapoints:
+                    - timestamp: '2026-04-18T10:30:00Z'
+                      value: 42.5
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /metrics:
+    get:
+      operationId: listMetrics
+      summary: Oracle Cloud List Metrics
+      description: Returns metric definitions that match the criteria.
+      tags:
+      - Metrics
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: name
+        in: query
+        required: false
+        description: The metric name.
+        schema:
+          type: string
+        example: example-value
+      - name: namespace
+        in: query
+        required: false
+        description: The metric namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      responses:
+        '200':
+          description: Successfully retrieved metrics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Metric'
+              examples:
+                ListMetrics200Example:
+                  summary: Default listMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: CpuUtilization
+                    namespace: oci_computeagent
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    dimensions:
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Metric:
+      type: object
+      description: A metric definition.
+      properties:
+        name:
+          type: string
+          example: CpuUtilization
+        namespace:
+          type: string
+          example: oci_computeagent
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dimensions:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    MetricData:
+      type: object
+      description: Aggregated metric data points.
+      properties:
+        namespace:
+          type: string
+          example: oci_computeagent
+        name:
+          type: string
+          example: CpuUtilization
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dimensions:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+        aggregatedDatapoints:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              value:
+                type: number
+                example: 42.5
+          example:
+          - timestamp: '2026-04-18T10:30:00Z'
+            value: 42.5
+    SummarizeMetricsDataDetails:
+      type: object
+      description: Details for summarizing metrics data.
+      required:
+      - namespace
+      - query
+      properties:
+        namespace:
+          type: string
+          description: The metric namespace.
+          example: oci_computeagent
+        query:
+          type: string
+          description: The Monitoring Query Language expression.
+          example: CpuUtilization[1m].mean()
+        startTime:
+          type: string
+          format: date-time
+          description: Start of the time range.
+          example: '2026-04-18T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: End of the time range.
+          example: '2026-04-18T10:30:00Z'
+        resolution:
+          type: string
+          description: The time interval for aggregation.
+          example: 1m
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Namespaces API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Namespaces
+paths:
+  /n:
+    get:
+      operationId: getNamespace
+      summary: Oracle Cloud Get Namespace
+      description: Gets the name of the Object Storage namespace for the user making the request.
+      tags:
+      - Namespaces
+      responses:
+        '200':
+          description: Successfully retrieved namespace.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: my-namespace
+              examples:
+                GetNamespace200Example:
+                  summary: Default getNamespace 200 response
+                  x-microcks-default: true
+                  value: my-namespace
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

@@ -1,0 +1,421 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms VCNs API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: VCNs
+paths:
+  /vcns:
+    get:
+      operationId: listVcns
+      summary: Oracle Cloud List VCNs
+      description: Lists the virtual cloud networks in the specified compartment.
+      tags:
+      - VCNs
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of VCNs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vcn'
+              examples:
+                ListVcns200Example:
+                  summary: Default listVcns 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.vcn.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-vcn
+                    cidrBlock: 10.0.0.0/16
+                    cidrBlocks:
+                    - 10.0.0.0/16
+                    defaultDhcpOptionsId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultRouteTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultSecurityListId: ocid1.resource.oc1.iad.abcdefg123456
+                    dnsLabel: myvcn
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags:
+                      key1: value1
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListVcns401Example:
+                  summary: Default listVcns 401 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createVcn
+      summary: Oracle Cloud Create VCN
+      description: Creates a new virtual cloud network.
+      tags:
+      - VCNs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVcnDetails'
+            examples:
+              CreateVcnRequestExample:
+                summary: Default createVcn request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  cidrBlocks:
+                  - 10.0.0.0/16
+                  displayName: my-vcn
+                  dnsLabel: myvcn
+                  freeformTags:
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully created VCN.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcn'
+              examples:
+                CreateVcn200Example:
+                  summary: Default createVcn 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.vcn.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-vcn
+                    cidrBlock: 10.0.0.0/16
+                    cidrBlocks:
+                    - 10.0.0.0/16
+                    defaultDhcpOptionsId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultRouteTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultSecurityListId: ocid1.resource.oc1.iad.abcdefg123456
+                    dnsLabel: myvcn
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags:
+                      key1: value1
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CreateVcn400Example:
+                  summary: Default createVcn 400 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /vcns/{vcnId}:
+    get:
+      operationId: getVcn
+      summary: Oracle Cloud Get VCN
+      description: Gets the specified VCN.
+      tags:
+      - VCNs
+      parameters:
+      - name: vcnId
+        in: path
+        required: true
+        description: The OCID of the VCN.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved VCN.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcn'
+              examples:
+                GetVcn200Example:
+                  summary: Default getVcn 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.vcn.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-vcn
+                    cidrBlock: 10.0.0.0/16
+                    cidrBlocks:
+                    - 10.0.0.0/16
+                    defaultDhcpOptionsId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultRouteTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultSecurityListId: ocid1.resource.oc1.iad.abcdefg123456
+                    dnsLabel: myvcn
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags:
+                      key1: value1
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetVcn404Example:
+                  summary: Default getVcn 404 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateVcn
+      summary: Oracle Cloud Update VCN
+      description: Updates the specified VCN.
+      tags:
+      - VCNs
+      parameters:
+      - name: vcnId
+        in: path
+        required: true
+        description: The OCID of the VCN.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVcnDetails'
+            examples:
+              UpdateVcnRequestExample:
+                summary: Default updateVcn request
+                x-microcks-default: true
+                value:
+                  displayName: my-resource
+                  freeformTags:
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully updated VCN.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcn'
+              examples:
+                UpdateVcn200Example:
+                  summary: Default updateVcn 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.vcn.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-vcn
+                    cidrBlock: 10.0.0.0/16
+                    cidrBlocks:
+                    - 10.0.0.0/16
+                    defaultDhcpOptionsId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultRouteTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    defaultSecurityListId: ocid1.resource.oc1.iad.abcdefg123456
+                    dnsLabel: myvcn
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags:
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteVcn
+      summary: Oracle Cloud Delete VCN
+      description: Deletes the specified VCN.
+      tags:
+      - VCNs
+      parameters:
+      - name: vcnId
+        in: path
+        required: true
+        description: The OCID of the VCN.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted VCN.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: NotAuthorizedOrNotFound
+        message:
+          type: string
+          example: Authorization failed or requested resource not found.
+        status:
+          type: integer
+          example: 404
+    UpdateVcnDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    Vcn:
+      type: object
+      description: A virtual cloud network in Oracle Cloud Infrastructure.
+      properties:
+        id:
+          type: string
+          description: The OCID of the VCN.
+          example: ocid1.vcn.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-vcn
+        cidrBlock:
+          type: string
+          description: The CIDR block of the VCN.
+          example: 10.0.0.0/16
+        cidrBlocks:
+          type: array
+          items:
+            type: string
+          description: List of CIDR blocks.
+          example:
+          - 10.0.0.0/16
+        defaultDhcpOptionsId:
+          type: string
+          description: The OCID of the default DHCP options.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        defaultRouteTableId:
+          type: string
+          description: The OCID of the default route table.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        defaultSecurityListId:
+          type: string
+          description: The OCID of the default security list.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dnsLabel:
+          type: string
+          description: The DNS label for the VCN.
+          example: myvcn
+        lifecycleState:
+          type: string
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - TERMINATING
+          - TERMINATED
+          example: PROVISIONING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    CreateVcnDetails:
+      type: object
+      required:
+      - compartmentId
+      - cidrBlocks
+      properties:
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        cidrBlocks:
+          type: array
+          items:
+            type: string
+          description: List of CIDR blocks for the VCN.
+          example:
+          - 10.0.0.0/16
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-vcn
+        dnsLabel:
+          type: string
+          description: DNS label for the VCN.
+          example: myvcn
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

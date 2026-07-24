@@ -1,0 +1,218 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Volume Attachments API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Volume Attachments
+paths:
+  /volumeAttachments:
+    get:
+      operationId: listVolumeAttachments
+      summary: Oracle Cloud List Volume Attachments
+      description: Lists the volume attachments in the specified compartment.
+      tags:
+      - Volume Attachments
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: instanceId
+        in: query
+        required: false
+        description: The OCID of the instance.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Successfully retrieved volume attachments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VolumeAttachment'
+              examples:
+                ListVolumeAttachments200Example:
+                  summary: Default listVolumeAttachments 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    instanceId: ocid1.resource.oc1.iad.abcdefg123456
+                    volumeId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    lifecycleState: ATTACHING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    attachmentType: iscsi
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: attachVolume
+      summary: Oracle Cloud Attach Volume
+      description: Attaches the specified storage volume to the specified instance.
+      tags:
+      - Volume Attachments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachVolumeDetails'
+            examples:
+              AttachVolumeRequestExample:
+                summary: Default attachVolume request
+                x-microcks-default: true
+                value:
+                  instanceId: ocid1.resource.oc1.iad.abcdefg123456
+                  volumeId: ocid1.resource.oc1.iad.abcdefg123456
+                  type: iscsi
+                  displayName: my-resource
+                  isReadOnly: false
+      responses:
+        '200':
+          description: Successfully attached volume.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeAttachment'
+              examples:
+                AttachVolume200Example:
+                  summary: Default attachVolume 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    instanceId: ocid1.resource.oc1.iad.abcdefg123456
+                    volumeId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    lifecycleState: ATTACHING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    attachmentType: iscsi
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /volumeAttachments/{volumeAttachmentId}:
+    delete:
+      operationId: detachVolume
+      summary: Oracle Cloud Detach Volume
+      description: Detaches a storage volume from an instance.
+      tags:
+      - Volume Attachments
+      parameters:
+      - name: volumeAttachmentId
+        in: path
+        required: true
+        description: The OCID of the volume attachment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully detached volume.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AttachVolumeDetails:
+      type: object
+      description: Details for attaching a volume.
+      required:
+      - instanceId
+      - volumeId
+      - type
+      properties:
+        instanceId:
+          type: string
+          description: The OCID of the instance.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        volumeId:
+          type: string
+          description: The OCID of the volume.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        type:
+          type: string
+          description: The type of volume attachment.
+          enum:
+          - iscsi
+          - paravirtualized
+          example: iscsi
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-resource
+        isReadOnly:
+          type: boolean
+          description: Whether the attachment is read-only.
+          default: false
+          example: false
+    VolumeAttachment:
+      type: object
+      description: A volume attached to a compute instance.
+      properties:
+        id:
+          type: string
+          description: The OCID of the volume attachment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        instanceId:
+          type: string
+          description: The OCID of the instance.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        volumeId:
+          type: string
+          description: The OCID of the volume.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-resource
+        lifecycleState:
+          type: string
+          enum:
+          - ATTACHING
+          - ATTACHED
+          - DETACHING
+          - DETACHED
+          example: ATTACHING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        attachmentType:
+          type: string
+          description: The type of volume attachment.
+          enum:
+          - iscsi
+          - paravirtualized
+          example: iscsi
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

@@ -1,123 +1,25 @@
 openapi: 3.0.3
 info:
-  title: Oracle Cloud Monitoring API
-  description: Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.
-  version: '20180401'
+  title: Oracle Cloud Compute Alarms API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://telemetry.{region}.oraclecloud.com/20180401
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
   variables:
     region:
       default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Alarms
 paths:
-  /metrics/actions/summarizeMetricsData:
-    post:
-      operationId: summarizeMetricsData
-      summary: Oracle Cloud Summarize Metrics Data
-      description: Returns aggregated metric data that match the criteria specified in the request.
-      tags:
-      - Metrics
-      parameters:
-      - name: compartmentId
-        in: query
-        required: true
-        description: The OCID of the compartment.
-        schema:
-          type: string
-        example: ocid1.resource.oc1.iad.abcdefg123456
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SummarizeMetricsDataDetails'
-            examples:
-              SummarizeMetricsDataRequestExample:
-                summary: Default summarizeMetricsData request
-                x-microcks-default: true
-                value:
-                  namespace: oci_computeagent
-                  query: CpuUtilization[1m].mean()
-                  startTime: '2026-04-18T10:30:00Z'
-                  endTime: '2026-04-18T10:30:00Z'
-                  resolution: 1m
-      responses:
-        '200':
-          description: Successfully retrieved metrics data.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MetricData'
-              examples:
-                SummarizeMetricsData200Example:
-                  summary: Default summarizeMetricsData 200 response
-                  x-microcks-default: true
-                  value:
-                  - namespace: oci_computeagent
-                    name: CpuUtilization
-                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
-                    dimensions: &id002
-                      key1: value1
-                    aggregatedDatapoints: &id003
-                    - timestamp: '2026-04-18T10:30:00Z'
-                      value: 42.5
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-  /metrics:
-    get:
-      operationId: listMetrics
-      summary: Oracle Cloud List Metrics
-      description: Returns metric definitions that match the criteria.
-      tags:
-      - Metrics
-      parameters:
-      - name: compartmentId
-        in: query
-        required: true
-        description: The OCID of the compartment.
-        schema:
-          type: string
-        example: ocid1.resource.oc1.iad.abcdefg123456
-      - name: name
-        in: query
-        required: false
-        description: The metric name.
-        schema:
-          type: string
-        example: example-value
-      - name: namespace
-        in: query
-        required: false
-        description: The metric namespace.
-        schema:
-          type: string
-        example: oci_computeagent
-      responses:
-        '200':
-          description: Successfully retrieved metrics.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Metric'
-              examples:
-                ListMetrics200Example:
-                  summary: Default listMetrics 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: CpuUtilization
-                    namespace: oci_computeagent
-                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
-                    dimensions: &id004
-                      key1: value1
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /alarms:
     get:
       operationId: listAlarms
@@ -179,7 +81,7 @@ paths:
                   query: CpuUtilization[1m].mean()
                   severity: CRITICAL
                   isEnabled: true
-                  destinations: &id005
+                  destinations:
                   - example-value
       responses:
         '200':
@@ -202,7 +104,7 @@ paths:
                     severity: CRITICAL
                     isEnabled: true
                     lifecycleState: ACTIVE
-                    destinations: &id001
+                    destinations:
                     - example-value
                     timeCreated: '2026-04-18T10:30:00Z'
       x-microcks-operation:
@@ -244,7 +146,8 @@ paths:
                     severity: CRITICAL
                     isEnabled: true
                     lifecycleState: ACTIVE
-                    destinations: *id001
+                    destinations:
+                    - example-value
                     timeCreated: '2026-04-18T10:30:00Z'
       x-microcks-operation:
         delay: 0
@@ -299,7 +202,8 @@ paths:
                     severity: CRITICAL
                     isEnabled: true
                     lifecycleState: ACTIVE
-                    destinations: *id001
+                    destinations:
+                    - example-value
                     timeCreated: '2026-04-18T10:30:00Z'
       x-microcks-operation:
         delay: 0
@@ -325,89 +229,84 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  securitySchemes:
-    ociSignature:
-      type: http
-      scheme: bearer
-      description: OCI request signature authentication.
   schemas:
-    SummarizeMetricsDataDetails:
+    UpdateAlarmDetails:
       type: object
-      description: Details for summarizing metrics data.
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
+    CreateAlarmDetails:
+      type: object
       required:
+      - compartmentId
+      - displayName
+      - metricCompartmentId
       - namespace
       - query
+      - severity
+      - isEnabled
+      - destinations
       properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        metricCompartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
         namespace:
           type: string
-          description: The metric namespace.
           example: oci_computeagent
         query:
           type: string
-          description: The Monitoring Query Language expression.
           example: CpuUtilization[1m].mean()
-        startTime:
+        severity:
           type: string
-          format: date-time
-          description: Start of the time range.
-          example: '2026-04-18T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          description: End of the time range.
-          example: '2026-04-18T10:30:00Z'
-        resolution:
-          type: string
-          description: The time interval for aggregation.
-          example: 1m
-    MetricData:
-      type: object
-      description: Aggregated metric data points.
-      properties:
-        namespace:
-          type: string
-          example: oci_computeagent
-        name:
-          type: string
-          example: CpuUtilization
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        dimensions:
-          type: object
-          additionalProperties:
-            type: string
-          example: *id002
-        aggregatedDatapoints:
+          enum:
+          - CRITICAL
+          - ERROR
+          - WARNING
+          - INFO
+          example: CRITICAL
+        isEnabled:
+          type: boolean
+          example: true
+        destinations:
           type: array
           items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-                format: date-time
-              value:
-                type: number
-                example: 42.5
-          example: *id003
-    Metric:
+            type: string
+          example:
+          - example-value
+    AlarmSummary:
       type: object
-      description: A metric definition.
       properties:
-        name:
-          type: string
-          example: CpuUtilization
-        namespace:
-          type: string
-          example: oci_computeagent
-        compartmentId:
+        id:
           type: string
           example: ocid1.resource.oc1.iad.abcdefg123456
-        dimensions:
-          type: object
-          additionalProperties:
-            type: string
-          example: *id004
+        displayName:
+          type: string
+          example: my-resource
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
+        lifecycleState:
+          type: string
+          example: example-value
     Alarm:
       type: object
       description: A monitoring alarm.
@@ -452,98 +351,14 @@ components:
           type: array
           items:
             type: string
-          example: *id001
+          example:
+          - example-value
         timeCreated:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
-    AlarmSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        severity:
-          type: string
-          example: example-value
-        isEnabled:
-          type: boolean
-          example: true
-        lifecycleState:
-          type: string
-          example: example-value
-    CreateAlarmDetails:
-      type: object
-      required:
-      - compartmentId
-      - displayName
-      - metricCompartmentId
-      - namespace
-      - query
-      - severity
-      - isEnabled
-      - destinations
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        metricCompartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        namespace:
-          type: string
-          example: oci_computeagent
-        query:
-          type: string
-          example: CpuUtilization[1m].mean()
-        severity:
-          type: string
-          enum:
-          - CRITICAL
-          - ERROR
-          - WARNING
-          - INFO
-          example: CRITICAL
-        isEnabled:
-          type: boolean
-          example: true
-        destinations:
-          type: array
-          items:
-            type: string
-          example: *id005
-    UpdateAlarmDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-          example: my-resource
-        query:
-          type: string
-          example: CpuUtilization[1m].mean()
-        severity:
-          type: string
-          example: example-value
-        isEnabled:
-          type: boolean
-          example: true
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example-value
-        message:
-          type: string
-          example: example-value
-        status:
-          type: integer
-          example: 1
-security:
-- ociSignature: []
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

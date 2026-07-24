@@ -1,0 +1,338 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Objects API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Objects
+paths:
+  /n/{namespaceName}/b/{bucketName}/o:
+    get:
+      operationId: listObjects
+      summary: Oracle Cloud List Objects
+      description: Lists the objects in the specified bucket.
+      tags:
+      - Objects
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      - name: prefix
+        in: query
+        required: false
+        description: Filter objects whose name begins with this prefix.
+        schema:
+          type: string
+        example: example-value
+      - name: delimiter
+        in: query
+        required: false
+        description: Delimiter for pseudo-directory grouping.
+        schema:
+          type: string
+        example: example-value
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: start
+        in: query
+        required: false
+        description: Object name to start listing from.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListObjects'
+              examples:
+                ListObjects200Example:
+                  summary: Default listObjects 200 response
+                  x-microcks-default: true
+                  value:
+                    objects:
+                    - name: documents/report.pdf
+                      size: 1048576
+                      md5: aGVsbG93b3JsZA==
+                      timeCreated: '2026-04-18T10:30:00Z'
+                      timeModified: '2026-04-18T10:30:00Z'
+                      storageTier: Standard
+                    prefixes:
+                    - example-value
+                    nextStartWith: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /n/{namespaceName}/b/{bucketName}/o/{objectName}:
+    get:
+      operationId: getObject
+      summary: Oracle Cloud Get Object
+      description: Gets the metadata and body of an object.
+      tags:
+      - Objects
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      - name: objectName
+        in: path
+        required: true
+        description: The name of the object.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved object.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetObject404Example:
+                  summary: Default getObject 404 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: putObject
+      summary: Oracle Cloud Put Object
+      description: Creates a new object or overwrites an existing object.
+      tags:
+      - Objects
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      - name: objectName
+        in: path
+        required: true
+        description: The name of the object.
+        schema:
+          type: string
+        example: example-value
+      - name: Content-Type
+        in: header
+        required: false
+        description: The content type of the body.
+        schema:
+          type: string
+        example: example-value
+      - name: Content-Length
+        in: header
+        required: false
+        description: The content length of the body.
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Successfully uploaded object.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteObject
+      summary: Oracle Cloud Delete Object
+      description: Deletes an object.
+      tags:
+      - Objects
+      parameters:
+      - name: namespaceName
+        in: path
+        required: true
+        description: The Object Storage namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      - name: bucketName
+        in: path
+        required: true
+        description: The name of the bucket.
+        schema:
+          type: string
+        example: example-value
+      - name: objectName
+        in: path
+        required: true
+        description: The name of the object.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '204':
+          description: Successfully deleted object.
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                DeleteObject404Example:
+                  summary: Default deleteObject 404 response
+                  x-microcks-default: true
+                  value:
+                    code: BucketNotFound
+                    message: The bucket does not exist.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ObjectSummary:
+      type: object
+      description: Summary of an object in a bucket.
+      properties:
+        name:
+          type: string
+          description: The name of the object.
+          example: documents/report.pdf
+        size:
+          type: integer
+          description: Size of the object in bytes.
+          example: 1048576
+        md5:
+          type: string
+          description: Base64-encoded MD5 hash.
+          example: aGVsbG93b3JsZA==
+        timeCreated:
+          type: string
+          format: date-time
+          description: The date and time the object was created.
+          example: '2026-04-18T10:30:00Z'
+        timeModified:
+          type: string
+          format: date-time
+          description: The date and time the object was last modified.
+          example: '2026-04-18T10:30:00Z'
+        storageTier:
+          type: string
+          description: The storage tier of the object.
+          enum:
+          - Standard
+          - InfrequentAccess
+          - Archive
+          example: Standard
+    Error:
+      type: object
+      description: Error response from OCI API.
+      properties:
+        code:
+          type: string
+          description: A short error code.
+          example: BucketNotFound
+        message:
+          type: string
+          description: A human-readable error message.
+          example: The bucket does not exist.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+    ListObjects:
+      type: object
+      description: Response containing a list of objects.
+      properties:
+        objects:
+          type: array
+          description: List of object summaries.
+          items:
+            $ref: '#/components/schemas/ObjectSummary'
+          example:
+          - name: documents/report.pdf
+            size: 1048576
+            md5: aGVsbG93b3JsZA==
+            timeCreated: '2026-04-18T10:30:00Z'
+            timeModified: '2026-04-18T10:30:00Z'
+            storageTier: Standard
+        prefixes:
+          type: array
+          description: Prefixes for pseudo-directory grouping.
+          items:
+            type: string
+          example:
+          - example-value
+        nextStartWith:
+          type: string
+          description: Object name to resume listing.
+          example: example-value
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

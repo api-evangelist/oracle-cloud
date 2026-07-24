@@ -1,0 +1,255 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Applications API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Applications
+paths:
+  /applications:
+    get:
+      operationId: listApplications
+      summary: Oracle Cloud List Applications
+      description: Lists Functions applications in a compartment.
+      tags:
+      - Applications
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+              examples:
+                ListApplications200Example:
+                  summary: Default listApplications 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    lifecycleState: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createApplication
+      summary: Oracle Cloud Create Application
+      description: Creates a new Functions application.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationDetails'
+            examples:
+              CreateApplicationRequestExample:
+                summary: Default createApplication request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  displayName: my-resource
+                  subnetIds:
+                  - example-value
+                  config:
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                CreateApplication200Example:
+                  summary: Default createApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.fnapp.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-app
+                    subnetIds:
+                    - example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    config:
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Oracle Cloud Get Application
+      description: Gets a Functions application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The OCID of the application.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                GetApplication200Example:
+                  summary: Default getApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.fnapp.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-app
+                    subnetIds:
+                    - example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    config:
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteApplication
+      summary: Oracle Cloud Delete Application
+      description: Deletes a Functions application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The OCID of the application.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Application:
+      type: object
+      description: A Functions application containing one or more functions.
+      properties:
+        id:
+          type: string
+          description: The OCID of the application.
+          example: ocid1.fnapp.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-app
+        subnetIds:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - DELETING
+          - DELETED
+          - FAILED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    CreateApplicationDetails:
+      type: object
+      required:
+      - compartmentId
+      - displayName
+      - subnetIds
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        subnetIds:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    ApplicationSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

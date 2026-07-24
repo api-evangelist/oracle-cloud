@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Compartments API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Compartments
+paths:
+  /compartments:
+    get:
+      operationId: listCompartments
+      summary: Oracle Cloud List Compartments
+      description: Lists the compartments in the tenancy.
+      tags:
+      - Compartments
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the tenancy.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Compartment'
+              examples:
+                ListCompartments200Example:
+                  summary: Default listCompartments 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    name: my-compartment
+                    description: example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Compartment:
+      type: object
+      description: A compartment for organizing cloud resources.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: my-compartment
+        description:
+          type: string
+          example: example-value
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - DELETING
+          - DELETED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

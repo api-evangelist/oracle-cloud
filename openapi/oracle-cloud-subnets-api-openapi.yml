@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute Alarms Subnets API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Subnets
+paths:
+  /subnets:
+    get:
+      operationId: listSubnets
+      summary: Oracle Cloud List Subnets
+      description: Lists the subnets in the specified VCN and compartment.
+      tags:
+      - Subnets
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: vcnId
+        in: query
+        required: false
+        description: The OCID of the VCN.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Successfully retrieved list of subnets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subnet'
+              examples:
+                ListSubnets200Example:
+                  summary: Default listSubnets 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.subnet.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    vcnId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: public-subnet-1
+                    cidrBlock: 10.0.0.0/24
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    dnsLabel: myresource
+                    prohibitPublicIpOnVnic: true
+                    routeTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    securityListIds:
+                    - example-value
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSubnet
+      summary: Oracle Cloud Create Subnet
+      description: Creates a new subnet in the specified VCN.
+      tags:
+      - Subnets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubnetDetails'
+            examples:
+              CreateSubnetRequestExample:
+                summary: Default createSubnet request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  vcnId: ocid1.resource.oc1.iad.abcdefg123456
+                  cidrBlock: 10.0.0.0/24
+                  displayName: public-subnet-1
+                  dnsLabel: myresource
+                  prohibitPublicIpOnVnic: false
+                  routeTableId: ocid1.resource.oc1.iad.abcdefg123456
+                  securityListIds:
+                  - example-value
+      responses:
+        '200':
+          description: Successfully created subnet.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subnet'
+              examples:
+                CreateSubnet200Example:
+                  summary: Default createSubnet 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.subnet.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    vcnId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: public-subnet-1
+                    cidrBlock: 10.0.0.0/24
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    dnsLabel: myresource
+                    prohibitPublicIpOnVnic: true
+                    routeTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    securityListIds:
+                    - example-value
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subnets/{subnetId}:
+    get:
+      operationId: getSubnet
+      summary: Oracle Cloud Get Subnet
+      description: Gets the specified subnet.
+      tags:
+      - Subnets
+      parameters:
+      - name: subnetId
+        in: path
+        required: true
+        description: The OCID of the subnet.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved subnet.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subnet'
+              examples:
+                GetSubnet200Example:
+                  summary: Default getSubnet 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.subnet.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    vcnId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: public-subnet-1
+                    cidrBlock: 10.0.0.0/24
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    dnsLabel: myresource
+                    prohibitPublicIpOnVnic: true
+                    routeTableId: ocid1.resource.oc1.iad.abcdefg123456
+                    securityListIds:
+                    - example-value
+                    lifecycleState: PROVISIONING
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSubnet
+      summary: Oracle Cloud Delete Subnet
+      description: Deletes the specified subnet.
+      tags:
+      - Subnets
+      parameters:
+      - name: subnetId
+        in: path
+        required: true
+        description: The OCID of the subnet.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted subnet.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CreateSubnetDetails:
+      type: object
+      required:
+      - compartmentId
+      - vcnId
+      - cidrBlock
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        vcnId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        cidrBlock:
+          type: string
+          example: 10.0.0.0/24
+        displayName:
+          type: string
+          example: public-subnet-1
+        dnsLabel:
+          type: string
+          example: myresource
+        prohibitPublicIpOnVnic:
+          type: boolean
+          default: false
+          example: false
+        routeTableId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        securityListIds:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+    Subnet:
+      type: object
+      description: A subnet in a virtual cloud network.
+      properties:
+        id:
+          type: string
+          description: The OCID of the subnet.
+          example: ocid1.subnet.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        vcnId:
+          type: string
+          description: The OCID of the VCN.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: public-subnet-1
+        cidrBlock:
+          type: string
+          description: The CIDR block of the subnet.
+          example: 10.0.0.0/24
+        availabilityDomain:
+          type: string
+          description: The availability domain.
+          example: Uocm:US-ASHBURN-AD-1
+        dnsLabel:
+          type: string
+          example: myresource
+        prohibitPublicIpOnVnic:
+          type: boolean
+          description: Whether VNICs can have public IPs.
+          example: true
+        routeTableId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        securityListIds:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+        lifecycleState:
+          type: string
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - TERMINATING
+          - TERMINATED
+          example: PROVISIONING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.

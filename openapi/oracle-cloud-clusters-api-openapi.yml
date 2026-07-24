@@ -1,15 +1,24 @@
 openapi: 3.0.3
 info:
-  title: Oracle Cloud Container Engine for Kubernetes API
-  description: Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.
-  version: '20180222'
+  title: Oracle Cloud Compute Alarms Clusters API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://containerengine.{region}.oraclecloud.com/20180222
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
   variables:
     region:
       default: us-ashburn-1
+      description: OCI region identifier
+security:
+- ociSignature: []
+tags:
+- name: Clusters
 paths:
   /clusters:
     get:
@@ -109,7 +118,7 @@ paths:
                     kubernetesVersion: v1.28.2
                     vcnId: ocid1.resource.oc1.iad.abcdefg123456
                     lifecycleState: CREATING
-                    endpoints: &id001
+                    endpoints:
                       kubernetes: example-value
                       publicEndpoint: example-value
                       privateEndpoint: example-value
@@ -170,145 +179,7 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
-  /nodePools:
-    get:
-      operationId: listNodePools
-      summary: Oracle Cloud List Node Pools
-      description: List all node pools in a compartment.
-      tags:
-      - Node Pools
-      parameters:
-      - name: compartmentId
-        in: query
-        required: true
-        description: The OCID of the compartment.
-        schema:
-          type: string
-        example: ocid1.resource.oc1.iad.abcdefg123456
-      - name: clusterId
-        in: query
-        required: false
-        description: The OCID of the cluster.
-        schema:
-          type: string
-        example: ocid1.resource.oc1.iad.abcdefg123456
-      responses:
-        '200':
-          description: Successfully retrieved.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NodePoolSummary'
-              examples:
-                ListNodePools200Example:
-                  summary: Default listNodePools 200 response
-                  x-microcks-default: true
-                  value:
-                  - id: ocid1.resource.oc1.iad.abcdefg123456
-                    clusterId: ocid1.resource.oc1.iad.abcdefg123456
-                    name: example-value
-                    kubernetesVersion: v1.28.2
-                    nodeShape: VM.Standard.E4.Flex
-                    lifecycleState: example-value
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-    post:
-      operationId: createNodePool
-      summary: Oracle Cloud Create Node Pool
-      description: Create a new node pool in a cluster.
-      tags:
-      - Node Pools
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateNodePoolDetails'
-            examples:
-              CreateNodePoolRequestExample:
-                summary: Default createNodePool request
-                x-microcks-default: true
-                value:
-                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
-                  clusterId: ocid1.resource.oc1.iad.abcdefg123456
-                  name: example-value
-                  kubernetesVersion: v1.28.2
-                  nodeShape: VM.Standard.E4.Flex
-                  quantityPerSubnet: 1
-      responses:
-        '200':
-          description: Successfully created.
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-  /nodePools/{nodePoolId}:
-    get:
-      operationId: getNodePool
-      summary: Oracle Cloud Get Node Pool
-      description: Get the specified node pool.
-      tags:
-      - Node Pools
-      parameters:
-      - name: nodePoolId
-        in: path
-        required: true
-        description: The OCID of the node pool.
-        schema:
-          type: string
-        example: ocid1.resource.oc1.iad.abcdefg123456
-      responses:
-        '200':
-          description: Successfully retrieved.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NodePool'
-              examples:
-                GetNodePool200Example:
-                  summary: Default getNodePool 200 response
-                  x-microcks-default: true
-                  value:
-                    id: ocid1.resource.oc1.iad.abcdefg123456
-                    clusterId: ocid1.resource.oc1.iad.abcdefg123456
-                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
-                    name: pool1
-                    kubernetesVersion: v1.28.2
-                    nodeShape: VM.Standard.E4.Flex
-                    quantityPerSubnet: 3
-                    lifecycleState: example-value
-                    timeCreated: '2026-04-18T10:30:00Z'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-    delete:
-      operationId: deleteNodePool
-      summary: Oracle Cloud Delete Node Pool
-      description: Delete a node pool.
-      tags:
-      - Node Pools
-      parameters:
-      - name: nodePoolId
-        in: path
-        required: true
-        description: The OCID of the node pool.
-        schema:
-          type: string
-        example: ocid1.resource.oc1.iad.abcdefg123456
-      responses:
-        '204':
-          description: Successfully deleted.
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
 components:
-  securitySchemes:
-    ociSignature:
-      type: http
-      scheme: bearer
-      description: OCI request signature authentication.
   schemas:
     Cluster:
       type: object
@@ -349,7 +220,10 @@ components:
               type: string
             privateEndpoint:
               type: string
-          example: *id001
+          example:
+            kubernetes: example-value
+            publicEndpoint: example-value
+            privateEndpoint: example-value
         timeCreated:
           type: string
           format: date-time
@@ -377,6 +251,15 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
+    UpdateClusterDetails:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-value
+        kubernetesVersion:
+          type: string
+          example: v1.28.2
     CreateClusterDetails:
       type: object
       required:
@@ -397,106 +280,8 @@ components:
         kubernetesVersion:
           type: string
           example: v1.28.2
-    UpdateClusterDetails:
-      type: object
-      properties:
-        name:
-          type: string
-          example: example-value
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-    NodePool:
-      type: object
-      description: A node pool in a Kubernetes cluster.
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        clusterId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: pool1
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-        nodeShape:
-          type: string
-          example: VM.Standard.E4.Flex
-        quantityPerSubnet:
-          type: integer
-          example: 3
-        lifecycleState:
-          type: string
-          example: example-value
-        timeCreated:
-          type: string
-          format: date-time
-          example: '2026-04-18T10:30:00Z'
-    NodePoolSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        clusterId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-        nodeShape:
-          type: string
-          example: VM.Standard.E4.Flex
-        lifecycleState:
-          type: string
-          example: example-value
-    CreateNodePoolDetails:
-      type: object
-      required:
-      - compartmentId
-      - clusterId
-      - name
-      - kubernetesVersion
-      - nodeShape
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        clusterId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-        nodeShape:
-          type: string
-          example: VM.Standard.E4.Flex
-        quantityPerSubnet:
-          type: integer
-          example: 1
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example-value
-        message:
-          type: string
-          example: example-value
-        status:
-          type: integer
-          example: 1
-security:
-- ociSignature: []
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.
