@@ -1,0 +1,539 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Functions API
+  description: Serverless platform for building and running applications on Oracle Cloud Infrastructure.
+  version: '20181201'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://functions.{region}.oraclecloud.com/20181201
+  variables:
+    region:
+      default: us-ashburn-1
+paths:
+  /applications:
+    get:
+      operationId: listApplications
+      summary: Oracle Cloud List Applications
+      description: Lists Functions applications in a compartment.
+      tags:
+      - Applications
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+              examples:
+                ListApplications200Example:
+                  summary: Default listApplications 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    lifecycleState: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createApplication
+      summary: Oracle Cloud Create Application
+      description: Creates a new Functions application.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationDetails'
+            examples:
+              CreateApplicationRequestExample:
+                summary: Default createApplication request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  displayName: my-resource
+                  subnetIds: &id004
+                  - example-value
+                  config: &id005
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                CreateApplication200Example:
+                  summary: Default createApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.fnapp.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-app
+                    subnetIds: &id001
+                    - example-value
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    config: &id002
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Oracle Cloud Get Application
+      description: Gets a Functions application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The OCID of the application.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                GetApplication200Example:
+                  summary: Default getApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.fnapp.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-app
+                    subnetIds: *id001
+                    lifecycleState: CREATING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    config: *id002
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteApplication
+      summary: Oracle Cloud Delete Application
+      description: Deletes a Functions application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The OCID of the application.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /functions:
+    get:
+      operationId: listFunctions
+      summary: Oracle Cloud List Functions
+      description: Lists functions in an application.
+      tags:
+      - Functions
+      parameters:
+      - name: applicationId
+        in: query
+        required: true
+        description: The OCID of the application.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FunctionSummary'
+              examples:
+                ListFunctions200Example:
+                  summary: Default listFunctions 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    applicationId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    image: ocid1.image.oc1.iad.abcdefg123456
+                    memoryInMBs: 1
+                    lifecycleState: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createFunction
+      summary: Oracle Cloud Create Function
+      description: Creates a new function.
+      tags:
+      - Functions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFunctionDetails'
+            examples:
+              CreateFunctionRequestExample:
+                summary: Default createFunction request
+                x-microcks-default: true
+                value:
+                  applicationId: ocid1.resource.oc1.iad.abcdefg123456
+                  displayName: my-resource
+                  image: ocid1.image.oc1.iad.abcdefg123456
+                  memoryInMBs: 1
+                  timeoutInSeconds: 30
+                  config: &id006
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Function'
+              examples:
+                CreateFunction200Example:
+                  summary: Default createFunction 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    applicationId: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-function
+                    image: iad.ocir.io/my-namespace/my-app/my-function:0.0.1
+                    memoryInMBs: 256
+                    timeoutInSeconds: 30
+                    lifecycleState: CREATING
+                    invokeEndpoint: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    config: &id003
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /functions/{functionId}:
+    get:
+      operationId: getFunction
+      summary: Oracle Cloud Get Function
+      description: Gets a function.
+      tags:
+      - Functions
+      parameters:
+      - name: functionId
+        in: path
+        required: true
+        description: The OCID of the function.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Function'
+              examples:
+                GetFunction200Example:
+                  summary: Default getFunction 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    applicationId: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-function
+                    image: iad.ocir.io/my-namespace/my-app/my-function:0.0.1
+                    memoryInMBs: 256
+                    timeoutInSeconds: 30
+                    lifecycleState: CREATING
+                    invokeEndpoint: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    config: *id003
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteFunction
+      summary: Oracle Cloud Delete Function
+      description: Deletes a function.
+      tags:
+      - Functions
+      parameters:
+      - name: functionId
+        in: path
+        required: true
+        description: The OCID of the function.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /functions/{functionId}/actions/invoke:
+    post:
+      operationId: invokeFunction
+      summary: Oracle Cloud Invoke Function
+      description: Invokes a function synchronously.
+      tags:
+      - Functions
+      parameters:
+      - name: functionId
+        in: path
+        required: true
+        description: The OCID of the function.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Function invoked successfully.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication.
+  schemas:
+    Application:
+      type: object
+      description: A Functions application containing one or more functions.
+      properties:
+        id:
+          type: string
+          description: The OCID of the application.
+          example: ocid1.fnapp.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-app
+        subnetIds:
+          type: array
+          items:
+            type: string
+          example: *id001
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - DELETING
+          - DELETED
+          - FAILED
+          example: CREATING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id002
+    ApplicationSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateApplicationDetails:
+      type: object
+      required:
+      - compartmentId
+      - displayName
+      - subnetIds
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        subnetIds:
+          type: array
+          items:
+            type: string
+          example: *id004
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id005
+    Function:
+      type: object
+      description: A serverless function.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        applicationId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-function
+        image:
+          type: string
+          example: iad.ocir.io/my-namespace/my-app/my-function:0.0.1
+        memoryInMBs:
+          type: integer
+          example: 256
+        timeoutInSeconds:
+          type: integer
+          example: 30
+        lifecycleState:
+          type: string
+          enum:
+          - CREATING
+          - ACTIVE
+          - INACTIVE
+          - UPDATING
+          - DELETING
+          - DELETED
+          - FAILED
+          example: CREATING
+        invokeEndpoint:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id003
+    FunctionSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        applicationId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        image:
+          type: string
+          example: ocid1.image.oc1.iad.abcdefg123456
+        memoryInMBs:
+          type: integer
+          example: 1
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateFunctionDetails:
+      type: object
+      required:
+      - applicationId
+      - displayName
+      - image
+      - memoryInMBs
+      properties:
+        applicationId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        image:
+          type: string
+          example: ocid1.image.oc1.iad.abcdefg123456
+        memoryInMBs:
+          type: integer
+          example: 1
+        timeoutInSeconds:
+          type: integer
+          default: 30
+          example: 30
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id006
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example-value
+        message:
+          type: string
+          example: example-value
+        status:
+          type: integer
+          example: 1
+security:
+- ociSignature: []

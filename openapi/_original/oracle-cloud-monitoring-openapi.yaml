@@ -1,0 +1,549 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Monitoring API
+  description: Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.
+  version: '20180401'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://telemetry.{region}.oraclecloud.com/20180401
+  variables:
+    region:
+      default: us-ashburn-1
+paths:
+  /metrics/actions/summarizeMetricsData:
+    post:
+      operationId: summarizeMetricsData
+      summary: Oracle Cloud Summarize Metrics Data
+      description: Returns aggregated metric data that match the criteria specified in the request.
+      tags:
+      - Metrics
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizeMetricsDataDetails'
+            examples:
+              SummarizeMetricsDataRequestExample:
+                summary: Default summarizeMetricsData request
+                x-microcks-default: true
+                value:
+                  namespace: oci_computeagent
+                  query: CpuUtilization[1m].mean()
+                  startTime: '2026-04-18T10:30:00Z'
+                  endTime: '2026-04-18T10:30:00Z'
+                  resolution: 1m
+      responses:
+        '200':
+          description: Successfully retrieved metrics data.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetricData'
+              examples:
+                SummarizeMetricsData200Example:
+                  summary: Default summarizeMetricsData 200 response
+                  x-microcks-default: true
+                  value:
+                  - namespace: oci_computeagent
+                    name: CpuUtilization
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    dimensions: &id002
+                      key1: value1
+                    aggregatedDatapoints: &id003
+                    - timestamp: '2026-04-18T10:30:00Z'
+                      value: 42.5
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /metrics:
+    get:
+      operationId: listMetrics
+      summary: Oracle Cloud List Metrics
+      description: Returns metric definitions that match the criteria.
+      tags:
+      - Metrics
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: name
+        in: query
+        required: false
+        description: The metric name.
+        schema:
+          type: string
+        example: example-value
+      - name: namespace
+        in: query
+        required: false
+        description: The metric namespace.
+        schema:
+          type: string
+        example: oci_computeagent
+      responses:
+        '200':
+          description: Successfully retrieved metrics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Metric'
+              examples:
+                ListMetrics200Example:
+                  summary: Default listMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: CpuUtilization
+                    namespace: oci_computeagent
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    dimensions: &id004
+                      key1: value1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alarms:
+    get:
+      operationId: listAlarms
+      summary: Oracle Cloud List Alarms
+      description: Lists the alarms in the specified compartment.
+      tags:
+      - Alarms
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved alarms.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlarmSummary'
+              examples:
+                ListAlarms200Example:
+                  summary: Default listAlarms 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    severity: example-value
+                    isEnabled: true
+                    lifecycleState: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createAlarm
+      summary: Oracle Cloud Create Alarm
+      description: Creates a new monitoring alarm.
+      tags:
+      - Alarms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAlarmDetails'
+            examples:
+              CreateAlarmRequestExample:
+                summary: Default createAlarm request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  displayName: my-resource
+                  metricCompartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  namespace: oci_computeagent
+                  query: CpuUtilization[1m].mean()
+                  severity: CRITICAL
+                  isEnabled: true
+                  destinations: &id005
+                  - example-value
+      responses:
+        '200':
+          description: Successfully created alarm.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+              examples:
+                CreateAlarm200Example:
+                  summary: Default createAlarm 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.alarm.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: High CPU Alarm
+                    metricCompartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    namespace: oci_computeagent
+                    query: CpuUtilization[1m].mean() > 90
+                    severity: CRITICAL
+                    isEnabled: true
+                    lifecycleState: ACTIVE
+                    destinations: &id001
+                    - example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /alarms/{alarmId}:
+    get:
+      operationId: getAlarm
+      summary: Oracle Cloud Get Alarm
+      description: Gets the specified alarm.
+      tags:
+      - Alarms
+      parameters:
+      - name: alarmId
+        in: path
+        required: true
+        description: The OCID of the alarm.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved alarm.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+              examples:
+                GetAlarm200Example:
+                  summary: Default getAlarm 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.alarm.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: High CPU Alarm
+                    metricCompartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    namespace: oci_computeagent
+                    query: CpuUtilization[1m].mean() > 90
+                    severity: CRITICAL
+                    isEnabled: true
+                    lifecycleState: ACTIVE
+                    destinations: *id001
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateAlarm
+      summary: Oracle Cloud Update Alarm
+      description: Updates the specified alarm.
+      tags:
+      - Alarms
+      parameters:
+      - name: alarmId
+        in: path
+        required: true
+        description: The OCID of the alarm.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAlarmDetails'
+            examples:
+              UpdateAlarmRequestExample:
+                summary: Default updateAlarm request
+                x-microcks-default: true
+                value:
+                  displayName: my-resource
+                  query: CpuUtilization[1m].mean()
+                  severity: example-value
+                  isEnabled: true
+      responses:
+        '200':
+          description: Successfully updated alarm.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+              examples:
+                UpdateAlarm200Example:
+                  summary: Default updateAlarm 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.alarm.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: High CPU Alarm
+                    metricCompartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    namespace: oci_computeagent
+                    query: CpuUtilization[1m].mean() > 90
+                    severity: CRITICAL
+                    isEnabled: true
+                    lifecycleState: ACTIVE
+                    destinations: *id001
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAlarm
+      summary: Oracle Cloud Delete Alarm
+      description: Deletes the specified alarm.
+      tags:
+      - Alarms
+      parameters:
+      - name: alarmId
+        in: path
+        required: true
+        description: The OCID of the alarm.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted alarm.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication.
+  schemas:
+    SummarizeMetricsDataDetails:
+      type: object
+      description: Details for summarizing metrics data.
+      required:
+      - namespace
+      - query
+      properties:
+        namespace:
+          type: string
+          description: The metric namespace.
+          example: oci_computeagent
+        query:
+          type: string
+          description: The Monitoring Query Language expression.
+          example: CpuUtilization[1m].mean()
+        startTime:
+          type: string
+          format: date-time
+          description: Start of the time range.
+          example: '2026-04-18T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: End of the time range.
+          example: '2026-04-18T10:30:00Z'
+        resolution:
+          type: string
+          description: The time interval for aggregation.
+          example: 1m
+    MetricData:
+      type: object
+      description: Aggregated metric data points.
+      properties:
+        namespace:
+          type: string
+          example: oci_computeagent
+        name:
+          type: string
+          example: CpuUtilization
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dimensions:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id002
+        aggregatedDatapoints:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              value:
+                type: number
+                example: 42.5
+          example: *id003
+    Metric:
+      type: object
+      description: A metric definition.
+      properties:
+        name:
+          type: string
+          example: CpuUtilization
+        namespace:
+          type: string
+          example: oci_computeagent
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dimensions:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id004
+    Alarm:
+      type: object
+      description: A monitoring alarm.
+      properties:
+        id:
+          type: string
+          example: ocid1.alarm.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: High CPU Alarm
+        metricCompartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        namespace:
+          type: string
+          example: oci_computeagent
+        query:
+          type: string
+          example: CpuUtilization[1m].mean() > 90
+        severity:
+          type: string
+          enum:
+          - CRITICAL
+          - ERROR
+          - WARNING
+          - INFO
+          example: CRITICAL
+        isEnabled:
+          type: boolean
+          example: true
+        lifecycleState:
+          type: string
+          enum:
+          - ACTIVE
+          - DELETING
+          - DELETED
+          example: ACTIVE
+        destinations:
+          type: array
+          items:
+            type: string
+          example: *id001
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    AlarmSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
+        lifecycleState:
+          type: string
+          example: example-value
+    CreateAlarmDetails:
+      type: object
+      required:
+      - compartmentId
+      - displayName
+      - metricCompartmentId
+      - namespace
+      - query
+      - severity
+      - isEnabled
+      - destinations
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        metricCompartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        namespace:
+          type: string
+          example: oci_computeagent
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
+        severity:
+          type: string
+          enum:
+          - CRITICAL
+          - ERROR
+          - WARNING
+          - INFO
+          example: CRITICAL
+        isEnabled:
+          type: boolean
+          example: true
+        destinations:
+          type: array
+          items:
+            type: string
+          example: *id005
+    UpdateAlarmDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example-value
+        message:
+          type: string
+          example: example-value
+        status:
+          type: integer
+          example: 1
+security:
+- ociSignature: []

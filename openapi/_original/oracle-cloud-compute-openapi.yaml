@@ -1,0 +1,1077 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Compute API
+  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+servers:
+- url: https://iaas.{region}.oraclecloud.com/20160918
+  description: OCI Compute API server
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+paths:
+  /instances:
+    get:
+      operationId: listInstances
+      summary: Oracle Cloud List Instances
+      description: Lists the instances in the specified compartment and availability domain.
+      tags:
+      - Instances
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: availabilityDomain
+        in: query
+        required: false
+        description: The name of the availability domain.
+        schema:
+          type: string
+        example: Uocm:US-ASHBURN-AD-1
+      - name: displayName
+        in: query
+        required: false
+        description: A filter to return only resources matching the display name.
+        schema:
+          type: string
+        example: my-resource
+      - name: lifecycleState
+        in: query
+        required: false
+        description: A filter to return only resources matching the lifecycle state.
+        schema:
+          type: string
+          enum:
+          - PROVISIONING
+          - RUNNING
+          - STARTING
+          - STOPPING
+          - STOPPED
+          - CREATING_IMAGE
+          - TERMINATING
+          - TERMINATED
+        example: PROVISIONING
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of items to return per page.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token from a previous list call.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of instances.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Instance'
+              examples:
+                ListInstances200Example:
+                  summary: Default listInstances 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.instance.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    displayName: my-instance-01
+                    shape: VM.Standard.E4.Flex
+                    lifecycleState: RUNNING
+                    region: us-ashburn-1
+                    imageId: ocid1.image.oc1.iad.abcdefg123456
+                    timeCreated: '2026-01-15T10:30:00Z'
+                    freeformTags: &id001
+                      key1: value1
+                    definedTags: &id002
+                      key1: value1
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListInstances400Example:
+                  summary: Default listInstances 400 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListInstances401Example:
+                  summary: Default listInstances 401 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListInstances500Example:
+                  summary: Default listInstances 500 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: launchInstance
+      summary: Oracle Cloud Launch Instance
+      description: Creates a new instance in the specified compartment and availability domain.
+      tags:
+      - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LaunchInstanceDetails'
+            examples:
+              LaunchInstanceRequestExample:
+                summary: Default launchInstance request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.compartment.oc1..abcdefg123456
+                  availabilityDomain: Uocm:US-ASHBURN-AD-1
+                  shape: VM.Standard.E4.Flex
+                  displayName: my-new-instance
+                  imageId: ocid1.image.oc1.iad.abcdefg123456
+                  subnetId: ocid1.subnet.oc1.iad.abcdefg123456
+                  shapeConfig: &id003
+                    ocpus: 2.0
+                    memoryInGBs: 16.0
+                  freeformTags: &id004
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully launched instance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+              examples:
+                LaunchInstance200Example:
+                  summary: Default launchInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.instance.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    displayName: my-instance-01
+                    shape: VM.Standard.E4.Flex
+                    lifecycleState: RUNNING
+                    region: us-ashburn-1
+                    imageId: ocid1.image.oc1.iad.abcdefg123456
+                    timeCreated: '2026-01-15T10:30:00Z'
+                    freeformTags: *id001
+                    definedTags: *id002
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                LaunchInstance400Example:
+                  summary: Default launchInstance 400 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                LaunchInstance401Example:
+                  summary: Default launchInstance 401 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                LaunchInstance500Example:
+                  summary: Default launchInstance 500 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /instances/{instanceId}:
+    get:
+      operationId: getInstance
+      summary: Oracle Cloud Get Instance
+      description: Gets information about the specified instance.
+      tags:
+      - Instances
+      parameters:
+      - name: instanceId
+        in: path
+        required: true
+        description: The OCID of the instance.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved instance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+              examples:
+                GetInstance200Example:
+                  summary: Default getInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.instance.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    displayName: my-instance-01
+                    shape: VM.Standard.E4.Flex
+                    lifecycleState: RUNNING
+                    region: us-ashburn-1
+                    imageId: ocid1.image.oc1.iad.abcdefg123456
+                    timeCreated: '2026-01-15T10:30:00Z'
+                    freeformTags: *id001
+                    definedTags: *id002
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetInstance404Example:
+                  summary: Default getInstance 404 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateInstance
+      summary: Oracle Cloud Update Instance
+      description: Updates certain fields on the specified instance.
+      tags:
+      - Instances
+      parameters:
+      - name: instanceId
+        in: path
+        required: true
+        description: The OCID of the instance.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInstanceDetails'
+            examples:
+              UpdateInstanceRequestExample:
+                summary: Default updateInstance request
+                x-microcks-default: true
+                value:
+                  displayName: updated-instance-name
+                  shape: VM.Standard.E4.Flex
+                  shapeConfig: &id005
+                    ocpus: 4.0
+                    memoryInGBs: 32.0
+                  freeformTags: &id006
+                    key1: value1
+      responses:
+        '200':
+          description: Successfully updated instance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+              examples:
+                UpdateInstance200Example:
+                  summary: Default updateInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.instance.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    displayName: my-instance-01
+                    shape: VM.Standard.E4.Flex
+                    lifecycleState: RUNNING
+                    region: us-ashburn-1
+                    imageId: ocid1.image.oc1.iad.abcdefg123456
+                    timeCreated: '2026-01-15T10:30:00Z'
+                    freeformTags: *id001
+                    definedTags: *id002
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                UpdateInstance400Example:
+                  summary: Default updateInstance 400 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: terminateInstance
+      summary: Oracle Cloud Terminate Instance
+      description: Terminates the specified instance.
+      tags:
+      - Instances
+      parameters:
+      - name: instanceId
+        in: path
+        required: true
+        description: The OCID of the instance.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: preserveBootVolume
+        in: query
+        required: false
+        description: Whether to preserve the boot volume when terminating.
+        schema:
+          type: boolean
+          default: false
+        example: false
+      responses:
+        '204':
+          description: Successfully terminated instance.
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                TerminateInstance404Example:
+                  summary: Default terminateInstance 404 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /instances/{instanceId}/actions/{action}:
+    post:
+      operationId: instanceAction
+      summary: Oracle Cloud Instance Action
+      description: Performs an action on the specified instance such as start, stop, reset, or soft reset.
+      tags:
+      - Instances
+      parameters:
+      - name: instanceId
+        in: path
+        required: true
+        description: The OCID of the instance.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: action
+        in: path
+        required: true
+        description: The action to perform on the instance.
+        schema:
+          type: string
+          enum:
+          - STOP
+          - START
+          - SOFTRESET
+          - RESET
+          - SOFTSTOP
+        example: STOP
+      responses:
+        '200':
+          description: Action performed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+              examples:
+                InstanceAction200Example:
+                  summary: Default instanceAction 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.instance.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.compartment.oc1..abcdefg123456
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    displayName: my-instance-01
+                    shape: VM.Standard.E4.Flex
+                    lifecycleState: RUNNING
+                    region: us-ashburn-1
+                    imageId: ocid1.image.oc1.iad.abcdefg123456
+                    timeCreated: '2026-01-15T10:30:00Z'
+                    freeformTags: *id001
+                    definedTags: *id002
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                InstanceAction404Example:
+                  summary: Default instanceAction 404 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /images:
+    get:
+      operationId: listImages
+      summary: Oracle Cloud List Images
+      description: Lists available images in the specified compartment.
+      tags:
+      - Images
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: operatingSystem
+        in: query
+        required: false
+        description: The image operating system.
+        schema:
+          type: string
+        example: example-value
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of images.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+              examples:
+                ListImages200Example:
+                  summary: Default listImages 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.image.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: Oracle-Linux-8.8-2026.01.01-0
+                    operatingSystem: Oracle Linux
+                    operatingSystemVersion: '8.8'
+                    lifecycleState: PROVISIONING
+                    sizeInMBs: 47694
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /images/{imageId}:
+    get:
+      operationId: getImage
+      summary: Oracle Cloud Get Image
+      description: Gets the specified image.
+      tags:
+      - Images
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        description: The OCID of the image.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved image.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+              examples:
+                GetImage200Example:
+                  summary: Default getImage 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.image.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: Oracle-Linux-8.8-2026.01.01-0
+                    operatingSystem: Oracle Linux
+                    operatingSystemVersion: '8.8'
+                    lifecycleState: PROVISIONING
+                    sizeInMBs: 47694
+                    timeCreated: '2026-04-18T10:30:00Z'
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetImage404Example:
+                  summary: Default getImage 404 response
+                  x-microcks-default: true
+                  value:
+                    code: NotAuthorizedOrNotFound
+                    message: Authorization failed or requested resource not found.
+                    status: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /shapes:
+    get:
+      operationId: listShapes
+      summary: Oracle Cloud List Shapes
+      description: Lists the shapes that can be used to launch an instance within the specified compartment.
+      tags:
+      - Shapes
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list of shapes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shape'
+              examples:
+                ListShapes200Example:
+                  summary: Default listShapes 200 response
+                  x-microcks-default: true
+                  value:
+                  - shape: VM.Standard.E4.Flex
+                    processorDescription: 2.55 GHz AMD EPYC 7J13
+                    ocpus: 1.0
+                    memoryInGBs: 16.0
+                    gpus: 0
+                    networkingBandwidthInGbps: 1.0
+                    isFlexible: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /volumeAttachments:
+    get:
+      operationId: listVolumeAttachments
+      summary: Oracle Cloud List Volume Attachments
+      description: Lists the volume attachments in the specified compartment.
+      tags:
+      - Volume Attachments
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: instanceId
+        in: query
+        required: false
+        description: The OCID of the instance.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Successfully retrieved volume attachments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VolumeAttachment'
+              examples:
+                ListVolumeAttachments200Example:
+                  summary: Default listVolumeAttachments 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    instanceId: ocid1.resource.oc1.iad.abcdefg123456
+                    volumeId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    lifecycleState: ATTACHING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    attachmentType: iscsi
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: attachVolume
+      summary: Oracle Cloud Attach Volume
+      description: Attaches the specified storage volume to the specified instance.
+      tags:
+      - Volume Attachments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachVolumeDetails'
+            examples:
+              AttachVolumeRequestExample:
+                summary: Default attachVolume request
+                x-microcks-default: true
+                value:
+                  instanceId: ocid1.resource.oc1.iad.abcdefg123456
+                  volumeId: ocid1.resource.oc1.iad.abcdefg123456
+                  type: iscsi
+                  displayName: my-resource
+                  isReadOnly: false
+      responses:
+        '200':
+          description: Successfully attached volume.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeAttachment'
+              examples:
+                AttachVolume200Example:
+                  summary: Default attachVolume 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    instanceId: ocid1.resource.oc1.iad.abcdefg123456
+                    volumeId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    lifecycleState: ATTACHING
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    attachmentType: iscsi
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /volumeAttachments/{volumeAttachmentId}:
+    delete:
+      operationId: detachVolume
+      summary: Oracle Cloud Detach Volume
+      description: Detaches a storage volume from an instance.
+      tags:
+      - Volume Attachments
+      parameters:
+      - name: volumeAttachmentId
+        in: path
+        required: true
+        description: The OCID of the volume attachment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully detached volume.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys.
+  schemas:
+    Instance:
+      type: object
+      description: A compute instance running in Oracle Cloud Infrastructure.
+      properties:
+        id:
+          type: string
+          description: The OCID of the instance.
+          example: ocid1.instance.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.compartment.oc1..abcdefg123456
+        availabilityDomain:
+          type: string
+          description: The availability domain the instance is running in.
+          example: Uocm:US-ASHBURN-AD-1
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-instance-01
+        shape:
+          type: string
+          description: The shape of the instance.
+          example: VM.Standard.E4.Flex
+        lifecycleState:
+          type: string
+          description: The current state of the instance.
+          enum:
+          - PROVISIONING
+          - RUNNING
+          - STARTING
+          - STOPPING
+          - STOPPED
+          - CREATING_IMAGE
+          - TERMINATING
+          - TERMINATED
+          example: RUNNING
+        region:
+          type: string
+          description: The region that contains the availability domain.
+          example: us-ashburn-1
+        imageId:
+          type: string
+          description: The OCID of the image used to boot the instance.
+          example: ocid1.image.oc1.iad.abcdefg123456
+        timeCreated:
+          type: string
+          format: date-time
+          description: The date and time the instance was created.
+          example: '2026-01-15T10:30:00Z'
+        freeformTags:
+          type: object
+          description: Free-form tags for the instance.
+          additionalProperties:
+            type: string
+          example: *id001
+        definedTags:
+          type: object
+          description: Defined tags for the instance.
+          additionalProperties:
+            type: object
+          example: *id002
+    LaunchInstanceDetails:
+      type: object
+      description: Details for launching a new compute instance.
+      required:
+      - compartmentId
+      - shape
+      - availabilityDomain
+      properties:
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.compartment.oc1..abcdefg123456
+        availabilityDomain:
+          type: string
+          description: The availability domain.
+          example: Uocm:US-ASHBURN-AD-1
+        shape:
+          type: string
+          description: The shape of the instance.
+          example: VM.Standard.E4.Flex
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-new-instance
+        imageId:
+          type: string
+          description: The OCID of the image to use.
+          example: ocid1.image.oc1.iad.abcdefg123456
+        subnetId:
+          type: string
+          description: The OCID of the subnet.
+          example: ocid1.subnet.oc1.iad.abcdefg123456
+        shapeConfig:
+          type: object
+          description: Configuration for flexible shapes.
+          properties:
+            ocpus:
+              type: number
+              description: The total number of OCPUs.
+              example: 2.0
+            memoryInGBs:
+              type: number
+              description: The total amount of memory in gigabytes.
+              example: 16.0
+          example: *id003
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id004
+    UpdateInstanceDetails:
+      type: object
+      description: Details for updating an instance.
+      properties:
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: updated-instance-name
+        shape:
+          type: string
+          description: The shape of the instance.
+          example: VM.Standard.E4.Flex
+        shapeConfig:
+          type: object
+          properties:
+            ocpus:
+              type: number
+              example: 4.0
+            memoryInGBs:
+              type: number
+              example: 32.0
+          example: *id005
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id006
+    Image:
+      type: object
+      description: A boot disk image for launching compute instances.
+      properties:
+        id:
+          type: string
+          description: The OCID of the image.
+          example: ocid1.image.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: Oracle-Linux-8.8-2026.01.01-0
+        operatingSystem:
+          type: string
+          description: The image operating system.
+          example: Oracle Linux
+        operatingSystemVersion:
+          type: string
+          description: The image operating system version.
+          example: '8.8'
+        lifecycleState:
+          type: string
+          enum:
+          - PROVISIONING
+          - IMPORTING
+          - AVAILABLE
+          - EXPORTING
+          - DISABLED
+          - DELETED
+          example: PROVISIONING
+        sizeInMBs:
+          type: integer
+          description: Size of the image in megabytes.
+          example: 47694
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    Shape:
+      type: object
+      description: A compute shape defining the resources available for an instance.
+      properties:
+        shape:
+          type: string
+          description: The name of the shape.
+          example: VM.Standard.E4.Flex
+        processorDescription:
+          type: string
+          description: Description of the processor.
+          example: 2.55 GHz AMD EPYC 7J13
+        ocpus:
+          type: number
+          description: Default number of OCPUs.
+          example: 1.0
+        memoryInGBs:
+          type: number
+          description: Default amount of memory in gigabytes.
+          example: 16.0
+        gpus:
+          type: integer
+          description: Number of GPUs.
+          example: 0
+        networkingBandwidthInGbps:
+          type: number
+          description: Networking bandwidth in Gbps.
+          example: 1.0
+        isFlexible:
+          type: boolean
+          description: Whether the shape is flexible.
+          example: true
+    VolumeAttachment:
+      type: object
+      description: A volume attached to a compute instance.
+      properties:
+        id:
+          type: string
+          description: The OCID of the volume attachment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        instanceId:
+          type: string
+          description: The OCID of the instance.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        volumeId:
+          type: string
+          description: The OCID of the volume.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-resource
+        lifecycleState:
+          type: string
+          enum:
+          - ATTACHING
+          - ATTACHED
+          - DETACHING
+          - DETACHED
+          example: ATTACHING
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        attachmentType:
+          type: string
+          description: The type of volume attachment.
+          enum:
+          - iscsi
+          - paravirtualized
+          example: iscsi
+    AttachVolumeDetails:
+      type: object
+      description: Details for attaching a volume.
+      required:
+      - instanceId
+      - volumeId
+      - type
+      properties:
+        instanceId:
+          type: string
+          description: The OCID of the instance.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        volumeId:
+          type: string
+          description: The OCID of the volume.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        type:
+          type: string
+          description: The type of volume attachment.
+          enum:
+          - iscsi
+          - paravirtualized
+          example: iscsi
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-resource
+        isReadOnly:
+          type: boolean
+          description: Whether the attachment is read-only.
+          default: false
+          example: false
+    Error:
+      type: object
+      description: Error response from OCI API.
+      properties:
+        code:
+          type: string
+          description: A short error code.
+          example: NotAuthorizedOrNotFound
+        message:
+          type: string
+          description: A human-readable error message.
+          example: Authorization failed or requested resource not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+security:
+- ociSignature: []

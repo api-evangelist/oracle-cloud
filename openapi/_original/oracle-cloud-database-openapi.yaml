@@ -1,0 +1,733 @@
+openapi: 3.0.3
+info:
+  title: Oracle Cloud Database API
+  description: Manage Oracle Database Cloud Services and Autonomous Databases in Oracle Cloud Infrastructure.
+  version: '20160918'
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+  contact:
+    name: Oracle Cloud Infrastructure
+    url: https://docs.oracle.com/en-us/iaas/Content/Database/home.htm
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database API server
+  variables:
+    region:
+      default: us-ashburn-1
+paths:
+  /autonomousDatabases:
+    get:
+      operationId: listAutonomousDatabases
+      summary: Oracle Cloud List Autonomous Databases
+      description: Gets a list of Autonomous Databases in the specified compartment.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      - name: page
+        in: query
+        required: false
+        description: Pagination token.
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Successfully retrieved list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutonomousDatabaseSummary'
+              examples:
+                ListAutonomousDatabases200Example:
+                  summary: Default listAutonomousDatabases 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    dbName: example-value
+                    cpuCoreCount: 1
+                    dataStorageSizeInTBs: 1
+                    dbWorkload: example-value
+                    lifecycleState: example-value
+                    isFreeTier: true
+                    timeCreated: '2026-04-18T10:30:00Z'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListAutonomousDatabases401Example:
+                  summary: Default listAutonomousDatabases 401 response
+                  x-microcks-default: true
+                  value:
+                    code: example-value
+                    message: example-value
+                    status: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createAutonomousDatabase
+      summary: Oracle Cloud Create Autonomous Database
+      description: Creates a new Autonomous Database.
+      tags:
+      - Autonomous Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutonomousDatabaseDetails'
+            examples:
+              CreateAutonomousDatabaseRequestExample:
+                summary: Default createAutonomousDatabase request
+                x-microcks-default: true
+                value:
+                  compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                  dbName: MYADB
+                  displayName: my-adb
+                  cpuCoreCount: 2
+                  dataStorageSizeInTBs: 1
+                  adminPassword: '********'
+                  dbWorkload: OLTP
+                  isFreeTier: false
+                  isAutoScalingEnabled: false
+      responses:
+        '200':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+              examples:
+                CreateAutonomousDatabase200Example:
+                  summary: Default createAutonomousDatabase 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.autonomousdatabase.oc1.iad.abcdefg
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-adb
+                    dbName: MYADB
+                    cpuCoreCount: 2
+                    dataStorageSizeInTBs: 1
+                    dbWorkload: OLTP
+                    lifecycleState: PROVISIONING
+                    isFreeTier: true
+                    isAutoScalingEnabled: true
+                    connectionUrls: &id001
+                      sqlDevWebUrl: example-value
+                      apexUrl: example-value
+                      graphStudioUrl: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags: &id002
+                      key1: value1
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CreateAutonomousDatabase400Example:
+                  summary: Default createAutonomousDatabase 400 response
+                  x-microcks-default: true
+                  value:
+                    code: example-value
+                    message: example-value
+                    status: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /autonomousDatabases/{autonomousDatabaseId}:
+    get:
+      operationId: getAutonomousDatabase
+      summary: Oracle Cloud Get Autonomous Database
+      description: Gets the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: autonomousDatabaseId
+        in: path
+        required: true
+        description: The OCID of the Autonomous Database.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+              examples:
+                GetAutonomousDatabase200Example:
+                  summary: Default getAutonomousDatabase 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.autonomousdatabase.oc1.iad.abcdefg
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-adb
+                    dbName: MYADB
+                    cpuCoreCount: 2
+                    dataStorageSizeInTBs: 1
+                    dbWorkload: OLTP
+                    lifecycleState: PROVISIONING
+                    isFreeTier: true
+                    isAutoScalingEnabled: true
+                    connectionUrls: *id001
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags: *id002
+        '404':
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetAutonomousDatabase404Example:
+                  summary: Default getAutonomousDatabase 404 response
+                  x-microcks-default: true
+                  value:
+                    code: example-value
+                    message: example-value
+                    status: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateAutonomousDatabase
+      summary: Oracle Cloud Update Autonomous Database
+      description: Updates the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: autonomousDatabaseId
+        in: path
+        required: true
+        description: The OCID of the Autonomous Database.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAutonomousDatabaseDetails'
+            examples:
+              UpdateAutonomousDatabaseRequestExample:
+                summary: Default updateAutonomousDatabase request
+                x-microcks-default: true
+                value:
+                  displayName: my-resource
+                  cpuCoreCount: 1
+                  dataStorageSizeInTBs: 1
+                  isAutoScalingEnabled: true
+                  adminPassword: '********'
+      responses:
+        '200':
+          description: Successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+              examples:
+                UpdateAutonomousDatabase200Example:
+                  summary: Default updateAutonomousDatabase 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.autonomousdatabase.oc1.iad.abcdefg
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-adb
+                    dbName: MYADB
+                    cpuCoreCount: 2
+                    dataStorageSizeInTBs: 1
+                    dbWorkload: OLTP
+                    lifecycleState: PROVISIONING
+                    isFreeTier: true
+                    isAutoScalingEnabled: true
+                    connectionUrls: *id001
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags: *id002
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAutonomousDatabase
+      summary: Oracle Cloud Delete Autonomous Database
+      description: Deletes the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: autonomousDatabaseId
+        in: path
+        required: true
+        description: The OCID.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '204':
+          description: Successfully deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /autonomousDatabases/{autonomousDatabaseId}/actions/start:
+    post:
+      operationId: startAutonomousDatabase
+      summary: Oracle Cloud Start Autonomous Database
+      description: Starts the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: autonomousDatabaseId
+        in: path
+        required: true
+        description: The OCID.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully started.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+              examples:
+                StartAutonomousDatabase200Example:
+                  summary: Default startAutonomousDatabase 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.autonomousdatabase.oc1.iad.abcdefg
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-adb
+                    dbName: MYADB
+                    cpuCoreCount: 2
+                    dataStorageSizeInTBs: 1
+                    dbWorkload: OLTP
+                    lifecycleState: PROVISIONING
+                    isFreeTier: true
+                    isAutoScalingEnabled: true
+                    connectionUrls: *id001
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags: *id002
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /autonomousDatabases/{autonomousDatabaseId}/actions/stop:
+    post:
+      operationId: stopAutonomousDatabase
+      summary: Oracle Cloud Stop Autonomous Database
+      description: Stops the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: autonomousDatabaseId
+        in: path
+        required: true
+        description: The OCID.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully stopped.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+              examples:
+                StopAutonomousDatabase200Example:
+                  summary: Default stopAutonomousDatabase 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.autonomousdatabase.oc1.iad.abcdefg
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-adb
+                    dbName: MYADB
+                    cpuCoreCount: 2
+                    dataStorageSizeInTBs: 1
+                    dbWorkload: OLTP
+                    lifecycleState: PROVISIONING
+                    isFreeTier: true
+                    isAutoScalingEnabled: true
+                    connectionUrls: *id001
+                    timeCreated: '2026-04-18T10:30:00Z'
+                    freeformTags: *id002
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /dbSystems:
+    get:
+      operationId: listDbSystems
+      summary: Oracle Cloud List DB Systems
+      description: Gets a list of DB systems in the specified compartment.
+      tags:
+      - DB Systems
+      parameters:
+      - name: compartmentId
+        in: query
+        required: true
+        description: The OCID of the compartment.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of items to return.
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DbSystemSummary'
+              examples:
+                ListDbSystems200Example:
+                  summary: Default listDbSystems 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    shape: VM.Standard.E4.Flex
+                    lifecycleState: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /dbSystems/{dbSystemId}:
+    get:
+      operationId: getDbSystem
+      summary: Oracle Cloud Get DB System
+      description: Gets the specified DB system.
+      tags:
+      - DB Systems
+      parameters:
+      - name: dbSystemId
+        in: path
+        required: true
+        description: The OCID of the DB system.
+        schema:
+          type: string
+        example: ocid1.resource.oc1.iad.abcdefg123456
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+              examples:
+                GetDbSystem200Example:
+                  summary: Default getDbSystem 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ocid1.resource.oc1.iad.abcdefg123456
+                    compartmentId: ocid1.resource.oc1.iad.abcdefg123456
+                    displayName: my-resource
+                    shape: VM.Standard.E4.Flex
+                    availabilityDomain: Uocm:US-ASHBURN-AD-1
+                    cpuCoreCount: 1
+                    nodeCount: 1
+                    dataStorageSizeInGBs: 1
+                    databaseEdition: STANDARD_EDITION
+                    lifecycleState: example-value
+                    timeCreated: '2026-04-18T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication.
+  schemas:
+    AutonomousDatabase:
+      type: object
+      description: An Oracle Autonomous Database.
+      properties:
+        id:
+          type: string
+          description: The OCID.
+          example: ocid1.autonomousdatabase.oc1.iad.abcdefg
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          description: User-friendly name.
+          example: my-adb
+        dbName:
+          type: string
+          description: The database name.
+          example: MYADB
+        cpuCoreCount:
+          type: integer
+          description: Number of CPU cores.
+          example: 2
+        dataStorageSizeInTBs:
+          type: integer
+          description: Data storage size in terabytes.
+          example: 1
+        dbWorkload:
+          type: string
+          description: The workload type.
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+          example: OLTP
+        lifecycleState:
+          type: string
+          description: Current state.
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - STOPPING
+          - STOPPED
+          - STARTING
+          - TERMINATING
+          - TERMINATED
+          - RESTORE_IN_PROGRESS
+          - BACKUP_IN_PROGRESS
+          - SCALE_IN_PROGRESS
+          - AVAILABLE_NEEDS_ATTENTION
+          - UPDATING
+          example: PROVISIONING
+        isFreeTier:
+          type: boolean
+          description: Whether this is an Always Free resource.
+          example: true
+        isAutoScalingEnabled:
+          type: boolean
+          description: Whether auto scaling is enabled.
+          example: true
+        connectionUrls:
+          type: object
+          properties:
+            sqlDevWebUrl:
+              type: string
+            apexUrl:
+              type: string
+            graphStudioUrl:
+              type: string
+          example: *id001
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example: *id002
+    AutonomousDatabaseSummary:
+      type: object
+      description: Summary of an Autonomous Database.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        dbName:
+          type: string
+          example: example-value
+        cpuCoreCount:
+          type: integer
+          example: 1
+        dataStorageSizeInTBs:
+          type: integer
+          example: 1
+        dbWorkload:
+          type: string
+          example: example-value
+        lifecycleState:
+          type: string
+          example: example-value
+        isFreeTier:
+          type: boolean
+          example: true
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateAutonomousDatabaseDetails:
+      type: object
+      description: Details for creating an Autonomous Database.
+      required:
+      - compartmentId
+      - dbName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+      - adminPassword
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dbName:
+          type: string
+          example: MYADB
+        displayName:
+          type: string
+          example: my-adb
+        cpuCoreCount:
+          type: integer
+          example: 2
+        dataStorageSizeInTBs:
+          type: integer
+          example: 1
+        adminPassword:
+          type: string
+          format: password
+          example: '********'
+        dbWorkload:
+          type: string
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+          example: OLTP
+        isFreeTier:
+          type: boolean
+          default: false
+          example: false
+        isAutoScalingEnabled:
+          type: boolean
+          default: false
+          example: false
+    UpdateAutonomousDatabaseDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        cpuCoreCount:
+          type: integer
+          example: 1
+        dataStorageSizeInTBs:
+          type: integer
+          example: 1
+        isAutoScalingEnabled:
+          type: boolean
+          example: true
+        adminPassword:
+          type: string
+          format: password
+          example: '********'
+    DbSystem:
+      type: object
+      description: A DB system.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        shape:
+          type: string
+          example: VM.Standard.E4.Flex
+        availabilityDomain:
+          type: string
+          example: Uocm:US-ASHBURN-AD-1
+        cpuCoreCount:
+          type: integer
+          example: 1
+        nodeCount:
+          type: integer
+          example: 1
+        dataStorageSizeInGBs:
+          type: integer
+          example: 1
+        databaseEdition:
+          type: string
+          enum:
+          - STANDARD_EDITION
+          - ENTERPRISE_EDITION
+          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+          example: STANDARD_EDITION
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    DbSystemSummary:
+      type: object
+      description: Summary of a DB system.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        shape:
+          type: string
+          example: VM.Standard.E4.Flex
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example-value
+        message:
+          type: string
+          example: example-value
+        status:
+          type: integer
+          example: 1
+security:
+- ociSignature: []
