@@ -9894,14 +9894,6 @@ common:
     url: rules/oracle-cloud-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/oracle-cloud-vocabulary.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/data-platform.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cloud-native-development.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/infrastructure-management.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/security-and-compliance.yaml
   - type: JSONLD
     url: json-ld/oracle-cloud-iam-context.jsonld
   - type: JSONLD
