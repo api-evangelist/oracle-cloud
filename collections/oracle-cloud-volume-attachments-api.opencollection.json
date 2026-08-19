@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Volume Attachments API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Volume Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Volume Attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/volumeAttachments",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "instanceId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the instance."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Lists the volume attachments in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Attach Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/volumeAttachments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attaches the specified storage volume to the specified instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Detach Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/volumeAttachments/:volumeAttachmentId",
+            "params": [
+              {
+                "name": "volumeAttachmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the volume attachment."
+              }
+            ]
+          },
+          "docs": "Detaches a storage volume from an instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

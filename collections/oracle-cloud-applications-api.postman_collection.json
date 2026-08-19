@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "66705bd8-dea5-4a7b-9ce3-ab69474fbb44",
+      "name": "Applications",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5682427d-0960-463f-a83b-06d7727eb519",
+          "name": "Oracle Cloud List Applications",
+          "request": {
+            "name": "Oracle Cloud List Applications",
+            "description": {
+              "content": "Lists Functions applications in a compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f51892ed-eb73-47a8-a871-07983174539d",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"my-resource\",\n    \"lifecycleState\": \"example-value\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbedb55c-904f-472d-975d-49345a85dee0",
+          "name": "Oracle Cloud Create Application",
+          "request": {
+            "name": "Oracle Cloud Create Application",
+            "description": {
+              "content": "Creates a new Functions application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"config\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f709e1c-f5b8-4eed-84f5-423bd37e1f17",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-resource\",\n  \"subnetIds\": [\n    \"example-value\"\n  ],\n  \"config\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.fnapp.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-app\",\n  \"subnetIds\": [\n    \"example-value\"\n  ],\n  \"lifecycleState\": \"CREATING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"config\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab3b8edd-fd72-4490-936c-a340fc318803",
+          "name": "Oracle Cloud Get Application",
+          "request": {
+            "name": "Oracle Cloud Get Application",
+            "description": {
+              "content": "Gets a Functions application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The OCID of the application."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be071206-049b-4fe8-a574-0ea311aeaeee",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The OCID of the application."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.fnapp.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-app\",\n  \"subnetIds\": [\n    \"example-value\"\n  ],\n  \"lifecycleState\": \"CREATING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"config\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab8d9ffc-4cdf-4af2-8514-d52d74a9599a",
+          "name": "Oracle Cloud Delete Application",
+          "request": {
+            "name": "Oracle Cloud Delete Application",
+            "description": {
+              "content": "Deletes a Functions application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The OCID of the application."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79432df1-fae1-4591-a56f-bb9ae7646100",
+              "name": "Successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The OCID of the application."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2126fecf-9090-4566-8b92-e87a45dd63ec",
+    "name": "Oracle Cloud Compute Alarms Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

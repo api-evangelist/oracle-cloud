@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Functions API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Functions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/functions",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the application."
+              }
+            ]
+          },
+          "docs": "Lists functions in an application."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Function",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/functions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new function."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Function",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/functions/:functionId",
+            "params": [
+              {
+                "name": "functionId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the function."
+              }
+            ]
+          },
+          "docs": "Gets a function."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Function",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/functions/:functionId",
+            "params": [
+              {
+                "name": "functionId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the function."
+              }
+            ]
+          },
+          "docs": "Deletes a function."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Invoke Function",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/functions/:functionId/actions/invoke",
+            "params": [
+              {
+                "name": "functionId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the function."
+              }
+            ]
+          },
+          "docs": "Invokes a function synchronously."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

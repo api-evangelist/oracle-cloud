@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Clusters API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/clusters",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              }
+            ]
+          },
+          "docs": "List all Kubernetes clusters in a compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Kubernetes cluster."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/clusters/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the cluster."
+              }
+            ]
+          },
+          "docs": "Get the specified Kubernetes cluster."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Update Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/clusters/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the specified Kubernetes cluster."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/clusters/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the cluster."
+              }
+            ]
+          },
+          "docs": "Delete a Kubernetes cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

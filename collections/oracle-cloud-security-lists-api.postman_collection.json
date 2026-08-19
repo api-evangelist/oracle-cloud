@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "a83447f0-6aee-4e6f-b500-fd0497c7848b",
+      "name": "Security Lists",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd185ed4-805a-473a-b5ee-dbf08c93c81e",
+          "name": "Oracle Cloud List Security Lists",
+          "request": {
+            "name": "Oracle Cloud List Security Lists",
+            "description": {
+              "content": "Lists the security lists in the specified VCN and compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "securityLists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                },
+                {
+                  "disabled": false,
+                  "key": "vcnId",
+                  "value": "<string>",
+                  "description": "The OCID of the VCN."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45a9ce36-8455-4b79-86b3-524169e65041",
+              "name": "Successfully retrieved security lists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "securityLists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "vcnId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"vcnId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"Default Security List\",\n    \"lifecycleState\": \"PROVISIONING\",\n    \"ingressSecurityRules\": [\n      {\n        \"protocol\": \"6\",\n        \"source\": \"0.0.0.0/0\",\n        \"isStateless\": true\n      }\n    ],\n    \"egressSecurityRules\": [\n      {\n        \"protocol\": \"example-value\",\n        \"destination\": \"example-value\",\n        \"isStateless\": true\n      }\n    ],\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f160d090-64e4-4207-9163-885c1a904c1b",
+    "name": "Oracle Cloud Compute Alarms Security Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "9101e451-702d-42d1-893e-4f2880923a69",
+      "name": "Compartments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3364264-70cc-424e-935c-751df19c46ca",
+          "name": "Oracle Cloud List Compartments",
+          "request": {
+            "name": "Oracle Cloud List Compartments",
+            "description": {
+              "content": "Lists the compartments in the tenancy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compartments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the tenancy."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "419baf0c-42d5-4b5f-8163-b631f6f6cbd4",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compartments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"name\": \"my-compartment\",\n    \"description\": \"example-value\",\n    \"lifecycleState\": \"CREATING\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d126c01-2cf9-4b95-86f0-fd1c3fe4d8e3",
+    "name": "Oracle Cloud Compute Alarms Compartments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

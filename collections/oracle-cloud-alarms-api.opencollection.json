@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/alarms",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              }
+            ]
+          },
+          "docs": "Lists the alarms in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/alarms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new monitoring alarm."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/alarms/:alarmId",
+            "params": [
+              {
+                "name": "alarmId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the alarm."
+              }
+            ]
+          },
+          "docs": "Gets the specified alarm."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Update Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/alarms/:alarmId",
+            "params": [
+              {
+                "name": "alarmId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the alarm."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified alarm."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/alarms/:alarmId",
+            "params": [
+              {
+                "name": "alarmId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the alarm."
+              }
+            ]
+          },
+          "docs": "Deletes the specified alarm."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

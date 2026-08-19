@@ -1,0 +1,594 @@
+{
+  "item": [
+    {
+      "id": "a692f270-9086-4453-93c8-0120ef7345b2",
+      "name": "Functions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27ed7fae-25cc-4835-b70d-7ed5f8a273ab",
+          "name": "Oracle Cloud List Functions",
+          "request": {
+            "name": "Oracle Cloud List Functions",
+            "description": {
+              "content": "Lists functions in an application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "functions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "applicationId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the application."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81e8760c-8aa4-4403-bac0-dcad51ee1751",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "functions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "applicationId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"applicationId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"my-resource\",\n    \"image\": \"ocid1.image.oc1.iad.abcdefg123456\",\n    \"memoryInMBs\": 1,\n    \"lifecycleState\": \"example-value\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e394a07-0df1-4698-8ec6-7cdfeea8fa0b",
+          "name": "Oracle Cloud Create Function",
+          "request": {
+            "name": "Oracle Cloud Create Function",
+            "description": {
+              "content": "Creates a new function.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "functions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"image\": \"<string>\",\n  \"memoryInMBs\": \"<integer>\",\n  \"timeoutInSeconds\": 30,\n  \"config\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "686ea8a1-8f8b-4bb4-9d0c-239bef426eaa",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "functions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-resource\",\n  \"image\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"memoryInMBs\": 1,\n  \"timeoutInSeconds\": 30,\n  \"config\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"applicationId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-function\",\n  \"image\": \"iad.ocir.io/my-namespace/my-app/my-function:0.0.1\",\n  \"memoryInMBs\": 256,\n  \"timeoutInSeconds\": 30,\n  \"lifecycleState\": \"CREATING\",\n  \"invokeEndpoint\": \"example-value\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"config\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90d7ba23-f559-4496-9e45-12c902c734a5",
+          "name": "Oracle Cloud Get Function",
+          "request": {
+            "name": "Oracle Cloud Get Function",
+            "description": {
+              "content": "Gets a function.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "functions",
+                ":functionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "functionId",
+                  "description": "(Required) The OCID of the function."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b759b857-1306-4746-bcea-28c9b6876d1f",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "functions",
+                    ":functionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "functionId",
+                      "description": "(Required) The OCID of the function."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"applicationId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-function\",\n  \"image\": \"iad.ocir.io/my-namespace/my-app/my-function:0.0.1\",\n  \"memoryInMBs\": 256,\n  \"timeoutInSeconds\": 30,\n  \"lifecycleState\": \"CREATING\",\n  \"invokeEndpoint\": \"example-value\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"config\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e60fec95-a83e-4086-8d29-3f4e330c3de4",
+          "name": "Oracle Cloud Delete Function",
+          "request": {
+            "name": "Oracle Cloud Delete Function",
+            "description": {
+              "content": "Deletes a function.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "functions",
+                ":functionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "functionId",
+                  "description": "(Required) The OCID of the function."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70412baa-713f-4b90-8ff5-f4e0959d43bc",
+              "name": "Successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "functions",
+                    ":functionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "functionId",
+                      "description": "(Required) The OCID of the function."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f07f9a40-8774-4e76-a88f-f4189fd4655e",
+          "name": "Oracle Cloud Invoke Function",
+          "request": {
+            "name": "Oracle Cloud Invoke Function",
+            "description": {
+              "content": "Invokes a function synchronously.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "functions",
+                ":functionId",
+                "actions",
+                "invoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "functionId",
+                  "description": "(Required) The OCID of the function."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "a25dd039-45de-48ca-949e-386ad4c19c85",
+              "name": "Function invoked successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "functions",
+                    ":functionId",
+                    "actions",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "functionId",
+                      "description": "(Required) The OCID of the function."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f98f990-e5ed-4955-bd59-a40d85a4276f",
+    "name": "Oracle Cloud Compute Alarms Functions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

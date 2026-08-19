@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Objects API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName/o",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              },
+              {
+                "name": "prefix",
+                "value": "example-value",
+                "type": "query",
+                "description": "Filter objects whose name begins with this prefix."
+              },
+              {
+                "name": "delimiter",
+                "value": "example-value",
+                "type": "query",
+                "description": "Delimiter for pseudo-directory grouping."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "start",
+                "value": "example-value",
+                "type": "query",
+                "description": "Object name to start listing from."
+              }
+            ]
+          },
+          "docs": "Lists the objects in the specified bucket."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName/o/:objectName",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              },
+              {
+                "name": "objectName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "Gets the metadata and body of an object."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Put Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName/o/:objectName",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "example-value"
+              },
+              {
+                "name": "Content-Length",
+                "value": "1"
+              }
+            ],
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              },
+              {
+                "name": "objectName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "Creates a new object or overwrites an existing object."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName/o/:objectName",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              },
+              {
+                "name": "objectName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "Deletes an object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

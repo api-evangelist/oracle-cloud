@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Subnets API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subnets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Subnets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/subnets",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "vcnId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the VCN."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Lists the subnets in the specified VCN and compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Subnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/subnets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new subnet in the specified VCN."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Subnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/subnets/:subnetId",
+            "params": [
+              {
+                "name": "subnetId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the subnet."
+              }
+            ]
+          },
+          "docs": "Gets the specified subnet."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Subnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/subnets/:subnetId",
+            "params": [
+              {
+                "name": "subnetId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the subnet."
+              }
+            ]
+          },
+          "docs": "Deletes the specified subnet."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

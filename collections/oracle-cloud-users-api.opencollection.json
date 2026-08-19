@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Users API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/users",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the tenancy."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Lists the users in the tenancy."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user in the tenancy."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the user."
+              }
+            ]
+          },
+          "docs": "Gets the specified user."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified user."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the user."
+              }
+            ]
+          },
+          "docs": "Deletes the specified user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

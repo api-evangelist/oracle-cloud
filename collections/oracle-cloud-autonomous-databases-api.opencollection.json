@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Autonomous Databases API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autonomous Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Autonomous Databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "page",
+                "value": "example-value",
+                "type": "query",
+                "description": "Pagination token."
+              }
+            ]
+          },
+          "docs": "Gets a list of Autonomous Databases in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database."
+              }
+            ]
+          },
+          "docs": "Gets the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Update Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID."
+              }
+            ]
+          },
+          "docs": "Deletes the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Start Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/start",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID."
+              }
+            ]
+          },
+          "docs": "Starts the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Stop Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID."
+              }
+            ]
+          },
+          "docs": "Stops the specified Autonomous Database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

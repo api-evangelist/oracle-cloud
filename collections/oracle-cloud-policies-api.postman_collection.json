@@ -1,0 +1,267 @@
+{
+  "item": [
+    {
+      "id": "91b24166-8c24-4602-9aa0-43f4af42bc7e",
+      "name": "Policies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd73dac1-2c53-459b-9c9e-35aa99dfd559",
+          "name": "Oracle Cloud List Policies",
+          "request": {
+            "name": "Oracle Cloud List Policies",
+            "description": {
+              "content": "Lists the policies in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a05cdab3-1262-458f-8b0e-a9be3104f544",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"name\": \"AllowAdmins\",\n    \"description\": \"example-value\",\n    \"statements\": [\n      \"Allow group Administrators to manage all-resources in tenancy\"\n    ],\n    \"lifecycleState\": \"CREATING\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "811d9882-7e01-421c-bfb0-e6a967aa3103",
+          "name": "Oracle Cloud Create Policy",
+          "request": {
+            "name": "Oracle Cloud Create Policy",
+            "description": {
+              "content": "Creates a new IAM policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"statements\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17fcaa34-10e2-4ea5-87fd-433f7c6bd2b9",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"name\": \"example-value\",\n  \"description\": \"example-value\",\n  \"statements\": [\n    \"example-value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"name\": \"AllowAdmins\",\n  \"description\": \"example-value\",\n  \"statements\": [\n    \"Allow group Administrators to manage all-resources in tenancy\"\n  ],\n  \"lifecycleState\": \"CREATING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "842895d2-b494-4829-90a6-6fb70e674c0e",
+    "name": "Oracle Cloud Compute Alarms Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,602 @@
+{
+  "item": [
+    {
+      "id": "1c9dbad1-9007-45ac-8b3a-18d5f87bfa37",
+      "name": "Alarms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2542b5f8-31ae-4e83-a045-f8da087a61b9",
+          "name": "Oracle Cloud List Alarms",
+          "request": {
+            "name": "Oracle Cloud List Alarms",
+            "description": {
+              "content": "Lists the alarms in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce404d3d-c5d7-46b5-84e1-7728cc2e21a1",
+              "name": "Successfully retrieved alarms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"my-resource\",\n    \"severity\": \"example-value\",\n    \"isEnabled\": true,\n    \"lifecycleState\": \"example-value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "335177bf-8b33-45a6-99db-ff70b8663ad8",
+          "name": "Oracle Cloud Create Alarm",
+          "request": {
+            "name": "Oracle Cloud Create Alarm",
+            "description": {
+              "content": "Creates a new monitoring alarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"metricCompartmentId\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"destinations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d348c7c-1a5e-48bb-90d2-1385be8a6846",
+              "name": "Successfully created alarm.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-resource\",\n  \"metricCompartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"namespace\": \"oci_computeagent\",\n  \"query\": \"CpuUtilization[1m].mean()\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": true,\n  \"destinations\": [\n    \"example-value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.alarm.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"High CPU Alarm\",\n  \"metricCompartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"namespace\": \"oci_computeagent\",\n  \"query\": \"CpuUtilization[1m].mean() > 90\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": true,\n  \"lifecycleState\": \"ACTIVE\",\n  \"destinations\": [\n    \"example-value\"\n  ],\n  \"timeCreated\": \"2026-04-18T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5e08db3-8458-4866-b343-3c4a58cd97ab",
+          "name": "Oracle Cloud Get Alarm",
+          "request": {
+            "name": "Oracle Cloud Get Alarm",
+            "description": {
+              "content": "Gets the specified alarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ":alarmId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alarmId",
+                  "description": "(Required) The OCID of the alarm."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75cbcf09-a20b-47e2-81f9-4ff4eacb7c0c",
+              "name": "Successfully retrieved alarm.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ":alarmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alarmId",
+                      "description": "(Required) The OCID of the alarm."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.alarm.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"High CPU Alarm\",\n  \"metricCompartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"namespace\": \"oci_computeagent\",\n  \"query\": \"CpuUtilization[1m].mean() > 90\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": true,\n  \"lifecycleState\": \"ACTIVE\",\n  \"destinations\": [\n    \"example-value\"\n  ],\n  \"timeCreated\": \"2026-04-18T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0aff6552-daa1-4c27-aa40-febd46584e0f",
+          "name": "Oracle Cloud Update Alarm",
+          "request": {
+            "name": "Oracle Cloud Update Alarm",
+            "description": {
+              "content": "Updates the specified alarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ":alarmId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alarmId",
+                  "description": "(Required) The OCID of the alarm."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"isEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e54deda1-ece4-469e-b974-ed4a18a0b8fd",
+              "name": "Successfully updated alarm.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ":alarmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alarmId",
+                      "description": "(Required) The OCID of the alarm."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"my-resource\",\n  \"query\": \"CpuUtilization[1m].mean()\",\n  \"severity\": \"example-value\",\n  \"isEnabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.alarm.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"High CPU Alarm\",\n  \"metricCompartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"namespace\": \"oci_computeagent\",\n  \"query\": \"CpuUtilization[1m].mean() > 90\",\n  \"severity\": \"CRITICAL\",\n  \"isEnabled\": true,\n  \"lifecycleState\": \"ACTIVE\",\n  \"destinations\": [\n    \"example-value\"\n  ],\n  \"timeCreated\": \"2026-04-18T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f0166cf-b208-40a0-a6d4-5d3689fdb59a",
+          "name": "Oracle Cloud Delete Alarm",
+          "request": {
+            "name": "Oracle Cloud Delete Alarm",
+            "description": {
+              "content": "Deletes the specified alarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ":alarmId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alarmId",
+                  "description": "(Required) The OCID of the alarm."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcbd252d-eafb-4714-a0e5-917592b55135",
+              "name": "Successfully deleted alarm.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ":alarmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alarmId",
+                      "description": "(Required) The OCID of the alarm."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c4b7279-9014-479e-b7b6-907e85a66436",
+    "name": "Oracle Cloud Compute Alarms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "item": [
+    {
+      "id": "ce65584f-cf76-4459-aec9-4991c4e2ec41",
+      "name": "Volume Attachments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81f25575-acf6-4f21-aec0-d9594096e649",
+          "name": "Oracle Cloud List Volume Attachments",
+          "request": {
+            "name": "Oracle Cloud List Volume Attachments",
+            "description": {
+              "content": "Lists the volume attachments in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumeAttachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                },
+                {
+                  "disabled": false,
+                  "key": "instanceId",
+                  "value": "<string>",
+                  "description": "The OCID of the instance."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f5d332b-327c-468e-9a43-857c7bf7bf25",
+              "name": "Successfully retrieved volume attachments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumeAttachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "instanceId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"instanceId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"volumeId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"my-resource\",\n    \"lifecycleState\": \"ATTACHING\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\",\n    \"attachmentType\": \"iscsi\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5354897c-a2aa-4d56-8367-9c855352a96d",
+          "name": "Oracle Cloud Attach Volume",
+          "request": {
+            "name": "Oracle Cloud Attach Volume",
+            "description": {
+              "content": "Attaches the specified storage volume to the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumeAttachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instanceId\": \"<string>\",\n  \"volumeId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isReadOnly\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9fb0a9d2-817f-403f-b108-87d76cac2828",
+              "name": "Successfully attached volume.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumeAttachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instanceId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"volumeId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"type\": \"iscsi\",\n  \"displayName\": \"my-resource\",\n  \"isReadOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"instanceId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"volumeId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-resource\",\n  \"lifecycleState\": \"ATTACHING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"attachmentType\": \"iscsi\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "409fac85-41dc-4afd-ab2b-d6c191013b52",
+          "name": "Oracle Cloud Detach Volume",
+          "request": {
+            "name": "Oracle Cloud Detach Volume",
+            "description": {
+              "content": "Detaches a storage volume from an instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumeAttachments",
+                ":volumeAttachmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "volumeAttachmentId",
+                  "description": "(Required) The OCID of the volume attachment."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b5601bf-1fd7-443c-a09e-52fc43190b34",
+              "name": "Successfully detached volume.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumeAttachments",
+                    ":volumeAttachmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "volumeAttachmentId",
+                      "description": "(Required) The OCID of the volume attachment."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "97553c1e-f89b-42f5-85db-85b067901170",
+    "name": "Oracle Cloud Compute Alarms Volume Attachments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1025 @@
+{
+  "item": [
+    {
+      "id": "8f7950d8-a97b-49f9-9551-f0809f9b6a29",
+      "name": "Autonomous Databases",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af8b1cda-bc19-4f97-9d17-eb210a086154",
+          "name": "Oracle Cloud List Autonomous Databases",
+          "request": {
+            "name": "Oracle Cloud List Autonomous Databases",
+            "description": {
+              "content": "Gets a list of Autonomous Databases in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3891ef3-0cc1-4d4d-beb7-b25b3784ba6e",
+              "name": "Successfully retrieved list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"my-resource\",\n    \"dbName\": \"example-value\",\n    \"cpuCoreCount\": 1,\n    \"dataStorageSizeInTBs\": 1,\n    \"dbWorkload\": \"example-value\",\n    \"lifecycleState\": \"example-value\",\n    \"isFreeTier\": true,\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9a12856-3fff-46e7-99c9-cd24ac3072c2",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example-value\",\n  \"message\": \"example-value\",\n  \"status\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1857e67c-530d-4a6e-9501-2819e9552bea",
+          "name": "Oracle Cloud Create Autonomous Database",
+          "request": {
+            "name": "Oracle Cloud Create Autonomous Database",
+            "description": {
+              "content": "Creates a new Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<password>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"<string>\",\n  \"isFreeTier\": false,\n  \"isAutoScalingEnabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8238b902-b8df-46ab-b3ba-609e39ffd96d",
+              "name": "Successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"dbName\": \"MYADB\",\n  \"displayName\": \"my-adb\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"adminPassword\": \"********\",\n  \"dbWorkload\": \"OLTP\",\n  \"isFreeTier\": false,\n  \"isAutoScalingEnabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.autonomousdatabase.oc1.iad.abcdefg\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-adb\",\n  \"dbName\": \"MYADB\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"isFreeTier\": true,\n  \"isAutoScalingEnabled\": true,\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"example-value\",\n    \"apexUrl\": \"example-value\",\n    \"graphStudioUrl\": \"example-value\"\n  },\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ae50241-c119-43e1-8624-86f7a2ca25c7",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"dbName\": \"MYADB\",\n  \"displayName\": \"my-adb\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"adminPassword\": \"********\",\n  \"dbWorkload\": \"OLTP\",\n  \"isFreeTier\": false,\n  \"isAutoScalingEnabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example-value\",\n  \"message\": \"example-value\",\n  \"status\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be579465-09cf-4aca-9a23-75576f85712d",
+          "name": "Oracle Cloud Get Autonomous Database",
+          "request": {
+            "name": "Oracle Cloud Get Autonomous Database",
+            "description": {
+              "content": "Gets the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca4ba2d3-c021-4283-995b-09653ac45486",
+              "name": "Successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.autonomousdatabase.oc1.iad.abcdefg\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-adb\",\n  \"dbName\": \"MYADB\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"isFreeTier\": true,\n  \"isAutoScalingEnabled\": true,\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"example-value\",\n    \"apexUrl\": \"example-value\",\n    \"graphStudioUrl\": \"example-value\"\n  },\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc403883-feb7-4c38-99a5-211931b98272",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example-value\",\n  \"message\": \"example-value\",\n  \"status\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf7d024d-c8e4-4cfc-ae55-b04429acffe9",
+          "name": "Oracle Cloud Update Autonomous Database",
+          "request": {
+            "name": "Oracle Cloud Update Autonomous Database",
+            "description": {
+              "content": "Updates the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52ad8b72-e691-4aca-90fe-c65f96374bf9",
+              "name": "Successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"my-resource\",\n  \"cpuCoreCount\": 1,\n  \"dataStorageSizeInTBs\": 1,\n  \"isAutoScalingEnabled\": true,\n  \"adminPassword\": \"********\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.autonomousdatabase.oc1.iad.abcdefg\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-adb\",\n  \"dbName\": \"MYADB\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"isFreeTier\": true,\n  \"isAutoScalingEnabled\": true,\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"example-value\",\n    \"apexUrl\": \"example-value\",\n    \"graphStudioUrl\": \"example-value\"\n  },\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9998a30f-735a-4ba0-88e4-85fdac08e668",
+          "name": "Oracle Cloud Delete Autonomous Database",
+          "request": {
+            "name": "Oracle Cloud Delete Autonomous Database",
+            "description": {
+              "content": "Deletes the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90505f2d-8895-4ae3-b396-917151541b0f",
+              "name": "Successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "501f085c-8c4e-40ad-b1b9-f2e37d6fe5a3",
+          "name": "Oracle Cloud Start Autonomous Database",
+          "request": {
+            "name": "Oracle Cloud Start Autonomous Database",
+            "description": {
+              "content": "Starts the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId",
+                "actions",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0790e1b3-4fd1-48d2-8af1-8d8ccc54d72d",
+              "name": "Successfully started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.autonomousdatabase.oc1.iad.abcdefg\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-adb\",\n  \"dbName\": \"MYADB\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"isFreeTier\": true,\n  \"isAutoScalingEnabled\": true,\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"example-value\",\n    \"apexUrl\": \"example-value\",\n    \"graphStudioUrl\": \"example-value\"\n  },\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7662650b-a48c-4350-916d-fb64cc097f97",
+          "name": "Oracle Cloud Stop Autonomous Database",
+          "request": {
+            "name": "Oracle Cloud Stop Autonomous Database",
+            "description": {
+              "content": "Stops the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId",
+                "actions",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10fe5c8f-8b7a-41dc-8bfa-88cbd1d0456c",
+              "name": "Successfully stopped.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.autonomousdatabase.oc1.iad.abcdefg\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-adb\",\n  \"dbName\": \"MYADB\",\n  \"cpuCoreCount\": 2,\n  \"dataStorageSizeInTBs\": 1,\n  \"dbWorkload\": \"OLTP\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"isFreeTier\": true,\n  \"isAutoScalingEnabled\": true,\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"example-value\",\n    \"apexUrl\": \"example-value\",\n    \"graphStudioUrl\": \"example-value\"\n  },\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b1cee843-5688-4127-8f2d-589ad429fa98",
+    "name": "Oracle Cloud Compute Alarms Autonomous Databases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

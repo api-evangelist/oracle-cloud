@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Buckets API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Buckets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              },
+              {
+                "name": "page",
+                "value": "example-value",
+                "type": "query",
+                "description": "Pagination token."
+              }
+            ]
+          },
+          "docs": "Gets a list of all BucketSummary items in a compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a bucket in the given namespace with a bucket name and compartment ID."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              }
+            ]
+          },
+          "docs": "Gets the current representation of the given bucket."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Update Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a partial or full update of a bucket's metadata."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              }
+            ]
+          },
+          "docs": "Deletes a bucket if the bucket is already empty."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

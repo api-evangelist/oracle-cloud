@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Instances API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/instances",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "availabilityDomain",
+                "value": "Uocm:US-ASHBURN-AD-1",
+                "type": "query",
+                "description": "The name of the availability domain."
+              },
+              {
+                "name": "displayName",
+                "value": "my-resource",
+                "type": "query",
+                "description": "A filter to return only resources matching the display name."
+              },
+              {
+                "name": "lifecycleState",
+                "value": "PROVISIONING",
+                "type": "query",
+                "description": "A filter to return only resources matching the lifecycle state."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "page",
+                "value": "example-value",
+                "type": "query",
+                "description": "Pagination token from a previous list call."
+              }
+            ]
+          },
+          "docs": "Lists the instances in the specified compartment and availability domain."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Launch Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new instance in the specified compartment and availability domain."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the instance."
+              }
+            ]
+          },
+          "docs": "Gets information about the specified instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Update Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the instance."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates certain fields on the specified instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Terminate Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the instance."
+              },
+              {
+                "name": "preserveBootVolume",
+                "value": "false",
+                "type": "query",
+                "description": "Whether to preserve the boot volume when terminating."
+              }
+            ]
+          },
+          "docs": "Terminates the specified instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Instance Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/instances/:instanceId/actions/:action",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the instance."
+              },
+              {
+                "name": "action",
+                "value": "STOP",
+                "type": "path",
+                "description": "The action to perform on the instance."
+              }
+            ]
+          },
+          "docs": "Performs an action on the specified instance such as start, stop, reset, or soft reset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

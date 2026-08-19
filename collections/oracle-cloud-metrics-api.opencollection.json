@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Metrics API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud Summarize Metrics Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/metrics/actions/summarizeMetricsData",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns aggregated metric data that match the criteria specified in the request."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud List Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/metrics",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "query",
+                "description": "The metric name."
+              },
+              {
+                "name": "namespace",
+                "value": "oci_computeagent",
+                "type": "query",
+                "description": "The metric namespace."
+              }
+            ]
+          },
+          "docs": "Returns metric definitions that match the criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

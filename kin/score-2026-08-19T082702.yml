@@ -1,0 +1,45 @@
+# Kin Score artifact — oracle-cloud — 2026-08-19T082702
+# The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
+---
+kin_score:
+  slug: oracle-cloud
+  schema_version: 0.12.0
+  scored_at: '2026-08-19'
+  run_ts: 2026-08-19T082702
+  composite: 54.6
+  band: strong
+  facets:
+    discoverability: 59.3
+    contract_quality: 32.7
+    governance: 54.5
+    operational_transparency: 42.1
+    developer_ergonomics: 82.1
+    commercial_clarity: 60.5
+    contract_governance: 54.5
+    access_clarity: 60.5
+  agent_readiness:
+    score: 41.9
+    band: agent-ready
+    dimensions:
+      spec_presence: true
+      agentic_access: derived
+      reversibility_documented: false
+      mcp_server: false
+      auth_clarity: true
+      idempotency: false
+      error_semantics: verified
+      openapi_examples: verified
+      rate_limit_signal: documented
+      event_surface_described: false
+      agent_skills: false
+      well_known_catalog: false
+      consent_identity: false
+      agent_card: false
+      dry_run_mode: false
+  provenance:
+    agentic_access: derived
+    contracts:
+      total: 25
+      derived: 25
+      coverage: 100.0
+      callable: 100.0

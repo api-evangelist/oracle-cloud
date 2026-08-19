@@ -1,0 +1,1449 @@
+{
+  "item": [
+    {
+      "id": "6f787754-2711-4e4a-9f88-1e33d7283721",
+      "name": "Instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a2b3c91-1db0-47af-ba25-b5420c411875",
+          "name": "Oracle Cloud List Instances",
+          "request": {
+            "name": "Oracle Cloud List Instances",
+            "description": {
+              "content": "Lists the instances in the specified compartment and availability domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                },
+                {
+                  "disabled": false,
+                  "key": "availabilityDomain",
+                  "value": "<string>",
+                  "description": "The name of the availability domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "displayName",
+                  "value": "<string>",
+                  "description": "A filter to return only resources matching the display name."
+                },
+                {
+                  "disabled": false,
+                  "key": "lifecycleState",
+                  "value": "<string>",
+                  "description": "A filter to return only resources matching the lifecycle state."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous list call."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17de0398-61c3-4cae-8c8b-3eb1cf30bf66",
+              "name": "Successfully retrieved list of instances.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "availabilityDomain",
+                      "value": "Uocm:US-ASHBURN-AD-1"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "my-resource"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "PROVISIONING"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.instance.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n    \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n    \"displayName\": \"my-instance-01\",\n    \"shape\": \"VM.Standard.E4.Flex\",\n    \"lifecycleState\": \"RUNNING\",\n    \"region\": \"us-ashburn-1\",\n    \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n    \"timeCreated\": \"2026-01-15T10:30:00Z\",\n    \"freeformTags\": {\n      \"key1\": \"value1\"\n    },\n    \"definedTags\": {\n      \"key1\": \"value1\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3fcd66e-37f9-4022-887b-4b5bea1f3a62",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "availabilityDomain",
+                      "value": "Uocm:US-ASHBURN-AD-1"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "my-resource"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "PROVISIONING"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce2a2b91-aaf0-4af8-a8fd-7e0044c6414c",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "availabilityDomain",
+                      "value": "Uocm:US-ASHBURN-AD-1"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "my-resource"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "PROVISIONING"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a247949b-66ea-4575-b787-8840bc1c8f62",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "availabilityDomain",
+                      "value": "Uocm:US-ASHBURN-AD-1"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "my-resource"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "PROVISIONING"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84008233-0800-4d89-9a35-bafe26bbe7f1",
+          "name": "Oracle Cloud Launch Instance",
+          "request": {
+            "name": "Oracle Cloud Launch Instance",
+            "description": {
+              "content": "Creates a new instance in the specified compartment and availability domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"imageId\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a0f2981-4cc6-484c-9393-58b25dae49ab",
+              "name": "Successfully launched instance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"displayName\": \"my-new-instance\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"subnetId\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n  \"shapeConfig\": {\n    \"ocpus\": 2,\n    \"memoryInGBs\": 16\n  },\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.instance.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"displayName\": \"my-instance-01\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"us-ashburn-1\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"timeCreated\": \"2026-01-15T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  },\n  \"definedTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dd62856-9190-422d-882b-5478fdfd00dc",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"displayName\": \"my-new-instance\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"subnetId\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n  \"shapeConfig\": {\n    \"ocpus\": 2,\n    \"memoryInGBs\": 16\n  },\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3148c14d-a2ce-4129-9325-b5589160e52c",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"displayName\": \"my-new-instance\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"subnetId\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n  \"shapeConfig\": {\n    \"ocpus\": 2,\n    \"memoryInGBs\": 16\n  },\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd1f3610-55c6-4a75-83ea-9e14ff7c1703",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"displayName\": \"my-new-instance\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"subnetId\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n  \"shapeConfig\": {\n    \"ocpus\": 2,\n    \"memoryInGBs\": 16\n  },\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3061a48f-6904-47d5-9710-38021bf41ae5",
+          "name": "Oracle Cloud Get Instance",
+          "request": {
+            "name": "Oracle Cloud Get Instance",
+            "description": {
+              "content": "Gets information about the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The OCID of the instance."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8290f6ed-cab5-4a0a-b2b4-c331aa4ca786",
+              "name": "Successfully retrieved instance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.instance.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"displayName\": \"my-instance-01\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"us-ashburn-1\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"timeCreated\": \"2026-01-15T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  },\n  \"definedTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbfa451e-2d8b-4ea7-aab9-a3cd8279c752",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16c2228f-8195-40eb-a226-0fe023190dba",
+          "name": "Oracle Cloud Update Instance",
+          "request": {
+            "name": "Oracle Cloud Update Instance",
+            "description": {
+              "content": "Updates certain fields on the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The OCID of the instance."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"shapeConfig\": {\n    \"ocpus\": \"<number>\",\n    \"memoryInGBs\": \"<number>\"\n  },\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e7ddd7d-c936-4be8-a89c-aee3304c0aa3",
+              "name": "Successfully updated instance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"updated-instance-name\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"shapeConfig\": {\n    \"ocpus\": 4,\n    \"memoryInGBs\": 32\n  },\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.instance.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"displayName\": \"my-instance-01\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"us-ashburn-1\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"timeCreated\": \"2026-01-15T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  },\n  \"definedTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8d1cba9-78df-47f8-8cb2-ee2cc9dd8ec2",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"updated-instance-name\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"shapeConfig\": {\n    \"ocpus\": 4,\n    \"memoryInGBs\": 32\n  },\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6481a166-043d-4ad2-974b-0dca922f6839",
+          "name": "Oracle Cloud Terminate Instance",
+          "request": {
+            "name": "Oracle Cloud Terminate Instance",
+            "description": {
+              "content": "Terminates the specified instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "preserveBootVolume",
+                  "value": "false",
+                  "description": "Whether to preserve the boot volume when terminating."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The OCID of the instance."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48a93476-da00-4dbb-9557-465cbed42ff6",
+              "name": "Successfully terminated instance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "preserveBootVolume",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8cab2955-93d3-4c00-89d6-85c35d3126fc",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "preserveBootVolume",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57186341-f2c2-48be-acb7-d37c7430a19e",
+          "name": "Oracle Cloud Instance Action",
+          "request": {
+            "name": "Oracle Cloud Instance Action",
+            "description": {
+              "content": "Performs an action on the specified instance such as start, stop, reset, or soft reset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "actions",
+                ":action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The OCID of the instance."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "action",
+                  "description": "(Required) The action to perform on the instance."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "766a5b5d-8baf-4a15-867a-c9d1431ab4ff",
+              "name": "Action performed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "actions",
+                    ":action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action",
+                      "description": "(Required) The action to perform on the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.instance.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.compartment.oc1..abcdefg123456\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"displayName\": \"my-instance-01\",\n  \"shape\": \"VM.Standard.E4.Flex\",\n  \"lifecycleState\": \"RUNNING\",\n  \"region\": \"us-ashburn-1\",\n  \"imageId\": \"ocid1.image.oc1.iad.abcdefg123456\",\n  \"timeCreated\": \"2026-01-15T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  },\n  \"definedTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6c65320-5c51-4a15-a72c-5b543224edba",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "actions",
+                    ":action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The OCID of the instance."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action",
+                      "description": "(Required) The action to perform on the instance."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "07057da2-1b85-4e23-8327-8064ac2d5ea4",
+    "name": "Oracle Cloud Compute Alarms Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

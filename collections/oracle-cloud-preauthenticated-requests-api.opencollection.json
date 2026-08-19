@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Preauthenticated Requests API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preauthenticated Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Preauthenticated Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName/p",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Lists pre-authenticated requests for the bucket."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Preauthenticated Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/n/:namespaceName/b/:bucketName/p",
+            "params": [
+              {
+                "name": "namespaceName",
+                "value": "oci_computeagent",
+                "type": "path",
+                "description": "The Object Storage namespace."
+              },
+              {
+                "name": "bucketName",
+                "value": "example-value",
+                "type": "path",
+                "description": "The name of the bucket."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a pre-authenticated request for the bucket."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

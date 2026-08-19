@@ -1,0 +1,801 @@
+{
+  "item": [
+    {
+      "id": "584e5939-bcb3-4f8d-afae-ae2ea69b2c3b",
+      "name": "VCNs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8713e75-3037-42aa-8766-4eca6e424eca",
+          "name": "Oracle Cloud List VCNs",
+          "request": {
+            "name": "Oracle Cloud List VCNs",
+            "description": {
+              "content": "Lists the virtual cloud networks in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vcns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a506cce0-28cb-45c6-b1e0-f83d3dab4759",
+              "name": "Successfully retrieved list of VCNs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.vcn.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"my-vcn\",\n    \"cidrBlock\": \"10.0.0.0/16\",\n    \"cidrBlocks\": [\n      \"10.0.0.0/16\"\n    ],\n    \"defaultDhcpOptionsId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"defaultRouteTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"defaultSecurityListId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"dnsLabel\": \"myvcn\",\n    \"lifecycleState\": \"PROVISIONING\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\",\n    \"freeformTags\": {\n      \"key1\": \"value1\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87ea9f10-a841-4a25-a9a5-d48b47b737f4",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "example-value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "954dc8a6-f0f5-49dc-91a8-1030ee0df798",
+          "name": "Oracle Cloud Create VCN",
+          "request": {
+            "name": "Oracle Cloud Create VCN",
+            "description": {
+              "content": "Creates a new virtual cloud network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vcns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"cidrBlocks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f065f27-9c96-43c3-b563-2ae62fc3cc1c",
+              "name": "Successfully created VCN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"cidrBlocks\": [\n    \"10.0.0.0/16\"\n  ],\n  \"displayName\": \"my-vcn\",\n  \"dnsLabel\": \"myvcn\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.vcn.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-vcn\",\n  \"cidrBlock\": \"10.0.0.0/16\",\n  \"cidrBlocks\": [\n    \"10.0.0.0/16\"\n  ],\n  \"defaultDhcpOptionsId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"defaultRouteTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"defaultSecurityListId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"dnsLabel\": \"myvcn\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a05061d4-9df0-4073-90f7-0fc6ada3aefc",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"cidrBlocks\": [\n    \"10.0.0.0/16\"\n  ],\n  \"displayName\": \"my-vcn\",\n  \"dnsLabel\": \"myvcn\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f6082fa-fe1e-46da-8a59-5a669856e5ac",
+          "name": "Oracle Cloud Get VCN",
+          "request": {
+            "name": "Oracle Cloud Get VCN",
+            "description": {
+              "content": "Gets the specified VCN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vcns",
+                ":vcnId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vcnId",
+                  "description": "(Required) The OCID of the VCN."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "617a2bf8-c019-4f4f-aaef-381ea3fa0ecf",
+              "name": "Successfully retrieved VCN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vcnId",
+                      "description": "(Required) The OCID of the VCN."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.vcn.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-vcn\",\n  \"cidrBlock\": \"10.0.0.0/16\",\n  \"cidrBlocks\": [\n    \"10.0.0.0/16\"\n  ],\n  \"defaultDhcpOptionsId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"defaultRouteTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"defaultSecurityListId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"dnsLabel\": \"myvcn\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64b9b486-222c-4e12-9227-d246ab3a16a9",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vcnId",
+                      "description": "(Required) The OCID of the VCN."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorizedOrNotFound\",\n  \"message\": \"Authorization failed or requested resource not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92ca935c-9105-409d-89fd-459253a9dbcc",
+          "name": "Oracle Cloud Update VCN",
+          "request": {
+            "name": "Oracle Cloud Update VCN",
+            "description": {
+              "content": "Updates the specified VCN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vcns",
+                ":vcnId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vcnId",
+                  "description": "(Required) The OCID of the VCN."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7aea35d-984e-445a-8783-dde8607c9315",
+              "name": "Successfully updated VCN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vcnId",
+                      "description": "(Required) The OCID of the VCN."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"my-resource\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.vcn.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"my-vcn\",\n  \"cidrBlock\": \"10.0.0.0/16\",\n  \"cidrBlocks\": [\n    \"10.0.0.0/16\"\n  ],\n  \"defaultDhcpOptionsId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"defaultRouteTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"defaultSecurityListId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"dnsLabel\": \"myvcn\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\",\n  \"freeformTags\": {\n    \"key1\": \"value1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45927b6c-d338-4300-ae62-c3f6624ee2ab",
+          "name": "Oracle Cloud Delete VCN",
+          "request": {
+            "name": "Oracle Cloud Delete VCN",
+            "description": {
+              "content": "Deletes the specified VCN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vcns",
+                ":vcnId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vcnId",
+                  "description": "(Required) The OCID of the VCN."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef20fbaa-b508-4ad1-83e4-2c106cfb1d03",
+              "name": "Successfully deleted VCN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vcns",
+                    ":vcnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vcnId",
+                      "description": "(Required) The OCID of the VCN."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "495abbb4-37a6-4c22-b593-dca2f0eb5954",
+    "name": "Oracle Cloud Compute Alarms VCNs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

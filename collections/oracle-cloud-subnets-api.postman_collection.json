@@ -1,0 +1,493 @@
+{
+  "item": [
+    {
+      "id": "ac944a25-914d-4c7b-b773-1be0ac68aa28",
+      "name": "Subnets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc4baf29-dec8-4878-b0ec-3006c5c29e21",
+          "name": "Oracle Cloud List Subnets",
+          "request": {
+            "name": "Oracle Cloud List Subnets",
+            "description": {
+              "content": "Lists the subnets in the specified VCN and compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment."
+                },
+                {
+                  "disabled": false,
+                  "key": "vcnId",
+                  "value": "<string>",
+                  "description": "The OCID of the VCN."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18762622-6e1b-4622-ac55-ad2a43161e70",
+              "name": "Successfully retrieved list of subnets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "vcnId",
+                      "value": "ocid1.resource.oc1.iad.abcdefg123456"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n    \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"vcnId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"displayName\": \"public-subnet-1\",\n    \"cidrBlock\": \"10.0.0.0/24\",\n    \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n    \"dnsLabel\": \"myresource\",\n    \"prohibitPublicIpOnVnic\": true,\n    \"routeTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n    \"securityListIds\": [\n      \"example-value\"\n    ],\n    \"lifecycleState\": \"PROVISIONING\",\n    \"timeCreated\": \"2026-04-18T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e63172f-e294-4ff3-8f4a-78a5622631b9",
+          "name": "Oracle Cloud Create Subnet",
+          "request": {
+            "name": "Oracle Cloud Create Subnet",
+            "description": {
+              "content": "Creates a new subnet in the specified VCN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"vcnId\": \"<string>\",\n  \"cidrBlock\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dnsLabel\": \"<string>\",\n  \"prohibitPublicIpOnVnic\": false,\n  \"routeTableId\": \"<string>\",\n  \"securityListIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebedf2b1-b37b-43e8-91fc-90f627f8ed34",
+              "name": "Successfully created subnet.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"vcnId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"cidrBlock\": \"10.0.0.0/24\",\n  \"displayName\": \"public-subnet-1\",\n  \"dnsLabel\": \"myresource\",\n  \"prohibitPublicIpOnVnic\": false,\n  \"routeTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"securityListIds\": [\n    \"example-value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"vcnId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"public-subnet-1\",\n  \"cidrBlock\": \"10.0.0.0/24\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"dnsLabel\": \"myresource\",\n  \"prohibitPublicIpOnVnic\": true,\n  \"routeTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"securityListIds\": [\n    \"example-value\"\n  ],\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef1e47ad-2cf9-4697-ba5b-5d2708fa44de",
+          "name": "Oracle Cloud Get Subnet",
+          "request": {
+            "name": "Oracle Cloud Get Subnet",
+            "description": {
+              "content": "Gets the specified subnet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnets",
+                ":subnetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subnetId",
+                  "description": "(Required) The OCID of the subnet."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d63f885-16b4-4899-9245-113ab1ad2947",
+              "name": "Successfully retrieved subnet.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnets",
+                    ":subnetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subnetId",
+                      "description": "(Required) The OCID of the subnet."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ocid1.subnet.oc1.iad.abcdefg123456\",\n  \"compartmentId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"vcnId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"displayName\": \"public-subnet-1\",\n  \"cidrBlock\": \"10.0.0.0/24\",\n  \"availabilityDomain\": \"Uocm:US-ASHBURN-AD-1\",\n  \"dnsLabel\": \"myresource\",\n  \"prohibitPublicIpOnVnic\": true,\n  \"routeTableId\": \"ocid1.resource.oc1.iad.abcdefg123456\",\n  \"securityListIds\": [\n    \"example-value\"\n  ],\n  \"lifecycleState\": \"PROVISIONING\",\n  \"timeCreated\": \"2026-04-18T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b41f1e79-5053-4126-8b39-2327983591e1",
+          "name": "Oracle Cloud Delete Subnet",
+          "request": {
+            "name": "Oracle Cloud Delete Subnet",
+            "description": {
+              "content": "Deletes the specified subnet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnets",
+                ":subnetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subnetId",
+                  "description": "(Required) The OCID of the subnet."
+                },
+                {
+                  "description": "OCI region identifier",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60857f11-6614-417a-9669-d21650d5522d",
+              "name": "Successfully deleted subnet.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnets",
+                    ":subnetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subnetId",
+                      "description": "(Required) The OCID of the subnet."
+                    },
+                    {
+                      "description": "OCI region identifier",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://iaas.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6e22d24e-3806-4dc1-b399-78f23e456d81",
+    "name": "Oracle Cloud Compute Alarms Subnets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.\n\nContact Support:\n Name: Oracle Cloud Infrastructure",
+      "type": "text/plain"
+    }
+  }
+}

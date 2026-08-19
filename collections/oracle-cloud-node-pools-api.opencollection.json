@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Cloud Compute Alarms Node Pools API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Node Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Cloud List Node Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/nodePools",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the compartment."
+              },
+              {
+                "name": "clusterId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "query",
+                "description": "The OCID of the cluster."
+              }
+            ]
+          },
+          "docs": "List all node pools in a compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Create Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/nodePools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new node pool in a cluster."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Get Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/nodePools/:nodePoolId",
+            "params": [
+              {
+                "name": "nodePoolId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the node pool."
+              }
+            ]
+          },
+          "docs": "Get the specified node pool."
+        },
+        {
+          "info": {
+            "name": "Oracle Cloud Delete Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://iaas.{region}.oraclecloud.com/20160918/nodePools/:nodePoolId",
+            "params": [
+              {
+                "name": "nodePoolId",
+                "value": "ocid1.resource.oc1.iad.abcdefg123456",
+                "type": "path",
+                "description": "The OCID of the node pool."
+              }
+            ]
+          },
+          "docs": "Delete a node pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
