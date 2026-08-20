@@ -28,6 +28,12 @@ url: >-
 tags:
   - Cloud Computing
   - Enterprise Cloud
+  - Infrastructure-as-a-Service
+  - Oracle
+  - Platform-as-a-Service
+tags_raw:
+  - Cloud Computing
+  - Enterprise Cloud
   - Infrastructure as a Service
   - Oracle
   - Platform as a Service
@@ -424,6 +430,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -1583,6 +1591,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -3127,6 +3137,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -3513,6 +3525,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -8535,6 +8549,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
