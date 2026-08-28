@@ -11,8 +11,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: computeApi
-  url: ../openapi/oracle-cloud-compute-openapi.yaml
+- name: instancesApi
+  url: ../openapi/oracle-cloud-instances-api-openapi.yml
+  type: openapi
+- name: volumeAttachmentsApi
+  url: ../openapi/oracle-cloud-volume-attachments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: launch-instance-with-volume

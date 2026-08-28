@@ -10,8 +10,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
+- name: applicationsApi
+  url: ../openapi/oracle-cloud-applications-api-openapi.yml
+  type: openapi
 - name: functionsApi
-  url: ../openapi/oracle-cloud-functions-openapi.yaml
+  url: ../openapi/oracle-cloud-functions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: teardown-functions-application

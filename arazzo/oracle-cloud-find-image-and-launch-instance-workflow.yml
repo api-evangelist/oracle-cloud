@@ -11,8 +11,14 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: computeApi
-  url: ../openapi/oracle-cloud-compute-openapi.yaml
+- name: imagesApi
+  url: ../openapi/oracle-cloud-images-api-openapi.yml
+  type: openapi
+- name: instancesApi
+  url: ../openapi/oracle-cloud-instances-api-openapi.yml
+  type: openapi
+- name: shapesApi
+  url: ../openapi/oracle-cloud-shapes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: find-image-and-launch-instance

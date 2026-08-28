@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: monitoringApi
-  url: ../openapi/oracle-cloud-monitoring-openapi.yaml
+- name: alarmsApi
+  url: ../openapi/oracle-cloud-alarms-api-openapi.yml
+  type: openapi
+- name: metricsApi
+  url: ../openapi/oracle-cloud-metrics-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-metric-alarm

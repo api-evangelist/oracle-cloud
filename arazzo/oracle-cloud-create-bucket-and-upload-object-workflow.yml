@@ -11,8 +11,14 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: objectStorageApi
-  url: ../openapi/oracle-cloud-object-storage-openapi.yaml
+- name: bucketsApi
+  url: ../openapi/oracle-cloud-buckets-api-openapi.yml
+  type: openapi
+- name: namespacesApi
+  url: ../openapi/oracle-cloud-namespaces-api-openapi.yml
+  type: openapi
+- name: objectsApi
+  url: ../openapi/oracle-cloud-objects-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-bucket-and-upload-object

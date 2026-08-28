@@ -11,8 +11,17 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: networkingApi
-  url: ../openapi/oracle-cloud-networking-openapi.yaml
+- name: routeTablesApi
+  url: ../openapi/oracle-cloud-route-tables-api-openapi.yml
+  type: openapi
+- name: securityListsApi
+  url: ../openapi/oracle-cloud-security-lists-api-openapi.yml
+  type: openapi
+- name: subnetsApi
+  url: ../openapi/oracle-cloud-subnets-api-openapi.yml
+  type: openapi
+- name: vcnsApi
+  url: ../openapi/oracle-cloud-vcns-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: add-secured-subnet

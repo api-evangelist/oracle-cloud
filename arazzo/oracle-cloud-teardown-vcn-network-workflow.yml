@@ -10,8 +10,11 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: networkingApi
-  url: ../openapi/oracle-cloud-networking-openapi.yaml
+- name: subnetsApi
+  url: ../openapi/oracle-cloud-subnets-api-openapi.yml
+  type: openapi
+- name: vcnsApi
+  url: ../openapi/oracle-cloud-vcns-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: teardown-vcn-network

@@ -10,8 +10,14 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: iamApi
-  url: ../openapi/oracle-cloud-iam-openapi.yaml
+- name: groupsApi
+  url: ../openapi/oracle-cloud-groups-api-openapi.yml
+  type: openapi
+- name: policiesApi
+  url: ../openapi/oracle-cloud-policies-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/oracle-cloud-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: onboard-iam-user

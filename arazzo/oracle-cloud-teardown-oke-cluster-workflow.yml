@@ -10,8 +10,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: okeApi
-  url: ../openapi/oracle-cloud-oke-openapi.yaml
+- name: clustersApi
+  url: ../openapi/oracle-cloud-clusters-api-openapi.yml
+  type: openapi
+- name: nodePoolsApi
+  url: ../openapi/oracle-cloud-node-pools-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: teardown-oke-cluster
