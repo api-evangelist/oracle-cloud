@@ -1,20 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
-  version: '20160918'
+  title: Oracle Cloud Monitoring Alarms API
+  description: Monitor cloud resources using metrics and alarms in Oracle Cloud Infrastructure.
+  version: '20180401'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
-  contact:
-    name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://telemetry.{region}.oraclecloud.com/20180401
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -230,6 +225,24 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AlarmSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
+        lifecycleState:
+          type: string
+          example: example-value
     UpdateAlarmDetails:
       type: object
       properties:
@@ -289,24 +302,6 @@ components:
             type: string
           example:
           - example-value
-    AlarmSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        severity:
-          type: string
-          example: example-value
-        isEnabled:
-          type: boolean
-          example: true
-        lifecycleState:
-          type: string
-          example: example-value
     Alarm:
       type: object
       description: A monitoring alarm.
@@ -361,4 +356,4 @@ components:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

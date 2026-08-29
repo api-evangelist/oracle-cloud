@@ -1,20 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Node Pools API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
-  version: '20160918'
+  title: Oracle Cloud Container Engine for Kubernetes Node Pools API
+  description: Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.
+  version: '20180222'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
-  contact:
-    name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://containerengine.{region}.oraclecloud.com/20180222
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -155,6 +150,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    NodePoolSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        clusterId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        kubernetesVersion:
+          type: string
+          example: v1.28.2
+        nodeShape:
+          type: string
+          example: VM.Standard.E4.Flex
+        lifecycleState:
+          type: string
+          example: example-value
     CreateNodePoolDetails:
       type: object
       required:
@@ -182,27 +198,6 @@ components:
         quantityPerSubnet:
           type: integer
           example: 1
-    NodePoolSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        clusterId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-        nodeShape:
-          type: string
-          example: VM.Standard.E4.Flex
-        lifecycleState:
-          type: string
-          example: example-value
     NodePool:
       type: object
       description: A node pool in a Kubernetes cluster.
@@ -239,4 +234,4 @@ components:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

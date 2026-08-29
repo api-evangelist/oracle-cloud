@@ -1,20 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Applications API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
-  version: '20160918'
+  title: Oracle Cloud Functions Applications API
+  description: Serverless platform for building and running applications on Oracle Cloud Infrastructure.
+  version: '20181201'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
-  contact:
-    name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://functions.{region}.oraclecloud.com/20181201
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -165,6 +160,50 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ApplicationSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateApplicationDetails:
+      type: object
+      required:
+      - compartmentId
+      - displayName
+      - subnetIds
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        subnetIds:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
     Application:
       type: object
       description: A Functions application containing one or more functions.
@@ -204,52 +243,8 @@ components:
             type: string
           example:
             key1: value1
-    CreateApplicationDetails:
-      type: object
-      required:
-      - compartmentId
-      - displayName
-      - subnetIds
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        subnetIds:
-          type: array
-          items:
-            type: string
-          example:
-          - example-value
-        config:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
-    ApplicationSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        lifecycleState:
-          type: string
-          example: example-value
-        timeCreated:
-          type: string
-          format: date-time
-          example: '2026-04-18T10:30:00Z'
   securitySchemes:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

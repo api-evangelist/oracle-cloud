@@ -1,20 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Autonomous Databases API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  title: Oracle Cloud Database Autonomous Databases API
+  description: Manage Oracle Database Cloud Services and Autonomous Databases in Oracle Cloud Infrastructure.
   version: '20160918'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
   contact:
     name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+    url: https://docs.oracle.com/en-us/iaas/Content/Database/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database API server
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -401,51 +400,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CreateAutonomousDatabaseDetails:
-      type: object
-      description: Details for creating an Autonomous Database.
-      required:
-      - compartmentId
-      - dbName
-      - cpuCoreCount
-      - dataStorageSizeInTBs
-      - adminPassword
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        dbName:
-          type: string
-          example: MYADB
-        displayName:
-          type: string
-          example: my-adb
-        cpuCoreCount:
-          type: integer
-          example: 2
-        dataStorageSizeInTBs:
-          type: integer
-          example: 1
-        adminPassword:
-          type: string
-          format: password
-          example: '********'
-        dbWorkload:
-          type: string
-          enum:
-          - OLTP
-          - DW
-          - AJD
-          - APEX
-          example: OLTP
-        isFreeTier:
-          type: boolean
-          default: false
-          example: false
-        isAutoScalingEnabled:
-          type: boolean
-          default: false
-          example: false
     Error:
       type: object
       properties:
@@ -458,60 +412,6 @@ components:
         status:
           type: integer
           example: 1
-    UpdateAutonomousDatabaseDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-          example: my-resource
-        cpuCoreCount:
-          type: integer
-          example: 1
-        dataStorageSizeInTBs:
-          type: integer
-          example: 1
-        isAutoScalingEnabled:
-          type: boolean
-          example: true
-        adminPassword:
-          type: string
-          format: password
-          example: '********'
-    AutonomousDatabaseSummary:
-      type: object
-      description: Summary of an Autonomous Database.
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        dbName:
-          type: string
-          example: example-value
-        cpuCoreCount:
-          type: integer
-          example: 1
-        dataStorageSizeInTBs:
-          type: integer
-          example: 1
-        dbWorkload:
-          type: string
-          example: example-value
-        lifecycleState:
-          type: string
-          example: example-value
-        isFreeTier:
-          type: boolean
-          example: true
-        timeCreated:
-          type: string
-          format: date-time
-          example: '2026-04-18T10:30:00Z'
     AutonomousDatabase:
       type: object
       description: An Oracle Autonomous Database.
@@ -597,8 +497,107 @@ components:
             type: string
           example:
             key1: value1
+    UpdateAutonomousDatabaseDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        cpuCoreCount:
+          type: integer
+          example: 1
+        dataStorageSizeInTBs:
+          type: integer
+          example: 1
+        isAutoScalingEnabled:
+          type: boolean
+          example: true
+        adminPassword:
+          type: string
+          format: password
+          example: '********'
+    CreateAutonomousDatabaseDetails:
+      type: object
+      description: Details for creating an Autonomous Database.
+      required:
+      - compartmentId
+      - dbName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+      - adminPassword
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dbName:
+          type: string
+          example: MYADB
+        displayName:
+          type: string
+          example: my-adb
+        cpuCoreCount:
+          type: integer
+          example: 2
+        dataStorageSizeInTBs:
+          type: integer
+          example: 1
+        adminPassword:
+          type: string
+          format: password
+          example: '********'
+        dbWorkload:
+          type: string
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+          example: OLTP
+        isFreeTier:
+          type: boolean
+          default: false
+          example: false
+        isAutoScalingEnabled:
+          type: boolean
+          default: false
+          example: false
+    AutonomousDatabaseSummary:
+      type: object
+      description: Summary of an Autonomous Database.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        dbName:
+          type: string
+          example: example-value
+        cpuCoreCount:
+          type: integer
+          example: 1
+        dataStorageSizeInTBs:
+          type: integer
+          example: 1
+        dbWorkload:
+          type: string
+          example: example-value
+        lifecycleState:
+          type: string
+          example: example-value
+        isFreeTier:
+          type: boolean
+          example: true
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
   securitySchemes:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

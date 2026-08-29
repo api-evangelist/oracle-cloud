@@ -1,20 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Compartments API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  title: Oracle Cloud Identity and Access Management Compartments API
+  description: Manage users, groups, policies, and authentication in Oracle Cloud Infrastructure.
   version: '20160918'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
   contact:
     name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+    url: https://docs.oracle.com/en-us/iaas/Content/Identity/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://identity.{region}.oraclecloud.com/20160918
+  description: OCI IAM API server
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -93,4 +92,4 @@ components:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

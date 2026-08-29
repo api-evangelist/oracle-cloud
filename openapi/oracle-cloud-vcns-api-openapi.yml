@@ -1,16 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms VCNs API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  title: Oracle Cloud Networking VC Ns API
+  description: Manage virtual cloud networks, subnets, security lists, and network resources in Oracle Cloud Infrastructure.
   version: '20160918'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
   contact:
     name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+    url: https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/overview.htm
 servers:
 - url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+  description: OCI Networking API server
   variables:
     region:
       default: us-ashburn-1
@@ -298,24 +298,43 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: NotAuthorizedOrNotFound
-        message:
-          type: string
-          example: Authorization failed or requested resource not found.
-        status:
-          type: integer
-          example: 404
     UpdateVcnDetails:
       type: object
       properties:
         displayName:
           type: string
           example: my-resource
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    CreateVcnDetails:
+      type: object
+      required:
+      - compartmentId
+      - cidrBlocks
+      properties:
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        cidrBlocks:
+          type: array
+          items:
+            type: string
+          description: List of CIDR blocks for the VCN.
+          example:
+          - 10.0.0.0/16
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-vcn
+        dnsLabel:
+          type: string
+          description: DNS label for the VCN.
+          example: myvcn
         freeformTags:
           type: object
           additionalProperties:
@@ -383,39 +402,20 @@ components:
             type: string
           example:
             key1: value1
-    CreateVcnDetails:
+    Error:
       type: object
-      required:
-      - compartmentId
-      - cidrBlocks
       properties:
-        compartmentId:
+        code:
           type: string
-          description: The OCID of the compartment.
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        cidrBlocks:
-          type: array
-          items:
-            type: string
-          description: List of CIDR blocks for the VCN.
-          example:
-          - 10.0.0.0/16
-        displayName:
+          example: NotAuthorizedOrNotFound
+        message:
           type: string
-          description: A user-friendly name.
-          example: my-vcn
-        dnsLabel:
-          type: string
-          description: DNS label for the VCN.
-          example: myvcn
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
+          example: Authorization failed or requested resource not found.
+        status:
+          type: integer
+          example: 404
   securitySchemes:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

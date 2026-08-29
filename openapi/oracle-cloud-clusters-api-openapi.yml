@@ -1,20 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Clusters API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
-  version: '20160918'
+  title: Oracle Cloud Container Engine for Kubernetes Clusters API
+  description: Manage Kubernetes clusters and node pools in Oracle Cloud Infrastructure.
+  version: '20180222'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
-  contact:
-    name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://containerengine.{region}.oraclecloud.com/20180222
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -181,6 +176,58 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ClusterSummary:
+      type: object
+      description: Cluster summary.
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        kubernetesVersion:
+          type: string
+          example: v1.28.2
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
+    CreateClusterDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - vcnId
+      - kubernetesVersion
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        vcnId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        kubernetesVersion:
+          type: string
+          example: v1.28.2
+    UpdateClusterDetails:
+      type: object
+      properties:
+        name:
+          type: string
+          example: example-value
+        kubernetesVersion:
+          type: string
+          example: v1.28.2
     Cluster:
       type: object
       description: A Kubernetes cluster managed by OKE.
@@ -228,60 +275,8 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
-    ClusterSummary:
-      type: object
-      description: Cluster summary.
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-        lifecycleState:
-          type: string
-          example: example-value
-        timeCreated:
-          type: string
-          format: date-time
-          example: '2026-04-18T10:30:00Z'
-    UpdateClusterDetails:
-      type: object
-      properties:
-        name:
-          type: string
-          example: example-value
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
-    CreateClusterDetails:
-      type: object
-      required:
-      - compartmentId
-      - name
-      - vcnId
-      - kubernetesVersion
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        vcnId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        kubernetesVersion:
-          type: string
-          example: v1.28.2
   securitySchemes:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

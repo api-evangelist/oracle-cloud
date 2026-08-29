@@ -1,20 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Functions API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
-  version: '20160918'
+  title: Oracle Cloud Functions API
+  description: Serverless platform for building and running applications on Oracle Cloud Infrastructure.
+  version: '20181201'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
-  contact:
-    name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://functions.{region}.oraclecloud.com/20181201
   variables:
     region:
       default: us-ashburn-1
-      description: OCI region identifier
 security:
 - ociSignature: []
 tags:
@@ -206,31 +201,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    FunctionSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        applicationId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        image:
-          type: string
-          example: ocid1.image.oc1.iad.abcdefg123456
-        memoryInMBs:
-          type: integer
-          example: 1
-        lifecycleState:
-          type: string
-          example: example-value
-        timeCreated:
-          type: string
-          format: date-time
-          example: '2026-04-18T10:30:00Z'
     Function:
       type: object
       description: A serverless function.
@@ -310,8 +280,33 @@ components:
             type: string
           example:
             key1: value1
+    FunctionSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        applicationId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        image:
+          type: string
+          example: ocid1.image.oc1.iad.abcdefg123456
+        memoryInMBs:
+          type: integer
+          example: 1
+        lifecycleState:
+          type: string
+          example: example-value
+        timeCreated:
+          type: string
+          format: date-time
+          example: '2026-04-18T10:30:00Z'
   securitySchemes:
     ociSignature:
       type: http
       scheme: bearer
-      description: OCI request signature authentication using API signing keys.
+      description: OCI request signature authentication.

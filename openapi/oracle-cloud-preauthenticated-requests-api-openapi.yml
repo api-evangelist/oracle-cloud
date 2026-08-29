@@ -1,16 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oracle Cloud Compute Alarms Preauthenticated Requests API
-  description: Manage compute instances, images, shapes, and related resources in Oracle Cloud Infrastructure.
+  title: Oracle Cloud Object Storage Preauthenticated Requests API
+  description: Store and retrieve large amounts of unstructured data in Oracle Cloud Infrastructure Object Storage.
   version: '20160918'
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
   contact:
     name: Oracle Cloud Infrastructure
-    url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
+    url: https://docs.oracle.com/en-us/iaas/Content/Object/home.htm
 servers:
-- url: https://iaas.{region}.oraclecloud.com/20160918
-  description: OCI Compute API server
+- url: https://objectstorage.{region}.oraclecloud.com
+  description: OCI Object Storage API server
   variables:
     region:
       default: us-ashburn-1
@@ -132,38 +132,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CreatePreauthenticatedRequestDetails:
-      type: object
-      description: Details for creating a preauthenticated request.
-      required:
-      - name
-      - accessType
-      - timeExpires
-      properties:
-        name:
-          type: string
-          description: A user-specified name for the pre-authenticated request.
-          example: my-par
-        objectName:
-          type: string
-          description: Name of object to grant access to. Omit for bucket-level access.
-          example: example-value
-        accessType:
-          type: string
-          description: The operation that can be performed.
-          enum:
-          - ObjectRead
-          - ObjectWrite
-          - ObjectReadWrite
-          - AnyObjectRead
-          - AnyObjectWrite
-          - AnyObjectReadWrite
-          example: ObjectRead
-        timeExpires:
-          type: string
-          format: date-time
-          description: The expiration date for the pre-authenticated request.
-          example: '2026-12-31T23:59:59Z'
     PreauthenticatedRequest:
       type: object
       description: A preauthenticated request with access URI.
@@ -202,6 +170,38 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
+    CreatePreauthenticatedRequestDetails:
+      type: object
+      description: Details for creating a preauthenticated request.
+      required:
+      - name
+      - accessType
+      - timeExpires
+      properties:
+        name:
+          type: string
+          description: A user-specified name for the pre-authenticated request.
+          example: my-par
+        objectName:
+          type: string
+          description: Name of object to grant access to. Omit for bucket-level access.
+          example: example-value
+        accessType:
+          type: string
+          description: The operation that can be performed.
+          enum:
+          - ObjectRead
+          - ObjectWrite
+          - ObjectReadWrite
+          - AnyObjectRead
+          - AnyObjectWrite
+          - AnyObjectReadWrite
+          example: ObjectRead
+        timeExpires:
+          type: string
+          format: date-time
+          description: The expiration date for the pre-authenticated request.
+          example: '2026-12-31T23:59:59Z'
     PreauthenticatedRequestSummary:
       type: object
       description: Summary of a preauthenticated request.
