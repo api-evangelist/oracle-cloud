@@ -1,0 +1,51 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://docs.oracle.com/en-us/iaas/releasenotes/index.htm (dated release notes) and
+  https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm (dated breaking-change and
+  deprecation announcements)
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+scheme: dated-per-service
+current_version: null
+current_version_note: >-
+  OCI has no single product version. Each service API is versioned by the YYYYMMDD segment in its
+  base path (Core Services 20160918, Kubernetes Engine 20180222, Monitoring 20180401,
+  Functions/Events/Notifications 20181201), and the changelog is a rolling dated feed across all
+  services rather than a release list.
+surfaces:
+  - name: Release Notes
+    url: https://docs.oracle.com/en-us/iaas/releasenotes/index.htm
+    dated: true
+    http_status: 200
+    probed: '2026-08-29'
+    covers: New services, features, regions and console changes, dated per entry, filterable by service.
+  - name: Service Change Announcements
+    url: https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm
+    dated: true
+    http_status: 200
+    probed: '2026-08-29'
+    covers: >-
+      Breaking changes, deprecated features, deprecated APIs and end-of-life notices, each with an
+      announcement date and an effective date. This is the surface that matters to an integrator.
+  - name: SDK / CLI release feeds
+    url: https://github.com/oracle/oci-cli/releases
+    dated: true
+    http_status: 200
+    probed: '2026-08-29'
+    covers: Per-release notes for the CLI; the language SDK repositories carry equivalent CHANGELOG files.
+entries:
+  note: >-
+    Recent-window sample taken from the Service Change Announcements page on 2026-08-29. These are
+    the entries an integrator has to act on; feature additions live in the Release Notes feed.
+  recent:
+    - {date: '2026-05-06', service: Fleet Application Management, type: breaking, summary: 'Service end of life effective 2027-05-01.'}
+    - {date: '2026-04-07', service: Database Migration, type: breaking, summary: 'Create Migration option deprecated, effective 2027-04-07.'}
+    - {date: '2026-02-11', service: API Gateway, type: breaking, summary: 'X-XSS-Protection response header deprecated, effective 2027-02-11.'}
+    - {date: '2026-02-10', service: Application Dependency Management, type: breaking, summary: 'Fields deprecated in the Vulnerability Audit API.'}
+    - {date: '2026-01-29', service: Database Management, type: breaking, summary: 'MySQL HeatWave, SQL Performance Watch and OCI Vulnerability Detection and Patching end of life, effective 2027-01-29.'}
+    - {date: '2026-03-10', service: Data Science, type: breaking, summary: 'IDCS authentication support deprecated, effective 2026-04-11.'}
+    - {date: '2025-09-22', service: Data Safe, type: breaking, summary: 'APIs deprecated, effective 2025-09-22 with removal 2026-09-22.'}
+    - {date: '2025-08-27', service: DevOps, type: breaking, summary: 'Oracle Linux 7 support ends 2026-08-28.'}
+    - {date: '2025-05-28', service: Autonomous AI Database, type: breaking, summary: 'cpuCoreCount field deprecated, support ends 2026-05-28.'}
+    - {date: '2025-05-20', service: Full Stack Disaster Recovery, type: breaking, summary: 'blockVolumeOperations property deprecated, effective 2026-05-20.'}

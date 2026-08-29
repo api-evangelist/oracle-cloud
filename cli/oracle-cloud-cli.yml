@@ -1,0 +1,91 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm,
+  https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/index.html (command
+  reference index), https://github.com/oracle/oci-cli, and
+  https://pypi.org/pypi/oci-cli/json for version/date.
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+name: OCI CLI
+binary: oci
+official: true
+repository: https://github.com/oracle/oci-cli
+docs: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm
+command_reference: https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/index.html
+version: 3.91.0
+published: '2026-08-25'
+license: UPL 1.0 / Apache 2.0 (dual, per the repository)
+description: >-
+  Oracle's first-party command line interface for Oracle Cloud Infrastructure. Built on the OCI
+  Python SDK and generated from the same service contracts, so its command surface tracks the REST
+  API closely: 174 top-level service groups in the published command reference, one per OCI service.
+install:
+  - method: installer-script
+    platform: linux-macos
+    command: bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
+  - method: powershell-script
+    platform: windows
+    command: Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.ps1'))
+  - method: pip
+    platform: any
+    command: pip install oci-cli
+  - method: homebrew
+    platform: macos
+    command: brew install oci-cli
+  - method: preinstalled
+    platform: oci
+    command: Available in Cloud Shell and on Oracle Linux compute images without installation.
+configuration:
+  setup_command: oci setup config
+  config_file: ~/.oci/config
+  profile_env: OCI_CLI_PROFILE
+  auth_modes: [api_key, instance_principal, resource_principal, security_token, instance_obo_user]
+  note: The same ~/.oci/config profile is what the Oracle MCP servers read over stdio.
+command_surface:
+  top_level_groups: 174
+  shape: oci <service-group> <resource> <action> [--flags]
+  key_groups:
+    - {group: compute, service: Compute Service, example: 'oci compute instance launch --availability-domain ... --compartment-id ... --shape ...'}
+    - {group: compute-management, service: Compute Management (instance pools, configurations)}
+    - {group: network, service: Networking (VCN, subnet, security list, gateway)}
+    - {group: bv, service: Block Volume Service}
+    - {group: os, service: Object Storage (bucket, object, preauth-request)}
+    - {group: iam, service: Identity and Access Management}
+    - {group: identity-domains, service: Identity Domains}
+    - {group: db, service: Database Service (autonomous-database, db-system, backup)}
+    - {group: ce, service: Container Engine for Kubernetes}
+    - {group: fn, service: Functions Service}
+    - {group: monitoring, service: Monitoring (alarm, metric-data)}
+    - {group: ons, service: Notifications}
+    - {group: events, service: Events}
+    - {group: logging, service: Logging}
+    - {group: search, service: Resource Search}
+    - {group: work-requests, service: Work Requests}
+    - {group: session, service: Token-based authentication sessions}
+    - {group: setup, service: Local configuration and key generation}
+key_flows:
+  - name: Authenticate a workstation
+    steps:
+      - oci setup config
+      - oci session authenticate   # browser-based token session
+  - name: Launch a compute instance
+    steps:
+      - oci iam compartment list
+      - oci iam availability-domain list
+      - oci compute image list --compartment-id <ocid>
+      - oci compute shape list --compartment-id <ocid>
+      - oci compute instance launch --compartment-id <ocid> --availability-domain <ad> --shape <shape> --subnet-id <ocid> --image-id <ocid>
+  - name: Create a bucket and upload an object
+    steps:
+      - oci os ns get
+      - oci os bucket create --compartment-id <ocid> --name <bucket>
+      - oci os object put --bucket-name <bucket> --file <path>
+  - name: Provision an Autonomous Database
+    steps:
+      - oci db autonomous-database create --compartment-id <ocid> --db-name <name> --cpu-core-count 1 --data-storage-size-in-tbs 1 --admin-password <secret>
+conventions:
+  output: JSON by default; --query supports JMESPath, --output table for human reading.
+  pagination: --all fetches every page; --limit and --page mirror the REST parameters.
+  dry_run: 'Not supported. --generate-param-json-input and --generate-full-command-json-input emit request skeletons but do not validate against the service.'
+  waiters: --wait-for-state polls the work request / resource lifecycle state after a mutating command.

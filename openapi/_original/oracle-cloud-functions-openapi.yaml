@@ -1,0 +1,3512 @@
+basePath: /20181201
+consumes:
+- application/json
+definitions:
+  Application:
+    description: 'An application contains functions and defined attributes shared
+      between those functions, such as network configuration and configuration. Avoid
+      entering confidential information.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The OCID of the compartment that contains the application.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      config:
+        additionalProperties:
+          type: string
+        description: 'Application configuration for functions in this application
+          (passed as environment variables). Can be overridden by function configuration.
+
+          Keys must be ASCII strings consisting solely of letters, digits, and the
+          ''_'' (underscore) character, and must not begin with a digit. Values should
+          be limited to printable unicode characters.
+
+
+          Example: `{"MY_FUNCTION_CONFIG": "ConfVal"}`
+
+
+          The maximum size for all configuration keys and values is limited to 4KB.
+          This is measured as the sum of octets necessary to represent each key and
+          value in UTF-8.
+
+          '
+        maxProperties: 100
+        type: object
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      displayName:
+        description: 'The display name of the application. The display name is unique
+          within the compartment containing the application.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the application.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      imagePolicyConfig:
+        $ref: '#/definitions/ImagePolicyConfig'
+      lifecycleState:
+        description: 'The current state of the application.
+
+          '
+        enum:
+        - CREATING
+        - ACTIVE
+        - INACTIVE
+        - UPDATING
+        - DELETING
+        - DELETED
+        - FAILED
+        type: string
+      logging:
+        $ref: '#/definitions/ApplicationLoggingConfig'
+      networkSecurityGroupIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the Network Security Groups to add the application to.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        maxItems: 5
+        type: array
+      securityAttributes: &id001
+        additionalProperties:
+          additionalProperties:
+            description: 'Attribute value and mode. Only the String type is supported
+              for value. Mode is currently always "enforce".
+
+              '
+            type: object
+          description: 'Key-value pair representing a security attribute key and value,
+            scoped to a namespace.
+
+
+            Example: `{"MaxEgressCount": {"value": "42", "mode": "enforce"}}`
+
+            '
+          type: object
+        description: 'Security attributes for this resource. Each key is predefined
+          and scoped to a namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Oracle-ZPR": {"MaxEgressCount": {"value": "42", "mode": "enforce"}}}`
+
+          '
+        type: object
+      shape: &id002
+        description: 'Valid values are `GENERIC_X86`, `GENERIC_ARM` and `GENERIC_X86_ARM`.
+          Default is `GENERIC_X86`. Setting this to `GENERIC_X86`, will run the functions
+          in the application on X86 processor architecture.
+
+          Setting this to `GENERIC_ARM`, will run the functions in the application
+          on ARM processor architecture.
+
+          When set to `GENERIC_X86_ARM`, functions in the application are run on either
+          X86 or ARM processor architecture.
+
+          Accepted values are:
+
+          `GENERIC_X86`, `GENERIC_ARM`, `GENERIC_X86_ARM`
+
+          '
+        enum:
+        - GENERIC_X86
+        - GENERIC_ARM
+        - GENERIC_X86_ARM
+        type: string
+      subnetIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the subnets in which to run functions in the application.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type: array
+      syslogUrl:
+        description: 'A syslog URL to which to send all function logs. Supports tcp,
+          udp, and tcp+tls.
+
+          The syslog URL must be reachable from all of the subnets configured for
+          the application.
+
+          Note: If you enable the OCI Logging service for this application, the syslogUrl
+          value is ignored. Function logs are sent to the OCI Logging service, and
+          not to the syslog URL.
+
+
+          Example: `tcp://logserver.myserver:1234`
+
+          '
+        maxLength: 1024
+        type: string
+      timeCreated:
+        description: 'The time the application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The time the application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      traceConfig:
+        $ref: '#/definitions/ApplicationTraceConfig'
+    required:
+    - id
+    type: object
+  ApplicationLoggingConfig:
+    description: 'Set logging configuration for an application. This is only used
+      if Service Logs for the application are enabled in the OCI Logging service.
+
+      '
+    properties:
+      lineFormat:
+        default: PLAIN_TEXT
+        description: 'Specify the format of log lines emitted by functions in this
+          application.
+
+          '
+        enum:
+        - JSON
+        - PLAIN_TEXT
+        type: string
+    type: object
+  ApplicationSummary:
+    description: 'Summary of an application.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The OCID of the compartment that contains the application.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      displayName:
+        description: 'The display name of the application. The display name is unique
+          within the compartment containing the application.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the application.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      imagePolicyConfig:
+        $ref: '#/definitions/ImagePolicyConfig'
+      lifecycleState:
+        description: 'The current state of the application.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/Application/lifecycleState'
+      logging:
+        $ref: '#/definitions/ApplicationLoggingConfig'
+      networkSecurityGroupIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the Network Security Groups to add the application to.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        maxItems: 5
+        type: array
+      securityAttributes: *id001
+      shape: *id002
+      subnetIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the subnets in which to run functions in the application.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type: array
+      timeCreated:
+        description: 'The time the application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The time the application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      traceConfig:
+        $ref: '#/definitions/ApplicationTraceConfig'
+    required:
+    - id
+    type: object
+  ApplicationTraceConfig:
+    description: 'Define the tracing configuration for an application.
+
+      '
+    properties:
+      domainId:
+        description: "The OCID of the collector (e.g. an APM Domain) trace events\
+          \ will be sent to. \n"
+        maxLength: 255
+        minLength: 1
+        type: string
+      isEnabled:
+        description: 'Define if tracing is enabled for the resource.
+
+          '
+        type: boolean
+    type: object
+  ChangeApplicationCompartmentDetails:
+    description: 'Properties to change the compartment of an application.
+
+      '
+    properties:
+      compartmentId:
+        description: "The [OCID](/Content/General/Concepts/identifiers.htm) of the\
+          \ compartment\ninto which the resource should be moved.  \n"
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - compartmentId
+    type: object
+  ConfigDetails:
+    description: Details about the required and optional Function configurations needed
+      for proper performance of the PBF.
+    properties:
+      description:
+        description: Details about why this config is required and what it will be
+          used for.
+        example: The hostname for the target Splunk Enterprise/Cloud instance.
+        maxLength: 1024
+        minLength: 1
+        type: string
+      isOptional:
+        default: false
+        description: Is this a required config or an optional one. Requests with required
+          config params missing will be rejected.
+        example: false
+        type: boolean
+      key:
+        description: The key name of the config param.
+        example: SPLUNK_HEC_HOST
+        type: string
+    required:
+    - key
+    - description
+    type: object
+  ConstantProvisionedConcurrencyConfig:
+    allOf:
+    - $ref: '#/definitions/FunctionProvisionedConcurrencyConfig'
+    - discriminator: CONSTANT
+      properties:
+        count:
+          description: 'Configuration specifying a constant amount of provisioned
+            concurrency.
+
+            '
+          minimum: 1
+          type: integer
+      required:
+      - count
+    description: 'Configuration specifying a constant amount of provisioned concurrency.
+
+      '
+    type: object
+  CreateApplicationDetails:
+    description: 'Properties for a new application.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The OCID of the compartment to create the application within.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      config:
+        additionalProperties:
+          type: string
+        description: 'Application configuration. These values are passed on to the
+          function as environment variables, functions may override application configuration.
+
+          Keys must be ASCII strings consisting solely of letters, digits, and the
+          ''_'' (underscore) character, and must not begin with a digit. Values should
+          be limited to printable unicode characters.
+
+
+          Example: `{"MY_FUNCTION_CONFIG": "ConfVal"}`
+
+
+          The maximum size for all configuration keys and values is limited to 4KB.
+          This is measured as the sum of octets necessary to represent each key and
+          value in UTF-8.
+
+          '
+        maxProperties: 100
+        type: object
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      displayName:
+        description: 'The display name of the application. The display name must be
+          unique within the compartment containing the application. Avoid entering
+          confidential information.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      imagePolicyConfig:
+        $ref: '#/definitions/ImagePolicyConfig'
+      logging:
+        $ref: '#/definitions/ApplicationLoggingConfig'
+      networkSecurityGroupIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the Network Security Groups to add the application to.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        maxItems: 5
+        type: array
+      securityAttributes: *id001
+      shape: *id002
+      subnetIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the subnets in which to run functions in the application.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type: array
+      syslogUrl:
+        description: 'A syslog URL to which to send all function logs. Supports tcp,
+          udp, and tcp+tls.
+
+          The syslog URL must be reachable from all of the subnets configured for
+          the application.
+
+          Note: If you enable the OCI Logging service for this application, the syslogUrl
+          value is ignored. Function logs are sent to the OCI Logging service, and
+          not to the syslog URL.
+
+
+          Example: `tcp://logserver.myserver:1234`
+
+          '
+        maxLength: 1024
+        type: string
+      traceConfig:
+        $ref: '#/definitions/ApplicationTraceConfig'
+    required:
+    - displayName
+    - subnetIds
+    - compartmentId
+    type: object
+  CreateFunctionDetails:
+    description: 'Properties to create a new function.
+
+      '
+    properties:
+      applicationId:
+        description: The OCID of the application this function belongs to.
+        type: string
+      config:
+        additionalProperties:
+          type: string
+        description: 'Function configuration. These values are passed on to the function
+          as environment variables, this overrides application configuration values.
+
+          Keys must be ASCII strings consisting solely of letters, digits, and the
+          ''_'' (underscore) character, and must not begin with a digit. Values should
+          be limited to printable unicode characters.
+
+
+          Example: `{"MY_FUNCTION_CONFIG": "ConfVal"}`
+
+
+          The maximum size for all configuration keys and values is limited to 4KB.
+          This is measured as the sum of octets necessary to represent each key and
+          value in UTF-8.
+
+          '
+        maxProperties: 100
+        type: object
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      detachedModeTimeoutInSeconds:
+        description: Timeout for detached function invocations. Value in seconds.
+        format: int32
+        type: integer
+      displayName:
+        description: 'The display name of the function. The display name must be unique
+          within the application containing the function. Avoid entering confidential
+          information.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      failureDestination:
+        $ref: '#/definitions/FailureDestinationDetails'
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      image:
+        description: 'The qualified name of the Docker image to use in the function,
+          including the image tag.
+
+          The image should be in the OCI Registry that is in the same region as the
+          function itself.
+
+          Example: `phx.ocir.io/ten/functions/function:0.0.1`
+
+          '
+        type: string
+      imageDigest:
+        description: 'The image digest for the version of the image that will be pulled
+          when invoking this function.
+
+          If no value is specified, the digest currently associated with the image
+          in the OCI Registry will be used.
+
+          Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`
+
+          '
+        type: string
+      memoryInMBs:
+        description: Maximum usable memory for the function (MiB).
+        format: int64
+        type: integer
+      provisionedConcurrencyConfig:
+        $ref: '#/definitions/FunctionProvisionedConcurrencyConfig'
+      sourceDetails:
+        $ref: '#/definitions/FunctionSourceDetails'
+      successDestination:
+        $ref: '#/definitions/SuccessDestinationDetails'
+      timeoutInSeconds:
+        default: 30
+        description: Timeout for executions of the function. Value in seconds.
+        format: int32
+        type: integer
+      traceConfig:
+        $ref: '#/definitions/FunctionTraceConfig'
+    required:
+    - displayName
+    - applicationId
+    - memoryInMBs
+    type: object
+  Error:
+    description: An error has occurred.
+    properties:
+      code:
+        description: A short error code that defines the error, meant for programmatic
+          parsing.
+        type: string
+      message:
+        description: A human-readable error string.
+        type: string
+    required:
+    - code
+    - message
+    type: object
+  FailureDestinationDetails:
+    description: 'An object that represents the destination to which Oracle Functions
+      will send an invocation record with the details of the error of the failed detached
+      function invocation.
+
+      A notification is an example of a failure destination.
+
+
+      Example: `{"kind": "NOTIFICATION", "topicId": "topic_OCID"}`
+
+      '
+    discriminator: kind
+    properties:
+      kind:
+        description: 'The type of destination for the response to a failed detached
+          function invocation.
+
+          '
+        enum:
+        - NOTIFICATION
+        - QUEUE
+        - STREAM
+        - NONE
+        type: string
+    required:
+    - kind
+    type: object
+  Function:
+    description: 'A function resource defines the code (Docker image) and configuration
+      for a specific function. Functions are defined in applications. Avoid entering
+      confidential information.
+
+      '
+    properties:
+      applicationId:
+        description: The OCID of the application the function belongs to.
+        maxLength: 255
+        minLength: 1
+        type: string
+      compartmentId:
+        description: 'The OCID of the compartment that contains the function.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      config:
+        additionalProperties:
+          type: string
+        description: 'Function configuration. Overrides application configuration.
+
+          Keys must be ASCII strings consisting solely of letters, digits, and the
+          ''_'' (underscore) character, and must not begin with a digit. Values should
+          be limited to printable unicode characters.
+
+
+          Example: `{"MY_FUNCTION_CONFIG": "ConfVal"}`
+
+
+          The maximum size for all configuration keys and values is limited to 4KB.
+          This is measured as the sum of octets necessary to represent each key and
+          value in UTF-8.
+
+          '
+        maxProperties: 100
+        type: object
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      detachedModeTimeoutInSeconds:
+        description: 'Timeout for detached function invocations. Value in seconds.
+
+
+          Example: `{"detachedModeTimeoutInSeconds": 900}`
+
+          '
+        format: int32
+        type: integer
+      displayName:
+        description: 'The display name of the function. The display name is unique
+          within the application containing the function.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      failureDestination:
+        $ref: '#/definitions/FailureDestinationDetails'
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the function.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      image:
+        description: 'The qualified name of the Docker image to use in the function,
+          including the image tag.
+
+          The image should be in the OCI Registry that is in the same region as the
+          function itself.
+
+          Example: `phx.ocir.io/ten/functions/function:0.0.1`
+
+          '
+        type: string
+      imageDigest:
+        description: 'The image digest for the version of the image that will be pulled
+          when invoking this function.
+
+          If no value is specified, the digest currently associated with the image
+          in the OCI Registry will be used.
+
+          Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`
+
+          '
+        type: string
+      invokeEndpoint:
+        description: 'The base https invoke URL to set on a client in order to invoke
+          a function. This URL will never change over the lifetime of the function
+          and can be cached.
+
+          '
+        type: string
+      lifecycleState:
+        description: 'The current state of the function.
+
+          '
+        enum:
+        - CREATING
+        - ACTIVE
+        - INACTIVE
+        - UPDATING
+        - DELETING
+        - DELETED
+        - FAILED
+        type: string
+      memoryInMBs:
+        description: Maximum usable memory for the function (MiB).
+        format: int64
+        type: integer
+      provisionedConcurrencyConfig:
+        $ref: '#/definitions/FunctionProvisionedConcurrencyConfig'
+      shape: &id003
+        description: 'The processor shape (`GENERIC_X86`/`GENERIC_ARM`) on which to
+          run functions in the application, extracted from the image manifest.
+
+          '
+        enum:
+        - GENERIC_X86
+        - GENERIC_ARM
+        - GENERIC_X86_ARM
+        type: string
+      sourceDetails:
+        $ref: '#/definitions/FunctionSourceDetails'
+      successDestination:
+        $ref: '#/definitions/SuccessDestinationDetails'
+      timeCreated:
+        description: 'The time the function was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The time the function was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      timeoutInSeconds:
+        default: 30
+        description: Timeout for executions of the function. Value in seconds.
+        format: int32
+        type: integer
+      traceConfig:
+        $ref: '#/definitions/FunctionTraceConfig'
+    required:
+    - id
+    type: object
+  FunctionProvisionedConcurrencyConfig:
+    description: 'Define the strategy for provisioned concurrency for the function.
+
+      '
+    discriminator: strategy
+    properties:
+      strategy:
+        description: 'The strategy for provisioned concurrency to be used.
+
+          '
+        enum:
+        - CONSTANT
+        - NONE
+        type: string
+    required:
+    - strategy
+    type: object
+  FunctionSourceDetails:
+    description: 'The source details for the Function. The function can be created
+      from various sources.
+
+      '
+    discriminator: sourceType
+    properties:
+      sourceType:
+        description: 'Type of the Function Source. Possible values: PBF.
+
+          '
+        enum:
+        - PRE_BUILT_FUNCTIONS
+        type: string
+    required:
+    - sourceType
+    type: object
+  FunctionSummary:
+    description: 'Summary of a function.
+
+      '
+    properties:
+      applicationId:
+        description: The OCID of the application the function belongs to.
+        maxLength: 255
+        minLength: 1
+        type: string
+      compartmentId:
+        description: 'The OCID of the compartment that contains the function.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      detachedModeTimeoutInSeconds:
+        description: Timeout for detached function invocations. Value in seconds.
+        format: int32
+        type: integer
+      displayName:
+        description: 'The display name of the function. The display name is unique
+          within the application containing the function.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      failureDestination:
+        $ref: '#/definitions/FailureDestinationDetails'
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the function.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      image:
+        description: 'The qualified name of the Docker image to use in the function,
+          including the image tag.
+
+          The image should be in the OCI Registry that is in the same region as the
+          function itself.
+
+          Example: `phx.ocir.io/ten/functions/function:0.0.1`
+
+          '
+        type: string
+      imageDigest:
+        description: 'The image digest for the version of the image that will be pulled
+          when invoking this function.
+
+          If no value is specified, the digest currently associated with the image
+          in the OCI Registry will be used.
+
+          Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`
+
+          '
+        type: string
+      invokeEndpoint:
+        description: 'The base https invoke URL to set on a client in order to invoke
+          a function. This URL will never change over the lifetime of the function
+          and can be cached.
+
+          '
+        type: string
+      lifecycleState:
+        description: 'The current state of the function.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/Function/lifecycleState'
+      memoryInMBs:
+        description: Maximum usable memory for the function (MiB).
+        format: int64
+        type: integer
+      provisionedConcurrencyConfig:
+        $ref: '#/definitions/FunctionProvisionedConcurrencyConfig'
+      shape: *id003
+      sourceDetails:
+        $ref: '#/definitions/FunctionSourceDetails'
+      successDestination:
+        $ref: '#/definitions/SuccessDestinationDetails'
+      timeCreated:
+        description: 'The time the function was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The time the function was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339)
+
+          timestamp format.
+
+
+          Example: `2018-09-12T22:47:12.613Z`
+
+          '
+        format: date-time
+        type: string
+      timeoutInSeconds:
+        default: 30
+        description: Timeout for executions of the function. Value in seconds.
+        format: int32
+        type: integer
+      traceConfig:
+        $ref: '#/definitions/FunctionTraceConfig'
+    required:
+    - id
+    type: object
+  FunctionTraceConfig:
+    description: 'Define the tracing configuration for a function.
+
+      '
+    properties:
+      isEnabled:
+        description: 'Define if tracing is enabled for the resource.
+
+          '
+        type: boolean
+    type: object
+  ImagePolicyConfig:
+    description: 'Define the image signature verification policy for an application.
+
+      '
+    properties:
+      isPolicyEnabled:
+        description: 'Define if image signature verification policy is enabled for
+          the application.
+
+          '
+        type: boolean
+      keyDetails:
+        description: A list of KMS key details.
+        items:
+          $ref: '#/definitions/KeyDetails'
+        type: array
+    required:
+    - isPolicyEnabled
+    type: object
+  KeyDetails:
+    description: The properties that define the kms keys used by Functions for Image
+      Signature verification.
+    properties:
+      kmsKeyId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the KMS key that will be used to verify the image signature.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - kmsKeyId
+    type: object
+  NoneFailureDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/FailureDestinationDetails'
+    - discriminator: NONE
+    description: 'Specifies no failure destination
+
+
+      Example: `{"kind": "NONE"}`
+
+      '
+    type: object
+  NoneProvisionedConcurrencyConfig:
+    allOf:
+    - $ref: '#/definitions/FunctionProvisionedConcurrencyConfig'
+    - discriminator: NONE
+    description: 'Configuration specifying no provisioned concurrency
+
+      '
+    type: object
+  NoneSuccessDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/SuccessDestinationDetails'
+    - discriminator: NONE
+    description: 'Specifies no success destination
+
+
+      Example: `{"kind": "NONE"}`
+
+      '
+    type: object
+  NotificationFailureDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/FailureDestinationDetails'
+    - discriminator: NOTIFICATION
+      properties:
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the topic.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - topicId
+    description: 'The destination topic in the Notifications service to which to send
+      the response of the failed detached function invocation.
+
+
+      Example: `{"kind": "NOTIFICATION", "topicId": "topic_OCID"}`
+
+      '
+    type: object
+  NotificationSuccessDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/SuccessDestinationDetails'
+    - discriminator: NOTIFICATION
+      properties:
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the topic.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - topicId
+    description: 'The destination topic in the Notifications service to which to send
+      the response of the successful detached function invocation.
+
+
+      Example: `{"kind": "NOTIFICATION", "topicId": "topic_OCID"}`
+
+      '
+    type: object
+  PbfListing:
+    description: "PbfListing resources provide details about the available PBFs for\
+      \ consumption by the user. \nThis resource contains details about PBF's functionality,\
+      \ policies required, configuration parameters expected\netc.\n"
+    properties:
+      definedTags: &id004
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only string type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace.
+
+            Example: `{"bar-key": "value"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace.
+
+          Example: `{"foo-namespace": {"bar-key": "value"}}`
+
+          '
+        type: object
+      description: &id005
+        description: 'A short overview of the PBF Listing: the purpose of the PBF
+          and and associated information.'
+        example: "A PBF to transform and send logs, metrics and data to Splunk. The\
+          \ PBF pushes data to Splunk through \nhttp/post requests and Splunk's HEC\
+          \ module (https://docs.splunk.com/Documentation/Splunk/9.0.0/Data/UsetheHTTPEventCollector).\n"
+        maxLength: 1024
+        minLength: 1
+        type: string
+      freeformTags: &id006
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      id: &id007
+        description: Unique identifier that is immutable on creation.
+        example: ocid1.pbflisting.oc1.iad.aaaaaaaal3dkjeliven6l7kw3kiwlkbqjtfhdra6fly7uqekgmuef6forplq
+        maxLength: 255
+        minLength: 1
+        type: string
+      lifecycleState: &id014
+        description: The current state of the PBF resource.
+        enum:
+        - ACTIVE
+        - INACTIVE
+        - DELETED
+        type: string
+      name: &id008
+        description: 'A brief descriptive name for the PBF listing. The PBF listing
+          name must be unique, and not match and existing
+
+          PBF.
+
+          '
+        example: Logs to Splunk
+        maxLength: 255
+        minLength: 1
+        type: string
+      publisherDetails: &id009
+        $ref: '#/definitions/PublisherDetails'
+      systemTags: &id010
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only string type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing system tags'' keys and values
+            scoped to a namespace.
+
+            Example: `{"bar-key": "value"}`
+
+            '
+          type: object
+        description: 'System tags for this resource. Each key is predefined and scoped
+          to a namespace.
+
+          Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+          '
+        type: object
+      timeCreated: &id011
+        description: The time the PbfListing was created. An RFC3339 formatted datetime
+          string.
+        example: 2022-09-30T0710:20:50.52Z
+        format: date-time
+        type: string
+      timeUpdated: &id012
+        description: The last time the PbfListing was updated. An RFC3339 formatted
+          datetime string.
+        example: 2022-09-30T0710:20:50.52Z
+        format: date-time
+        type: string
+      triggers: &id013
+        description: An array of Trigger. A list of triggers that may activate the
+          PBF.
+        items:
+          $ref: '#/definitions/Trigger'
+        maxItems: 100
+        minItems: 1
+        type: array
+    required:
+    - id
+    - name
+    - description
+    - publisherDetails
+    - timeCreated
+    - timeUpdated
+    - lifecycleState
+    type: object
+  PbfListingSummary:
+    description: Summary of the PbfListing.
+    properties:
+      definedTags: *id004
+      description: *id005
+      freeformTags: *id006
+      id: *id007
+      lifecycleState:
+        description: The current state of the PBF resource.
+        type: string
+        x-obmcs-enumref: '#/definitions/PbfListing/lifecycleState'
+      name: *id008
+      publisherDetails: *id009
+      systemTags: *id010
+      timeCreated: *id011
+      timeUpdated: *id012
+      triggers: *id013
+    required:
+    - id
+    - name
+    - description
+    - publisherDetails
+    - timeCreated
+    - timeUpdated
+    - lifecycleState
+    type: object
+  PbfListingVersion:
+    description: "This represents a version of a PbfListing. Each new update from\
+      \ the publisher or the change in the image will \nresult in the creation of\
+      \ new PbfListingVersion resource creation. This is a sub-resource of a PbfListing.\n"
+    properties:
+      changeSummary: &id015
+        description: Details changes are included in this version.
+        example: 'First release of the PBF.
+
+          '
+        maxLength: 1024
+        minLength: 1
+        type: string
+      config: &id016
+        description: 'Details about the required and optional Function configurations
+          needed for proper performance of the PBF.
+
+          '
+        items:
+          $ref: '#/definitions/ConfigDetails'
+        maxItems: 100
+        type: array
+        x-default-description: 'null'
+      definedTags: *id004
+      freeformTags: *id006
+      id: &id017
+        description: Unique identifier that is immutable on creation
+        example: ocid1.pbflistingversion.oc1.iad.aaaaaaaal3dkjeliven6l7kw3kiwlkbqjtfhdra6fly7uqekgmuef6forplq
+        maxLength: 255
+        minLength: 1
+        type: string
+      lifecycleState: *id014
+      name: &id018
+        description: Semantic version
+        example: 0.0.1
+        maxLength: 32
+        minLength: 1
+        type: string
+      pbfListingId: &id019
+        description: The OCID of the PbfListing this resource version belongs to.
+        example: ocid1.pbflisting.oc1.iad.aaaaaaaal3dkjeliven6l7kw3kiwlkbqjtfhdra6fly7uqekgmuef6forplq
+        maxLength: 255
+        minLength: 1
+        type: string
+      requirements: &id020
+        $ref: '#/definitions/RequirementDetails'
+      systemTags: *id010
+      timeCreated: &id021
+        description: The time the PbfListingVersion was created. An RFC3339 formatted
+          datetime string.
+        example: 2022-09-30T0710:20:50.52Z
+        format: date-time
+        type: string
+      timeUpdated: &id022
+        description: The last time the PbfListingVersion was updated. An RFC3339 formatted
+          datetime string.
+        example: 2022-09-30T0710:20:50.52Z
+        format: date-time
+        type: string
+      triggers: *id013
+    required:
+    - id
+    - pbfListingId
+    - name
+    - requirements
+    - changeSummary
+    - triggers
+    - timeCreated
+    - timeUpdated
+    - lifecycleState
+    type: object
+  PbfListingVersionSummary:
+    description: Summary of the PbfListingVersion.
+    properties:
+      changeSummary: *id015
+      config: *id016
+      definedTags: *id004
+      freeformTags: *id006
+      id: *id017
+      lifecycleState:
+        description: The current state of the PBF resource.
+        type: string
+        x-obmcs-enumref: '#/definitions/PbfListingVersion/lifecycleState'
+      name: *id018
+      pbfListingId: *id019
+      requirements: *id020
+      systemTags: *id010
+      timeCreated: *id021
+      timeUpdated: *id022
+      triggers: *id013
+    required:
+    - id
+    - pbfListingId
+    - name
+    - requirements
+    - changeSummary
+    - triggers
+    - timeCreated
+    - timeUpdated
+    - lifecycleState
+    type: object
+  PbfListingVersionsCollection:
+    description: "Results of a PbfListingVersion search. Contains both PbfListingVersionSummary\
+      \ \nitems and other information, such as metadata.\n"
+    properties:
+      items:
+        description: List of PbfListingVersion.
+        items:
+          $ref: '#/definitions/PbfListingVersionSummary'
+        maxItems: 100
+        type: array
+    required:
+    - items
+    type: object
+  PbfListingsCollection:
+    description: Results of a PbfListing search. Contains boh PbfListingSummary items
+      and other information, such as metadata.
+    properties:
+      items:
+        description: List of PbfListingSummary.
+        items:
+          $ref: '#/definitions/PbfListingSummary'
+        maxItems: 100
+        type: array
+    required:
+    - items
+    type: object
+  PolicyDetails:
+    description: A policy required for this PBF execution.
+    properties:
+      description:
+        description: Details about why this policy is required and what it will be
+          used for.
+        example: Allow dynamic-group <dynamic-group> to manage instances in compartment
+          <compartment-id>
+        maxLength: 1024
+        minLength: 1
+        type: string
+      policy:
+        description: Policy required for PBF execution
+        example: KEY_READ
+        type: string
+    required:
+    - policy
+    - description
+    type: object
+  PreBuiltFunctionSourceDetails:
+    allOf:
+    - $ref: '#/definitions/FunctionSourceDetails'
+    - discriminator: PRE_BUILT_FUNCTIONS
+      properties:
+        pbfListingId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the PbfListing this
+
+            function is sourced from.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - pbfListingId
+    description: 'The source of the Function which is based on a Pre-Built Function
+      Listing (PbfListing).
+
+      '
+    type: object
+  PublisherDetails:
+    description: Contains details about the publisher of this PBF Listing.
+    properties:
+      name:
+        description: Name of the Publisher
+        example: OCI Functions
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - name
+    type: object
+  QueueFailureDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/FailureDestinationDetails'
+    - discriminator: QUEUE
+      properties:
+        channelId:
+          description: 'The ID of the channel in the queue.
+
+            '
+          maxLength: 64
+          minLength: 1
+          type: string
+        queueId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the queue.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - queueId
+    description: 'The destination queue or channel in the Queue service to which to
+      send the response of the failed detached function invocation.
+
+
+      Example: `{"kind": "QUEUE", "queueId": "queue_OCID", "channelId": "channel_Id"}`
+
+      '
+    type: object
+  QueueSuccessDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/SuccessDestinationDetails'
+    - discriminator: QUEUE
+      properties:
+        channelId:
+          description: 'The ID of the channel in the queue.
+
+            '
+          maxLength: 64
+          minLength: 1
+          type: string
+        queueId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the queue.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - queueId
+    description: 'The destination queue or channel in the Queue service to which to
+      send the response of the successful detached function invocation.
+
+
+      Example: `{"kind": "QUEUE", "queueId": "queue_OCID", "channelId": "channel_Id"}`
+
+      '
+    type: object
+  RequirementDetails:
+    description: "Minimum memory required by this PBF. The user should use memory\
+      \ greater than or equal to this value \nwhile configuring the Function.\n"
+    properties:
+      minMemoryRequiredInMBs:
+        description: "Minimum memory required by this PBF. The user should use memory\
+          \ greater than or equal to \nthis value while configuring the Function.\n"
+        example: 256
+        format: int64
+        type: integer
+      policies:
+        description: List of policies required for this PBF execution.
+        items:
+          $ref: '#/definitions/PolicyDetails'
+        maxItems: 100
+        type: array
+    required:
+    - minMemoryRequiredInMBs
+    type: object
+  StreamFailureDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/FailureDestinationDetails'
+    - discriminator: STREAM
+      properties:
+        streamId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the stream.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - streamId
+    description: 'The destination stream in the Streaming service to which to send
+      the response of the failed detached function invocation.
+
+
+      Example: `{"kind": "STREAM", "streamId": "stream_OCID"}`
+
+      '
+    type: object
+  StreamSuccessDestinationDetails:
+    allOf:
+    - $ref: '#/definitions/SuccessDestinationDetails'
+    - discriminator: STREAM
+      properties:
+        streamId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the stream.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - streamId
+    description: 'The destination stream in the Streaming service to which to send
+      the response of the successful detached function invocation.
+
+
+      Example: `{"kind": "STREAM", "streamId": "stream_OCID"}`
+
+      '
+    type: object
+  SuccessDestinationDetails:
+    description: 'An object that represents the destination to which Oracle Functions
+      will send an invocation record with the details of the successful detached function
+      invocation.
+
+      A stream is an example of a success destination.
+
+
+      Example: `{"kind": "STREAM", "streamId": "stream_OCID"}`
+
+      '
+    discriminator: kind
+    properties:
+      kind:
+        description: 'The type of destination for the response to a successful detached
+          function invocation.
+
+          '
+        enum:
+        - NOTIFICATION
+        - QUEUE
+        - STREAM
+        - NONE
+        type: string
+    required:
+    - kind
+    type: object
+  Trigger:
+    description: PBF specific triggers for activating a PBF.
+    properties:
+      name: &id023
+        description: A brief descriptive name for the PBF trigger.
+        example: API Gateway
+        maxLength: 32
+        minLength: 1
+        type: string
+    required:
+    - name
+    type: object
+  TriggerSummary:
+    description: Summary of the Trigger.
+    properties:
+      name: *id023
+    required:
+    - name
+    type: object
+  TriggersCollection:
+    description: Results of a Trigger search. Contains boh TriggerSummary items and
+      other information, such as metadata.
+    properties:
+      items:
+        description: List of TriggerSummary.
+        items:
+          $ref: '#/definitions/TriggerSummary'
+        maxLength: 100
+        type: array
+    required:
+    - items
+    type: object
+  UpdateApplicationDetails:
+    description: 'Properties to update an application.
+
+      '
+    properties:
+      config:
+        additionalProperties:
+          type: string
+        description: 'Application configuration. These values are passed on to the
+          function as environment variables, functions may override application configuration.
+
+          Keys must be ASCII strings consisting solely of letters, digits, and the
+          ''_'' (underscore) character, and must not begin with a digit. Values should
+          be limited to printable unicode characters.
+
+
+          Example: `{"MY_FUNCTION_CONFIG": "ConfVal"}`
+
+
+          The maximum size for all configuration keys and values is limited to 4KB.
+          This is measured as the sum of octets necessary to represent each key and
+          value in UTF-8.
+
+          '
+        maxProperties: 100
+        type: object
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      imagePolicyConfig:
+        $ref: '#/definitions/ImagePolicyConfig'
+      logging:
+        $ref: '#/definitions/ApplicationLoggingConfig'
+      networkSecurityGroupIds:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm)s
+          of the Network Security Groups to add the application to.
+
+          '
+        items:
+          maxLength: 255
+          minLength: 1
+          type: string
+        maxItems: 5
+        type: array
+      securityAttributes: *id001
+      syslogUrl:
+        description: 'A syslog URL to which to send all function logs. Supports tcp,
+          udp, and tcp+tls.
+
+          The syslog URL must be reachable from all of the subnets configured for
+          the application.
+
+          Note: If you enable the OCI Logging service for this application, the syslogUrl
+          value is ignored. Function logs are sent to the OCI Logging service, and
+          not to the syslog URL.
+
+
+          Example: `tcp://logserver.myserver:1234`
+
+          '
+        maxLength: 1024
+        type: string
+      traceConfig:
+        $ref: '#/definitions/ApplicationTraceConfig'
+    type: object
+  UpdateFunctionDetails:
+    description: 'Updates attributes of a function.
+
+      '
+    properties:
+      config:
+        additionalProperties:
+          type: string
+        description: 'Function configuration. These values are passed on to the function
+          as environment variables, this overrides application configuration values.
+
+          Keys must be ASCII strings consisting solely of letters, digits, and the
+          ''_'' (underscore) character, and must not begin with a digit. Values should
+          be limited to printable unicode characters.
+
+
+          Example: `{"MY_FUNCTION_CONFIG": "ConfVal"}`
+
+
+          The maximum size for all configuration keys and values is limited to 4KB.
+          This is measured as the sum of octets necessary to represent each key and
+          value in UTF-8.
+
+          '
+        maxProperties: 100
+        type: object
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only the String type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing a defined tag key and value, scoped
+            to a namespace.
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      detachedModeTimeoutInSeconds:
+        description: Timeout for detached function invocations. Value in seconds.
+        format: int32
+        type: integer
+      failureDestination:
+        $ref: '#/definitions/FailureDestinationDetails'
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace.
+
+          For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      image:
+        description: 'The qualified name of the Docker image to use in the function,
+          including the image tag.
+
+          The image should be in the OCI Registry that is in the same region as the
+          function itself.
+
+          If an image is specified but no value for imageDigest is provided, the digest
+          currently associated with the image tag in the OCI Registry will be used.
+
+          Example: `phx.ocir.io/ten/functions/function:0.0.1`
+
+          '
+        type: string
+      imageDigest:
+        description: 'The image digest for the version of the image that will be pulled
+          when invoking this function.
+
+          Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`
+
+          '
+        type: string
+      memoryInMBs:
+        description: Maximum usable memory for the function (MiB).
+        format: int64
+        type: integer
+      provisionedConcurrencyConfig:
+        $ref: '#/definitions/FunctionProvisionedConcurrencyConfig'
+      successDestination:
+        $ref: '#/definitions/SuccessDestinationDetails'
+      timeoutInSeconds:
+        default: 30
+        description: Timeout for executions of the function. Value in seconds.
+        format: int32
+        type: integer
+      traceConfig:
+        $ref: '#/definitions/FunctionTraceConfig'
+    type: object
+host: 127.0.0.1
+info:
+  description: 'API for the Functions service.
+
+    '
+  license:
+    name: Oracle Corporation
+  title: Functions Service API
+  version: '20181201'
+parameters:
+  ApplicationIdPathParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this
+      application.
+
+      '
+    in: path
+    name: applicationId
+    required: true
+    type: string
+  ApplicationIdQueryParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      application to which this function belongs.
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: applicationId
+    required: true
+    type: string
+  CompartmentIdQueryParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment to which this resource belongs.
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: compartmentId
+    required: true
+    type: string
+  FnDryRunHeader:
+    default: false
+    description: 'Indicates that the request is a dry run, if set to "true". A dry
+      run request does not execute the function.
+
+      '
+    in: header
+    name: is-dry-run
+    required: false
+    type: boolean
+  FnIntentHeader:
+    description: 'An optional intent header that indicates to the FDK the way the
+      event should be interpreted. E.g. ''httprequest'', ''cloudevent''.
+
+      '
+    enum:
+    - httprequest
+    - cloudevent
+    in: header
+    name: fn-intent
+    required: false
+    type: string
+    x-default-description: 'null'
+  FnInvokeTypeHeader:
+    default: sync
+    description: "Indicates whether Oracle Functions should execute the request and\
+      \ return the result ('sync') of the execution, \nor whether Oracle Functions\
+      \ should return as soon as processing has begun ('detached') and leave result\
+      \ handling to the function.\n"
+    enum:
+    - detached
+    - sync
+    in: header
+    name: fn-invoke-type
+    required: false
+    type: string
+  FunctionIdPathParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this
+      function.
+
+      '
+    in: path
+    name: functionId
+    required: true
+    type: string
+  IfMatchHeader:
+    description: 'For optimistic concurrency control. In the PUT or DELETE call for
+      a resource, set the `if-match`
+
+      parameter to the value of the etag from a previous GET or POST response for
+      that resource.  The resource
+
+      will be updated or deleted only if the etag you provide matches the resource''s
+      current etag value.
+
+      '
+    in: header
+    name: if-match
+    type: string
+  ListApplicationsFilterByDisplayNameQueryParam:
+    description: 'A filter to return only applications with display names that match
+      the display name string. Matching is exact.
+
+      '
+    in: query
+    maxLength: 255
+    name: displayName
+    required: false
+    type: string
+  ListApplicationsFilterByIdQueryParam:
+    description: 'A filter to return only applications with the specified OCID.
+
+      '
+    in: query
+    maxLength: 255
+    name: id
+    required: false
+    type: string
+  ListApplicationsFilterByLifecycleStateQueryParam:
+    description: 'A filter to return only applications that match the lifecycle state
+      in this parameter.
+
+      Example: `Creating`
+
+      '
+    in: query
+    name: lifecycleState
+    required: false
+    type: string
+    x-obmcs-enumref: '#/definitions/Application/lifecycleState'
+  ListFunctionsFilterByDisplayNameQueryParam:
+    description: 'A filter to return only functions with display names that match
+      the display name string. Matching is exact.
+
+      '
+    in: query
+    maxLength: 255
+    name: displayName
+    required: false
+    type: string
+  ListFunctionsFilterByIdQueryParam:
+    description: 'A filter to return only functions with the specified OCID.
+
+      '
+    in: query
+    maxLength: 255
+    name: id
+    required: false
+    type: string
+  ListFunctionsFilterByLifecycleStateQueryParam:
+    description: 'A filter to return only functions that match the lifecycle state
+      in this parameter.
+
+      Example: `Creating`
+
+      '
+    in: query
+    name: lifecycleState
+    required: false
+    type: string
+    x-obmcs-enumref: '#/definitions/Function/lifecycleState'
+  OpcRequestIdHeaderParam:
+    description: 'The unique Oracle-assigned identifier for the request. If you need
+      to contact Oracle about a
+
+      particular request, please provide the request ID.
+
+      '
+    in: header
+    name: opc-request-id
+    required: false
+    type: string
+  PaginationLimitQueryParam:
+    default: 5
+    description: 'The maximum number of items to return. 1 is the minimum, 50 is the
+      maximum.
+
+
+      Default: 10
+
+      '
+    in: query
+    maximum: 50
+    minimum: 1
+    name: limit
+    required: false
+    type: integer
+  PaginationTokenQueryParam:
+    description: 'The pagination token for a list query returned by a previous operation
+
+      '
+    in: query
+    maxLength: 1024
+    minLength: 1
+    name: page
+    type: string
+  PbfListingIdentifierOptionalQueryParam:
+    description: unique PbfListing identifier
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: pbfListingId
+    required: false
+    type: string
+    x-default-description: 'null'
+  PbfListingIdentifierPathParam:
+    description: unique PbfListing identifier
+    in: path
+    name: pbfListingId
+    required: true
+    type: string
+  PbfListingIdentifierQueryParam:
+    description: unique PbfListing identifier
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: pbfListingId
+    required: true
+    type: string
+    x-default-description: 'null'
+  PbfListingLifecycleStateQueryParam:
+    description: A filter to return only resources their lifecycleState matches the
+      given lifecycleState.
+    in: query
+    name: lifecycleState
+    required: false
+    type: string
+    x-default-description: 'null'
+    x-obmcs-enumref: '#/definitions/PbfListing/lifecycleState'
+  PbfListingNameQueryContainsParam:
+    description: A filter to return only resources that contain the supplied filter
+      text in the PBF name given.
+    in: query
+    maxLength: 32
+    minLength: 1
+    name: nameContains
+    type: string
+    x-default-description: 'null'
+  PbfListingNameQueryParam:
+    description: A filter to return only resources that match the entire PBF name
+      given.
+    in: query
+    maxLength: 32
+    minLength: 1
+    name: name
+    type: string
+    x-default-description: 'null'
+  PbfListingNameQueryStartsWithParam:
+    description: A filter to return only resources that start with the supplied filter
+      text in the PBF name given.
+    in: query
+    maxLength: 32
+    minLength: 1
+    name: nameStartsWith
+    type: string
+    x-default-description: 'null'
+  PbfListingSortByQueryParam:
+    default: timeCreated
+    description: 'The field to sort by. Only one sort order may be provided. Default
+      order for timeCreated is descending. Default order for name is ascending.
+
+      '
+    enum:
+    - timeCreated
+    - name
+    in: query
+    name: sortBy
+    type: string
+  PbfListingVersionIdentifierPathParam:
+    description: unique PbfListingVersion identifier
+    in: path
+    maxLength: 255
+    minLength: 1
+    name: pbfListingVersionId
+    required: true
+    type: string
+  PbfListingVersionIdentifierQueryParam:
+    description: unique PbfListingVersion identifier
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: pbfListingVersionId
+    type: string
+    x-default-description: 'null'
+  PbfListingVersionIsCurrentVersionQueryParam:
+    description: "Matches the current version (the most recently added version with\
+      \ an Active \nlifecycleState) associated with a PbfListing.\n"
+    in: query
+    name: isCurrentVersion
+    type: boolean
+    x-default-description: 'null'
+  PbfListingVersionLifecycleStateQueryParam:
+    description: A filter to return only resources their lifecycleState matches the
+      given lifecycleState.
+    in: query
+    name: lifecycleState
+    required: false
+    type: string
+    x-default-description: 'null'
+    x-obmcs-enumref: '#/definitions/PbfListingVersion/lifecycleState'
+  PbfListingVersionNameQueryParam:
+    description: "Matches a PbfListingVersion based on a provided semantic version\
+      \ name for a PbfListingVersion. \nEach PbfListingVersion name is unique with\
+      \ respect to its associated PbfListing.\n"
+    in: query
+    maxLength: 32
+    minLength: 1
+    name: name
+    type: string
+    x-default-description: 'null'
+  PbfListingVersionSortByQueryParam:
+    default: timeCreated
+    description: 'The field to sort by. Only one sort order may be provided. Default
+      order for timeCreated is descending. Default order for name is ascending.
+
+      '
+    enum:
+    - timeCreated
+    - name
+    in: query
+    name: sortBy
+    type: string
+  PbfTriggerNamesQueryParam:
+    collectionFormat: multi
+    description: A filter to return only resources that match the service trigger
+      sources of a PBF.
+    in: query
+    items:
+      maxLength: 32
+      minLength: 1
+      type: string
+    name: trigger
+    type: array
+    x-default-description: 'null'
+  RetryTokenHeader:
+    description: 'A token that uniquely identifies a request so it can be retried
+      in case of a timeout or
+
+      server error without risk of executing that same action again. Retry tokens
+      expire after 24
+
+      hours, but can be invalidated before then due to conflicting operations. For
+      example, if a resource
+
+      has been deleted and purged from the system, then a retry of the original creation
+      request
+
+      might be rejected.
+
+      '
+    in: header
+    maxLength: 64
+    minLength: 1
+    name: opc-retry-token
+    required: false
+    type: string
+  SortOrderQueryParam:
+    default: ASC
+    description: 'Specifies sort order.
+
+
+      * **ASC:** Ascending sort order.
+
+      * **DESC:** Descending sort order.
+
+      '
+    enum:
+    - ASC
+    - DESC
+    in: query
+    name: sortOrder
+    required: false
+    type: string
+  TriggerNameQueryParam:
+    description: A filter to return only resources that match the service trigger
+      source of a PBF.
+    in: query
+    maxLength: 32
+    minLength: 1
+    name: name
+    type: string
+    x-default-description: 'null'
+paths:
+  /applications:
+    get:
+      description: Lists applications for a compartment.
+      operationId: ListApplications
+      parameters:
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/ListApplicationsFilterByLifecycleStateQueryParam'
+      - $ref: '#/parameters/ListApplicationsFilterByDisplayNameQueryParam'
+      - $ref: '#/parameters/ListApplicationsFilterByIdQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - default: displayName
+        description: 'Specifies the attribute with which to sort the rules.
+
+
+          Default: `displayName`
+
+
+          * **timeCreated:** Sorts by timeCreated.
+
+          * **displayName:** Sorts by displayName.
+
+          * **id:** Sorts by id.
+
+          '
+        enum:
+        - timeCreated
+        - id
+        - displayName
+        in: query
+        name: sortBy
+        required: false
+        type: string
+      responses:
+        200:
+          description: Succesfully retrieved summary of applications.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of
+
+                results remain. For important details about how pagination works,
+                see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/ApplicationSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Lists applications for a compartment
+      tags:
+      - functionsManagement
+      x-example: 'GET /20181201/applications?compartmentId=ocid1.compartment.oc1..<var>&lt;unique_ID&gt;</var>
+
+        Host: functions.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    post:
+      description: Creates a new application.
+      operationId: CreateApplication
+      parameters:
+      - description: Specification of the application to create
+        in: body
+        name: CreateApplicationDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateApplicationDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Succesfully created application.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. Add this value to
+                the `if-match` parameter
+
+                in a PUT or DELETE operation. The resource will be updated only if
+                the value you
+
+                provide matches the `etag` on the resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Application'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Creates a new application
+      tags:
+      - functionsManagement
+      x-example: "POST /20181201/applications\nHost: functions.us-phoenix-1.oci.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"compartmentId\"\
+        : \"ocid1.compartment.oc1..<var>&lt;unique_ID&gt;</var>\",\n  \"displayName\"\
+        : \"ExampleApplication\",\n  \"subnetIds\": [\n    \"ocid1.subnet.oc1..<var>&lt;unique_ID&gt;</var>\"\
+        \n  ]\n}\n"
+  /applications/{applicationId}:
+    delete:
+      description: Deletes an application.
+      operationId: DeleteApplication
+      parameters:
+      - $ref: '#/parameters/ApplicationIdPathParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        204:
+          description: Application deleted successfully.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle
+
+                about a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Deletes an application
+      tags:
+      - functionsManagement
+      x-example: 'DELETE /20181201/applications/<var>&lt;application_OCID&gt;</var>
+
+        Host: functions.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Application'
+    get:
+      description: Retrieves an application.
+      operationId: GetApplication
+      parameters:
+      - $ref: '#/parameters/ApplicationIdPathParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Succesfully retrieved application.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. Add this value to
+                the `if-match` parameter
+
+                in a PUT or DELETE operation. The resource will be updated only if
+                the value you
+
+                provide matches the `etag` on the resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Application'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Retrieves an application
+      tags:
+      - functionsManagement
+      x-example: 'GET /20181201/applications/<var>&lt;application_OCID&gt;</var>
+
+        Host: functions.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    put:
+      description: Modifies an application
+      operationId: UpdateApplication
+      parameters:
+      - $ref: '#/parameters/ApplicationIdPathParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - description: The new application spec to apply
+        in: body
+        name: UpdateApplicationDetails
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateApplicationDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: 'Succesfully updated application.
+
+            '
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. Add this value to
+                the `if-match` parameter
+
+                in a PUT or DELETE operation. The resource will be updated only if
+                the value you
+
+                provide matches the `etag` on the resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Application'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Modifies an application
+      tags:
+      - functionsManagement
+      x-example: "PUT /20181201/applications/<var>&lt;application_OCID&gt;</var>\n\
+        Host: functions.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization and\
+        \ other headers&gt;</var>\n{\n  \"config\": {\n    \"EXAMPLE_KEY\": \"example-value\"\
+        \n  }\n}\n"
+  /applications/{applicationId}/actions/changeCompartment:
+    post:
+      description: 'Moves an application into a different compartment within the same
+        tenancy.
+
+        For information about moving resources between compartments, see [Moving Resources
+        Between Compartments](/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+
+        '
+      operationId: ChangeApplicationCompartment
+      parameters:
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/ApplicationIdPathParam'
+      - description: Properties to change the compartment of an application.
+        in: body
+        name: ChangeApplicationCompartmentDetails
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeApplicationCompartmentDetails'
+      responses:
+        204:
+          description: Application moved successfully.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle
+
+                about a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Moves an application into a different compartment. When provided, If-Match
+        is checked against ETag values of the resource.
+      tags:
+      - functionsManagement
+      x-example: "POST /20181201/applications/<var>&lt;application_OCID&gt;</var>/actions/changeCompartment\n\
+        Host: functions.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization and\
+        \ other headers&gt;</var>\n{\n  \"compartmentId\": \"ocid1.compartment.oc1..<var>&lt;unique_ID&gt;</var>\"\
+        \n}\n"
+      x-related-resource: '#/definitions/Application'
+  /functions:
+    get:
+      description: Lists functions for an application.
+      operationId: ListFunctions
+      parameters:
+      - $ref: '#/parameters/ApplicationIdQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/ListFunctionsFilterByLifecycleStateQueryParam'
+      - $ref: '#/parameters/ListFunctionsFilterByDisplayNameQueryParam'
+      - $ref: '#/parameters/ListFunctionsFilterByIdQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - default: displayName
+        description: 'Specifies the attribute with which to sort the rules.
+
+
+          Default: `displayName`
+
+
+          * **timeCreated:** Sorts by timeCreated.
+
+          * **displayName:** Sorts by displayName.
+
+          * **id:** Sorts by id.
+
+          '
+        enum:
+        - timeCreated
+        - id
+        - displayName
+        in: query
+        name: sortBy
+        required: false
+        type: string
+      responses:
+        200:
+          description: Succesfully retrieved summary of functions.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of
+
+                results remain. For important details about how pagination works,
+                see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/FunctionSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Lists functions for an application
+      tags:
+      - functionsManagement
+      x-example: 'GET /20181201/functions?applicationId=<var>&lt;application_OCID&gt;</var>
+
+        Host: functions.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    post:
+      description: Creates a new function.
+      operationId: CreateFunction
+      parameters:
+      - description: Specification of the function to create
+        in: body
+        name: CreateFunctionDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateFunctionDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Succesfully created function.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. Add this value to
+                the `if-match` parameter
+
+                in a PUT or DELETE operation. The resource will be updated only if
+                the value you
+
+                provide matches the `etag` on the resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Function'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Creates a new function
+      tags:
+      - functionsManagement
+      x-example: "POST /20181201/functions\nHost: functions.us-phoenix-1.oci.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"applicationId\"\
+        : \"<var>&lt;application_OCID&gt;</var>\",\n  \"displayName\": \"ExampleFunction\"\
+        ,\n  \"image\": \"phx.ocir.io/example-namespace/example-repo/example-image:0.0.1\"\
+        ,\n  \"memoryInMBs\": 128\n}\n"
+  /functions/{functionId}:
+    delete:
+      description: Deletes a function.
+      operationId: DeleteFunction
+      parameters:
+      - $ref: '#/parameters/FunctionIdPathParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        204:
+          description: Function deleted successfully.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle
+
+                about a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Deletes a function
+      tags:
+      - functionsManagement
+      x-example: 'DELETE /20181201/functions/<var>&lt;function_OCID&gt;</var>
+
+        Host: functions.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Function'
+    get:
+      description: Retrieves a function.
+      operationId: GetFunction
+      parameters:
+      - $ref: '#/parameters/FunctionIdPathParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Succesfully retrieved function.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. Add this value to
+                the `if-match` parameter
+
+                in a PUT or DELETE operation. The resource will be updated only if
+                the value you
+
+                provide matches the `etag` on the resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Function'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Retrieves a function
+      tags:
+      - functionsManagement
+      x-example: 'GET /20181201/functions/<var>&lt;function_OCID&gt;</var>
+
+        Host: functions.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    put:
+      description: Modifies a function
+      operationId: UpdateFunction
+      parameters:
+      - $ref: '#/parameters/FunctionIdPathParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - description: The new function spec to apply
+        in: body
+        name: UpdateFunctionDetails
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateFunctionDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: 'Succesfully updated function.
+
+            '
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. Add this value to
+                the `if-match` parameter
+
+                in a PUT or DELETE operation. The resource will be updated only if
+                the value you
+
+                provide matches the `etag` on the resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Function'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Modifies a function
+      tags:
+      - functionsManagement
+      x-example: "PUT /20181201/functions/<var>&lt;function_OCID&gt;</var>\nHost:\
+        \ functions.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"config\": {\n    \"EXAMPLE_KEY\": \"example-value\"\
+        \n  }\n}\n"
+  /functions/{functionId}/actions/invoke:
+    post:
+      consumes:
+      - '*/*'
+      description: Invokes a function
+      operationId: InvokeFunction
+      parameters:
+      - $ref: '#/parameters/FunctionIdPathParam'
+      - description: 'The body of the function invocation.
+
+          Note: The maximum size of the request is limited. This limit is currently
+          6MB and the endpoint will not accept requests that are bigger than this
+          limit.
+
+          '
+        in: body
+        name: InvokeFunctionBody
+        required: false
+        schema:
+          format: binary
+          type: string
+      - $ref: '#/parameters/FnIntentHeader'
+      - $ref: '#/parameters/FnInvokeTypeHeader'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/FnDryRunHeader'
+      produces:
+      - '*/*'
+      responses:
+        200:
+          description: 'Succesfully invoked function.
+
+            '
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            format: binary
+            type: string
+        202:
+          description: 'Succesfully accepted function call.
+
+            '
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        403:
+          $ref: '#/responses/403'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        502:
+          $ref: '#/responses/502'
+        503:
+          $ref: '#/responses/503'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Invokes a function
+      tags:
+      - functionsInvoke
+      x-example: "POST /20181201/functions/<var>&lt;function_OCID&gt;</var>/actions/invoke\n\
+        Host: <var>&lt;unique_ID&gt;</var>.us-phoenix-1.functions.oci.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"ExamplePayloadKey\"\
+        : \"ExamplePayloadValue\"\n}\n"
+      x-related-resource: '#/definitions/Function'
+  /pbfListingVersions:
+    get:
+      description: "Fetches a wrapped list of all Pre-built Function(PBF) Listing\
+        \ versions. Returns a PbfListingVersionCollection \ncontaining an array of\
+        \ PbfListingVersionSummary response models.\n\nNote that the PbfListingIdentifier\
+        \ must be provided as a query parameter, otherwise an exception shall \nbe\
+        \ thrown.\n"
+      operationId: ListPbfListingVersions
+      parameters:
+      - $ref: '#/parameters/PbfListingIdentifierQueryParam'
+      - $ref: '#/parameters/PbfListingVersionIdentifierQueryParam'
+      - $ref: '#/parameters/PbfListingVersionNameQueryParam'
+      - $ref: '#/parameters/PbfListingVersionIsCurrentVersionQueryParam'
+      - $ref: '#/parameters/PbfListingVersionLifecycleStateQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - $ref: '#/parameters/PbfListingVersionSortByQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: A page of PbfListingVersionSummary objects.
+          headers:
+            opc-next-page: &id026
+              description: 'For pagination of a list of items. When paging through
+                a list, if this header appears in the response,
+
+                then a partial list might have been returned. Include this value as
+                the `page` parameter for the
+
+                subsequent GET request to get the next batch of items.
+
+                '
+              type: string
+            opc-request-id: &id024
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/PbfListingVersionsCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Get a list of all Pre-built Function(PBF) Listing versions.
+      tags: &id025
+      - functionsManagement
+      x-obmcs-client-retries-enabled: true
+      x-related-resource: '#/definitions/PbfListingVersion'
+  /pbfListingVersions/{pbfListingVersionId}:
+    get:
+      description: Gets a PbfListingVersion by identifier for a PbfListing.
+      operationId: GetPbfListingVersion
+      parameters:
+      - $ref: '#/parameters/PbfListingVersionIdentifierPathParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Retrieves the PbfListingVersion for the given PbfListing id
+            and version.
+          headers:
+            etag: &id027
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              type: string
+            opc-request-id: *id024
+          schema:
+            $ref: '#/definitions/PbfListingVersion'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Get details for a specific version of a Pre-built Function(PBF) Listing.
+      tags: *id025
+      x-obmcs-client-retries-enabled: true
+      x-related-resource: '#/definitions/PbfListingVersion'
+  /pbfListings:
+    get:
+      description: "Fetches a wrapped list of all Pre-built Function(PBF) Listings.\
+        \ Returns a PbfListingCollection containing \nan array of PbfListingSummary\
+        \ response models.\n"
+      operationId: ListPbfListings
+      parameters:
+      - $ref: '#/parameters/PbfListingIdentifierOptionalQueryParam'
+      - $ref: '#/parameters/PbfListingNameQueryParam'
+      - $ref: '#/parameters/PbfListingNameQueryContainsParam'
+      - $ref: '#/parameters/PbfListingNameQueryStartsWithParam'
+      - $ref: '#/parameters/PbfTriggerNamesQueryParam'
+      - $ref: '#/parameters/PbfListingLifecycleStateQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - $ref: '#/parameters/PbfListingSortByQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: A page of PbfListingSummary objects.
+          headers:
+            opc-next-page: *id026
+            opc-request-id: *id024
+          schema:
+            $ref: '#/definitions/PbfListingsCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Get a list of all Pre-built Function(PBF) Listings.
+      tags: *id025
+      x-obmcs-client-retries-enabled: true
+      x-related-resource: '#/definitions/PbfListing'
+  /pbfListings/triggers:
+    get:
+      description: 'Returns a list of Triggers.
+
+        '
+      operationId: ListTriggers
+      parameters:
+      - $ref: '#/parameters/TriggerNameQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: A page of TriggerSummary response models.
+          headers:
+            opc-next-page: *id026
+            opc-request-id: *id024
+          schema:
+            $ref: '#/definitions/TriggersCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Gets a list of all Triggers.
+      tags: *id025
+      x-obmcs-client-retries-enabled: true
+      x-related-resource: '#/definitions/TriggersCollection'
+  /pbfListings/{pbfListingId}:
+    get:
+      description: 'Fetches a Pre-built Function(PBF) Listing. Returns a PbfListing
+        response model.
+
+        '
+      operationId: GetPbfListing
+      parameters:
+      - $ref: '#/parameters/PbfListingIdentifierPathParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Retrieves the PbfListing with the given id.
+          headers:
+            etag: *id027
+            opc-request-id: *id024
+          schema:
+            $ref: '#/definitions/PbfListing'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Get a Pre-built Function(PBF) Listing.
+      tags: *id025
+      x-obmcs-client-retries-enabled: true
+      x-related-resource: '#/definitions/PbfListing'
+produces:
+- application/json
+responses:
+  400:
+    description: Bad Request
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  401:
+    description: Unauthorized (Unauthenticated)
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  403:
+    description: Forbidden
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  404:
+    description: Not found or not authorized
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  405:
+    description: Method Not Allowed
+    headers:
+      opc-request-id: *id024
+    schema:
+      $ref: '#/definitions/Error'
+  409:
+    description: Not authorized or resource already exists
+    headers:
+      opc-request-id:
+        description: 'Authorization failed or requested resource already exists.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  412:
+    description: NoEtagMatch
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  429:
+    description: Too Many Requests
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  500:
+    description: Internal Server Error
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  502:
+    description: Function Invoke Failed
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  503:
+    description: Function Invoke Timedout
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  DefaultError:
+    description: An error has occurred.
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+swagger: '2.0'
+x-anchors:
+  x-headers:
+    etag: *id027
+    opc-next-page: *id026
+    opc-request-id: *id024
+    opc-work-request-id:
+      description: 'Unique Oracle-assigned identifier for the asynchronous work. You
+        can use this to query its status.
+
+        '
+      type: string
+    retry-after:
+      description: A decimal number representing the number of seconds the client
+        should wait before polling this endpoint again.
+      type: integer
+  x-pbf-listing-properties:
+    description: *id005
+    id: *id007
+    lifecycleDetails:
+      description: "A message describing the current state in more detail. For example,\
+        \ can be used to provide actionable \ninformation for a resource in Failed\
+        \ state.\n"
+      example: 'PBF failed the build stage: missed code coverage requirements for
+        unit tests.'
+      type: string
+    name: *id008
+    publisherDetails: *id009
+    timeCreated: *id011
+    timeUpdated: *id012
+  x-pbf-listing-rv-properties:
+    changeSummary: *id015
+    config: *id016
+    id: *id017
+    lifecycleDetails:
+      description: "A message describing the current state in more detail. For example,\
+        \ can be used to provide actionable \ninformation for a resource in Failed\
+        \ state.\n"
+      example: 'PBF is not backwards compatible: previous input schema have been removed
+        with no change to major version.'
+      type: string
+    name: *id018
+    pbfListingId: *id019
+    requirements: *id020
+    timeCreated: *id021
+    timeUpdated: *id022
+  x-pbf-trigger-properties:
+    name: *id023
+  x-properties:
+    definedTags: *id004
+    freeformTags: *id006
+    pbfLifecycleState: *id014
+    securityAttributes: *id001
+    systemTags: *id010
+    triggers: *id013
+  x-tag-groups:
+    PbfManagement:
+    - PbfManagement
+    functionsManagement: *id025
+x-oracle-package: com.oracle.functions

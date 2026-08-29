@@ -1,0 +1,73 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm,
+  https://docs.oracle.com/en-us/iaas/releasenotes/index.htm,
+  https://ocistatus.oraclecloud.com/ (JSON at /api/v2/status.json), and the dated base paths in
+  openapi/_original/.
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+versioning:
+  scheme: date-in-path
+  pattern: /YYYYMMDD/<resource>
+  current:
+    - {service: Core Services, version: '20160918'}
+    - {service: Identity and Access Management, version: '20160918'}
+    - {service: Database, version: '20160918'}
+    - {service: Object Storage, version: '20160918', note: served at the root path, version implied}
+    - {service: Kubernetes Engine, version: '20180222'}
+    - {service: Monitoring, version: '20180401'}
+    - {service: Functions, version: '20181201'}
+    - {service: Events, version: '20181201'}
+    - {service: Notifications, version: '20181201'}
+  breaking_change_policy: >-
+    Breaking changes ship as a new dated API version; the prior version continues to be served
+    through an announced deprecation period. Oracle publishes each one on the Service Change
+    Announcements page.
+deprecation:
+  policy_published: true
+  policy_url: https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm
+  mechanism: >-
+    A dated "Service Change Announcement" per service, listing the announcement date and the
+    effective/removal date. Oracle does not publish a single universal notice period; observed
+    lead times in the published table run from roughly 6 months to 3 years, with 12 months being
+    the most common for API-level deprecations.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  rfc8594_note: >-
+    No Sunset or Deprecation response header is declared in any harvested contract or documented in
+    the API concepts pages. Deprecation is announced out-of-band on the web page only, which means
+    an agent calling a deprecated operation gets no runtime signal.
+  examples:
+    - {service: Autonomous AI Database, change: Deprecated Data Guard APIs, announced: '2025-03-04', effective: '2026-03-04'}
+    - {service: Autonomous AI Database, change: cpuCoreCount field deprecated, announced: '2025-05-28', effective: '2026-05-28'}
+    - {service: Data Safe, change: Deprecated APIs, announced: '2025-09-22', effective: '2026-09-22'}
+    - {service: Full Stack Disaster Recovery, change: blockVolumeOperations property deprecated, announced: '2025-05-20', effective: '2026-05-20'}
+    - {service: API Gateway, change: X-XSS-Protection header deprecated, announced: '2026-02-11', effective: '2027-02-11'}
+    - {service: Database Migration, change: Deprecated Create Migration option, announced: '2026-04-07', effective: '2027-04-07'}
+    - {service: Database Management, change: MySQL HeatWave end of life, announced: '2026-01-29', effective: '2027-01-29'}
+    - {service: Fleet Application Management, change: Service end of life, announced: '2026-05-06', effective: '2027-05-01'}
+    - {service: Developer Tools, change: OCI Java SDK version 2 deprecated, announced: '2023-04-06', effective: '2023-06-30'}
+  deprecated_operations_in_spec: 0
+  deprecated_operations_note: >-
+    No operation in the seven harvested Swagger 2.0 contracts carries a `deprecated: true` flag.
+    Oracle removes the operation at the effective date rather than marking it in the contract, so
+    the contract cannot be used to anticipate a deprecation.
+status_page:
+  url: https://ocistatus.oraclecloud.com/
+  machine_readable: https://ocistatus.oraclecloud.com/api/v2/status.json
+  probed: '2026-08-29'
+  http_status: 200
+  platform: Atlassian Statuspage-compatible API (v2)
+  scope: All OCI regions and services, with per-region incident history.
+release_notes:
+  url: https://docs.oracle.com/en-us/iaas/releasenotes/index.htm
+  probed: '2026-08-29'
+  http_status: 200
+sla:
+  published: true
+  url: https://www.oracle.com/cloud/sla/
+  note: >-
+    Oracle publishes Pillar Documents covering OCI availability, manageability and performance
+    SLAs. Not fetched in this pass; recorded as a pointer, not as verified content.

@@ -1,0 +1,121 @@
+generated: '2026-08-29'
+method: generated
+source: openapi/_original/ (Oracle first-party contracts) + conventions/, errors/, lifecycle/, asyncapi/
+  in this repo
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+description: Packaged Agent Skills for the marquee Oracle Cloud Infrastructure flows, mirroring the arazzo/
+  workflows. Every operationId named in every skill was grepped out of Oracle's own harvested contract
+  and confirmed present before the skill was written; none was invented. Each skill carries the OCI cross-cutting
+  rules (request signing, opc-retry-token, if-match/etag, opc-next-page, the {code,message} error envelope)
+  and an explicit reversibility section, because OCI is a write-heavy control plane where most deletes
+  are permanent.
+provider_published_skills:
+  found: false
+  note: Oracle publishes an AGENTS.md at github.com/oracle/mcp, but it is contributor guidance for that
+    repository rather than an operating instruction for calling the OCI APIs, so it was not saved as a
+    provider-published skill.
+skills:
+- file: oracle-cloud-launch-compute-instance.md
+  name: oracle-cloud-launch-compute-instance
+  description: Launch, power-manage and terminate an Oracle Cloud Infrastructure compute instance safely,
+    including the reversibility caveats around termination.
+  api: Oracle Cloud Infrastructure Core Services API
+  spec: openapi/_original/oracle-cloud-core-services-openapi.yaml
+  operations:
+  - ListAvailabilityDomains
+  - ListImages
+  - ListShapes
+  - ListSubnets
+  - LaunchInstance
+  - GetInstance
+  - InstanceAction
+  - TerminateInstance
+- file: oracle-cloud-monitor-with-alarms.md
+  name: oracle-cloud-monitor-with-alarms
+  description: Query OCI metrics, create an alarm, and wire it to a notification topic or a webhook endpoint.
+  api: Oracle Cloud Infrastructure Monitoring API and Notifications API
+  spec: openapi/_original/oracle-cloud-monitoring-openapi.yaml
+  operations:
+  - ListMetrics
+  - SummarizeMetricsData
+  - CreateAlarm
+  - GetAlarm
+  - ListAlarms
+  - UpdateAlarm
+  - DeleteAlarm
+  - GetAlarmHistory
+  - CreateTopic
+  - CreateSubscription
+  - GetConfirmSubscription
+- file: oracle-cloud-onboard-iam-user.md
+  name: oracle-cloud-onboard-iam-user
+  description: Onboard a user into an OCI tenancy — compartment, group, policy, user, API signing key
+    — and understand what can and cannot be undone.
+  api: Oracle Cloud Infrastructure Identity and Access Management Service API
+  spec: openapi/_original/oracle-cloud-identity-openapi.yaml
+  operations:
+  - ListCompartments
+  - CreateCompartment
+  - CreateGroup
+  - CreateUser
+  - AddUserToGroup
+  - CreatePolicy
+  - UploadApiKey
+  - ListUsers
+  - ListPolicies
+  - RemoveUserFromGroup
+  - DeleteUser
+  - RecoverCompartment
+- file: oracle-cloud-provision-autonomous-database.md
+  name: oracle-cloud-provision-autonomous-database
+  description: Provision, connect to, stop/start and point-in-time restore an OCI Autonomous Database.
+  api: Oracle Cloud Infrastructure Database Service API
+  spec: openapi/_original/oracle-cloud-database-openapi.yaml
+  operations:
+  - CreateAutonomousDatabase
+  - GetAutonomousDatabase
+  - ListAutonomousDatabases
+  - GenerateAutonomousDatabaseWallet
+  - StopAutonomousDatabase
+  - StartAutonomousDatabase
+  - RestartAutonomousDatabase
+  - RestoreAutonomousDatabase
+  - DeleteAutonomousDatabase
+- file: oracle-cloud-provision-vcn-network.md
+  name: oracle-cloud-provision-vcn-network
+  description: Build a routable OCI virtual cloud network — VCN, internet gateway, route table, security
+    list, subnet — and tear it down in the right order.
+  api: Oracle Cloud Infrastructure Core Services API
+  spec: openapi/_original/oracle-cloud-core-services-openapi.yaml
+  operations:
+  - CreateVcn
+  - GetVcn
+  - ListVcns
+  - CreateInternetGateway
+  - CreateRouteTable
+  - UpdateRouteTable
+  - CreateSecurityList
+  - CreateSubnet
+  - ListSubnets
+  - DeleteSubnet
+  - DeleteVcn
+- file: oracle-cloud-store-and-share-object.md
+  name: oracle-cloud-store-and-share-object
+  description: Put an object into OCI Object Storage, share it with a time-boxed pre-authenticated request,
+    and restore it from Archive — the one OCI flow with a numerically stated reversal window.
+  api: Oracle Cloud Infrastructure Object Storage Service API
+  spec: openapi/_original/oracle-cloud-object-storage-openapi.yaml
+  operations:
+  - GetNamespace
+  - CreateBucket
+  - PutObject
+  - GetObject
+  - HeadObject
+  - ListObjects
+  - CreatePreauthenticatedRequest
+  - ListPreauthenticatedRequests
+  - DeletePreauthenticatedRequest
+  - RestoreObjects
+  - DeleteObject
+skill_count: 6

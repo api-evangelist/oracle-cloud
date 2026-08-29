@@ -1,0 +1,226 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm and
+  https://docs.oracle.com/en-us/iaas/Content/API/References/apierrors.htm, corroborated by the
+  parameter and response declarations in openapi/_original/ (Oracle's own Swagger 2.0 contracts).
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+description: >-
+  Cross-cutting runtime semantics of the Oracle Cloud Infrastructure control-plane APIs: request
+  signing, retry tokens, optimistic concurrency, opaque-cursor pagination, request correlation,
+  date-in-path versioning and the flat {code,message} error envelope.
+authentication:
+  style: request-signature
+  scheme: >-
+    Every OCI API request must be signed. Oracle uses HTTP request signing with an RSA API signing
+    key (key id = tenancy/user/fingerprint), plus instance principals, resource principals, session
+    tokens and workload identity as alternative credential sources.
+  header: Authorization
+  docs: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/signingrequests.htm
+  see_also: authentication/oracle-cloud-authentication.yml
+  bearer_tokens: false
+  oauth2: false
+idempotency:
+  supported: true
+  header: opc-retry-token
+  max_length: 64
+  scope: per-operation
+  retention: 24 hours
+  retention_note: >-
+    Verbatim from Oracle's contract: "Retry tokens expire after 24 hours, but can be invalidated
+    before then due to conflicting operations (for example, if a resource has been deleted and
+    purged from the system, then a retry of the original creation request may be rejected)."
+  failure_code: InvalidatedRetryToken (HTTP 409)
+  coverage:
+    operations_total: 1268
+    operations_accepting_opc_retry_token: 370
+    by_spec:
+      oracle-cloud-database-openapi.yaml: 160
+      oracle-cloud-core-services-openapi.yaml: 154
+      oracle-cloud-identity-openapi.yaml: 44
+      oracle-cloud-notifications-openapi.yaml: 7
+      oracle-cloud-monitoring-openapi.yaml: 3
+      oracle-cloud-events-openapi.yaml: 2
+      oracle-cloud-functions-openapi.yaml: 0
+      oracle-cloud-kubernetes-engine-openapi.yaml: 0
+      oracle-cloud-object-storage-openapi.yaml: 0
+    note: >-
+      Counted by inspecting the declared parameters of every operation in openapi/_original/.
+      Coverage is not uniform: Database, Core Services and Identity accept a retry token on most
+      create/mutate operations, while the Object Storage, Kubernetes Engine and Functions contracts
+      declare the parameter in components but attach it to no operation. An agent must not assume
+      a retry token is honoured service-wide.
+  docs: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm
+concurrency:
+  optimistic_locking: true
+  request_header: if-match
+  response_header: etag
+  failure_code: NoEtagMatch (HTTP 412)
+  coverage:
+    operations_accepting_if_match: 505
+    by_spec:
+      oracle-cloud-database-openapi.yaml: 211
+      oracle-cloud-core-services-openapi.yaml: 168
+      oracle-cloud-identity-openapi.yaml: 57
+      oracle-cloud-object-storage-openapi.yaml: 20
+      oracle-cloud-kubernetes-engine-openapi.yaml: 20
+      oracle-cloud-notifications-openapi.yaml: 16
+      oracle-cloud-monitoring-openapi.yaml: 5
+      oracle-cloud-functions-openapi.yaml: 5
+      oracle-cloud-events-openapi.yaml: 3
+pagination:
+  style: opaque-cursor
+  request_params:
+    - {name: page, in: query, description: Set to the value returned in the opc-next-page response header.}
+    - {name: limit, in: query, description: Maximum number of results per page.}
+  response_headers:
+    - {name: opc-next-page, description: Opaque cursor for the next page. Its presence means more items remain.}
+    - {name: opc-prev-page, description: Previous-page cursor, available on some APIs.}
+  empty_page_warning: >-
+    Verbatim from Oracle: "A page can be empty even when more results remain. Anytime the
+    opc-next-page header appears, there are more list items to get." An agent must terminate on
+    the absence of the header, never on an empty result array.
+  exceptions:
+    - operation: ListObjects
+      service: Object Storage
+      behavior: >-
+        Returns nextStartWith in the response BODY instead of the opc-next-page header, and uses
+        the start / end query parameters for filtering.
+request_tracing:
+  request_id_response_header: opc-request-id
+  client_supplied_header: opc-request-id
+  note: >-
+    Every response carries an Oracle-assigned opc-request-id (example from Oracle's own docs:
+    bb3f3275-f356-462a-93c4-bf40fb82bb02). Clients may also supply one; Oracle asks for it when
+    reporting a problem.
+  work_requests: >-
+    Long-running operations return 202 Accepted with an opc-work-request-id; poll the Work Requests
+    API for terminal state rather than polling the resource.
+versioning:
+  style: date-in-path
+  location: base path
+  examples:
+    - {service: Core Services, version: '20160918', base_path: /20160918}
+    - {service: Identity and Access Management, version: '20160918', base_path: /20160918}
+    - {service: Kubernetes Engine, version: '20180222', base_path: /20180222}
+    - {service: Monitoring, version: '20180401', base_path: /20180401}
+    - {service: Functions, version: '20181201', base_path: /20181201}
+    - {service: Object Storage, version: '20160918', base_path: /}
+  note: >-
+    The API version is the YYYYMMDD date segment in the URL, e.g.
+    POST https://iaas.us-ashburn-1.oraclecloud.com/20160918/vcns. Breaking changes ship as a new
+    dated version; see lifecycle/oracle-cloud-lifecycle.yml.
+error_envelope:
+  media_type: application/json
+  shape: '{"code": "<OciErrorCode>", "message": "<human readable>"}'
+  rfc9457: false
+  catalog: errors/oracle-cloud-problem-types.yml
+rate_limit_signaling:
+  status_on_exhaustion: 429
+  error_code: TooManyRequests
+  response_headers_documented: false
+  headers_note: >-
+    Oracle documents NO RateLimit-*, X-RateLimit-* or Retry-After response header for the OCI
+    control-plane APIs. The only runtime signal is the 429 status with the TooManyRequests error
+    code; Oracle's stated remediation is client-side exponential back-off "starting from a few
+    seconds to a maximum of 60 seconds". This is the single biggest agent-readiness gap in an
+    otherwise well-specified API: a caller cannot see how much budget is left before it is spent.
+  see_also: rate-limits/oracle-cloud-rate-limits.yml
+field_expansion:
+  supported: false
+  note: >-
+    No sparse-fieldset or expansion parameter is declared anywhere in the harvested contracts.
+    List operations return summary representations (e.g. InstanceSummary, BucketSummary) and the
+    corresponding Get operation returns the full representation.
+metadata:
+  freeform_tags: >-
+    Most OCI resources accept freeformTags (flat key/value) and definedTags (namespaced key/value
+    governed by tag namespaces) for customer metadata.
+  system_tags: Reserved for Oracle-applied tags.
+dry_run_mode:
+  supported: false
+  grade: absent
+  note: >-
+    No preview/validate-only/dry-run parameter is declared in any harvested contract. The nearest
+    equivalents live outside the API — Resource Manager (Terraform) plan jobs, and the Network Path
+    Analyzer for connectivity checks.
+reversibility:
+  grade: verified
+  summary: >-
+    OCI is a write-heavy control plane, so reversibility matters. Two reversal paths carry an
+    explicitly stated window in Oracle's own contract; several more exist as reversal operations
+    with no published window, and a large class of deletes is stated to be permanent.
+  surfaces:
+    - write_surface: Restore an archived object
+      service: Object Storage
+      reversal_operation: RestoreObjects
+      operationId: RestoreObjects
+      path: POST /n/{namespaceName}/b/{bucketName}/actions/restoreObjects
+      window: >-
+        Restored for 24 hours by default; configurable via the `hours` parameter, minimum 1,
+        maximum 240 (10 days).
+      window_source: >-
+        openapi/_original/oracle-cloud-object-storage-openapi.yaml —
+        definitions.RestoreObjectsDetails.properties.hours (minimum 1, maximum 240) and the
+        RestoreObjects description "By default object will be restored for 24 hours."
+      grade: verified
+    - write_surface: Any create/mutate accepting a retry token
+      service: Core Services, Database, Identity, Monitoring
+      reversal_operation: null
+      window: Retry tokens expire after 24 hours.
+      window_source: >-
+        openapi/_original/*.yaml opc-retry-token parameter description; also
+        https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm
+      grade: verified
+      note: >-
+        This is a de-duplication window, not an undo. Recorded here because an agent reasoning
+        about "can I safely re-fire this?" needs the same 24-hour number.
+    - write_surface: Delete an object in a versioned bucket
+      service: Object Storage
+      reversal_operation: DeleteObjectVersion / ListObjectVersions
+      window: null
+      window_source: null
+      grade: documented
+      note: >-
+        With bucket versioning enabled a delete writes a delete marker and prior versions remain
+        addressable by versionId; no retention window is stated in the contract, so this is graded
+        documented, not verified.
+    - write_surface: Delete a compartment
+      service: Identity and Access Management
+      reversal_operation: RecoverCompartment
+      operationId: RecoverCompartment
+      path: POST /compartments/{compartmentId}/actions/recoverCompartment
+      window: null
+      window_source: null
+      grade: documented
+      note: >-
+        Contract description verbatim: "Recover the compartment from DELETED state to ACTIVE
+        state." No window is stated in the contract, so no window is asserted here.
+    - write_surface: Point-in-time restore of a database
+      service: Database
+      reversal_operation: RestoreAutonomousDatabase / RestoreDatabase
+      operationId: RestoreAutonomousDatabase
+      path: POST /autonomousDatabases/{autonomousDatabaseId}/actions/restore
+      window: null
+      window_source: null
+      grade: documented
+      note: >-
+        Restore depends on the backup retention configured for the database; the contract states no
+        universal window, so none is asserted.
+    - write_surface: Terminate a compute instance
+      service: Core Services
+      reversal_operation: null
+      window: null
+      grade: none
+      note: >-
+        Contract description verbatim: "Permanently terminates (deletes) the specified instance."
+        The only mitigation is the preserveBootVolume / preserveDataVolumes query parameters, which
+        keep the volumes rather than undoing the termination. There is no undo.
+    - write_surface: Cancel an in-flight long-running operation
+      service: Object Storage (work requests)
+      reversal_operation: CancelWorkRequest
+      operationId: CancelWorkRequest
+      window: null
+      grade: documented
+  read_only: false

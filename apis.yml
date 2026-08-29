@@ -1,8 +1,15 @@
 aid: oracle-cloud
 name: Oracle Cloud Infrastructure
 description: >-
-  Collection of Oracle Cloud Infrastructure (OCI) REST APIs for managing cloud resources
-  and services.
+  Oracle Cloud Infrastructure (OCI) is Oracle's public cloud, exposed as a REST control plane of
+  159 service APIs covering compute, virtual cloud networking, block and object storage, identity
+  and access management, Autonomous Database, Kubernetes Engine, Functions, monitoring, events and
+  notifications. Every request is signed with an RSA API signing key rather than a bearer token,
+  every service is versioned by a YYYYMMDD segment in the URL path, and Oracle publishes a
+  first-party Swagger 2.0 contract for each service from a single machine-readable index at
+  docs.oracle.com/en-us/iaas/api/specs/. Client SDKs ship for Python, Java, TypeScript, Go, Ruby,
+  .NET and PowerShell alongside the OCI CLI, a Terraform provider, and a repository of 27
+  reference MCP servers for agent access.
 type: Index
 deliveryModel:
   model: unknown
@@ -34,7 +41,7 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/oracle-cloud.png
 created: '2024-01-01'
-modified: '2026-04-18'
+modified: '2026-08-29'
 specificationVersion: '0.23'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/apis.yml
@@ -44,18 +51,34 @@ tags:
   - Infrastructure-as-a-Service
   - Oracle
   - Platform-as-a-Service
+  - Compute
+  - Object-Storage
+  - Identity-and-Access-Management
+  - Database
+  - Kubernetes
+  - Serverless
+  - Monitoring
+  - Event-Driven
 tags_raw:
   - Cloud Computing
   - Enterprise Cloud
   - Infrastructure as a Service
   - Oracle
   - Platform as a Service
+  - Compute
+  - Object Storage
+  - Identity and Access Management
+  - Database
+  - Kubernetes
+  - Serverless
+  - Monitoring
+  - Event Driven
 apis:
 - aid: oracle-cloud:oracle-cloud-alarms-api
   name: Oracle Cloud Infrastructure Alarms API
   description: The Alarms API from Oracle Cloud Infrastructure — 2 operation(s) for alarms.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
+  baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
   - Alarms
   properties:
@@ -440,8 +463,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-applications-api
   name: Oracle Cloud Infrastructure Applications API
   description: The Applications API from Oracle Cloud Infrastructure — 2 operation(s) for applications.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/functions/20181201/
+  baseURL: https://functions.{region}.oraclecloud.com
   tags:
   - Application
   tags_raw:
@@ -829,8 +852,8 @@ apis:
   name: Oracle Cloud Infrastructure Autonomous Databases API
   description: >-
     The Autonomous Databases API from Oracle Cloud Infrastructure — 4 operation(s) for autonomous databases.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/
+  baseURL: https://database.{region}.oraclecloud.com
   tags:
   - Autonomous Databases
   properties:
@@ -1215,8 +1238,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-buckets-api
   name: Oracle Cloud Infrastructure Buckets API
   description: The Buckets API from Oracle Cloud Infrastructure — 2 operation(s) for buckets.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/
+  baseURL: https://objectstorage.{region}.oraclecloud.com
   tags:
   - Buckets
   properties:
@@ -1601,8 +1624,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-clusters-api
   name: Oracle Cloud Infrastructure Clusters API
   description: The Clusters API from Oracle Cloud Infrastructure — 2 operation(s) for clusters.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/20180222/
+  baseURL: https://containerengine.{region}.oraclecloud.com
   tags:
   - Cluster
   tags_raw:
@@ -1989,8 +2012,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-compartments-api
   name: Oracle Cloud Infrastructure Compartments API
   description: The Compartments API from Oracle Cloud Infrastructure — 1 operation(s) for compartments.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/identity/20160918/
+  baseURL: https://identity.{region}.oraclecloud.com
   tags:
   - Compartments
   properties:
@@ -2375,8 +2398,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-db-systems-api
   name: Oracle Cloud Infrastructure DB Systems API
   description: The DB Systems API from Oracle Cloud Infrastructure — 2 operation(s) for db systems.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/
+  baseURL: https://database.{region}.oraclecloud.com
   tags:
   - DB Systems
   properties:
@@ -2761,8 +2784,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-functions-api
   name: Oracle Cloud Infrastructure Functions API
   description: The Functions API from Oracle Cloud Infrastructure — 3 operation(s) for functions.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/functions/20181201/
+  baseURL: https://functions.{region}.oraclecloud.com
   tags:
   - Functions
   properties:
@@ -3147,8 +3170,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-groups-api
   name: Oracle Cloud Infrastructure Groups API
   description: The Groups API from Oracle Cloud Infrastructure — 1 operation(s) for groups.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/identity/20160918/
+  baseURL: https://identity.{region}.oraclecloud.com
   tags:
   - Group
   tags_raw:
@@ -3535,7 +3558,7 @@ apis:
 - aid: oracle-cloud:oracle-cloud-images-api
   name: Oracle Cloud Infrastructure Images API
   description: The Images API from Oracle Cloud Infrastructure — 2 operation(s) for images.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Image
@@ -3923,7 +3946,7 @@ apis:
 - aid: oracle-cloud:oracle-cloud-instances-api
   name: Oracle Cloud Infrastructure Instances API
   description: The Instances API from Oracle Cloud Infrastructure — 3 operation(s) for instances.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Instances
@@ -4310,7 +4333,7 @@ apis:
   name: Oracle Cloud Infrastructure Internet Gateways API
   description: >-
     The Internet Gateways API from Oracle Cloud Infrastructure — 1 operation(s) for internet gateways.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Internet Gateways
@@ -4696,8 +4719,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-metrics-api
   name: Oracle Cloud Infrastructure Metrics API
   description: The Metrics API from Oracle Cloud Infrastructure — 2 operation(s) for metrics.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
+  baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
   - Metrics
   properties:
@@ -5082,8 +5105,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-namespaces-api
   name: Oracle Cloud Infrastructure Namespaces API
   description: The Namespaces API from Oracle Cloud Infrastructure — 1 operation(s) for namespaces.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/
+  baseURL: https://objectstorage.{region}.oraclecloud.com
   tags:
   - Namespaces
   properties:
@@ -5468,8 +5491,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-node-pools-api
   name: Oracle Cloud Infrastructure Node Pools API
   description: The Node Pools API from Oracle Cloud Infrastructure — 2 operation(s) for node pools.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/20180222/
+  baseURL: https://containerengine.{region}.oraclecloud.com
   tags:
   - Node Pools
   properties:
@@ -5854,8 +5877,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-objects-api
   name: Oracle Cloud Infrastructure Objects API
   description: The Objects API from Oracle Cloud Infrastructure — 2 operation(s) for objects.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/
+  baseURL: https://objectstorage.{region}.oraclecloud.com
   tags:
   - Objects
   properties:
@@ -6240,8 +6263,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-policies-api
   name: Oracle Cloud Infrastructure Policies API
   description: The Policies API from Oracle Cloud Infrastructure — 1 operation(s) for policies.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/identity/20160918/
+  baseURL: https://identity.{region}.oraclecloud.com
   tags:
   - Policies
   properties:
@@ -6628,8 +6651,8 @@ apis:
   description: >-
     The Preauthenticated Requests API from Oracle Cloud Infrastructure — 1 operation(s) for preauthenticated
     requests.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/
+  baseURL: https://objectstorage.{region}.oraclecloud.com
   tags:
   - Preauthenticated Requests
   properties:
@@ -7014,7 +7037,7 @@ apis:
 - aid: oracle-cloud:oracle-cloud-route-tables-api
   name: Oracle Cloud Infrastructure Route Tables API
   description: The Route Tables API from Oracle Cloud Infrastructure — 1 operation(s) for route tables.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Route Tables
@@ -7401,7 +7424,7 @@ apis:
   name: Oracle Cloud Infrastructure Security Lists API
   description: >-
     The Security Lists API from Oracle Cloud Infrastructure — 1 operation(s) for security lists.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Security Lists
@@ -7787,7 +7810,7 @@ apis:
 - aid: oracle-cloud:oracle-cloud-shapes-api
   name: Oracle Cloud Infrastructure Shapes API
   description: The Shapes API from Oracle Cloud Infrastructure — 1 operation(s) for shapes.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Shapes
@@ -8173,7 +8196,7 @@ apis:
 - aid: oracle-cloud:oracle-cloud-subnets-api
   name: Oracle Cloud Infrastructure Subnets API
   description: The Subnets API from Oracle Cloud Infrastructure — 2 operation(s) for subnets.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Subnets
@@ -8559,8 +8582,8 @@ apis:
 - aid: oracle-cloud:oracle-cloud-users-api
   name: Oracle Cloud Infrastructure Users API
   description: The Users API from Oracle Cloud Infrastructure — 2 operation(s) for users.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
-  baseURL: https://iaas.{region}.oraclecloud.com
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/identity/20160918/
+  baseURL: https://identity.{region}.oraclecloud.com
   tags:
   - User
   tags_raw:
@@ -8947,7 +8970,7 @@ apis:
 - aid: oracle-cloud:oracle-cloud-vcns-api
   name: Oracle Cloud Infrastructure VCNs API
   description: The VCNs API from Oracle Cloud Infrastructure — 2 operation(s) for vcns.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - VCNs
@@ -9334,7 +9357,7 @@ apis:
   name: Oracle Cloud Infrastructure Volume Attachments API
   description: >-
     The Volume Attachments API from Oracle Cloud Infrastructure — 2 operation(s) for volume attachments.
-  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/
+  humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/iaas/20160918/
   baseURL: https://iaas.{region}.oraclecloud.com
   tags:
   - Volume Attachments
@@ -9718,6 +9741,8 @@ apis:
   - type: Examples
     url: examples/monitoring-metric-example.json
 common:
+  - type: Website
+    url: https://www.oracle.com/cloud/
   - type: IssueTracker
     url: https://github.com/oracle/oci-cli/issues
   - type: Releases
@@ -9794,8 +9819,6 @@ common:
     url: https://www.linkedin.com/showcase/oracle-cloud
   - type: Portal
     url: https://cloud.oracle.com/
-  - type: Console
-    url: https://console.oracle.com/
   - type: Documentation
     url: https://docs.oracle.com/en-us/iaas/Content/home.htm
   - type: Authentication
@@ -9824,8 +9847,6 @@ common:
     url: https://docs.oracle.com/en-us/iaas/releasenotes/index.htm
   - type: Signup
     url: https://www.oracle.com/cloud/free/
-  - type: Training
-    url: https://www.oracle.com/cloud/training/
   - type: ChangeLog
     url: https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm
   - type: Features
@@ -10001,7 +10022,94 @@ common:
     url: json-ld/oracle-cloud-networking-security-context.jsonld
   - type: JSONLD
     url: json-ld/oracle-cloud-monitoring-alarm-context.jsonld
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-core-services-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-identity-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-object-storage-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-database-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-kubernetes-engine-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-monitoring-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-functions-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-events-openapi.yaml
+  - type: OpenAPI
+    url: openapi/_original/oracle-cloud-notifications-openapi.yaml
+  - type: APIReference
+    url: https://docs.oracle.com/en-us/iaas/api/
+  - type: SignUp
+    url: https://www.oracle.com/cloud/free/
+  - type: Packages
+    url: packages/oracle-cloud-packages.yml
+  - type: SDKs
+    url: packages/oracle-cloud-packages.yml
+  - type: MCPServer
+    url: mcp/oracle-cloud-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/oracle-cloud-tool-crosswalk.yml
+  - type: LLMsTxt
+    url: llms/oracle-cloud-llms.txt
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Conventions
+    url: conventions/oracle-cloud-conventions.yml
+  - type: Idempotency
+    url: conventions/oracle-cloud-conventions.yml
+  - type: ErrorCatalog
+    url: errors/oracle-cloud-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/oracle-cloud-lifecycle.yml
+  - type: Deprecation
+    url: lifecycle/oracle-cloud-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/oracle-cloud-changelog.yml
+  - type: CLI
+    url: cli/oracle-cloud-cli.yml
+  - type: DataModel
+    url: data-model/oracle-cloud-data-model.yml
+  - type: Webhooks
+    url: asyncapi/oracle-cloud-events-webhooks.yml
+  - type: Conformance
+    url: conformance/oracle-cloud-conformance.yml
+  - type: Compliance
+    url: conformance/oracle-cloud-conformance.yml
+  - type: VulnerabilityDisclosure
+    url: security/oracle-cloud-vulnerability-disclosure.yml
+  - type: Security
+    url: security/oracle-cloud-vulnerability-disclosure.yml
+  - type: TrustCenter
+    url: security/oracle-cloud-trust-center.yml
+  - type: Overlay
+    url: overlays/oracle-cloud-core-services-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-identity-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-object-storage-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-database-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-kubernetes-engine-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-monitoring-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-functions-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-events-overlay.yaml
+  - type: Overlay
+    url: overlays/oracle-cloud-notifications-overlay.yaml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 include: []
+x-enrichment:
+  date: '2026-08-29'
+  status: enriched
+  artifacts_added: 40
+  pass: local-v1
+x-parent: oracle
+x-relationship: product

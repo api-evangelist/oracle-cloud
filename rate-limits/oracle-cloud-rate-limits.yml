@@ -4,61 +4,71 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Cloud Infrastructure
 providerId: oracle-cloud
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-08-29'
+generated: '2026-08-29'
+method: searched
+source: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm
+sources:
+  - {url: 'https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm', http_status: 200, probed: '2026-08-29'}
+  - {url: 'https://docs.oracle.com/en-us/iaas/Content/API/References/apierrors.htm', http_status: 200, probed: '2026-08-29'}
+  - {url: 'https://docs.oracle.com/en-us/iaas/Content/General/Concepts/servicelimits.htm', http_status: 200, probed: '2026-08-29'}
+reconciled: true
 tags:
   - Cloud Computing
   - Rate Limiting
   - Oracle
-notes: OCI publishes per-service limits and quotas in the Service Limits, Quotas, and Usage documentation
-  rather than a single global table. Limits vary by tenancy, region, and service (Compute, Networking,
-  Object Storage, IAM, etc.) and many can be raised by submitting a service-limit-increase request.
-description: Oracle Cloud Infrastructure enforces service-specific limits and quotas per tenancy and per
-  region (e.g. number of compute instances, VCNs, autonomous databases). API request throttling is per-service,
-  per-region, and applied at the API endpoint; clients receive HTTP 429 with Retry-After. Many limits
-  are soft and raisable via a service-limit-increase request from the OCI Console.
-sources:
-  - https://docs.oracle.com/en-us/iaas/Content/General/Concepts/servicelimits.htm
-  - https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm
-headers:
-  requestId: opc-request-id
-  retryAfter: Retry-After
-responseCodes:
-  throttled: 429
-  notAuthenticated: 401
-  unavailable: 503
-limits:
-  - name: Service-specific quotas
-    scope: tenancy/region/service
-    metric: varies
-    limit: see Service Limits, Quotas, and Usage docs
-    notes: Each OCI service has its own limit set; many are raisable via support request.
-  - name: API request throttling
-    scope: tenancy/service
-    metric: requests_per_second
-    limit: varies per service endpoint
-    notes: Throttling responses include 429 with Retry-After.
-  - name: Eventual consistency
-    scope: service
-    metric: varies
-    limit: see service docs
-    notes: Some services (Object Storage list operations, IAM) are eventually consistent and require
-      retry-on-stale.
-policies:
-  - name: Backoff
-    description: Use exponential backoff with jitter on 429 / 503; SDKs ship default retry strategies.
-  - name: Service-limit increase
-    description: Request quota increases via the OCI Console (Governance > Limits, Quotas, and Usage)
-      with justification.
-  - name: Compartment quotas
-    description: Use compartment policies to set per-compartment quota policies (separate from tenancy
-      service limits).
-  - name: Idempotency
-    description: Many OCI APIs accept opc-retry-token to make POST/PUT operations idempotent for safe
-      retries.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+description: >-
+  Oracle throttles the OCI APIs but publishes no numeric rate. The only documented runtime signal is
+  HTTP 429 with the body {"code":"TooManyRequests","message":"User-rate limit exceeded."}, and the
+  only published remediation is client-side exponential back-off. Resource quotas — how many
+  instances, VCNs, buckets or databases a tenancy may hold — are documented separately and in
+  detail, but they are limits on what you can create, not on how fast you may call.
+limit_count: 0
+limit_count_note: >-
+  Zero is the honest number. Oracle publishes no requests-per-second, per-minute or per-hour figure
+  for any OCI API, in the API concepts pages, the error reference or the service-limits table. The
+  429 exists; the budget is undocumented.
+limits: []
+response_signaling:
+  status_on_exhaustion: 429
+  error_code: TooManyRequests
+  body: '{"code": "TooManyRequests", "message": "User-rate limit exceeded."}'
+  headers:
+    ratelimit_standard: false
+    x_ratelimit: false
+    retry_after: false
+  headers_note: >-
+    No RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset, no X-RateLimit-*, and no Retry-After
+    header is documented or declared anywhere in the nine first-party contracts in
+    openapi/_original/. A client cannot see remaining budget and cannot be told when to come back.
+    This is the largest runtime-semantics gap in an otherwise precisely specified API.
+  correlation_header: opc-request-id
+guidance:
+  strategy: exponential back-off
+  verbatim: >-
+    "Oracle recommends implementing exponential back-off, starting from a few seconds to a maximum
+    of 60 seconds."
+  source: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm
+scope:
+  documented: per-user / per-tenancy, per-service, per-region
+  note: >-
+    Throttling is applied at the service endpoint. Oracle describes the 429 message as a "User-rate
+    limit exceeded", i.e. scoped to the calling principal, but publishes no per-scope numbers.
+resource_quotas:
+  documented: true
+  url: https://docs.oracle.com/en-us/iaas/Content/General/Concepts/servicelimits.htm
+  distinction: >-
+    These are capacity limits, not rate limits — e.g. 50 API Gateways per region on Universal
+    Credits vs 5 on Pay As You Go; 100 TB aggregate block storage vs 30 TB; 50 load balancers vs 3.
+    They vary by subscription type (Universal Credits / Pay As You Go / Trial / Always Free), by
+    region and by availability domain.
+  errors_when_exceeded:
+    - {status: 400, code: LimitExceeded, meaning: Oracle-defined tenancy limit for the resource type.}
+    - {status: 400, code: QuotaExceeded, meaning: Administrator-defined compartment quota.}
+  increase_process: >-
+    Service-limit increase request from the OCI Console, or via Oracle Support. See
+    https://docs.oracle.com/en-us/iaas/Content/General/service-limits/create-request.htm
+notes: >-
+  Upgraded from method:generated to method:searched on 2026-08-29. The previous revision asserted
+  "clients receive HTTP 429 with Retry-After" — the 429 is correct and documented, the Retry-After
+  is not: no such header is published. Corrected here.

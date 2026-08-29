@@ -4,10 +4,14 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Cloud Infrastructure
 providerId: oracle-cloud
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
+modified: '2026-08-29'
+generated: '2026-08-29'
+method: searched
+source: https://www.oracle.com/cloud/free/
+sources:
+  - {url: 'https://www.oracle.com/cloud/free/', http_status: 200, probed: '2026-08-29'}
+  - {url: 'https://www.oracle.com/cloud/price-list.html', http_status: 200, probed: '2026-08-29'}
+  - {url: 'https://www.oracle.com/cloud/costestimator.html', http_status: null, probed: null}
 reconciled: true
 tags:
   - Cloud Computing
@@ -15,184 +19,68 @@ tags:
   - Platform as a Service
   - Oracle
   - Database
-description: Oracle Cloud Infrastructure (OCI) is multi-product platform pricing — each service has its
-  own per-OCPU/ECPU-hour, per-GB-month, or per-request rate. New tenancies receive a $300 / 30-day free
-  trial credit; the Always Free tier offers a permanent allocation of compute, autonomous DB, storage,
-  and load balancers at no cost. Universal Credits offer committed-use discounts of up to ~33% (1 year)
-  or ~55% (3 year). BYOL (Bring Your Own License) reduces compute rates substantially for Oracle Database
-  workloads. Elastic Pools can save up to 87% on Autonomous Database compute. Use the Oracle Cloud Cost
-  Estimator for full per-service rates.
-sources:
-  - https://www.oracle.com/cloud/price-list/
-  - https://www.oracle.com/cloud/free/
-  - https://www.oracle.com/autonomous-database/pricing/
+description: >-
+  Oracle Cloud Infrastructure is consumption-priced per service, not tiered per API. The account
+  types below are the real, published commercial plans; the per-service rates (per OCPU/ECPU-hour,
+  per GB-month, per request, per GB egress) live in the Cloud Price List and the Cost Estimator.
+  There is no per-API subscription and no request-priced API product — API access is included with
+  the account and metered by the resources it provisions.
+plan_count: 4
 plans:
-  - id: oracle-cloud-always-free
-    name: Always Free
-    type: freemium
-    description: Permanent free allocation usable in any OCI tenancy.
-    entries:
-      - label: Compute (Arm Ampere A1)
-        name: af_compute_arm
-        type: flat
-        metric: OCPU
-        limit: 4
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Autonomous Database
-        name: af_adb
-        type: flat
-        metric: instance
-        limit: 2
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Block + Object Storage
-        name: af_storage
-        type: flat
-        metric: GB
-        limit: 200
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: 4 Arm Ampere A1 OCPUs (24 GB RAM total)
-      - name: 2 Autonomous Databases (20 GB each)
-      - name: 200 GB total block + object storage
-      - name: 2 Load Balancers
-      - name: Free outbound data transfer (10 TB/month)
-  - id: oracle-cloud-trial
-    name: Free Trial
-    type: freemium
-    description: $300 in credits valid for 30 days for any paid OCI service; downgrades to Always Free
-      after expiration.
-    entries:
-      - label: Trial credits
-        name: trial_credit
-        type: flat
-        metric: USD
-        limit: 300
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: 30-day window
-      - name: Access to all OCI services
-  - id: oracle-cloud-payg
-    name: Pay As You Go
-    type: usage-based
-    description: Per-service hourly / per-GB-month metered pricing. Common rates listed below; the full
-      catalog lives in the OCI Cost Estimator.
-    entries:
-      - label: Autonomous DB OCPU (license-included)
-        name: adb_ocpu_license
-        type: metered
-        metric: OCPU-hour
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.336'
-        userMultiplied: false
-      - label: Autonomous DB OCPU (BYOL)
-        name: adb_ocpu_byol
-        type: metered
-        metric: OCPU-hour
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.0807'
-        userMultiplied: false
-      - label: Autonomous DB ECPU
-        name: adb_ecpu
-        type: metered
-        metric: ECPU-hour
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see https://www.oracle.com/autonomous-database/pricing/
-        userMultiplied: false
-      - label: Compute / Block storage / Object storage / Network
-        name: oci_other
-        type: metered
-        metric: varies
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see Oracle Cloud Cost Estimator
-        userMultiplied: false
-    elements:
-      - name: No commitment
-      - name: Per-second billing on most compute services
-  - id: oracle-cloud-universal-credits
-    name: Universal Credits (1- or 3-year)
-    type: subscription
-    description: Annual or 3-year committed-spend agreement that can be applied to any OCI service. Discounts
-      typically scale with commitment size and term.
-    entries:
-      - label: Annual commitment
-        name: annual_commit
-        type: subscription
-        metric: USD-year
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: contact sales (committed discount)
-        userMultiplied: false
-    elements:
-      - name: Committed-use discount
-      - name: Applies across all OCI services
-  - id: oracle-cloud-byol
-    name: Bring Your Own License (BYOL)
-    type: usage-based
-    description: Reuse existing on-prem Oracle licenses to pay only the OCI infrastructure rate (e.g.
-      Autonomous DB BYOL drops OCPU from $0.336 to $0.0807).
-    entries:
-      - label: Autonomous DB BYOL
-        name: byol_adb
-        type: metered
-        metric: OCPU-hour
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.0807'
-        userMultiplied: false
-    elements:
-      - name: Up to ~76% off license-included rate (Autonomous DB)
-      - name: Available across most Oracle PaaS services
-  - id: oracle-cloud-elastic-pools
-    name: Elastic Pools
-    type: usage-based
-    description: Consolidate Autonomous Databases into a shared compute pool for up to ~87% reduction
-      in Autonomous DB compute cost.
-    entries:
-      - label: Pooled ECPU
-        name: pool_ecpu
-        type: metered
-        metric: ECPU-hour
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: up to 87% off list
-        userMultiplied: false
-    elements:
-      - name: Pooled compute across multiple ADBs
-      - name: Significant cost savings at scale
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  - name: Oracle Cloud Free Tier — Free Trial
+    price: 0
+    currency: USD
+    billing_period: one-time
+    included_quota: US$300 of cloud credits, usable on all eligible OCI services
+    duration: 30 days, or until the credits are consumed, whichever comes first
+    limits: Full API access; resource limits are the Trial column of the service-limits table.
+    source: https://www.oracle.com/cloud/free/
+    verbatim: >-
+      "Start with a US$300 cloud credit. You'll have 30 days to use it to test your applications on
+      all OCI services, in addition to Always Free Services in your Free Tier account."
+  - name: Always Free Services
+    price: 0
+    currency: USD
+    billing_period: perpetual
+    included_quota: >-
+      A permanent monthly allocation across a named service list — HeatWave, AMD-based Compute,
+      Arm-based Ampere A1 Compute, Block Volume, Object Storage, Archive Storage, Flexible Load
+      Balancer, Flexible Network Load Balancer, Site-to-Site VPN, Autonomous Data Warehouse,
+      Autonomous Transaction Processing, Autonomous JSON Database, NoSQL Database (Phoenix region
+      only), APEX Application Development, Resource Manager (Terraform), Monitoring, Notifications,
+      Logging, Application Performance Monitoring.
+    duration: unlimited
+    overage: Exceeding the monthly free amount requires an upgrade to Pay As You Go.
+    source: https://www.oracle.com/cloud/free/
+    verbatim: >-
+      "Always Free services are available for an unlimited time. Some limitations apply. As new
+      Always Free services become available, you will automatically be able to use those as well."
+  - name: Pay As You Go
+    price: metered
+    currency: USD
+    billing_period: monthly
+    included_quota: The Always Free monthly amounts remain free; everything above them is metered.
+    overage: Per-service published list rates — per OCPU/ECPU-hour, per GB-month, per request, per GB egress.
+    limits: >-
+      Service limits are lower than on Universal Credits (e.g. 5 API Gateways per region vs 50,
+      3 load balancers vs 50, 30 TB block storage vs 100 TB) per the service-limits table.
+    source: https://www.oracle.com/cloud/price-list.html
+  - name: Oracle Universal Credits (annual / multi-year commitment)
+    price: negotiated
+    currency: USD
+    billing_period: annual
+    included_quota: A prepaid credit pool spendable across any OCI service.
+    discount: Committed-use discounts; BYOL further reduces Oracle Database compute rates.
+    limits: The highest default service limits of any account type.
+    source: https://www.oracle.com/cloud/price-list.html
+api_pricing:
+  metered_per_call: false
+  note: >-
+    OCI does not charge per API call for the control plane. Cost follows the resources the calls
+    create. The exceptions are data-plane services that are natively request-priced (Object Storage
+    requests, Functions invocations, API Gateway requests), which are billed on their own service
+    lines in the price list.
+notes: >-
+  Upgraded from method:generated to method:searched on 2026-08-29 after reading the live Free Tier
+  page. Per-service unit rates were NOT transcribed — there are hundreds and they change; the Cloud
+  Price List and Cost Estimator remain the authority and are linked above.

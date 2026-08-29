@@ -1,0 +1,176 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  openapi/_original/ (Oracle's own Swagger 2.0 contracts),
+  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm,
+  https://docs.oracle.com/en-us/iaas/Content/Events/Reference/eventenvelopereference.htm, and
+  https://www.oracle.com/corporate/cloud-compliance/
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+standards:
+  - id: openapi
+    name: OpenAPI Specification
+    conforms: true
+    version: Swagger 2.0
+    evidence: >-
+      Oracle publishes a machine-readable Swagger 2.0 document per service at
+      https://docs.oracle.com/en-us/iaas/api/specs/, indexed by
+      https://docs.oracle.com/en-us/iaas/api/specs/index.json (159 services). Seven are harvested
+      verbatim into openapi/_original/. Note the version: these are Swagger 2.0, not OpenAPI 3.x,
+      so `swagger: "2.0"` and `definitions`/`basePath` rather than `openapi:` and `components`.
+  - id: rfc9457
+    name: RFC 9457 Problem Details for HTTP APIs
+    conforms: false
+    evidence: >-
+      OCI returns a flat {"code","message"} JSON object with media type application/json. No
+      application/problem+json, no type/title/detail/instance members. Observed live on a 401 from
+      iaas.us-ashburn-1.oraclecloud.com and a 404 from objectstorage.us-ashburn-1.oraclecloud.com.
+  - id: idempotency
+    name: Idempotent request replay
+    conforms: true
+    evidence: >-
+      opc-retry-token request header, max length 64, 24-hour retention, declared on 370 of the
+      1,268 operations in openapi/_original/. Failure mode InvalidatedRetryToken (409). Not the
+      IETF Idempotency-Key draft header — Oracle's own header name.
+  - id: pagination
+    name: Cursor pagination
+    conforms: true
+    evidence: >-
+      opc-next-page / opc-prev-page response headers with page and limit query parameters,
+      documented at docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm and declared on
+      289 list operations across the harvested contracts. Object Storage ListObjects deviates
+      (nextStartWith in the body).
+  - id: http-conditional-requests
+    name: RFC 7232 conditional requests / ETags
+    conforms: true
+    evidence: >-
+      etag response header and if-match request header on 505 operations across the harvested
+      contracts; mismatch returns 412 NoEtagMatch.
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: false
+    evidence: >-
+      The OCI control-plane APIs are authenticated with signed requests using an RSA API signing
+      key, not bearer tokens. derive-oauth-scopes.py found zero oauth2 securitySchemes across the
+      repo. OAuth 2.0 does appear at the edges — OCI IAM identity domains issue tokens, and the
+      HTTP transport of Oracle's own MCP server requires an IDCS confidential application with the
+      scope `oci_mcp.<server>.invoke` — but that is not how the REST APIs in this repo are called.
+  - id: oidc
+    name: OpenID Connect
+    conforms: partial
+    evidence: >-
+      OCI IAM identity domains act as an OIDC provider for tenancy sign-in, but no
+      /.well-known/openid-configuration is served on any host probed in this pass (all 404 or 403);
+      the discovery document is per-identity-domain and tenant-scoped, so it is not anonymously
+      reachable. Recorded as partial rather than true.
+  - id: rfc8594
+    name: RFC 8594 Sunset header
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation response header is documented or declared. Deprecations are
+      announced only on the Service Change Announcements web page.
+  - id: rfc9116
+    name: RFC 9116 security.txt
+    conforms: false
+    evidence: >-
+      /.well-known/security.txt returns 404 on every OCI API host and on docs.oracle.com and
+      cloud.oracle.com, and 403 on www.oracle.com. See well-known/oracle-cloud-well-known.yml.
+  - id: rfc9727
+    name: RFC 9727 /.well-known/api-catalog
+    conforms: false
+    evidence: >-
+      No api-catalog document is served. cloud.oracle.com answers the path with 200 but returns the
+      console SPA HTML shell. Oracle's real catalogue exists at a non-standard location
+      (docs.oracle.com/en-us/iaas/api/specs/index.json).
+domain_standards:
+  - id: cloudevents
+    name: CloudEvents (CNCF)
+    market: cloud eventing / event-driven integration
+    conforms: true
+    version: '0.1'
+    evidence: >-
+      OCI Events emits every event in a CloudEvents envelope. Oracle states it verbatim: "The
+      structure of the envelope follows the CloudEvents industry standard format hosted by the
+      Cloud Native Computing Foundation (CNCF)" and "Events uses version 0.1 specification of the
+      CloudEvents event envelope."
+      Spec location: https://docs.oracle.com/en-us/iaas/Content/Events/Reference/eventenvelopereference.htm
+      Envelope keys observed: cloudEventsVersion, eventID, eventType, eventTypeVersion, source,
+      eventTime, contentType, extensions, data.
+    caveat: >-
+      Version 0.1, not 1.0. A consumer speaking CloudEvents 1.0 (specversion/id/time) needs a
+      translation shim, and the mandatory `extensions` object is an Oracle extension to the spec.
+  - id: s3-api-compatibility
+    name: Amazon S3 Compatibility API
+    market: object storage
+    conforms: true
+    evidence: >-
+      Oracle's own spec index (docs.oracle.com/en-us/iaas/api/specs/index.json) carries a distinct
+      `s3objectstorage` service entry alongside `objectstorage`, and Oracle documents an S3
+      Compatibility API endpoint per namespace. Recorded from the index; the s3objectstorage
+      contract was not harvested in this pass.
+  - id: kubernetes-api
+    name: Kubernetes API
+    market: container orchestration
+    conforms: true
+    evidence: >-
+      Kubernetes Engine (OKE) provisions conformant upstream Kubernetes clusters; the harvested
+      control-plane contract openapi/_original/oracle-cloud-kubernetes-engine-openapi.yaml manages
+      clusters and node pools, and CreateKubeconfig issues credentials for the standard Kubernetes
+      API of the provisioned cluster.
+  - id: kafka-protocol
+    name: Apache Kafka wire protocol
+    market: event streaming
+    conforms: true
+    evidence: >-
+      OCI Streaming exposes a Kafka-compatible endpoint. Recorded from Oracle's service
+      documentation; the streaming contract was not harvested in this pass.
+  - id: scim
+    name: SCIM 2.0
+    market: identity provisioning
+    conforms: unknown
+    evidence: >-
+      OCI IAM identity domains are widely described as SCIM-shaped, and Oracle's spec index carries
+      an `identity-domains` service, but no SCIM schema URN
+      (urn:ietf:params:scim:schemas:*) was found in any contract or docs page fetched in this pass.
+      Recorded as unknown rather than asserted — this is the one worth re-probing next round by
+      harvesting the identity-domains spec.
+compliance:
+  published: true
+  page: https://www.oracle.com/corporate/cloud-compliance/
+  probed: '2026-08-29'
+  http_status: 200
+  model: >-
+    Oracle publishes per-framework "attestations" scoped by cloud service and by region. Reports
+    are obtained through an Oracle sales representative rather than downloaded self-service.
+  frameworks_named:
+    - SOC 1
+    - SOC 2
+    - SOC 3
+    - ISO/IEC 27001
+    - ISO/IEC 27017
+    - ISO/IEC 27018
+    - ISO/IEC 27701
+    - PCI DSS
+    - HIPAA
+    - HITRUST
+    - FedRAMP
+    - DoD Impact Levels
+    - CJIS
+    - ITAR
+    - IRAP (Australia)
+    - C5 (Germany)
+    - ENS (Spain)
+    - HDS (France)
+    - G-Cloud / Cyber Essentials (UK)
+    - ISMAP (Japan)
+    - K-ISMS (Korea)
+    - MTCS (Singapore)
+    - TISAX
+    - CSA STAR
+    - CSA AI STAR
+    - GDPR
+    - NIST
+  note: >-
+    Framework names were extracted from the live compliance page body on 2026-08-29. Scope varies
+    by service and region; Oracle states the attestations "are generally specific to a certain
+    cloud service and may also be specific to a certain data center or geographic region."

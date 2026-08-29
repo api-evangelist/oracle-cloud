@@ -1,0 +1,72 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Object Storage Service API
+  version: 1.0.0
+extends: ../openapi/_original/oracle-cloud-object-storage-openapi.yaml
+x-generated: '2026-08-29'
+x-method: generated
+x-source: API Evangelist enrichment pipeline — derived from this repo's conventions/, errors/, lifecycle/
+  and well-known/ artifacts. Does not modify the original Oracle contract.
+actions:
+- target: $.info
+  description: Record provenance and the canonical publication location of Oracle's own contract.
+  update:
+    x-provider: Oracle Cloud Infrastructure
+    x-provider-id: oracle-cloud
+    x-published-at: https://docs.oracle.com/en-us/iaas/api/specs/
+    x-spec-index: https://docs.oracle.com/en-us/iaas/api/specs/index.json
+    x-harvested: '2026-08-29'
+    x-api-version-scheme: date-in-path (YYYYMMDD)
+    contact:
+      name: Oracle Cloud Infrastructure Support
+      url: https://www.oracle.com/support/
+- target: $
+  description: 'The published document declares no host and schemes: [http]. Supply the real region-templated
+    production host and https, so the document is callable as harvested.'
+  update:
+    host: objectstorage.{region}.oraclecloud.com
+    schemes:
+    - https
+    x-host-template:
+      region:
+        description: OCI region identifier
+        example: us-ashburn-1
+- target: $
+  description: Attach the cross-cutting runtime semantics documented at docs.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm,
+    which the contract itself does not state.
+  update:
+    x-idempotency:
+      header: opc-retry-token
+      max-length: 64
+      retention: 24 hours
+      failure: 409 InvalidatedRetryToken
+      coverage-note: Declared per-operation; not service-wide.
+    x-concurrency:
+      request-header: if-match
+      response-header: etag
+      failure: 412 NoEtagMatch
+    x-pagination:
+      request:
+      - limit
+      - page
+      response-header: opc-next-page
+      terminate-on: absence of opc-next-page, not on an empty array
+    x-request-id:
+      response-header: opc-request-id
+    x-rate-limit:
+      status: 429
+      code: TooManyRequests
+      headers: null
+      guidance: Exponential back-off from a few seconds to a maximum of 60 seconds. No RateLimit-* or
+        Retry-After header is published.
+    x-error-envelope:
+      media-type: application/json
+      fields:
+      - code
+      - message
+      rfc9457: false
+      catalog: errors/oracle-cloud-problem-types.yml
+    x-status-page: https://ocistatus.oraclecloud.com/
+    x-deprecation-policy: https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm
+    x-dry-run:
+      supported: false

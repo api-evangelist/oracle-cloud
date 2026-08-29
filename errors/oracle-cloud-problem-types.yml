@@ -1,0 +1,73 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://docs.oracle.com/en-us/iaas/Content/API/References/apierrors.htm (Oracle's API error
+  reference), cross-checked against the 4xx/5xx responses declared in openapi/_original/ and
+  against live unauthenticated responses observed from iaas.us-ashburn-1.oraclecloud.com and
+  objectstorage.us-ashburn-1.oraclecloud.com on 2026-08-29.
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+format: oracle-oci
+rfc9457: false
+envelope:
+  media_type: application/json
+  fields:
+    - name: code
+      description: Machine-readable OCI error code string, e.g. NotAuthorizedOrNotFound.
+    - name: message
+      description: Human-readable description of the failure.
+  correlation_header: opc-request-id
+  correlation_note: >-
+    Every OCI response carries an Oracle-assigned opc-request-id. Oracle's documentation asks that
+    it be supplied when reporting a 500 InternalServerError or 503 ServiceUnavailable.
+  observed_example:
+    request: GET https://iaas.us-ashburn-1.oraclecloud.com/20160918/instances
+    status: 401
+    body: '{"code":"NotAuthenticated","message":"The required information to complete authentication was not provided or was incorrect."}'
+  note: >-
+    OCI does NOT use RFC 9457 application/problem+json. The envelope is a flat {code, message}
+    JSON object with no type/title/detail/instance members and no problem+json media type.
+problem_types:
+  - {status: 400, code: CannotParseRequest, title: The request is incorrectly formatted., retry: false}
+  - {status: 400, code: InvalidParameter, title: A parameter is invalid or incorrectly formatted., retry: false}
+  - {status: 400, code: LimitExceeded, title: Fulfilling this request exceeds the Oracle-defined limit for this tenancy for this resource type., retry: false, remediation: Request a service-limit increase from the OCI Console.}
+  - {status: 400, code: MissingParameter, title: A required parameter is missing., retry: false}
+  - {status: 400, code: QuotaExceeded, title: Fulfilling this request exceeds the administrator-defined quota for this compartment for this resource., retry: false}
+  - {status: 400, code: RelatedResourceNotAuthorizedOrNotFound, title: A resource specified in the body of the request was not found, or you do not have authorization to access it., retry: false}
+  - {status: 401, code: NotAuthenticated, title: The required authentication information was not provided or was incorrect., retry: false, remediation: Check the request signature and the API signing key.}
+  - {status: 403, code: NotAllowed, title: This operation must be directed at the home region., retry: false}
+  - {status: 403, code: NotAuthorized, title: You do not have authorization to update one or more of the fields included in this request., retry: false}
+  - {status: 403, code: SignUpRequired, title: This operation requires opt-in before it can be called., retry: false}
+  - {status: 404, code: InvalidParameter, title: A dynamic path component is invalid or is syntactically valid but not allowed., retry: false}
+  - {status: 404, code: NotAuthorizedOrNotFound, title: A resource specified via the URI was not found, or you do not have authorization to access it., retry: false}
+  - {status: 404, code: NotFound, title: There is no operation supported at the URI path and HTTP method you specified., retry: false}
+  - {status: 404, code: NamespaceNotFound, title: You do not have authorization to perform this request, or the requested resource could not be found., retry: false}
+  - {status: 405, code: MethodNotAllowed, title: The target resource does not support the HTTP method., retry: false}
+  - {status: 409, code: Conflict, title: The requested state for the resource conflicts with its current state. This state is not transient., retry: false}
+  - {status: 409, code: ExternalServerIncorrectState, title: The server is in an incorrect state, has timed out, returned an invalid response, or is unreachable., retry: true}
+  - {status: 409, code: IncorrectState, title: The requested state conflicts with the current state but will become correct given time., retry: true}
+  - {status: 409, code: InvalidatedRetryToken, title: The provided retry token was used in an earlier request that resulted in a system update, but a subsequent operation invalidated the token., retry: false}
+  - {status: 409, code: ResourceLocked, title: The requested resource is locked., retry: false}
+  - {status: 409, code: NotAuthorizedOrResourceAlreadyExists, title: You do not have authorization to perform this request, or the resource you are attempting to create already exists., retry: false}
+  - {status: 412, code: NoEtagMatch, title: The ETag specified in the request does not match the ETag for the resource., retry: false, remediation: Re-read the resource and retry with the current if-match value.}
+  - {status: 413, code: PayloadTooLarge, title: The request entity is larger than limits defined by the server., retry: false}
+  - {status: 422, code: UnprocessableEntity, title: Payload is syntactically correct but semantically invalid., retry: false}
+  - {status: 429, code: TooManyRequests, title: You have issued too many requests to the OCI APIs in too short an amount of time., retry: true, remediation: Exponential back-off starting from a few seconds up to a maximum of 60 seconds.}
+  - {status: 431, code: RequestHeaderFieldsTooLarge, title: The request's HTTP headers are too long., retry: false}
+  - {status: 500, code: InternalServerError, title: An internal server error occurred., retry: true, remediation: Report the opc-request-id to Oracle Support.}
+  - {status: 501, code: MethodNotImplemented, title: The HTTP request target does not recognize the HTTP method., retry: false}
+  - {status: 503, code: ExternalServerUnreachable, title: A connection with an external system needed to fulfill the request could not be established., retry: true}
+  - {status: 503, code: ExternalServerTimeout, title: A connection with an external system needed to fulfill the request timed out., retry: true}
+  - {status: 503, code: ExternalServerInvalidResponse, title: A connection with an external system needed to fulfill the request resulted in an unacceptable response., retry: true}
+  - {status: 503, code: ServiceUnavailable, title: The service is currently unavailable., retry: true}
+spec_declared_statuses:
+  core-services: [400, 401, 403, 404, 409, 412, 429, 500]
+  database: [400, 401, 403, 404, 409, 412, 429, 500]
+  identity: [400, 401, 403, 404, 409, 412, 429, 500]
+  object-storage: [304, 400, 401, 403, 404, 408, 409, 411, 412, 429, 500]
+  kubernetes-engine: [400, 401, 404, 409, 412, 429, 500]
+  monitoring: [400, 401, 404, 409, 412, 429, 500]
+  functions: [400, 401, 403, 404, 409, 412, 429, 500, 502, 503]
+counts:
+  problem_types: 32
+  retryable: 9

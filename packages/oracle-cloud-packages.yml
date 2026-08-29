@@ -1,0 +1,130 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  Public package-registry metadata endpoints (registry.npmjs.org, pypi.org/pypi/<pkg>/json,
+  rubygems.org/api/v1/gems, proxy.golang.org, api.nuget.org, search.maven.org) plus
+  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdks.htm
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+description: >-
+  First-party Oracle Cloud Infrastructure client libraries, the OCI CLI, and Oracle's
+  reference MCP server packages. Every version/published pair below was read from the
+  named registry metadata endpoint on 2026-08-29.
+packages:
+  - name: oci
+    registry: pypi
+    url: https://pypi.org/project/oci/
+    language: python
+    official: true
+    version: 2.185.0
+    published: '2026-08-25'
+    repository: https://github.com/oracle/oci-python-sdk
+    docs: https://docs.oracle.com/en-us/iaas/tools/python/latest/index.html
+    note: Oracle Cloud Infrastructure Python SDK.
+  - name: oci-cli
+    registry: pypi
+    url: https://pypi.org/project/oci-cli/
+    language: python
+    official: true
+    kind: cli
+    version: 3.91.0
+    published: '2026-08-25'
+    repository: https://github.com/oracle/oci-cli
+    note: The OCI command line interface; command surface captured in cli/oracle-cloud-cli.yml.
+  - name: oci-sdk
+    registry: npm
+    url: https://www.npmjs.com/package/oci-sdk
+    language: typescript
+    official: true
+    version: 2.140.0
+    published: '2026-08-25'
+    repository: https://github.com/oracle/oci-typescript-sdk
+    note: Umbrella package; individual service packages (oci-core, oci-identity, oci-objectstorage...) publish on the same version line.
+  - name: oci-common
+    registry: npm
+    url: https://www.npmjs.com/package/oci-common
+    language: typescript
+    official: true
+    version: 2.140.0
+    published: '2026-08-25'
+    repository: https://github.com/oracle/oci-typescript-sdk
+    note: Signing/auth primitives shared by every oci-* npm package.
+  - name: github.com/oracle/oci-go-sdk/v65
+    registry: pkg.go.dev
+    url: https://pkg.go.dev/github.com/oracle/oci-go-sdk/v65
+    language: go
+    official: true
+    version: v65.124.0
+    published: '2026-08-25'
+    repository: https://github.com/oracle/oci-go-sdk
+    note: Version and date read from proxy.golang.org/github.com/oracle/oci-go-sdk/v65/@latest.
+  - name: oci
+    registry: rubygems
+    url: https://rubygems.org/gems/oci
+    language: ruby
+    official: true
+    version: 2.24.0
+    published: '2026-07-28'
+    repository: https://github.com/oracle/oci-ruby-sdk
+    note: Ruby SDK; releases trail the Python/Go/TypeScript lines by roughly a month.
+  - name: OCI.DotNetSDK.Core
+    registry: nuget
+    url: https://www.nuget.org/packages/OCI.DotNetSDK.Core
+    language: dotnet
+    official: true
+    version: 145.0.0
+    published: null
+    repository: https://github.com/oracle/oci-dotnet-sdk
+    note: >-
+      Latest version read from the NuGet registration index (upper bound 145.0.0). The
+      registration page for that version was not retrieved, so no publish date is recorded —
+      checked, nothing to record, not a guess.
+  - name: com.oracle.oci.sdk:oci-java-sdk
+    registry: maven
+    url: https://central.sonatype.com/artifact/com.oracle.oci.sdk/oci-java-sdk
+    language: java
+    official: true
+    version: 3.67.3
+    published: '2025-06-24'
+    repository: https://github.com/oracle/oci-java-sdk
+    note: >-
+      Aggregator POM. Every com.oracle.oci.sdk service artifact on Maven Central carries the
+      same 3.67.3 / 2025-06-24 stamp, i.e. the Java line on Central is roughly 14 months behind
+      the Python, Go and TypeScript SDKs. Oracle also ships Java SDK builds directly from
+      github.com/oracle/oci-java-sdk releases.
+  - name: OCI.PSModules
+    registry: powershellgallery
+    url: https://www.powershellgallery.com/packages/OCI.PSModules
+    language: powershell
+    official: true
+    version: null
+    published: null
+    repository: https://github.com/oracle/oci-powershell-modules
+    note: >-
+      PowerShell Gallery was not queried in this pass (no metadata endpoint probed), so version
+      and published are null rather than guessed. Repository confirmed first-party.
+  - name: oracle.oci-cloud-mcp-server
+    registry: pypi
+    url: https://pypi.org/project/oracle.oci-cloud-mcp-server/
+    language: python
+    official: true
+    kind: mcp-server
+    version: 2.2.3
+    published: '2026-08-25'
+    repository: https://github.com/oracle/mcp
+    note: Reference MCP server over the OCI Python SDK; see mcp/oracle-cloud-mcp.yml.
+  - name: oracle.oci-api-mcp-server
+    registry: pypi
+    url: https://pypi.org/project/oracle.oci-api-mcp-server/
+    language: python
+    official: true
+    kind: mcp-server
+    version: 2.1.5
+    published: '2026-08-25'
+    repository: https://github.com/oracle/mcp
+    note: Reference MCP server that shells out to the OCI CLI; stdio only.
+counts:
+  total: 11
+  official: 11
+  with_version: 9
+  without_version: 2

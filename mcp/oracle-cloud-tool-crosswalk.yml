@@ -1,0 +1,161 @@
+generated: '2026-08-29'
+method: derived
+source: >-
+  mcp/oracle-cloud-mcp.yml (tool names verbatim from github.com/oracle/mcp server READMEs) bound
+  to operationIds verified present in openapi/_original/ — Oracle's own Swagger 2.0 contracts
+  harvested from https://docs.oracle.com/en-us/iaas/api/specs/
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+description: >-
+  Binds each service-specific Oracle MCP tool to the OCI REST operation(s) that back it. Every
+  operationId below was grepped out of the harvested first-party spec and confirmed to exist;
+  none was invented. Confidence is `high` where the tool name and the operationId are the same
+  verb+noun on the same service, `medium` where the tool composes or filters a listed operation.
+surfaces:
+  openapi:
+    - openapi/_original/oracle-cloud-core-services-openapi.yaml
+    - openapi/_original/oracle-cloud-identity-openapi.yaml
+    - openapi/_original/oracle-cloud-object-storage-openapi.yaml
+    - openapi/_original/oracle-cloud-monitoring-openapi.yaml
+    - openapi/_original/oracle-cloud-database-openapi.yaml
+    - openapi/_original/oracle-cloud-kubernetes-engine-openapi.yaml
+    - openapi/_original/oracle-cloud-functions-openapi.yaml
+  graphql: null
+  mcp:
+    url: null
+    gated: false
+    note: >-
+      Local stdio only — `uvx oracle.oci-cloud-mcp-server@latest`. No hosted endpoint, so the
+      live inputSchemas could not be introspected; tools are mapped by published name and
+      description.
+crosswalk:
+  - {tool: list_instances, category: compute, rest: [ListInstances], binding: direct, confidence: high}
+  - {tool: get_instance, category: compute, rest: [GetInstance], binding: direct, confidence: high}
+  - {tool: launch_instance, category: compute, rest: [LaunchInstance], binding: direct, confidence: high}
+  - {tool: terminate_instance, category: compute, rest: [TerminateInstance], binding: direct, confidence: high}
+  - {tool: update_instance, category: compute, rest: [UpdateInstance], binding: direct, confidence: high}
+  - {tool: instance_action, category: compute, rest: [InstanceAction], binding: direct, confidence: high}
+  - {tool: list_images, category: compute, rest: [ListImages], binding: direct, confidence: high}
+  - {tool: get_image, category: compute, rest: [GetImage], binding: direct, confidence: high}
+  - {tool: list_vcns, category: networking, rest: [ListVcns], binding: direct, confidence: high}
+  - {tool: get_vcn, category: networking, rest: [GetVcn], binding: direct, confidence: high}
+  - {tool: create_vcn, category: networking, rest: [CreateVcn], binding: direct, confidence: high}
+  - {tool: delete_vcn, category: networking, rest: [DeleteVcn], binding: direct, confidence: high}
+  - {tool: list_subnets, category: networking, rest: [ListSubnets], binding: direct, confidence: high}
+  - {tool: get_subnet, category: networking, rest: [GetSubnet], binding: direct, confidence: high}
+  - {tool: create_subnet, category: networking, rest: [CreateSubnet], binding: direct, confidence: high}
+  - {tool: list_security_lists, category: networking, rest: [ListSecurityLists], binding: direct, confidence: high}
+  - {tool: get_security_list, category: networking, rest: [GetSecurityList], binding: direct, confidence: high}
+  - {tool: list_network_security_groups, category: networking, rest: [ListNetworkSecurityGroups], binding: direct, confidence: high}
+  - {tool: get_network_security_group, category: networking, rest: [GetNetworkSecurityGroup], binding: direct, confidence: high}
+  - {tool: get_namespace, category: object-storage, rest: [GetNamespace], binding: direct, confidence: high}
+  - {tool: list_buckets, category: object-storage, rest: [ListBuckets], binding: direct, confidence: high}
+  - {tool: get_bucket_details, category: object-storage, rest: [GetBucket], binding: direct, confidence: high}
+  - {tool: list_objects, category: object-storage, rest: [ListObjects], binding: direct, confidence: high}
+  - {tool: list_object_versions, category: object-storage, rest: [ListObjectVersions], binding: direct, confidence: high}
+  - {tool: get_object, category: object-storage, rest: [GetObject], binding: direct, confidence: high}
+  - tool: upload_object
+    category: object-storage
+    rest: [PutObject]
+    binding: direct
+    confidence: high
+    note: Oracle's REST operationId is PutObject; the tool is named upload_object.
+  - {tool: list_compartments, category: identity, rest: [ListCompartments], binding: direct, confidence: high}
+  - tool: get_compartment_by_name
+    category: identity
+    rest: [ListCompartments]
+    binding: composite
+    confidence: medium
+    note: Client-side name filter over the ListCompartments result; no REST get-by-name exists.
+  - {tool: get_tenancy_info, category: identity, rest: [GetTenancy], binding: direct, confidence: high}
+  - tool: get_current_tenancy
+    category: identity
+    rest: [GetTenancy]
+    binding: composite
+    confidence: medium
+    note: Resolves the tenancy OCID from the local OCI config before calling GetTenancy.
+  - tool: get_current_user
+    category: identity
+    rest: [GetUser]
+    binding: composite
+    confidence: medium
+    note: Resolves the caller's user OCID from the signing profile before calling GetUser.
+  - {tool: list_availability_domains, category: identity, rest: [ListAvailabilityDomains], binding: direct, confidence: high}
+  - {tool: list_subscribed_regions, category: identity, rest: [ListRegionSubscriptions], binding: direct, confidence: high}
+  - {tool: list_alarms, category: monitoring, rest: [ListAlarms], binding: direct, confidence: high}
+  - {tool: get_metrics_data, category: monitoring, rest: [SummarizeMetricsData], binding: direct, confidence: high}
+  - {tool: get_available_metrics, category: monitoring, rest: [ListMetrics], binding: direct, confidence: high}
+  - {tool: list_autonomous_databases, category: database, rest: [ListAutonomousDatabases], binding: direct, confidence: high}
+  - {tool: list_db_systems, category: database, rest: [ListDbSystems], binding: direct, confidence: high}
+  - {tool: list_autonomous_container_databases, category: database, rest: [ListAutonomousContainerDatabases], binding: direct, confidence: high}
+  - {tool: list_backups, category: database, rest: [ListBackups], binding: direct, confidence: high}
+  - {tool: list_databases, category: database, rest: [ListDatabases], binding: direct, confidence: high}
+  - tool: invoke_oci_api
+    category: generic
+    rest: ['*']
+    binding: universal
+    confidence: high
+    note: >-
+      Generic escape hatch in oci-cloud-mcp-server — invokes ANY OCI Python SDK client method by
+      client_fqn + operation, so it covers every operation in every harvested spec rather than
+      one of them.
+  - tool: describe_oci_operation
+    category: generic
+    rest: ['*']
+    binding: introspection
+    confidence: high
+    note: Returns the parameter contract of an SDK method — the MCP analogue of reading the spec.
+  - {tool: find_oci_api, category: generic, rest: ['*'], binding: introspection, confidence: high}
+  - {tool: list_client_operations, category: generic, rest: ['*'], binding: introspection, confidence: high}
+  - {tool: list_oci_clients, category: generic, rest: ['*'], binding: introspection, confidence: high}
+  - tool: run_oci_command
+    category: generic
+    rest: ['*']
+    binding: cli-passthrough
+    confidence: medium
+    note: oci-api-mcp-server shells out to the OCI CLI, which is itself generated from the same specs.
+  - {tool: get_oci_command_help, category: generic, rest: [], binding: cli-passthrough, confidence: medium}
+mcp_only:
+  - tool: list_fusion_environments
+    reason: >-
+      Backed by the Fusion Applications (fusion-applications) service API, which is not among the
+      seven contracts harvested into openapi/_original/ in this pass.
+  - tool: list_fusion_environment_families
+    reason: Same — Fusion Applications service API not harvested here.
+  - tool: get_fusion_environment
+    reason: Same — Fusion Applications service API not harvested here.
+  - tool: get_fusion_environment_status
+    reason: Same — Fusion Applications service API not harvested here.
+rest_only:
+  note: >-
+    The gap is enormous and is the headline finding of this crosswalk. The seven harvested
+    first-party contracts expose 1,228 operations; the service-specific MCP servers expose roughly
+    115 named tools, and all but a handful are reads. Every write path outside compute, networking,
+    object storage and VCN/subnet creation — including the entire Kubernetes Engine surface
+    (CreateCluster, CreateNodePool, DeleteCluster) and the entire Functions surface
+    (CreateApplication, InvokeFunction) — has no named tool and is reachable only through the
+    generic invoke_oci_api escape hatch.
+  examples:
+    - {rest: CreateCluster, service: kubernetes-engine}
+    - {rest: CreateNodePool, service: kubernetes-engine}
+    - {rest: DeleteCluster, service: kubernetes-engine}
+    - {rest: CreateApplication, service: functions}
+    - {rest: InvokeFunction, service: functions}
+    - {rest: CreateAutonomousDatabase, service: database}
+    - {rest: RestartAutonomousDatabase, service: database}
+    - {rest: CreatePreauthenticatedRequest, service: object-storage}
+    - {rest: RestoreObjects, service: object-storage}
+    - {rest: CreateUser, service: identity}
+    - {rest: CreatePolicy, service: identity}
+    - {rest: CreateAlarm, service: monitoring}
+    - {rest: AttachVolume, service: core-services}
+coverage:
+  mcp_tools_mapped: 48
+  mcp_only: 4
+  rest_operations_total: 1228
+  rest_operations_named_by_a_tool: 39
+  rest_operations_reachable_only_via_generic_invoke: 1189
+  note: >-
+    rest_operations_total counts the seven service contracts in openapi/_original/ (core services
+    490, database 444, identity 148, object storage 61, kubernetes engine 50, monitoring 18,
+    functions 17).

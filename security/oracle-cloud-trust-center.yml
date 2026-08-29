@@ -1,0 +1,61 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://www.oracle.com/corporate/cloud-compliance/ (reached via a 301 from
+  https://www.oracle.com/cloud/compliance/), plus
+  https://www.oracle.com/corporate/security-practices/
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+trust_center_published: true
+url: https://www.oracle.com/corporate/cloud-compliance/
+alternate_urls:
+  - https://www.oracle.com/cloud/compliance/
+  - https://www.oracle.com/corporate/security-practices/
+probed: '2026-08-29'
+http_status: 200
+model: >-
+  Oracle publishes "attestations" — third-party certifications and audit reports — grouped by line
+  of business (Oracle Cloud Infrastructure, Oracle Applications, NetSuite, Oracle Industries,
+  Oracle Health) and by framework. Attestation reports are obtained through an Oracle sales
+  representative; they are not self-service downloads, and Oracle notes each attestation "may also
+  be specific to a certain data center or geographic region."
+certifications:
+  - {name: SOC 1, scope: attestation}
+  - {name: SOC 2, scope: attestation}
+  - {name: SOC 3, scope: attestation}
+  - {name: ISO/IEC 27001, scope: certification}
+  - {name: ISO/IEC 27017, scope: certification}
+  - {name: ISO/IEC 27018, scope: certification}
+  - {name: ISO/IEC 27701, scope: certification}
+  - {name: PCI DSS, scope: attestation}
+  - {name: HIPAA, scope: attestation}
+  - {name: HITRUST, scope: certification}
+  - {name: FedRAMP, scope: authorization, region: United States}
+  - {name: DoD Impact Levels, scope: authorization, region: United States}
+  - {name: CJIS, scope: attestation, region: United States}
+  - {name: ITAR, scope: attestation, region: United States}
+  - {name: IRAP, scope: assessment, region: Australia}
+  - {name: C5, scope: attestation, region: Germany}
+  - {name: ENS, scope: certification, region: Spain}
+  - {name: HDS, scope: certification, region: France}
+  - {name: G-Cloud / Cyber Essentials, scope: certification, region: United Kingdom}
+  - {name: ISMAP, scope: registration, region: Japan}
+  - {name: K-ISMS, scope: certification, region: Korea}
+  - {name: MTCS, scope: certification, region: Singapore}
+  - {name: TISAX, scope: assessment, region: Europe (automotive)}
+  - {name: CSA STAR, scope: registry}
+  - {name: CSA AI STAR, scope: registry, note: 'Cloud Security Alliance assurance framework extended to AI systems.'}
+  - {name: GDPR, scope: regulatory alignment, region: European Union}
+  - {name: NIST, scope: framework alignment}
+shared_responsibility:
+  documented: true
+  statement: >-
+    Oracle publishes a shared management model on the same page: responsibility for security and
+    privacy is split between Oracle and the customer, and the split varies by service model
+    (IaaS/PaaS/SaaS).
+subprocessors_page: null
+status_page: https://ocistatus.oraclecloud.com/
+note: >-
+  Framework names were read from the live page body on 2026-08-29. Per-framework scope beyond what
+  the page states (which services, which regions, current report dates) was not fetched and is not
+  asserted here.

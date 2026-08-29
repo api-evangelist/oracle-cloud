@@ -1,0 +1,120 @@
+generated: '2026-08-29'
+method: probed
+source: live HTTPS probes of every apis.yml baseURL host, every OpenAPI servers[] host, and the docs/console hosts
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+summary: >-
+  Oracle Cloud Infrastructure serves no /.well-known document on any probed host. The API
+  hosts answer every /.well-known/* path with the ordinary OCI API error envelope
+  ({"code":"NotAuthorizedOrNotFound"} / {"code":"NotFound"}), www.oracle.com returns a blanket
+  403 to non-browser clients for the whole /.well-known/ prefix, and cloud.oracle.com answers
+  /.well-known/api-catalog with HTTP 200 carrying the console single-page-app HTML shell — a
+  catch-all, not a document. No WellKnown, APICatalog or SecurityTxt pointer is emitted, because
+  nothing was actually served.
+note: >-
+  Oracle DOES publish a machine-readable catalogue of its 159 OCI service APIs, just not at a
+  /.well-known path: https://docs.oracle.com/en-us/iaas/api/specs/index.json maps each service to
+  its per-region endpoints and to a first-party Swagger 2.0 document under
+  https://docs.oracle.com/en-us/iaas/api/specs/. That index is the source for the contracts saved
+  in openapi/_original/. It is recorded here as a finding, not as a /.well-known hit.
+hosts:
+  - host: iaas.us-ashburn-1.oraclecloud.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+  - host: objectstorage.us-ashburn-1.oraclecloud.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+  - host: identity.us-ashburn-1.oraclecloud.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+  - host: docs.oracle.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+  - host: cloud.oracle.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 200
+        file: null
+        note: >-
+          200 but the body is the OCI Console single-page-app HTML shell (24KB of <!doctype html>),
+          not an RFC 9727 catalogue. Treated as a miss.
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+  - host: www.oracle.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        file: null
+        note: Oracle's edge returns 403 for the whole /.well-known/ prefix to non-browser clients.
+      - path: /.well-known/openid-configuration
+        status: 403
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        file: null
+      - path: /.well-known/api-catalog
+        status: 403
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 403
+        file: null
+      - path: /.well-known/agent.json
+        status: 403
+        file: null
+  - host: ocistatus.oraclecloud.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+counts:
+  hosts_probed: 7
+  paths_probed: 27
+  documents_served: 0

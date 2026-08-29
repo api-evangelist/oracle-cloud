@@ -1,0 +1,190 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://github.com/oracle/mcp (first-party Oracle repository) — README.md and
+  src/<server>/README.md tool tables; package metadata from
+  https://pypi.org/pypi/oracle.oci-cloud-mcp-server/json and
+  https://pypi.org/pypi/oracle.oci-api-mcp-server/json
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+name: Oracle MCP Servers for OCI
+status: published
+description: >-
+  Oracle publishes a first-party MCP monorepo at github.com/oracle/mcp containing 32 MCP servers,
+  27 of which target Oracle Cloud Infrastructure. Two are general-purpose entry points —
+  oci-cloud-mcp-server (a thin wrapper over the OCI Python SDK) and oci-api-mcp-server (a wrapper
+  over the OCI CLI) — and the rest are purpose-built per service (compute, networking, object
+  storage, identity, monitoring, database, logging, load balancer, pricing, usage, support...).
+  Oracle labels the repository explicitly as reference implementations, not production software.
+deployment:
+  mode: local-stdio
+  endpoint: null
+  install: uvx oracle.oci-cloud-mcp-server@latest
+  package: https://pypi.org/project/oracle.oci-cloud-mcp-server/
+  auth: api-key
+  verified: searched
+  note: >-
+    Oracle hosts NO remote MCP endpoint for OCI. Every server ships as a Python package the
+    operator installs and runs. oci-cloud-mcp-server can additionally be started by the operator
+    in HTTP streaming mode (ORACLE_MCP_HOST/ORACLE_MCP_PORT, OAuth via an OCI IAM confidential
+    application, default scope `openid profile email oci_mcp.cloud.invoke`), but that URL belongs
+    to whoever runs it — Oracle publishes no such URL — so the mode recorded here is local-stdio.
+    oci-api-mcp-server is stdio-only. Auth over stdio is the OCI CLI profile / API signing key
+    (~/.oci/config), which is why auth is recorded as api-key rather than oauth.
+disclaimer: >-
+  Verbatim from the repository README: "This repository is not intended for production use;
+  servers are provided as reference and for exploration, prototyping, and learning."
+servers:
+  - id: oci-cloud-mcp-server
+    title: OCI Cloud MCP Server (recommended general-purpose entry point)
+    package: oracle.oci-cloud-mcp-server
+    registry: pypi
+    version: 2.2.3
+    published: '2026-08-25'
+    transport: [stdio, streamable-http]
+    install: uvx oracle.oci-cloud-mcp-server@latest
+    source: https://github.com/oracle/mcp/tree/main/src/oci-cloud-mcp-server
+    backing: OCI Python SDK (no CLI subprocess calls)
+    tools:
+      - name: list_oci_clients
+        description: List OCI SDK clients discoverable in the current environment.
+      - name: find_oci_api
+        description: Keyword/resource-action search across OCI SDK client methods, returning client_fqn + operation.
+      - name: describe_oci_operation
+        description: Describe a specific OCI SDK method — required params, optional params, pagination behavior, request model hints.
+      - name: invoke_oci_api
+        description: Invoke any OCI Python SDK client method via client_fqn + operation + params.
+      - name: list_client_operations
+        description: List public callable operations for a given OCI client class.
+  - id: oci-api-mcp-server
+    title: OCI API MCP Server (OCI CLI backed)
+    package: oracle.oci-api-mcp-server
+    registry: pypi
+    version: 2.1.5
+    published: '2026-08-25'
+    transport: [stdio]
+    install: uvx oracle.oci-api-mcp-server@latest
+    source: https://github.com/oracle/mcp/tree/main/src/oci-api-mcp-server
+    tools:
+      - name: get_oci_command_help
+        description: Returns helpful instructions for running an OCI CLI command.
+      - name: run_oci_command
+        description: Runs an OCI CLI command on the user's behalf.
+  - id: oci-compute-mcp-server
+    title: OCI Compute MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-compute-mcp-server
+    transport: [stdio]
+    tools:
+      - {name: list_instances, description: List Instances in a given compartment}
+      - {name: get_instance, description: Get Instance with a given instance OCID}
+      - {name: launch_instance, description: Create a new instance}
+      - {name: terminate_instance, description: Terminate an instance}
+      - {name: update_instance, description: Update instance configuration}
+      - {name: list_images, description: List images in a given compartment}
+      - {name: get_image, description: Get Image with a given image OCID}
+      - {name: instance_action, description: Perform actions on a given instance}
+  - id: oci-networking-mcp-server
+    title: OCI Networking MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-networking-mcp-server
+    transport: [stdio]
+    tools:
+      - {name: list_vcns, description: List Virtual Cloud Networks (VCNs) in a given compartment}
+      - {name: get_vcn, description: Get a VCN with a given VCN OCID}
+      - {name: delete_vcn, description: Delete a VCN with a given VCN OCID}
+      - {name: create_vcn, description: Create a new VCN}
+      - {name: list_subnets, description: List subnets in a given compartment and VCN}
+      - {name: get_subnet, description: Get a subnet with a given subnet OCID}
+      - {name: create_subnet, description: Create a new subnet}
+      - {name: list_security_lists, description: List security lists in a given VCN and compartment}
+      - {name: get_security_list, description: Get a security list with a given security list OCID}
+      - {name: list_network_security_groups, description: List network security groups in a given compartment and VCN}
+      - {name: get_network_security_group, description: Get a network security group with a given NSG OCID}
+  - id: oci-object-storage-mcp-server
+    title: OCI Object Storage MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-object-storage-mcp-server
+    transport: [stdio]
+    tools:
+      - {name: get_namespace, description: Get the object storage namespace for the tenancy}
+      - {name: list_buckets, description: List object storage buckets in a given compartment}
+      - {name: get_bucket_details, description: Get details for a specific object storage bucket}
+      - {name: list_objects, description: List objects in a given object storage bucket}
+      - {name: list_object_versions, description: List object versions in a given object storage bucket}
+      - {name: get_object, description: Get a specific object from an object storage bucket}
+      - {name: upload_object, description: Upload an object to an object storage bucket}
+  - id: oci-identity-mcp-server
+    title: OCI Identity MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-identity-mcp-server
+    transport: [stdio]
+    tools:
+      - {name: list_compartments, description: List compartments in a given tenancy}
+      - {name: get_tenancy_info, description: Get tenancy information}
+      - {name: list_availability_domains, description: List availability domains in a given tenancy}
+      - {name: get_current_tenancy, description: Get current tenancy information}
+      - {name: get_current_user, description: Get current user information}
+      - {name: get_compartment_by_name, description: Return a compartment matching the provided name}
+      - {name: list_subscribed_regions, description: Return a list of all regions the tenancy is subscribed to}
+  - id: oci-monitoring-mcp-server
+    title: OCI Monitoring MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-monitoring-mcp-server
+    transport: [stdio]
+    tools:
+      - {name: list_alarms, description: List Alarms in the tenancy}
+      - {name: get_metrics_data, description: Gets aggregated metric data}
+      - {name: get_available_metrics, description: Lists the available metrics a user can query on in their tenancy}
+  - id: oci-database-mcp-server
+    title: OCI Database MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-database-mcp-server
+    transport: [stdio]
+    tool_count: 60
+    tools_note: >-
+      Read-only list_* surface over the Database Service API — list_autonomous_databases,
+      list_db_systems, list_autonomous_container_databases, list_backups, list_db_homes,
+      list_db_nodes, list_cloud_vm_clusters and ~53 more. Full table in the server README.
+  - id: oci-faaas-mcp-server
+    title: OCI Fusion Applications MCP Server
+    source: https://github.com/oracle/mcp/tree/main/src/oci-faaas-mcp-server
+    transport: [stdio]
+    tools:
+      - {name: list_fusion_environment_families, description: List Fusion Environment Families in a compartment}
+      - {name: list_fusion_environments, description: List Fusion Environments in a compartment}
+      - {name: get_fusion_environment, description: Get details of a Fusion Environment by OCID}
+      - {name: get_fusion_environment_status, description: Get status of a Fusion Environment by OCID}
+other_servers:
+  note: >-
+    Additional first-party servers in the same repository, not expanded here because their tool
+    tables were not fetched in this pass.
+  ids:
+    - oci-cloud-guard-mcp-server
+    - oci-compute-instance-agent-mcp-server
+    - oci-full-stack-disaster-recovery-mcp-server
+    - oci-iot-mcp-server
+    - oci-limits-mcp-server
+    - oci-load-balancer-mcp-server
+    - oci-logging-mcp-server
+    - oci-migration-mcp-server
+    - oci-network-load-balancer-mcp-server
+    - oci-opensearch-mcp-server
+    - oci-pricing-mcp-server
+    - oci-recovery-mcp-server
+    - oci-registry-mcp-server
+    - oci-resource-search-mcp-server
+    - oci-support-mcp-server
+    - oci-usage-mcp-server
+    - dbtools-mcp-server
+    - mysql-mcp-server
+    - oracle-data-studio-mcp-server
+    - oracle-db-doc-mcp-server
+    - oracle-db-mcp-java-toolkit
+    - oracle-goldengate-mcp-server
+authentication:
+  stdio: OCI CLI profile / API signing key from ~/.oci/config (OCI_CONFIG_PROFILE env var)
+  http: >-
+    OAuth via an OCI IAM (IDCS) confidential application — IDCS_DOMAIN, IDCS_CLIENT_ID,
+    IDCS_CLIENT_SECRET, IDCS_AUDIENCE; redirect URI ${ORACLE_MCP_BASE_URL}/auth/callback;
+    default required scopes `openid profile email oci_mcp.<server>.invoke`.
+probe:
+  tools_list_attempted: false
+  reason: >-
+    No hosted endpoint exists to POST tools/list against. Tool names and descriptions below are
+    read verbatim from Oracle's published per-server README tool tables; full inputSchemas would
+    require running a server locally.

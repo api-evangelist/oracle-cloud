@@ -1,0 +1,3568 @@
+basePath: /20181201
+consumes:
+- application/json
+definitions:
+  AddResourceLockDetails:
+    allOf:
+    - $ref: '#/definitions/ResourceLock'
+  BackoffRetryPolicy:
+    description: 'The backoff retry portion of the subscription delivery policy. For
+      information about retry durations for subscriptions, see
+
+      [How Notifications Works](https://docs.cloud.oracle.com/iaas/Content/Notification/Concepts/notificationoverview.htm#how).
+
+      '
+    properties:
+      maxRetryDuration:
+        default: 7200000
+        description: The maximum retry duration in milliseconds. Default value is
+          `7200000` (2 hours).
+        maximum: 7200000
+        minimum: 60000
+        type: integer
+      policyType:
+        default: EXPONENTIAL
+        description: 'The type of delivery policy.
+
+          '
+        enum:
+        - EXPONENTIAL
+        type: string
+    required:
+    - maxRetryDuration
+    - policyType
+    type: object
+    x-example: "{\n  \"maxRetryDuration\": 80000,\n  \"policyType\": \"EXPONENTIAL\"\
+      \n}\n"
+  ChangeCompartmentDetails:
+    description: 'The configuration details for the move operation.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment to move the specified topic
+
+          or subscription to.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - compartmentId
+    type: object
+    x-example: "{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n\
+      }\n"
+  ConfirmationResult:
+    description: 'The confirmation details for the specified subscription.
+
+      For information about confirming subscriptions, see
+
+      [Confirming a Subscription](/iaas/Content/Notification/Tasks/confirm-subscription.htm).
+
+      '
+    properties:
+      endpoint:
+        description: 'A locator that corresponds to the subscription protocol.
+
+          For example, an email address for a subscription that uses the `EMAIL` protocol,
+          or a URL for a subscription that uses an HTTP-based protocol.
+
+          '
+        example: abc@oracle.com
+        maxLength: 512
+        type: string
+      message:
+        description: A human-readable string indicating the status of the subscription
+          confirmation.
+        example: The subscription has been confirmed
+        type: string
+      subscriptionId:
+        description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription specified in the request.
+        type: string
+      topicId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic associated with the specified subscription.
+
+          '
+        type: string
+      topicName:
+        description: 'The name of the subscribed topic.
+
+          '
+        type: string
+      unsubscribeUrl:
+        description: The URL for unsubscribing from the topic.
+        type: string
+    required:
+    - topicName
+    - topicId
+    - endpoint
+    - unsubscribeUrl
+    - message
+    - subscriptionId
+    type: object
+    x-example: "{\n  \"topicName\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"endpoint\": \"john.smith@example.com\",\n  \"unsubscribeUrl\": \"<var>https://example.com/unsubscribe.html</var>\"\
+      ,\n  \"message\": \"Subscription confirmed\",\n  \"subscriptionId\": \"<var>&lt;subscription_OCID&gt;</var>\"\
+      \n}\n"
+  CreatePublisherMapDetails:
+    description: The create publisher message map details.
+    properties:
+      bodyMap:
+        additionalProperties:
+          type: string
+        description: body map
+        type: object
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the publisher map.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags: &id001
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only string type is supported as valid
+              value type.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace.
+
+            Example: `{"bar-key": "value"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      description:
+        description: Publisher map description
+        type: string
+      freeformTags: &id002
+        additionalProperties:
+          type: string
+        description: 'Free-form tags for this resource. Each tag is a simple key-value
+          pair with no predefined name, type, or namespace. For more information,
+          see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      name:
+        description: Publisher map name
+        type: string
+      providerName:
+        enum: &id006
+        - EMAIL
+        - SMS
+        - SLACK
+        - OCEAN_INTERNAL
+        type: string
+        x-obmcs-top-level-enum: '#/definitions/ProviderName'
+      providerVersion:
+        description: publisher map version.
+        type: string
+      systemTags: &id003
+        additionalProperties:
+          additionalProperties:
+            description: 'The value of the tag. Only string type is supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing system tags'' keys and values
+            scoped to a namespace.
+
+            Example: `{"bar-key": "value"}`
+
+            '
+          type: object
+        description: 'System tags for this resource. Each key is predefined and scoped
+          to a namespace.
+
+          Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+          '
+        type: object
+    required:
+    - providerName
+    - providerVersion
+    - bodyMap
+    - compartmentId
+    - name
+    type: object
+    x-example: "{\n  \"compartmentId\" : \"ocid1.compartment.oc1..aaaaaaaayetz53j6gqsc7gc4bcqltokxigos66hivqnva6ul3deiwxqgpqgq\"\
+      ,\n  \"providerName\" : \"Email\",\n  \"providerVersion\" : \"1.0.0\",\n  \"\
+      bodyMap\" : {\n    \"subject\" : \"{{body.my.subject}}\",\n    \"body\" : \"\
+      {{body.my.body}}\"\n  },\n  \"name\" : \"Map name\",\n  \"description\" : \"\
+      Map description\"\n}\n"
+  CreatePublisherMapGroupDetails:
+    description: The create publisher message map group details.
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the publisher map group.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags: *id001
+      description:
+        description: Publisher map group description
+        type: string
+      freeformTags: *id002
+      name:
+        description: Publisher map group name
+        type: string
+      publisherMapIds:
+        items:
+          type: string
+        type: array
+      systemTags: *id003
+    required:
+    - compartmentId
+    - name
+    type: object
+    x-example: "{\n  \"id\" : \"ocid1.onspublishermapgroup.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\"\
+      ,\n  \"compartmentId\" : \"ocid1.compartment.oc1..aaaaaaaayetz53j6gqsc7gc4bcqltokxigos66hivqnva6ul3deiwxqgpqgq\"\
+      ,\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\"\
+      \ ],\n  \"name\" : \"Publisher map group name\",\n  \"description\" : \"Publisher\
+      \ map group description\"\n}\n"
+  CreateSubscriptionDetails:
+    description: 'The configuration details for creating the subscription.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the subscription.
+
+          '
+        maxLength: 255
+        type: string
+      definedTags: *id001
+      endpoint:
+        description: 'A locator that corresponds to the subscription protocol.
+
+          For example, an email address for a subscription that uses the `EMAIL` protocol,
+          or a URL for a subscription that uses an HTTP-based protocol.
+
+          HTTP-based protocols use URL endpoints that begin with "http:" or "https:".
+
+          A URL cannot exceed 512 characters.
+
+          Avoid entering confidential information.
+
+
+          For protocol-specific endpoint formats and steps to get or create endpoints,
+          see
+
+          [Creating a Subscription](/iaas/Content/Notification/Tasks/create-subscription.htm).
+
+          '
+        example: abc@oracle.com
+        maxLength: 512
+        type: string
+      freeformTags: *id002
+      metadata:
+        description: Metadata for the subscription.
+        maxLength: 1024
+        type: string
+      protocol:
+        description: "The protocol used for the subscription.\n\nAllowed values:\n\
+          \  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty\
+          \ endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n\
+          \  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols,\
+          \ see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+        example: EMAIL
+        maxLength: 15
+        type: string
+      topicId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic for the subscription.
+
+          '
+        maxLength: 255
+        type: string
+    required:
+    - topicId
+    - compartmentId
+    - protocol
+    - endpoint
+    type: object
+    x-example: "Email subscription:\n{\n  \"protocol\": \"EMAIL\",\n  \"endpoint\"\
+      : \"john.smith@example.com\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nFunction\
+      \ subscription:\n{\n  \"protocol\": \"ORACLE_FUNCTIONS\",\n  \"endpoint\": \"\
+      <var>&lt;function_OCID&gt;</var>\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nHTTPS\
+      \ (Custom URL) subscription:\n{\n  \"protocol\": \"CUSTOM_HTTPS\",\n  \"endpoint\"\
+      : \"https://example.com\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nPagerDuty\
+      \ subscription:\n{\n  \"protocol\": \"PAGERDUTY\",\n  \"endpoint\": \"https://events.pagerduty.com/integration/<var>&lt;integrationkey&gt;</var>/enqueue\"\
+      ,\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"\
+      <var>&lt;compartment_OCID&gt;</var>\"\n}\n\nSlack subscription:\n{\n  \"protocol\"\
+      : \"SLACK\",\n  \"endpoint\": \"https://hooks.slack.com/services/<var>&lt;webhook_token&gt;</var>\"\
+      ,\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"\
+      <var>&lt;compartment_OCID&gt;</var>\"\n}\n\nSMS subscription:\n{\n  \"protocol\"\
+      : \"SMS\",\n  \"endpoint\": \"14255550100\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+  CreateTopicDetails:
+    description: 'The configuration details for creating the topic.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment to create the topic in.
+
+          '
+        maxLength: 255
+        type: string
+      definedTags: *id001
+      description:
+        description: The description of the topic being created. Avoid entering confidential
+          information.
+        maxLength: 256
+        type: string
+      freeformTags: *id002
+      name:
+        description: The name of the topic being created. The topic name must be unique
+          across the tenancy. Avoid entering confidential information.
+        maxLength: 256
+        type: string
+    required:
+    - name
+    - compartmentId
+    type: object
+    x-example: "{\n  \"name\": \"Admins\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"description\": \"Channel for admin messages\"\n}\n"
+  DeliveryPolicy:
+    description: 'The subscription delivery policy.
+
+      '
+    properties:
+      backoffRetryPolicy:
+        $ref: '#/definitions/BackoffRetryPolicy'
+    type: object
+    x-example: "{\n  backoffRetryPolicy:\n  {\n    \"maxRetryDuration\": 80000,\n\
+      \    \"policyType\": \"EXPONENTIAL\"\n  }\n}\n"
+  Error:
+    description: An error has occurred.
+    properties:
+      code:
+        description: A short error code that defines the error, meant for programmatic
+          parsing. See [API Errors](/iaas/Content/API/References/apierrors.htm).
+        format: x-obmcs-ascii-identifier
+        type: string
+      message:
+        description: A human-readable error string.
+        format: x-obmcs-human-language
+        type: string
+    required:
+    - code
+    - message
+    type: object
+  MessageDetails:
+    description: 'The content of the message to be published.
+
+      '
+    properties:
+      body:
+        description: 'The body of the message to be published. Maximum size: 64 KB.
+
+          Avoid entering confidential information.
+
+          '
+        type: string
+      publisherMapGroupId:
+        description: 'The publisher map group ocid [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+          for mapping this message into various providers.
+
+          '
+        type: string
+      title:
+        description: 'The title of the message to be published. Maximum number of
+          characters: 255.
+
+          Avoid entering confidential information.
+
+          '
+        type: string
+    type: object
+  NotificationTopic:
+    description: 'The properties that define a topic. For general information about
+      topics, see
+
+      [Overview of Notifications](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__topicdefinition).
+
+      '
+    properties:
+      apiEndpoint:
+        description: 'The endpoint for managing subscriptions or publishing messages
+          to the topic.
+
+          '
+        type: string
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the topic.
+
+          '
+        maxLength: 255
+        type: string
+      definedTags: *id001
+      description:
+        description: The description of the topic.
+        maxLength: 256
+        type: string
+      etag: &id004
+        description: 'For optimistic concurrency control. See `if-match`.
+
+          '
+        type: string
+      freeformTags: *id002
+      lifecycleState:
+        description: 'The lifecycle state of the topic.
+
+          '
+        enum:
+        - ACTIVE
+        - DELETING
+        - CREATING
+        type: string
+      locks:
+        description: Locks associated with this resource.
+        items:
+          $ref: '#/definitions/ResourceLock'
+        type: array
+      name:
+        description: The name of the topic.
+        maxLength: 256
+        type: string
+      shortTopicId: &id005
+        description: 'A short code used to identify the topic in messages sent to
+          SMS subscriptions. Each short code contains six case-insensitive alphanumeric
+          characters.
+
+          '
+        maxLength: 10
+        type: string
+      systemTags: *id003
+      timeCreated:
+        description: The time the topic was created.
+        format: date-time
+        type: string
+      topicId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic.
+
+          '
+        maxLength: 255
+        type: string
+    required:
+    - name
+    - topicId
+    - compartmentId
+    - lifecycleState
+    - timeCreated
+    - apiEndpoint
+    type: object
+    x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\"\
+      : \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"\
+      timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"\
+      additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\"\
+      : {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\"\
+      : \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\
+      \n}\n"
+  NotificationTopicSummary:
+    description: 'A summary of the properties that define a topic.
+
+      '
+    properties:
+      apiEndpoint:
+        description: 'The endpoint for managing subscriptions or publishing messages
+          to the topic.
+
+          '
+        type: string
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the topic.
+
+          '
+        maxLength: 255
+        type: string
+      definedTags: *id001
+      description:
+        description: The description of the topic.
+        maxLength: 256
+        type: string
+      etag: *id004
+      freeformTags: *id002
+      lifecycleState:
+        description: 'The lifecycle state of the topic.
+
+          '
+        enum:
+        - ACTIVE
+        - DELETING
+        - CREATING
+        type: string
+      locks:
+        description: Locks associated with this resource.
+        items:
+          $ref: '#/definitions/ResourceLock'
+        type: array
+      name:
+        description: 'The name of the topic.
+
+          '
+        maxLength: 256
+        type: string
+      shortTopicId: *id005
+      systemTags: *id003
+      timeCreated:
+        description: The time the topic was created.
+        format: date-time
+        type: string
+      topicId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic.
+
+          '
+        maxLength: 255
+        type: string
+    required:
+    - name
+    - topicId
+    - compartmentId
+    - lifecycleState
+    - timeCreated
+    - apiEndpoint
+    type: object
+    x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+      ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\"\
+      : \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"\
+      timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"\
+      additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\"\
+      : {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\"\
+      : \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\
+      \n}\n"
+  ProviderName:
+    description: name for the provider.
+    enum: *id006
+    type: string
+  PublishResult:
+    description: 'The response to a PublishMessage call.
+
+      '
+    properties:
+      messageId:
+        description: The UUID of the message.
+        type: string
+      timeStamp:
+        description: The time that the service received the message.
+        format: date-time
+        type: string
+    required:
+    - messageId
+    type: object
+    x-example: "{\n  \"messageId\": \"<var>&lt;message_UUID&gt;</var>\",\n  \"timeStamp\"\
+      : \"2018-11-04T05:00:00.600Z\"\n}\n"
+  PublisherMap:
+    description: The create publisher message map details.
+    properties:
+      bodyMap:
+        additionalProperties:
+          type: string
+        description: body map
+        type: object
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the publisher map.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      createdTime:
+        description: Time that the PublisherMap was created.
+        format: date-time
+        type: string
+      definedTags: *id001
+      description:
+        description: Publisher map description
+        type: string
+      etag: *id004
+      freeformTags: *id002
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map.
+
+          '
+        type: string
+      lifecycleState:
+        enum:
+        - INACTIVE
+        - ACTIVE
+        - DELETING
+        type: string
+      locks:
+        description: Locks associated with this resource.
+        items:
+          $ref: '#/definitions/ResourceLock'
+        type: array
+      name:
+        description: Publisher map name
+        type: string
+      providerName:
+        enum: *id006
+        type: string
+        x-obmcs-top-level-enum: '#/definitions/ProviderName'
+      providerVersion:
+        description: publisher map version.
+        type: string
+      systemTags: *id003
+      tenantId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the tenant for the publisher map.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      updatedTime:
+        description: Time that the PublisherMap was updated.
+        format: date-time
+        type: string
+    required:
+    - providerName
+    - providerVersion
+    - bodyMap
+    - compartmentId
+    - name
+    type: object
+  PublisherMapGroup:
+    description: The create publisher message map group details.
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the publisher map group.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      createdTime:
+        description: Time that the PublisherMapGroup was created.
+        format: date-time
+        type: string
+      definedTags: *id001
+      description:
+        description: Publisher map group description
+        type: string
+      etag: *id004
+      freeformTags: *id002
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map group.
+
+          '
+        type: string
+      lifecycleState:
+        enum:
+        - INACTIVE
+        - ACTIVE
+        - DELETING
+        type: string
+      locks:
+        description: Locks associated with this resource.
+        items:
+          $ref: '#/definitions/ResourceLock'
+        type: array
+      name:
+        description: Publisher map group name
+        type: string
+      publisherMapIds:
+        items:
+          type: string
+        type: array
+      systemTags: *id003
+      tenantId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the tenant for the publisher map group.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      updatedTime:
+        description: Time that the PublisherMapGroup was updated.
+        format: date-time
+        type: string
+    required:
+    - compartmentId
+    - name
+    type: object
+  PublisherMapGroupSummary:
+    description: The publisher map group summary.
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the publisher map group.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      createdTime:
+        format: date-time
+        type: string
+      definedTags: *id001
+      freeformTags: *id002
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map group.
+
+          '
+        type: string
+      lifecycleState:
+        enum:
+        - INACTIVE
+        - ACTIVE
+        - DELETING
+        type: string
+      locks:
+        description: Locks associated with this resource.
+        items:
+          $ref: '#/definitions/ResourceLock'
+        type: array
+      name:
+        description: Publisher map group name
+        type: string
+      systemTags: *id003
+      updatedTime:
+        format: date-time
+        type: string
+    type: object
+  PublisherMapSummary:
+    description: The publisher map summary.
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the publisher map.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      createdTime:
+        format: date-time
+        type: string
+      definedTags: *id001
+      freeformTags: *id002
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map.
+
+          '
+        type: string
+      lifecycleState:
+        enum:
+        - INACTIVE
+        - ACTIVE
+        - DELETING
+        type: string
+      locks:
+        description: Locks associated with this resource.
+        items:
+          $ref: '#/definitions/ResourceLock'
+        type: array
+      name:
+        description: Publisher map name
+        type: string
+      providerName:
+        enum: *id006
+        type: string
+        x-obmcs-top-level-enum: '#/definitions/ProviderName'
+      providerVersion:
+        description: publisher map version.
+        type: string
+      systemTags: *id003
+      updatedTime:
+        format: date-time
+        type: string
+    type: object
+  RemoveResourceLockDetails:
+    allOf:
+    - $ref: '#/definitions/ResourceLock'
+  ResourceLock:
+    description: 'Resource locks are used to prevent certain APIs from being called
+      for the resource.
+
+      A full lock prevents both updating the resource and deleting the resource. A
+      delete
+
+      lock prevents deleting the resource.
+
+      '
+    properties:
+      compartmentId:
+        description: The compartment ID of the lock.
+        type: string
+      message:
+        description: 'A message added by the creator of the lock. This is typically
+          used to give an
+
+          indication of why the resource is locked.
+
+          '
+        type: string
+      relatedResourceId:
+        description: 'The id of the resource that is locking this resource. Indicates
+          that deleting this resource will remove the lock.
+
+          '
+        type: string
+      timeCreated:
+        description: When the lock was created.
+        format: date-time
+        type: string
+      type:
+        description: Type of the lock.
+        enum:
+        - FULL
+        - DELETE
+        type: string
+    required:
+    - type
+    - compartmentId
+    type: object
+  SmsNumberState:
+    description: 'The state of this SMS number.
+
+      '
+    enum: &id007
+    - ACTIVE
+    - INACTIVE
+    type: string
+  SmsNumberSummary:
+    description: 'A summary of the properties that define an SMS number.
+
+      '
+    properties:
+      endUserNumber:
+        description: 'The SMS number
+
+          '
+        maxLength: 256
+        type: string
+      state:
+        enum: *id007
+        type: string
+        x-obmcs-top-level-enum: '#/definitions/SmsNumberState'
+    required:
+    - endUserNumber
+    - state
+    type: object
+  SortOrder:
+    default: ASC
+    description: Sort orders.
+    enum: &id008
+    - ASC
+    - DESC
+    type: string
+  Subscription:
+    description: 'The subscription''s configuration. For general information about
+      subscriptions, see
+
+      [Overview of Notifications](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptiondefinition).
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the subscription.
+
+          '
+        maxLength: 255
+        type: string
+      createdTime:
+        description: 'The time when this suscription was created.
+
+          '
+        format: int64
+        type: integer
+      definedTags: *id001
+      deliverPolicy:
+        description: The delivery policy of the subscription. Stored as a JSON string.
+        type: string
+      deliveryPolicy:
+        $ref: '#/definitions/DeliveryPolicy'
+      endpoint:
+        description: 'A locator that corresponds to the subscription protocol.
+
+          For example, an email address for a subscription that uses the `EMAIL` protocol,
+          or a URL for a subscription that uses an HTTP-based protocol.
+
+          '
+        maxLength: 512
+        type: string
+      etag: *id004
+      freeformTags: *id002
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription.
+
+          '
+        type: string
+      lifecycleState:
+        default: PENDING
+        description: 'The lifecycle state of the subscription. The status of a new
+          subscription is PENDING; when confirmed, the subscription status changes
+          to ACTIVE.
+
+          '
+        enum:
+        - PENDING
+        - ACTIVE
+        - DELETED
+        type: string
+      protocol:
+        description: "The protocol used for the subscription.\n\nAllowed values:\n\
+          \  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty\
+          \ endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n\
+          \  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols,\
+          \ see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+        example: EMAIL
+        maxLength: 15
+        type: string
+      topicId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the associated topic.
+
+          '
+        type: string
+    required:
+    - id
+    - topicId
+    - protocol
+    - endpoint
+    - lifecycleState
+    - compartmentId
+    type: object
+    x-example: "{\n  \"id\": \"<var>&lt;subscription_OCID&gt;</var>\",\n  \"topicId\"\
+      : \"<var>&lt;topic_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n  \"endpoint\"\
+      : \"john.smith@example.com\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"compartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+  SubscriptionSummary:
+    description: 'The subscription''s configuration summary.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment for the subscription.
+
+          '
+        maxLength: 255
+        type: string
+      createdTime:
+        description: The time when this suscription was created.
+        format: int64
+        type: integer
+      definedTags: *id001
+      deliveryPolicy:
+        $ref: '#/definitions/DeliveryPolicy'
+      endpoint:
+        description: 'A locator that corresponds to the subscription protocol.
+
+          For example, an email address for a subscription that uses the `EMAIL` protocol,
+          or a URL for a subscription that uses an HTTP-based protocol.
+
+          '
+        maxLength: 512
+        type: string
+      etag: *id004
+      freeformTags: *id002
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription.
+
+          '
+        type: string
+      lifecycleState:
+        default: PENDING
+        description: 'The lifecycle state of the subscription. The status of a new
+          subscription is PENDING; when confirmed, the subscription status changes
+          to ACTIVE.
+
+          '
+        enum:
+        - PENDING
+        - ACTIVE
+        - DELETED
+        type: string
+      protocol:
+        description: "The protocol used for the subscription.\n\nAllowed values:\n\
+          \  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty\
+          \ endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n\
+          \  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols,\
+          \ see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+        example: EMAIL
+        maxLength: 15
+        type: string
+      topicId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the associated topic.
+
+          '
+        type: string
+    required:
+    - id
+    - topicId
+    - protocol
+    - endpoint
+    - lifecycleState
+    - compartmentId
+    type: object
+    x-example: "{\n  \"id\": \"<var>&lt;subscription_OCID&gt;</var>\",\n  \"topicId\"\
+      : \"<var>&lt;topic_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n  \"endpoint\"\
+      : \"john.smith@example.com\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"compartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+  TopicAttributesDetails:
+    description: 'The configuration details for updating the topic.
+
+      '
+    properties:
+      definedTags: *id001
+      description:
+        description: The description of the topic. Avoid entering confidential information.
+        maxLength: 256
+        type: string
+      freeformTags: *id002
+    required:
+    - description
+    type: object
+    x-example: "{\n  \"description\": \"Channel for admin messages\"\n}\n"
+  UpdatePublisherMapDetails:
+    description: The update publisher message map details.
+    properties:
+      bodyMap:
+        additionalProperties:
+          type: string
+        description: body map
+        type: object
+      definedTags: *id001
+      description:
+        description: Publisher map description
+        type: string
+      freeformTags: *id002
+    type: object
+    x-example: "{\n  \"bodyMap\" : {\n    \"subject\" : \"{{body.my.subject}}\",\n\
+      \    \"body\" : \"{{body.my.body}}\"\n  },\n  \"description\" : \"Publisher\
+      \ map description\"\n}\n"
+  UpdatePublisherMapGroupDetails:
+    description: The update publisher message map group details.
+    properties:
+      definedTags: *id001
+      description:
+        description: Publisher map group description
+        type: string
+      freeformTags: *id002
+      publisherMapIds:
+        items:
+          type: string
+        type: array
+    type: object
+    x-example: "{\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\"\
+      \ ],\n  \"description\" : \"Publisher map group description\"\n}\n"
+  UpdateSubscriptionDetails:
+    description: 'The configuration details for updating the subscription.
+
+      '
+    properties:
+      definedTags: *id001
+      deliveryPolicy:
+        $ref: '#/definitions/DeliveryPolicy'
+        description: The delivery policy of the subscription. Stored as a JSON string.
+        type: object
+      freeformTags: *id002
+    type: object
+    x-example: "{\n  \"freeformTags\":\n    {\n      \"Department\": \"Finance\"\n\
+      \    }\n}\n"
+host: notification.{region}.oraclecloud.com
+info:
+  description: 'Use the Notifications API to broadcast messages to distributed components
+    by topic, using a publish-subscribe pattern.
+
+    For information about managing topics, subscriptions, and messages, see [the Notifications
+    documentation](/iaas/Content/Notification/home.htm).
+
+    '
+  title: Notifications API
+  version: '20181201'
+parameters:
+  AddResourceLockDetailsBodyParam:
+    description: AddResourceLockDetails body parameter
+    in: body
+    name: AddResourceLockDetails
+    required: true
+    schema:
+      $ref: '#/definitions/AddResourceLockDetails'
+  CompartmentIdQueryParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment.
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: compartmentId
+    required: true
+    type: string
+  FilterByIdQueryParam:
+    description: 'A filter to only return resources that match the given id exactly.
+
+      '
+    in: query
+    maxLength: 1024
+    minLength: 1
+    name: id
+    required: false
+    type: string
+  FilterByNameQueryParam:
+    description: 'A filter to only return resources that match the given name exactly.
+
+      '
+    in: query
+    maxLength: 1024
+    minLength: 1
+    name: name
+    required: false
+    type: string
+  FilterBySmsProviderIdQueryParam:
+    description: 'A filter to only return resources that match the given smsProviderId
+      exactly.
+
+      '
+    in: query
+    maxLength: 64
+    minLength: 1
+    name: smsProviderId
+    required: true
+    type: string
+  FilterByStateQueryParam:
+    description: 'A filter to only return resources that match the given state exactly.
+
+      '
+    enum: *id007
+    in: query
+    maxLength: 64
+    minLength: 1
+    name: state
+    required: false
+    type: string
+    x-obmcs-top-level-enum: '#/definitions/SmsNumberState'
+  FilterByTopicIdQueryParam:
+    description: 'Return all subscriptions that are subscribed to the given topic
+      OCID. Either this query parameter or the compartmentId query parameter must
+      be set.
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: topicId
+    required: false
+    type: string
+  FilterByUpdatedEndTimeQueryParam:
+    description: 'A filter to only return resources that have been updated before
+      the given time.
+
+      '
+    in: query
+    maxLength: 64
+    minLength: 1
+    name: endTime
+    required: false
+    type: string
+  FilterByUpdatedStartTimeQueryParam:
+    description: 'A filter to only return resources that have been updated since the
+      given time.
+
+      '
+    in: query
+    maxLength: 64
+    minLength: 1
+    name: startTime
+    required: false
+    type: string
+  IfMatchHeader:
+    description: 'Used for optimistic concurrency control. In the PUT or DELETE call
+      for a resource, set the `if-match`
+
+      parameter to the value of the etag from a previous GET or POST response for
+      that resource.  The resource
+
+      will be updated or deleted only if the etag you provide matches the resource''s
+      current etag value.
+
+      '
+    in: header
+    name: if-match
+    required: false
+    type: string
+  MessageTypeHeaderParam:
+    default: RAW_TEXT
+    description: '**Deprecated.**
+
+      This attribute is deprecated, as is support for JSON.
+
+      You can send a JSON payload even when transmitting the payload as a raw string.
+
+      Configure your receiving system to read the raw payload as JSON format.
+
+
+      Type of message body in the request.
+
+      For `messageType` of JSON, a default key-value pair is required. Example: `{"default":
+      "Alarm breached", "Email": "Alarm breached: <url>"}.`
+
+      '
+    enum:
+    - JSON
+    - RAW_TEXT
+    in: header
+    name: messageType
+    required: false
+    type: string
+  OciNapCorpNetworkHeaderParam:
+    description: 'This is stamped on requests coming from customer''s corp network.
+
+      '
+    in: header
+    name: x-oci-nap-corpnetwork
+    required: false
+    type: string
+  OpcOnsApiHeaderHeaderParam:
+    description: 'For internal-use only. This header should never be documented to
+      the public.
+
+      '
+    in: header
+    name: opc-ons-api-header
+    required: false
+    type: string
+  OpcRequestIdHeaderParam:
+    description: 'The unique Oracle-assigned identifier for the request. If you need
+      to contact Oracle about a
+
+      particular request, please provide the request ID.
+
+      '
+    in: header
+    name: opc-request-id
+    required: false
+    type: string
+  OptionalCompartmentIdQueryParam:
+    description: "The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the\
+      \ compartment.    \n"
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: compartmentId
+    type: string
+    x-default-description: 'null'
+  OverrideLocksQueryParameter:
+    default: false
+    description: Whether to override locks (if any exist).
+    in: query
+    name: isLockOverride
+    type: boolean
+  PaginationLimitQueryParam:
+    default: 10
+    description: 'For list pagination. The maximum number of results per page, or
+      items to return in a paginated "List" call.
+
+      For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+      '
+    in: query
+    maximum: 50
+    minimum: 1
+    name: limit
+    required: false
+    type: integer
+  PaginationTokenQueryParam:
+    description: 'For list pagination. The value of the opc-next-page response header
+      from the previous "List" call.
+
+      For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+      '
+    in: query
+    minLength: 1
+    name: page
+    required: false
+    type: string
+  ProtocolQueryParam:
+    description: "The protocol used for the subscription.\n\nAllowed values:\n  *\
+      \ `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints,\
+      \ use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n \
+      \ * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription\
+      \ protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+    in: query
+    maxLength: 15
+    minLength: 1
+    name: protocol
+    required: true
+    type: string
+  PublisherMapGroupIdPathParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      publisher map group.
+
+      '
+    in: path
+    name: publisherMapGroupId
+    required: true
+    type: string
+  PublisherMapIdPathParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      publisher map.
+
+      '
+    in: path
+    name: publisherMapId
+    required: true
+    type: string
+  RemoveResourceLockDetailsBodyParam:
+    description: RemoveResourceLockDetails body parameter
+    in: body
+    name: RemoveResourceLockDetails
+    required: true
+    schema:
+      $ref: '#/definitions/RemoveResourceLockDetails'
+  RetryTokenHeader:
+    description: 'A token that uniquely identifies a request so it can be retried
+      in case of a timeout or
+
+      server error without risk of executing that same action again. Retry tokens
+      expire after 24
+
+      hours, but can be invalidated before that due to conflicting operations (for
+      example, if a resource
+
+      has been deleted and purged from the system, then a retry of the original creation
+      request
+
+      may be rejected).
+
+      '
+    in: header
+    maxLength: 64
+    minLength: 1
+    name: opc-retry-token
+    type: string
+  SortByQueryParam:
+    default: TIMECREATED
+    description: 'The field to sort by. Only one field can be selected for sorting.
+
+      '
+    enum:
+    - TIMECREATED
+    - LIFECYCLESTATE
+    in: query
+    name: sortBy
+    required: false
+    type: string
+  SortOrderQueryParam:
+    description: 'The sort order to use (ascending or descending).
+
+      '
+    enum: *id008
+    in: query
+    name: sortOrder
+    required: false
+    type: string
+    x-default-description: 'The default value depends upon `sortBy`, and
+
+      in general is ''DESC'' when sorting by time and ''ASC'' otherwise.
+
+      '
+    x-obmcs-top-level-enum: '#/definitions/SortOrder'
+  SplatGeneratedResourceId:
+    description: 'resourceId generated by Splat
+
+      '
+    in: header
+    name: oci-splat-generated-ocids
+    required: false
+    type: string
+  SplatStoreRequestToken:
+    description: 'This token is to allow Splat be notified as customer updates resource,
+      so that updated resource usage is properly reflected on the SPLAT''s side.
+
+      In order to do that, partner team must store the value of oci-splat-store-request-token
+      header that SPLAT sends to the partner service in the update API.
+
+      The value of this header must be persisted in the internal resource''s state
+      and reflected in the GET API.
+
+      '
+    in: header
+    name: oci-splat-store-request-token
+    required: false
+    type: string
+  SubscriptionIdPathParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      subscription.
+
+      '
+    in: path
+    name: subscriptionId
+    required: true
+    type: string
+  TokenQueryParam:
+    description: The subscription confirmation token.
+    in: query
+    maxLength: 256
+    minLength: 1
+    name: token
+    required: true
+    type: string
+  TopicIdPathParam:
+    description: The [OCID](/Content/General/Concepts/identifiers.htm) of a topic.
+    in: path
+    name: topicId
+    required: true
+    type: string
+  WorkRequestIdQueryParam:
+    description: The ID of the asynchronous work request.
+    in: query
+    name: workRequestId
+    type: string
+    x-default-description: 'null'
+paths:
+  /publisherMapGroups:
+    get:
+      description: 'Lists the publisher map groups in the specified compartment.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: ListPublisherMapGroups
+      parameters:
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: The list of publisher map groups.
+          headers:
+            opc-next-page: &id010
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id: &id009
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/PublisherMapGroupSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+    post:
+      description: 'Creates a publisher map group.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: CreatePublisherMapGroup
+      parameters:
+      - $ref: '#/parameters/RetryTokenHeader'
+      - description: The publisher map group to create.
+        in: body
+        name: CreatePublisherMapGroupDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreatePublisherMapGroupDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/SplatGeneratedResourceId'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublisherMapGroup'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+  /publisherMapGroups/{publisherMapGroupId}:
+    delete:
+      description: 'Deletes the specified publisher map group.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: DeletePublisherMapGroup
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map group to delete.
+
+          '
+        in: path
+        name: publisherMapGroupId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: Deleted
+          headers:
+            opc-request-id: *id009
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+    get:
+      description: 'Gets the specified publisher map group''s configuration information.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: GetPublisherMapGroup
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map group to retrieve.
+
+          '
+        in: path
+        name: publisherMapGroupId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublisherMapGroup'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+    put:
+      description: 'Updates the specified PublisherMapGroup''s configuration.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: UpdatePublisherMapGroup
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map group to update.
+
+          '
+        in: path
+        name: publisherMapGroupId
+        required: true
+        type: string
+      - description: entity of details passed in to update PublisherMapGroup
+        in: body
+        name: UpdatePublisherMapGroupDetails
+        required: true
+        schema:
+          $ref: '#/definitions/UpdatePublisherMapGroupDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/SplatStoreRequestToken'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        200:
+          description: Publisher map group updated
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublisherMapGroup'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'PUT /20181201/publisherMapGroups/<var>&lt;publisherMapGroup_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/PublisherMapGroup'
+  /publisherMapGroups/{publisherMapGroupId}/actions/addLock:
+    post:
+      description: Adds a lock to a PublisherMapGroup resource.
+      operationId: AddPublisherMapGroupLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide
+          the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call
+          for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response
+          for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s
+          current etag value.
+
+          '
+        in: header
+        name: if-match
+        type: string
+      - $ref: '#/parameters/PublisherMapGroupIdPathParam'
+      - $ref: '#/parameters/AddResourceLockDetailsBodyParam'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Lock is added.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMapGroup resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/PublisherMapGroup'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Adds a lock to a PublisherMapGroup resource.
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+  /publisherMapGroups/{publisherMapGroupId}/actions/removeLock:
+    post:
+      description: Removes a lock from a PublisherMapGroup resource.
+      operationId: RemovePublisherMapGroupLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide
+          the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call
+          for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response
+          for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s
+          current etag value.
+
+          '
+        in: header
+        name: if-match
+        type: string
+      - $ref: '#/parameters/PublisherMapGroupIdPathParam'
+      - $ref: '#/parameters/RemoveResourceLockDetailsBodyParam'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Lock is removed.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMapGroup resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/PublisherMapGroup'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Removes a lock to a PublisherMapGroup resource.
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+  /publisherMaps:
+    get:
+      description: 'Lists the publisher maps in the specified compartment.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: ListPublisherMaps
+      parameters:
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: The list of publisher maps.
+          headers:
+            opc-next-page: *id010
+            opc-request-id: *id009
+          schema:
+            items:
+              $ref: '#/definitions/PublisherMapSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+    post:
+      description: 'Creates a publisher map.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: CreatePublisherMap
+      parameters:
+      - $ref: '#/parameters/RetryTokenHeader'
+      - description: The publisher map to create.
+        in: body
+        name: CreatePublisherMapDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreatePublisherMapDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/SplatGeneratedResourceId'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublisherMap'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+  /publisherMaps/{publisherMapId}:
+    delete:
+      description: 'Deletes the specified publisher map.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: DeletePublisherMap
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map to delete.
+
+          '
+        in: path
+        name: publisherMapId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: Deleted
+          headers:
+            opc-request-id: *id009
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+    get:
+      description: 'Gets the specified publisher map''s configuration information.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: GetPublisherMap
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map to retrieve.
+
+          '
+        in: path
+        name: publisherMapId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublisherMap'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+    put:
+      description: 'Updates the specified PublisherMap''s configuration.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: UpdatePublisherMap
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the publisher map to update.
+
+          '
+        in: path
+        name: publisherMapId
+        required: true
+        type: string
+      - description: entity of details passed in to update PublisherMap
+        in: body
+        name: UpdatePublisherMapDetails
+        required: true
+        schema:
+          $ref: '#/definitions/UpdatePublisherMapDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/SplatStoreRequestToken'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        200:
+          description: Publisher map updated
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublisherMap'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'PUT /20181201/publisherMaps/<var>&lt;publisherMap_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/PublisherMap'
+  /publisherMaps/{publisherMapId}/actions/addLock:
+    post:
+      description: Adds a lock to a PublisherMap resource.
+      operationId: AddPublisherMapLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide
+          the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call
+          for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response
+          for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s
+          current etag value.
+
+          '
+        in: header
+        name: if-match
+        type: string
+      - $ref: '#/parameters/PublisherMapIdPathParam'
+      - $ref: '#/parameters/AddResourceLockDetailsBodyParam'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Lock is added.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMap resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/PublisherMap'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Adds a lock to a PublisherMap resource.
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+  /publisherMaps/{publisherMapId}/actions/removeLock:
+    post:
+      description: Removes a lock from a PublisherMap resource.
+      operationId: RemovePublisherMapLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide
+          the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call
+          for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response
+          for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s
+          current etag value.
+
+          '
+        in: header
+        name: if-match
+        type: string
+      - $ref: '#/parameters/PublisherMapIdPathParam'
+      - $ref: '#/parameters/RemoveResourceLockDetailsBodyParam'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Lock is removed.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMap resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/PublisherMap'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Removes a lock to a PublisherMap resource.
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+  /smsNumbers:
+    get:
+      description: 'List the SMS numbers.
+
+        '
+      operationId: ListSmsNumbers
+      parameters:
+      - $ref: '#/parameters/FilterByStateQueryParam'
+      - $ref: '#/parameters/FilterBySmsProviderIdQueryParam'
+      - $ref: '#/parameters/FilterByUpdatedStartTimeQueryParam'
+      - $ref: '#/parameters/FilterByUpdatedEndTimeQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            opc-next-page: *id010
+            opc-request-id: *id009
+          schema:
+            items:
+              $ref: '#/definitions/SmsNumberSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+  /subscriptions:
+    get:
+      description: 'Lists the subscriptions in the specified compartment or topic.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Listing Subscriptions](/iaas/Content/Notification/Tasks/list-subscription.htm).
+
+        '
+      operationId: ListSubscriptions
+      parameters:
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/FilterByTopicIdQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: The list of subscriptions.
+          headers:
+            opc-next-page: *id010
+            opc-previous-page: &id011
+              description: 'For list pagination. When this header appears in the response,
+                previous pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id: *id009
+          schema:
+            items:
+              $ref: '#/definitions/SubscriptionSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'Sample 1: List all subscriptions in a compartment
+
+
+        GET /20181201/subscriptions?compartmentId=<var>&lt;compartment_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+
+        Sample 2: List all subscriptions for a topic
+
+
+        GET /20181201/subscriptions?topicId=<var>&lt;topic_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+    post:
+      description: 'Creates a subscription for the specified topic and sends a subscription
+        confirmation URL to the endpoint.
+
+
+        For instructions, see
+
+        [Creating a Subscription](/iaas/Content/Notification/Tasks/create-subscription.htm).
+
+
+        The subscription remains in "Pending" status until it has been confirmed.
+
+        For information about confirming subscriptions, see
+
+        [Confirming a Subscription](/iaas/Content/Notification/Tasks/confirm-subscription.htm).
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: CreateSubscription
+      parameters:
+      - $ref: '#/parameters/RetryTokenHeader'
+      - description: The subscription to create.
+        in: body
+        name: CreateSubscriptionDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSubscriptionDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/Subscription'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/subscriptions\nHost: <var>&lt;topic API endpoint&gt;</var>\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\"\
+        ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"protocol\"\
+        : \"EMAIL\",\n  \"endpoint\": \"john.smith@example.com\"\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+  /subscriptions/{id}/confirmation:
+    get:
+      description: 'Gets the confirmation details for the specified subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Getting Confirmation Results for a Subscription](/iaas/Content/Notification/Tasks/get-confirm-subscription.htm).
+
+        '
+      operationId: GetConfirmSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to get the confirmation details for.
+
+          '
+        in: path
+        name: id
+        required: true
+        type: string
+      - $ref: '#/parameters/TokenQueryParam'
+      - $ref: '#/parameters/ProtocolQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/ConfirmationResult'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'GET /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/confirmation?token=<var>&lt;subscription_confirmation_token&gt;</var>&protocol=EMAIL
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+  /subscriptions/{id}/resendConfirmation:
+    post:
+      description: 'Resends the confirmation details for the specified subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Resending the Confirmation URL for a Subscription](/iaas/Content/Notification/Tasks/resend-confirmation-subscription.htm).
+
+        '
+      operationId: ResendSubscriptionConfirmation
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to resend the confirmation for.
+
+          '
+        in: path
+        name: id
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/Subscription'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'POST /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/resendConfirmation
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+  /subscriptions/{id}/unsubscription:
+    get:
+      description: 'Unsubscribes the subscription from the topic.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Unsubscribing a Subscription from a Topic](/iaas/Content/Notification/Tasks/unsubscribe-subscription.htm).
+
+        '
+      operationId: GetUnsubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to unsubscribe from.
+
+          '
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 'The endpoint i.e. email address, phone number of the subscription
+          to unsubscribe from.
+
+          '
+        in: query
+        name: endpoint
+        required: false
+        type: string
+      - $ref: '#/parameters/TokenQueryParam'
+      - $ref: '#/parameters/ProtocolQueryParam'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            opc-request-id: *id009
+          schema:
+            type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'GET /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/unsubscription?token=<var>&lt;subscription_confirmation_token&gt;</var>&protocol=EMAIL
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+  /subscriptions/{subscriptionId}:
+    delete:
+      description: 'Deletes the specified subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Deleting a Subscription](/iaas/Content/Notification/Tasks/delete-subscription.htm).
+
+        '
+      operationId: DeleteSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to delete.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        204:
+          description: Deleted
+          headers:
+            opc-request-id: *id009
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'DELETE /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+    get:
+      description: 'Gets the specified subscription''s configuration information.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Getting a Subscription''s Details](/iaas/Content/Notification/Tasks/get-subscription.htm).
+
+        '
+      operationId: GetSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to retrieve.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/Subscription'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'GET /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+    put:
+      description: 'Updates the specified subscription''s configuration.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        [Updating a Subscription](/iaas/Content/Notification/Tasks/update-subscription.htm).
+
+        '
+      operationId: UpdateSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to update.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        type: string
+      - description: 'The configuration details for updating the subscription.
+
+          '
+        in: body
+        name: UpdateSubscriptionDetails
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateSubscriptionDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: OK
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/UpdateSubscriptionDetails'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "PUT /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>\n\
+        Host: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"freeformTags\":\n    {\n      \"Department\":\
+        \ \"Finance\"\n    }\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+  /subscriptions/{subscriptionId}/actions/changeCompartment:
+    post:
+      description: 'Moves a subscription into a different compartment within the same
+        tenancy.
+
+        For instructions, see
+
+        [Moving a Subscription](/iaas/Content/Notification/Tasks/change-compartment-subscription.htm).
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: ChangeSubscriptionCompartment
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the subscription to move.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        type: string
+      - description: The configuration details for the move operation.
+        in: body
+        name: ChangeSubscriptionCompartmentDetails
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeCompartmentDetails'
+      - $ref: '#/parameters/RetryTokenHeader'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        204:
+          description: Success
+          headers:
+            opc-request-id: *id009
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/actions/changeCompartment\n\
+        Host: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+        \n}\n"
+      x-related-resource: '#/definitions/Subscription'
+  /subscriptionsPriorConfirmation:
+    post:
+      description: "Creates a subscription where prior confirmation has already been\
+        \ given.\nCreates a subscription for the specified topic in \"Active\" status,\
+        \ without sending a subscription confirmation URL to the endpoint.\nThis is\
+        \ an internal feature only only for whitelisted internal teams. It requires\
+        \ prior approval from Security & Legal.   \nThe subscriptions recipients must\
+        \ all have already provided consent to receive notifications from Oracle.\n\
+        \nFor instructions, see\n[Creating a Subscription](/iaas/Content/Notification/Tasks/create-subscription.htm).\n\
+        \nThe subscription is created in \"Active\" status.\n\nThe topic API endpoint\
+        \ is required for this operation.\nTo get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)\n\
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).\n\
+        \nTransactions Per Minute (TPM) per-tenancy limit for this operation: 60.\n"
+      operationId: CreateSubscriptionPriorConfirmation
+      parameters:
+      - $ref: '#/parameters/RetryTokenHeader'
+      - description: The subscription to create.
+        in: body
+        name: CreateSubscriptionDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSubscriptionDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/Subscription'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/subscriptionsPriorConfirmation\nHost: <var>&lt;topic\
+        \ API endpoint&gt;</var>\n<var>&lt;authorization and other headers&gt;</var>\n\
+        {\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\"\
+        : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n \
+        \ \"endpoint\": \"john.smith@example.com\"\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+  /topics:
+    get:
+      description: 'Lists topics in the specified compartment.
+
+        For instructions, see
+
+        [Listing Topics](/iaas/Content/Notification/Tasks/list-topic.htm).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 120.
+
+        '
+      operationId: ListTopics
+      parameters:
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/FilterByIdQueryParam'
+      - $ref: '#/parameters/FilterByNameQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/SortByQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - description: 'Filter returned list by specified lifecycle state. This parameter
+          is case-insensitive.
+
+          '
+        in: query
+        name: lifecycleState
+        required: false
+        type: string
+        x-obmcs-enumref: '#/definitions/NotificationTopicSummary/lifecycleState'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: The list of topics.
+          headers:
+            opc-next-page: *id010
+            opc-previous-page: *id011
+            opc-request-id: *id009
+          schema:
+            items:
+              $ref: '#/definitions/NotificationTopicSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'Sample 1: List all topics in a compartment, sorted by lifecycle
+        state
+
+
+        GET /20181201/topics?compartmentId=<var>&lt;compartment_OCID&gt;</var>&sortBy="LIFECYCLESTATE"
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+
+        Sample 2: List the topic named "MessageMonitoring" in a compartment
+
+
+        GET /20181201/topics?compartmentId=<var>&lt;compartment_OCID&gt;</var>&name="MessageMonitoring"
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/NotificationTopic'
+    post:
+      description: 'Creates a topic in the specified compartment.
+
+        For instructions, see
+
+        [Creating a Topic](/iaas/Content/Notification/Tasks/create-topic.htm).
+
+
+        For the purposes of access control, you must provide the OCID of the compartment
+        where you want the topic to reside.
+
+        For information about access control and compartments, see [Overview of the
+        IAM Service](/Content/Identity/Concepts/overview.htm).
+
+
+        You must specify a display name for the topic.
+
+
+        All Oracle Cloud Infrastructure resources, including topics, get an Oracle-assigned,
+        unique ID called an
+
+        Oracle Cloud Identifier (OCID). When you create a resource, you can find its
+        OCID in the response. You can also
+
+        retrieve a resource''s OCID by using a List API operation on that resource
+        type, or by viewing the resource in the
+
+        Console. For more information, see [Resource Identifiers](/Content/General/Concepts/identifiers.htm).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: CreateTopic
+      parameters:
+      - $ref: '#/parameters/RetryTokenHeader'
+      - description: The topic to create.
+        in: body
+        name: CreateTopicDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateTopicDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/parameters/SplatGeneratedResourceId'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/NotificationTopic'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: "POST /20181201/topics\nHost: notification.us-phoenix-1.oci.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"name\": \"Admins\"\
+        ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"description\"\
+        : \"Channel for admin messages\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+  /topics/{topicId}:
+    delete:
+      description: 'Deletes the specified topic.
+
+        For instructions, see
+
+        [Deleting a Topic](/iaas/Content/Notification/Tasks/delete-topic.htm).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: DeleteTopic
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic to delete.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: The topic is being deleted.
+          headers:
+            opc-request-id: *id009
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'DELETE /20181201/topics/<var>&lt;topic_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/NotificationTopic'
+    get:
+      description: 'Gets the specified topic''s configuration information.
+
+        For instructions, see
+
+        [Getting a Topic''s Details](/iaas/Content/Notification/Tasks/get-topic.htm).
+
+        '
+      operationId: GetTopic
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic to retrieve.
+
+
+          Transactions Per Minute (TPM) per-tenancy limit for this operation: 120.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        type: string
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/NotificationTopic'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'GET /20181201/topics/<var>&lt;topic_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/NotificationTopic'
+    put:
+      description: 'Updates the specified topic''s configuration.
+
+        For instructions, see
+
+        [Updating a Topic](/iaas/Content/Notification/Tasks/update-topic.htm).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: UpdateTopic
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic to update.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        type: string
+      - description: TopicAttributes
+        in: body
+        name: TopicAttributesDetails
+        required: true
+        schema:
+          $ref: '#/definitions/TopicAttributesDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/parameters/SplatStoreRequestToken'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        200:
+          description: Accepted
+          headers:
+            etag: *id004
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/NotificationTopic'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: "PUT /20181201/topics/<var>&lt;topic_OCID&gt;</var>\nHost: notification.us-phoenix-1.oci.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"description\":\
+        \ \"Channel for admin messages\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+  /topics/{topicId}/actions/addLock:
+    post:
+      description: Adds a lock to a Topic resource.
+      operationId: AddTopicLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide
+          the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call
+          for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response
+          for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s
+          current etag value.
+
+          '
+        in: header
+        name: if-match
+        type: string
+      - $ref: '#/parameters/TopicIdPathParam'
+      - $ref: '#/parameters/AddResourceLockDetailsBodyParam'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Lock is added.
+          headers:
+            etag:
+              description: 'etag for the returned Topic resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/NotificationTopic'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Adds a lock to a Topic resource.
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/NotificationTopic'
+  /topics/{topicId}/actions/changeCompartment:
+    post:
+      description: 'Moves a topic into a different compartment within the same tenancy.
+
+        For instructions, see
+
+        [Moving a Topic](/iaas/Content/Notification/Tasks/change-compartment-topic.htm).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+        '
+      operationId: ChangeTopicCompartment
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic to move.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        type: string
+      - description: The configuration details for the move operation.
+        in: body
+        name: ChangeTopicCompartmentDetails
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeCompartmentDetails'
+      - $ref: '#/parameters/RetryTokenHeader'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: Accepted
+          headers:
+            opc-request-id: *id009
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: "POST /20181201/topics/<var>&lt;topic_OCID&gt;</var>/actions/changeCompartment\n\
+        Host: notification.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization\
+        \ and other headers&gt;</var>\n{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+        \n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+  /topics/{topicId}/actions/removeLock:
+    post:
+      description: Removes a lock from a Topic resource.
+      operationId: RemoveTopicLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide
+          the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call
+          for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response
+          for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s
+          current etag value.
+
+          '
+        in: header
+        name: if-match
+        type: string
+      - $ref: '#/parameters/TopicIdPathParam'
+      - $ref: '#/parameters/RemoveResourceLockDetailsBodyParam'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Lock is removed.
+          headers:
+            etag:
+              description: 'etag for the returned Topic resource.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/NotificationTopic'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Removes a lock to a Topic resource.
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/NotificationTopic'
+  /topics/{topicId}/messages:
+    post:
+      description: 'Publishes a message to the specified topic.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use [GetTopic](#/en/notification/20181201/NotificationTopic/GetTopic)
+
+        and review the `apiEndpoint` value in the response ([NotificationTopic](#/en/notification/20181201/NotificationTopic)).
+
+
+        All limits are per tenancy.
+
+
+        Message size limit per request: 64KB.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60 per
+        topic. (This TPM limit represents messages per minute.)
+
+
+        For other limits information, including message delivery limits by subscription,
+        see
+
+        [Limits for Publishing Messages](/iaas/Content/Notification/Concepts/notificationoverview.htm#limits-pub-msg).
+
+        For more information about publishing messages, see
+
+        [Publishing a Message to a Topic](/iaas/Content/Notification/Tasks/publishingmessages.htm).
+
+        For steps to request a limit increase, see
+
+        [Requesting a Service Limit Increase](/iaas/Content/General/Concepts/servicelimits.htm#three).
+
+        '
+      operationId: PublishMessage
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the topic.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        type: string
+      - description: The message to publish.
+        in: body
+        name: MessageDetails
+        required: true
+        schema:
+          $ref: '#/definitions/MessageDetails'
+      - $ref: '#/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/parameters/MessageTypeHeaderParam'
+      - $ref: '#/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Published
+          headers:
+            opc-request-id: *id009
+          schema:
+            $ref: '#/definitions/PublishResult'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/topics/<var>&lt;topic_OCID&gt;</var>/messages\nHost:\
+        \ <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"title\": \"Alarm notification\",\n  \"body\":\
+        \ \"High CPU usage\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+produces:
+- application/json
+responses:
+  400:
+    description: Bad Request
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  401:
+    description: Unauthorized
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  403:
+    description: Forbidden
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  404:
+    description: Not Found
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  405:
+    description: Method Not Allowed
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  409:
+    description: Conflict
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  412:
+    description: Precondition Failed
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  429:
+    description: Too Many Requests
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  500:
+    description: Internal Server Error
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+  DefaultError:
+    description: An error has occurred.
+    headers:
+      opc-request-id: *id009
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+swagger: '2.0'
+x-anchors:
+  x-headers:
+    etag: *id004
+    opc-next-page: *id010
+    opc-previous-page: *id011
+    opc-request-id: *id009
+    opc-work-request-id:
+      description: 'Unique Oracle-assigned identifier for the asynchronous work. You
+        can use this to query its status.
+
+        '
+      type: string
+    retry-after:
+      description: A decimal number representing the number of seconds the client
+        should wait before polling this endpoint again.
+      type: integer
+  x-properties:
+    definedTags: *id001
+    freeformTags: *id002
+    protocolDescription: "The protocol used for the subscription.\n\nAllowed values:\n\
+      \  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints,\
+      \ use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n \
+      \ * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription\
+      \ protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+    shortTopicId: *id005
+    systemTags: *id003
+x-obmcs-client-retries-enabled: false
+x-oracle-package: com.oracle.pic.ons.gateway

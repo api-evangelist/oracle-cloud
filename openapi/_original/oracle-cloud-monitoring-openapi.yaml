@@ -1,0 +1,5133 @@
+basePath: /20180401
+consumes:
+- application/json
+definitions:
+  AggregatedDatapoint:
+    description: 'A timestamp-value pair returned for the specified request.
+
+      '
+    properties:
+      timestamp:
+        description: 'The date and time associated with the value of this data point.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      value:
+        description: 'Numeric value of the metric.
+
+
+          Example: `10.4`
+
+          '
+        format: double
+        type: number
+    required:
+    - timestamp
+    - value
+    type: object
+    x-example: "{\n  \"timestamp\": \"2023-03-10T22:20:00Z\",\n  \"value\": 10.4\n\
+      }\n"
+  Alarm:
+    description: 'The properties that define an alarm.
+
+      For information about alarms, see
+
+      [Alarms Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#AlarmsOverview).
+
+
+      To use any of the API operations, you must be authorized in an IAM policy. If
+      you''re not authorized,
+
+      talk to an administrator. If you''re an administrator who needs to write policies
+      to give users access, see
+
+      [Getting Started with Policies](/iaas/Content/Identity/Concepts/policygetstarted.htm).
+
+
+      For information about endpoints and signing API requests, see
+
+      [About the API](/iaas/Content/API/Concepts/usingapi.htm).
+
+      For information about available SDKs and tools, see
+
+      [SDKS and Other Tools](/iaas/Content/API/Concepts/sdks.htm).
+
+      '
+    properties:
+      alarmSummary: &id001
+        description: "Customizable alarm summary (`alarmSummary` [alarm message parameter](/iaas/Content/Monitoring/alarm-message-format.htm)).\n\
+          Optionally include [dynamic variables](/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm).\n\
+          The alarm summary appears within the body of the alarm message and in responses\
+          \ to \n[ListAlarmStatus](#/en/monitoring/latest/AlarmStatusSummary/ListAlarmsStatus)\
+          \ \n[GetAlarmHistory](#/en/monitoring/latest/AlarmHistoryCollection/GetAlarmHistory)\
+          \ and\n[RetrieveDimensionStates](#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).\n"
+        type: string
+      body: &id003
+        description: 'The human-readable content of the delivered alarm notification.
+
+          Optionally include [dynamic variables](/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm).
+
+          Oracle recommends providing guidance
+
+          to operators for resolving the alarm condition. Consider adding links to
+          standard runbook
+
+          practices. Avoid entering confidential information.
+
+
+          Example: `High CPU usage alert. Follow runbook instructions for resolution.`
+
+          '
+        maxLength: 1000
+        minLength: 1
+        type: string
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Usage of predefined tag keys. These predefined keys are scoped
+          to namespaces.
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      destinations:
+        description: 'A list of destinations for alarm notifications.
+
+          Each destination is represented by the [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+
+          of a related resource, such as a [topic](#/en/notification/latest/NotificationTopic).
+
+          Supported destination services: Notifications, Streaming.
+
+          Limit: One destination per supported destination service.
+
+          '
+        items:
+          type: string
+        minItems: 1
+        type: array
+      displayName:
+        description: 'A user-friendly name for the alarm. It does not have to be unique,
+          and it''s changeable.
+
+
+          This value determines the title of each alarm notification.
+
+
+          Example: `High CPU Utilization`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      evaluationSlackDuration: &id007
+        description: 'Customizable slack period to wait for metric ingestion before
+          evaluating the alarm.
+
+          Specify a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H`
+
+          for one hour). Minimum: PT3M. Maximum: PT2H. Default: PT3M.
+
+          For more information about the slack period, see
+
+          [About the Internal Reset Period](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#reset).
+
+          '
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      isEnabled:
+        description: 'Whether the alarm is enabled.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      isNotificationsPerMetricDimensionEnabled:
+        default: false
+        description: 'When set to `true`, splits alarm notifications per metric stream.
+
+          When set to `false`, groups alarm notifications across metric streams.
+
+          '
+        type: boolean
+      lifecycleState:
+        description: 'The current lifecycle state of the alarm.
+
+
+          Example: `DELETED`
+
+          '
+        enum:
+        - ACTIVE
+        - DELETING
+        - DELETED
+        type: string
+      messageFormat:
+        default: RAW
+        description: 'The format to use for alarm notifications. The formats are:
+
+          * `RAW` - Raw JSON blob. Default value. When the `destinations` attribute
+          specifies `Streaming`, all alarm notifications use this format.
+
+          * `PRETTY_JSON`: JSON with new lines and indents. Available when the `destinations`
+          attribute specifies `Notifications` only.
+
+          * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Available when the
+          `destinations` attribute specifies `Notifications` only. Applies to Email
+          subscription types only.
+
+          '
+        enum:
+        - RAW
+        - PRETTY_JSON
+        - ONS_OPTIMIZED
+        type: string
+      metricCompartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the metric
+
+          being evaluated by the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      metricCompartmentIdInSubtree:
+        description: 'When true, the alarm evaluates metrics from all compartments
+          and subcompartments. The parameter can
+
+          only be set to true when metricCompartmentId is the tenancy OCID (the tenancy
+          is the root compartment).
+
+          A true value requires the user to have tenancy-level permissions. If this
+          requirement is not met,
+
+          then the call is rejected. When false, the alarm evaluates metrics from
+          only the compartment specified
+
+          in metricCompartmentId. Default is false.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      namespace:
+        description: 'The source service or application emitting the metric that is
+          evaluated by the alarm.
+
+
+          Example: `oci_computeagent`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      notificationTitle: &id008
+        description: 'Customizable notification title (`title` [alarm message parameter](/iaas/Content/Monitoring/alarm-message-format.htm)).
+
+          Optionally include [dynamic variables](/iaas/Content/Monitoring/Tasks/update-alarm-dynamic-variables.htm).
+
+          The notification title appears as the subject line in a formatted email
+          message and as the title in a Slack message.
+
+          '
+        type: string
+      notificationVersion: &id009
+        description: 'The version of the alarm notification to be delivered. Allowed
+          value: `1.X`
+
+          The value must start with a number (up to four digits), followed by a period
+          and an uppercase X.
+
+          '
+        type: string
+      overrides: &id010
+        description: "A set of overrides that control evaluations of the alarm. \n\
+          \nEach override can specify values for query, severity, body, and pending\
+          \ duration.\nWhen an alarm contains overrides, the Monitoring service evaluates\
+          \ each override in order, beginning with the first override in the array\
+          \ (index position `0`),\nand then evaluates the alarm's base values (`ruleName`\
+          \ value of `BASE`).\n"
+        items:
+          $ref: '#/definitions/AlarmOverride'
+        maxItems: 2
+        type: array
+      pendingDuration: &id004
+        description: 'The period of time that the condition defined in the alarm must
+          persist before the alarm state
+
+          changes from "OK" to "FIRING". For example, a value of 5 minutes means that
+          the
+
+          alarm must persist in breaching the condition for five minutes before the
+          alarm updates its
+
+          state to "FIRING".
+
+
+          The duration is specified as a string in ISO 8601 format (`PT10M` for ten
+          minutes or `PT1H`
+
+          for one hour). Minimum: PT1M. Maximum: PT24H. Default: PT1M.
+
+
+          Under the default value of PT1M, the first evaluation that breaches the
+          alarm updates the
+
+          state to "FIRING".
+
+
+          The alarm updates its status to "OK" when the breaching condition has been
+          clear for
+
+          the most recent minute.
+
+
+          Example: `PT5M`
+
+          '
+        type: string
+      query: &id005
+        description: "The Monitoring Query Language (MQL) expression to evaluate for\
+          \ the alarm. The Alarms feature of\nthe Monitoring service interprets results\
+          \ for each returned time series as Boolean values,\nwhere zero represents\
+          \ false and a non-zero value represents true. A true value means that the\
+          \ trigger\nrule condition has been met. The query must specify a metric,\
+          \ statistic, interval, and trigger\nrule (threshold or absence). Supported\
+          \ values for interval depend on the specified time range. More\ninterval\
+          \ values are supported for smaller time ranges. You can optionally\nspecify\
+          \ dimensions and grouping functions.\nAlso, you can customize the \n[absence\
+          \ detection period](/iaas/Content/Monitoring/Tasks/create-edit-alarm-query-absence-detection-period.htm).\n\
+          Supported grouping functions: `grouping()`, `groupBy()`.\nFor information\
+          \ about writing MQL expressions, see\n[Editing the MQL Expression for a\
+          \ Query](/iaas/Content/Monitoring/Tasks/query-metric-mql.htm).\nFor details\
+          \ about MQL, see\n[Monitoring Query Language (MQL) Reference](/iaas/Content/Monitoring/Reference/mql.htm).\n\
+          For available dimensions, review the metric definition for the supported\
+          \ service. See\n[Supported Services](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).\n\
+          \nExample of threshold alarm:\n\n  -----\n\n    CpuUtilization[1m]{availabilityDomain=\"\
+          cumS:PHX-AD-1\"}.groupBy(availabilityDomain).percentile(0.9) > 85\n\n  -----\n\
+          \nExample of absence alarm:\n\n  -----\n\n    CpuUtilization[1m]{availabilityDomain=\"\
+          cumS:PHX-AD-1\"}.absent()\n\n  -----\nExample of absence alarm with custom\
+          \ absence detection period of 20 hours:\n\n  -----\n    \n    CpuUtilization[1m]{availabilityDomain=\"\
+          cumS:PHX-AD-1\"}.absent(20h)\n  \n  -----\n"
+        maxLength: 1000
+        minLength: 1
+        type: string
+      repeatNotificationDuration:
+        description: 'The frequency for re-submitting alarm notifications, if the
+          alarm keeps firing without
+
+          interruption. Format defined by ISO 8601. For example, `PT4H` indicates
+          four hours.
+
+          As another example, `PT0M` indicates a repeat notification each time the
+          alarm trigger condition is met,
+
+          otherwise known as an event-based notification. For more information, see
+
+          [Getting Event-Based Notifications for an Alarm](/iaas/Content/Monitoring/Tasks/update-alarm-event.htm).
+
+          Minimum: PT0M. Maximum: P30D.
+
+          '
+        type: string
+      resolution:
+        description: 'The time between calculated aggregation windows for the alarm.
+          Supported value: `1m`
+
+          '
+        type: string
+      resourceGroup:
+        description: 'Resource group to match for metric data retrieved by the alarm.
+          A resource group is a custom string that you can match when retrieving custom
+          metrics. Only one resource group can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      ruleName: &id002
+        description: "Identifier of the alarm's base values for alarm evaluation,\
+          \ for use when the alarm contains overrides. \nDefault value is `BASE`.\
+          \ For information about alarm overrides, see [AlarmOverride](#/en/monitoring/latest/datatypes/AlarmOverride).\n"
+        type: string
+      severity: &id006
+        description: 'The perceived type of response required when the alarm is in
+          the "FIRING" state.
+
+
+          Example: `CRITICAL`
+
+          '
+        enum:
+        - CRITICAL
+        - ERROR
+        - WARNING
+        - INFO
+        type: string
+      suppression:
+        $ref: '#/definitions/Suppression'
+        description: 'The configuration details for suppressing an alarm.
+
+          '
+      timeCreated:
+        description: 'The date and time the alarm was created. Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The date and time the alarm was last updated. Format defined
+          by RFC3339.
+
+
+          Example: `2023-02-03T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - id
+    - displayName
+    - compartmentId
+    - metricCompartmentId
+    - namespace
+    - query
+    - severity
+    - destinations
+    - isEnabled
+    - lifecycleState
+    - timeCreated
+    - timeUpdated
+    type: object
+    x-example: "Sample 1: Single condition\n\n{\n  \"body\": \"CPU utilization has\
+      \ reached high values.\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+      : \"High CPU Utilization\",\n  \"id\": \"ocid1.alarm.oc1..exampleuniqueID\"\
+      ,\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\": true,\n\
+      \  \"lifecycleState\": \"ACTIVE\",\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n\
+      \  \"metricCompartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\"\
+      : \"oci_computeagent\",\n  \"pendingDuration\": \"PT5M\",\n  \"query\": \"CpuUtilization[1m]{availabilityDomain\
+      \ = \\\"cumS:PHX-AD-1\"\\}.groupBy(availabilityDomain).percentile(0.9) > 85\"\
+      ,\n  \"repeatNotificationDuration\": \"PT2H\",\n  \"severity\": \"WARNING\"\
+      ,\n  \"suppression\":\n  {\n    \"description\": \"System Maintenance\",\n \
+      \   \"timeSuppressFrom\": \"2023-02-04T05:00:00.600Z\",\n    \"timeSuppressUntil\"\
+      : \"2023-02-04T07:00:00.600Z\"\n  },\n  \"timeCreated\": \"2023-02-01T01:02:29.600Z\"\
+      ,\n  \"timeUpdated\": \"2023-02-03T01:02:29.600Z\"\n}\n\nSample 2: Multiple\
+      \ conditions, with dynamic variables and a five-minute evaluation slack duration\n\
+      \n{\n  \"alarmSummary\": \"test summary with severity = {{severity}} and query\
+      \ = {{{query}}}\",\n  \"body\": \"{{severity}} alarm triggered because threshold\
+      \ got breached due to {{metricValues}} at {{timestamp}}\",\n  \"compartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\"\
+      \ ],\n  \"displayName\": \"High CPU Utilization\",\n  \"evaluationSlackDuration\"\
+      : \"PT5M\",\n  \"id\": \"ocid1.alarm.oc1..exampleuniqueID\",\n  \"isEnabled\"\
+      : true,\n  \"isNotificationsPerMetricDimensionEnabled\": true,\n  \"lifecycleState\"\
+      : \"ACTIVE\",\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\": \"oci_computeagent\"\
+      ,\n  \"notificationTitle\": \"Sample title with severity {{severity}}\",\n \
+      \ \"overrides\":\n    [\n      {\"body\": \"95% CPU utilization\", \"query\"\
+      : \"CPUUtilization[1m].mean()>95\", \"severity\": \"CRITICAL\"},\n      {\"\
+      body\": \"80% CPU utilization\", \"query\": \"CPUUtilization[1m].mean()>80\"\
+      , \"severity\": \"WARNING\"}\n    ],\n  \"pendingDuration\": \"PT5M\",\n  \"\
+      query\": \"CpuUtilization[1m]{availabilityDomain=\\\"cumS:PHX-AD-1\\\"}.groupBy(availabilityDomain).percentile(0.9)\
+      \ > 85\",\n  \"repeatNotificationDuration\": \"PT2H\",\n  \"ruleName\": \"BASE\"\
+      ,\n  \"severity\": \"INFO\",\n  \"timeCreated\": \"2023-02-01T01:02:29.600Z\"\
+      ,\n  \"timeUpdated\": \"2023-02-03T01:02:29.600Z\"\n}\n\nSample 3: Event-based\
+      \ alarm\n\n{\n  \"body\": \"Database instance terminated.\",\n  \"compartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\"\
+      \ ],\n  \"displayName\": \"Database instance shutdown\",\n  \"id\": \"ocid1.alarm.oc1..exampleuniqueID\"\
+      ,\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\": true,\n\
+      \  \"lifecycleState\": \"ACTIVE\",\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n\
+      \  \"metricCompartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\"\
+      : \"oci_database\",\n  \"pendingDuration\": \"PT1M\",\n  \"query\": \"DatabaseInstance.Shutdown[1m].groupBy(availabilityDomain).count()\
+      \ > 0\",\n  \"repeatNotificationDuration\": \"PT0M\",\n  \"severity\": \"INFO\"\
+      ,\n  \"timeCreated\": \"2025-01-01T01:02:29.600Z\",\n  \"timeUpdated\": \"2025-01-03T01:02:29.600Z\"\
+      \n}\n"
+  AlarmDimensionStatesCollection:
+    description: "The list of current alarm state entries for each metric stream that\
+      \ matches the filters. \n"
+    properties:
+      alarmId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm to retrieve alarm state entries for.
+
+          '
+        type: string
+      isEnabled:
+        description: 'Whether the alarm is enabled.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      isNotificationsPerMetricDimensionEnabled:
+        description: 'When set to `true`, splits alarm notifications per metric stream.
+
+          When set to `false`, groups alarm notifications across metric streams.
+
+          '
+        type: boolean
+      items:
+        description: 'Array of alarm state entries.
+
+          '
+        items:
+          $ref: '#/definitions/AlarmDimensionStatesEntry'
+        type: array
+    required:
+    - alarmId
+    - isEnabled
+    - isNotificationsPerMetricDimensionEnabled
+    - items
+    type: object
+    x-example: "{\n  \"alarmId\": \"ocid1.alarm.oc1..exampleuniqueID\",\n  \"isEnabled\"\
+      : true,\n  \"isNotificationsPerMetricDimensionEnabled\": true,\n  \"items\"\
+      :\n  [\n    {\n      \"alarmSummary\": \"Customizable alarm summary with dynamic\
+      \ variables severity CRITICAL\",\n      \"dimensions\":\n        {\n       \
+      \   \"availabilityDomain\": \"phx-ad-1\",\n          \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\"\
+      \n        },\n      \"status\" : FIRING\n      \"timestamp\" : \"2021-12-01T01:02:30.600Z\"\
+      \  \n        \n    }\n  ]\n}\n"
+  AlarmDimensionStatesEntry:
+    description: "A timestamped alarm state entry for a metric stream. \n"
+    properties:
+      alarmSummary: *id001
+      dimensions:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'Indicator of the metric stream associated with the alarm state
+          entry. Includes one or more dimension key-value pairs.
+
+          '
+        type: object
+      ruleName: *id002
+      status:
+        description: 'Transition state (status value) associated with the alarm state
+          entry.
+
+
+          Example: `FIRING`
+
+          '
+        enum:
+        - FIRING
+        - OK
+        type: string
+      timestamp:
+        description: 'Transition time associated with the alarm state entry. Format
+          defined by RFC3339.
+
+
+          Example: `2022-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - alarmSummary
+    - dimensions
+    - status
+    - ruleName
+    - timestamp
+    type: object
+    x-example: "{\n  \"alarmSummary\": \"Customizable alarm summary with dynamic variables\
+      \ severity CRITICAL\",\n  \"dimensions\": \"{\n     \"availabilityDomain\":\
+      \ \"phx-ad-1\",\n     \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\"\
+      \n   }\"\n  \"status\": \"Firing\",\n  \"ruleName\": \"BASE\",\n  \"timestamp\"\
+      : \"2021-12-01T01:02:29.600Z\"\n}\n"
+  AlarmHistoryCollection:
+    description: 'The configuration details for retrieving alarm history.
+
+      '
+    properties:
+      alarmId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm to retrieve history for.
+
+          '
+        type: string
+      entries:
+        description: 'The set of history entries retrieved for the alarm.
+
+          '
+        items:
+          $ref: '#/definitions/AlarmHistoryEntry'
+        type: array
+      isEnabled:
+        description: 'Whether the alarm is enabled.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+    required:
+    - alarmId
+    - isEnabled
+    - entries
+    type: object
+    x-example: "{\n  \"alarmId\": \"ocid1.alarm.oc1..exampleuniqueID\",\n  \"isEnabled\"\
+      : true,\n  \"entries\":\n  [\n    {\n    \"alarmSummary\": \"Customizable alarm\
+      \ summary with dynamic variables severity CRITICAL\",\n    \"summary\": \"Alarm\
+      \ transitioned from OK to FIRING.\",\n    \"timestamp\": \"2023-02-01T01:02:29.600Z\"\
+      \n    },\n    {\n    \"alarmSummary\": \"Customizable alarm summary with dynamic\
+      \ variables severity CRITICAL\",\n    \"summary\": \"Alarm transitioned from\
+      \ FIRING to OK.\",\n    \"timestamp\": \"2023-02-01T01:02:30.600Z\"\n    },\n\
+      \    {\n    \"alarmSummary\": \"Customizable alarm summary with dynamic variables\
+      \ severity CRITICAL\",\n    \"summary\": \"Alarm transitioned from OK to FIRING.\"\
+      ,\n    \"timestamp\": \"2023-02-01T01:02:31.600Z\"\n    }\n  ]\n}\n"
+  AlarmHistoryEntry:
+    description: 'An alarm history entry indicating a description of the entry and
+      the time that the entry occurred.
+
+      If the entry corresponds to a state transition, such as OK to Firing, then the
+      entry also includes a transition timestamp.
+
+      '
+    properties:
+      alarmSummary: *id001
+      summary:
+        description: 'Description for this alarm history entry.
+
+
+          Example 1 - alarm state history entry: `The alarm state is FIRING`
+
+
+          Example 2 - alarm state transition history entry: `State transitioned from
+          OK to Firing`
+
+          '
+        type: string
+      timestamp:
+        description: 'Timestamp for this alarm history entry. Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timestampTriggered:
+        description: 'Timestamp for the transition of the alarm state. For example,
+          the time when the alarm transitioned from OK to Firing.
+
+          Available for state transition entries only. Note: A three-minute lag for
+          this value accounts for any late-arriving metrics.
+
+
+          Example: `2023-02-01T0:59:00.789Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - alarmSummary
+    - summary
+    - timestamp
+    type: object
+    x-example: "{\n  \"alarmSummary\": \"Alarm is in a FIRING state; because 1 metric\
+      \ meets the trigger rule: Example[1m].mean() > 1\",\n  \"summary\": \"State\
+      \ transitioned from OK to Firing.\",\n  \"timestamp\": \"2023-02-01T01:02:29.600Z\"\
+      ,\n  \"timestampTriggered\": \"2023-02-01T00:59:00.789Z\"\n}\n"
+  AlarmOverride:
+    description: 'Values to use for an independent evaluation of the alarm.
+
+      You can specify values for query, severity, body, and pending duration.
+
+      When an alarm contains overrides, the Monitoring service evaluates each override
+      in order,
+
+      beginning with the first override in the array (index position `0`),
+
+      and then evaluates the alarm''s base values (`ruleName` value of `BASE`)
+
+      '
+    properties:
+      body: *id003
+      pendingDuration: *id004
+      query: *id005
+      ruleName:
+        description: 'A user-friendly description for this alarm override. Must be
+          unique across all `ruleName` values for the alarm.
+
+          '
+        type: string
+      severity:
+        description: 'The perceived severity of the alarm with regard to the affected
+          system.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/Alarm/severity'
+    type: object
+    x-example: "{\n  \"body\": \"95% CPU utilization\",\n  \"pendingDuration\": \"\
+      PT5M\",\n  \"query\": \"CPUUtilization[1m].mean()>95\",\n  \"ruleName\": \"\
+      95\",\n  \"severity\": \"CRITICAL\"\n}\n"
+  AlarmStatusSummary:
+    description: 'A summary of properties for the specified alarm and its current
+      evaluation status.
+
+      For information about alarms, see
+
+      [Alarms Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#AlarmsOverview).
+
+
+      To use any of the API operations, you must be authorized in an IAM policy. If
+      you''re not authorized,
+
+      talk to an administrator. If you''re an administrator who needs to write policies
+      to give users access, see
+
+      [Getting Started with Policies](/iaas/Content/Identity/Concepts/policygetstarted.htm).
+
+
+      For information about endpoints and signing API requests, see
+
+      [About the API](/iaas/Content/API/Concepts/usingapi.htm).
+
+      For information about available SDKs and tools, see
+
+      [SDKS and Other Tools](/iaas/Content/API/Concepts/sdks.htm).
+
+      '
+    properties:
+      alarmSummary: *id001
+      displayName:
+        description: 'The configured name of the alarm.
+
+
+          Example: `High CPU Utilization`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      ruleName: *id002
+      severity: *id006
+      status:
+        description: 'The status of this alarm.
+
+          Status is collective, across all metric streams in the alarm.
+
+          To list alarm status for each metric stream, use [RetrieveDimensionStates](#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+
+
+          Example: `FIRING`
+
+          '
+        enum:
+        - FIRING
+        - OK
+        - SUSPENDED
+        type: string
+      suppression:
+        $ref: '#/definitions/Suppression'
+        description: 'The configuration details for suppressing an alarm.
+
+          '
+      timestampTriggered:
+        description: 'Timestamp for the transition of the alarm state. For example,
+          the time when the alarm transitioned from OK to Firing.
+
+          Note: A three-minute lag for this value accounts for any late-arriving metrics.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - alarmSummary
+    - id
+    - displayName
+    - severity
+    - ruleName
+    - timestampTriggered
+    - status
+    type: object
+    x-example: "{\n  \"alarmSummary\": \"Alarm test-name is in a FIRING state; because\
+      \ 1 metric meets the trigger rule\",\n  \"id\": \"ocid1.alarm.oc1..exampleuniqueID\"\
+      ,\n  \"displayName\": \"High CPU Utilization\",\n  \"severity\": \"WARNING\"\
+      ,\n  \"ruleName\": \"BASE\",\n  \"timestampTriggered\": \"2023-02-01T01:02:29.600Z\"\
+      ,\n  \"status\": \"FIRING\"\n}\n"
+  AlarmSummary:
+    description: 'A summary of properties for the specified alarm.
+
+      For information about alarms, see
+
+      [Alarms Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#AlarmsOverview).
+
+
+      To use any of the API operations, you must be authorized in an IAM policy. If
+      you''re not authorized,
+
+      talk to an administrator. If you''re an administrator who needs to write policies
+      to give users access, see
+
+      [Getting Started with Policies](/iaas/Content/Identity/Concepts/policygetstarted.htm).
+
+
+      For information about endpoints and signing API requests, see
+
+      [About the API](/iaas/Content/API/Concepts/usingapi.htm).
+
+      For information about available SDKs and tools, see
+
+      [SDKS and Other Tools](/iaas/Content/API/Concepts/sdks.htm).
+
+      '
+    properties:
+      alarmSummary: *id001
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Usage of predefined tag keys. These predefined keys are scoped
+          to namespaces.
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      destinations:
+        description: 'A list of destinations for alarm notifications.
+
+          Each destination is represented by the [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+
+          of a related resource, such as a [topic](#/en/notification/latest/NotificationTopic).
+
+          Supported destination services: Notifications, Streaming.
+
+          Limit: One destination per supported destination service.
+
+          '
+        items:
+          type: string
+        minItems: 1
+        type: array
+      displayName:
+        description: 'A user-friendly name for the alarm. It does not have to be unique,
+          and it''s changeable.
+
+
+          This value determines the title of each alarm notification.
+
+
+          Example: `High CPU Utilization`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      evaluationSlackDuration: *id007
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      isEnabled:
+        description: 'Whether the alarm is enabled.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      isNotificationsPerMetricDimensionEnabled:
+        description: 'Whether the alarm sends a separate message for each metric stream.
+
+          See [Creating an Alarm That Splits Messages by Metric Stream](/iaas/Content/Monitoring/Tasks/create-alarm-split.htm).
+
+          Example: `true`
+
+          '
+        type: boolean
+      lifecycleState:
+        description: 'The current lifecycle state of the alarm.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/Alarm/lifecycleState'
+      metricCompartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the metric
+
+          being evaluated by the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      namespace:
+        description: 'The source service or application emitting the metric that is
+          evaluated by the alarm.
+
+
+          Example: `oci_computeagent`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      notificationTitle: *id008
+      notificationVersion: *id009
+      overrides: *id010
+      query:
+        description: "The Monitoring Query Language (MQL) expression to evaluate for\
+          \ the alarm. The Alarms feature of\nthe Monitoring service interprets results\
+          \ for each returned time series as Boolean values,\nwhere zero represents\
+          \ false and a non-zero value represents true. A true value means that the\
+          \ trigger\nrule condition has been met. The query must specify a metric,\
+          \ statistic, interval, and trigger\nrule (threshold or absence). Supported\
+          \ values for interval depend on the specified time range. More\ninterval\
+          \ values are supported for smaller time ranges. Supported grouping functions:\
+          \ `grouping()`, `groupBy()`.\nFor information about writing MQL expressions,\
+          \ see\n[Editing the MQL Expression for a Query](/iaas/Content/Monitoring/Tasks/query-metric-mql.htm).\n\
+          For details about MQL, see\n[Monitoring Query Language (MQL) Reference](/iaas/Content/Monitoring/Reference/mql.htm).\n\
+          For available dimensions, review the metric definition for the supported\
+          \ service. See\n[Supported Services](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).\n\
+          \nExample of threshold alarm:\n\n  -----\n\n    CpuUtilization[1m]{availabilityDomain=\"\
+          cumS:PHX-AD-1\"}.groupBy(availabilityDomain).percentile(0.9) > 85\n\n  -----\n\
+          \nExample of absence alarm:\n\n  -----\n\n    CpuUtilization[1m]{availabilityDomain=\"\
+          cumS:PHX-AD-1\"}.absent()\n\n  -----\n"
+        maxLength: 255
+        minLength: 1
+        type: string
+      resourceGroup: &id013
+        description: 'Resource group that you want to match. A null value returns
+          only metric data that has no resource groups. The specified resource group
+          must exist in the definition of the posted metric. Only one resource group
+          can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      ruleName: *id002
+      severity: *id006
+      suppression:
+        $ref: '#/definitions/Suppression'
+        description: 'The configuration details for suppressing an alarm.
+
+          '
+    required:
+    - id
+    - displayName
+    - compartmentId
+    - metricCompartmentId
+    - namespace
+    - query
+    - severity
+    - destinations
+    - isEnabled
+    - lifecycleState
+    type: object
+    x-example: "Sample: Multiple conditions, with dynamic variables and a five-minute\
+      \ evaluation slack duration\n\n{\n  \"alarmSummary\": \"test summary with severity\
+      \ = {{severity}} and query = {{{query}}}\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+      : \"High CPU Utilization\",\n  \"evaluationSlackDuration\": \"PT5M\",\n  \"\
+      id\": \"ocid1.alarm.oc1..exampleuniqueID\",\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\"\
+      : true,\n  \"lifecycleState\": \"ACTIVE\",\n  \"metricCompartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"namespace\": \"oci_computeagent\",\n  \"notificationTitle\": \"Sample\
+      \ title with severity {{severity}}\",\n  \"overrides\":\n    [\n      {\"body\"\
+      : \"95% CPU utilization\", \"query\": \"CPUUtilization[1m].mean()>95\", \"severity\"\
+      : \"CRITICAL\"},\n      {\"body\": \"80% CPU utilization\", \"query\": \"CPUUtilization[1m].mean()>80\"\
+      , \"severity\": \"WARNING\"}\n    ],\n  \"query\": \"CpuUtilization[1m]{availabilityDomain=\\\
+      \"cumS:PHX-AD-1\\\"}.groupBy(availabilityDomain).percentile(0.9) > 85\",\n \
+      \ \"ruleName\": \"BASE\",\n  \"severity\": \"INFO\"\n}\n"
+  AlarmSuppression:
+    description: 'The configuration details for an alarm suppression.
+
+      '
+    properties:
+      alarmSuppressionTarget:
+        $ref: '#/definitions/AlarmSuppressionTarget'
+      compartmentId:
+        description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the alarm suppression.
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Usage of predefined tag keys. These predefined keys are scoped
+          to namespaces.
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      description:
+        description: 'Human-readable reason for this alarm suppression.
+
+          It does not have to be unique, and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          Oracle recommends including tracking information for the event or associated
+          work,
+
+          such as a ticket number.
+
+
+          Example: `Planned outage due to change IT-1234.`
+
+          '
+        type: string
+      dimensions:
+        additionalProperties:
+          type: string
+        description: 'Configured dimension filter for suppressing alarm state entries
+          that include the set of specified dimension key-value pairs.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      displayName:
+        description: A user-friendly name for the alarm suppression. It does not have
+          to be unique, and it's changeable. Avoid entering confidential information.
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      id:
+        description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm suppression.
+        type: string
+      level:
+        description: 'The level of this alarm suppression.
+
+          `ALARM` indicates a suppression of the entire alarm, regardless of dimension.
+
+          `DIMENSION` indicates a suppression configured for specified dimensions.
+
+          '
+        enum:
+        - ALARM
+        - DIMENSION
+        type: string
+      lifecycleState:
+        description: 'The current lifecycle state of the alarm suppression.
+
+
+          Example: `DELETED`
+
+          '
+        enum:
+        - ACTIVE
+        - DELETED
+        type: string
+      suppressionConditions: &id011
+        description: "Array of all preconditions for alarm suppression.\nExample:\
+          \ `[{\n  conditionType: \"RECURRENCE\",\n  suppressionRecurrence: \"FRQ=DAILY;BYHOUR=10\"\
+          ,\n  suppressionDuration: \"PT1H\"\n}]`\n"
+        items:
+          $ref: '#/definitions/SuppressionCondition'
+        maxItems: 1
+        minItems: 1
+        type: array
+      timeCreated:
+        description: 'The date and time the alarm suppression was created. Format
+          defined by RFC3339.
+
+
+          Example: `2018-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressFrom:
+        description: 'The start date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2018-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressUntil:
+        description: 'The end date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2018-02-01T02:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The date and time the alarm suppression was last updated (deleted).
+          Format defined by RFC3339.
+
+
+          Example: `2018-02-03T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - id
+    - compartmentId
+    - alarmSuppressionTarget
+    - level
+    - displayName
+    - timeSuppressFrom
+    - timeSuppressUntil
+    - lifecycleState
+    - timeCreated
+    - timeUpdated
+    type: object
+  AlarmSuppressionAlarmTarget:
+    allOf:
+    - $ref: '#/definitions/AlarmSuppressionTarget'
+    - discriminator: ALARM
+      properties:
+        alarmId:
+          description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+            of the alarm that is the target of the alarm suppression.
+          type: string
+      required:
+      - alarmId
+    description: The alarm target of the alarm suppression.
+  AlarmSuppressionCollection:
+    description: 'Collection of property summaries for alarm suppressions.
+
+      '
+    properties:
+      items:
+        description: 'List of property summaries for alarm suppressions.
+
+          '
+        items:
+          $ref: '#/definitions/AlarmSuppressionSummary'
+        type: array
+    required:
+    - items
+    type: object
+  AlarmSuppressionCompartmentTarget:
+    allOf:
+    - $ref: '#/definitions/AlarmSuppressionTarget'
+    - discriminator: COMPARTMENT
+      properties:
+        compartmentId:
+          description: "The [OCID](/iaas/Content/General/Concepts/identifiers.htm)\
+            \ of the compartment or tenancy that is the \ntarget of the alarm suppression.\n\
+            Example: `ocid1.compartment.oc1..exampleuniqueID`\n"
+          type: string
+        compartmentIdInSubtree:
+          description: "When true, the alarm suppression targets all alarms under\
+            \ all compartments and subcompartments of \nthe tenancy specified. The\
+            \ parameter can only be set to true when compartmentId is the tenancy\
+            \ OCID \n(the tenancy is the root compartment). When false, the alarm\
+            \ suppression targets only the alarms under\nthe specified compartment.\n"
+          type: boolean
+      required:
+      - compartmentId
+    description: The compartment target of the alarm suppression.
+  AlarmSuppressionHistoryItem:
+    description: 'A summary of properties for the specified alarm suppression history
+      item.
+
+      '
+    properties:
+      alarmSuppressionTarget:
+        $ref: '#/definitions/AlarmSuppressionTarget'
+      description:
+        description: 'Human-readable reason for this alarm suppression.
+
+          It does not have to be unique, and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          Oracle recommends including tracking information for the event or associated
+          work,
+
+          such as a ticket number.
+
+
+          Example: `Planned outage due to change IT-1234.`
+
+          '
+        type: string
+      dimensions:
+        additionalProperties:
+          type: string
+        description: 'Configured dimension filter for suppressing alarm state entries
+          that include the set of specified dimension key-value pairs.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      displayName:
+        description: A user-friendly name for the alarm suppression. It does not have
+          to be unique, and it's changeable. Avoid entering confidential information.
+        type: string
+      level:
+        description: 'The level of this alarm suppression.
+
+          `ALARM` indicates a suppression of the entire alarm, regardless of dimension.
+
+          `DIMENSION` indicates a suppression configured for specified dimensions.
+
+          '
+        enum:
+        - ALARM
+        - DIMENSION
+        type: string
+      suppressionConditions: *id011
+      suppressionId:
+        description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm suppression.
+        type: string
+      timeEffectiveFrom:
+        description: 'The start date and time for the suppression actually starts,
+          inclusive. Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeEffectiveUntil:
+        description: 'The end date and time for the suppression actually ends, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T02:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - suppressionId
+    - alarmSuppressionTarget
+    - level
+    - displayName
+    - timeEffectiveFrom
+    - timeEffectiveUntil
+    type: object
+  AlarmSuppressionHistoryItemCollection:
+    description: 'Collection of property summaries for alarm suppression history items.
+
+      '
+    properties:
+      items:
+        description: 'List of alarm suppression history items.
+
+          '
+        items:
+          $ref: '#/definitions/AlarmSuppressionHistoryItem'
+        type: array
+    required:
+    - items
+    type: object
+  AlarmSuppressionSummary:
+    description: 'A summary of properties for the specified alarm suppression.
+
+      '
+    properties:
+      alarmSuppressionTarget:
+        $ref: '#/definitions/AlarmSuppressionTarget'
+      compartmentId:
+        description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the alarm suppression.
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Defined tags for this resource. Each key is predefined and scoped
+          to a namespace.
+
+          Example: `{"foo-namespace": {"bar-key": "value"}}`
+
+          '
+        type: object
+      description:
+        description: 'Human-readable reason for this alarm suppression.
+
+          It does not have to be unique, and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          Oracle recommends including tracking information for the event or associated
+          work,
+
+          such as a ticket number.
+
+
+          Example: `Planned outage due to change IT-1234.`
+
+          '
+        type: string
+      dimensions:
+        additionalProperties:
+          type: string
+        description: 'Configured dimension filter for suppressing alarm state entries
+          that include the set of specified dimension key-value pairs.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      displayName:
+        description: A user-friendly name for the alarm suppression. It does not have
+          to be unique, and it's changeable. Avoid entering confidential information.
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      id:
+        description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the alarm suppression.
+        type: string
+      level: &id012
+        description: 'The level of this alarm suppression.
+
+          `ALARM` indicates a suppression of the entire alarm, regardless of dimension.
+
+          `DIMENSION` indicates a suppression configured for specified dimensions.
+
+
+          Defaut: `DIMENSION`
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/AlarmSuppression/level'
+      lifecycleState:
+        description: 'The current lifecycle state of the alarm suppression.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/AlarmSuppression/lifecycleState'
+      suppressionConditions: *id011
+      timeCreated:
+        description: 'The date and time the alarm suppression was created. Format
+          defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressFrom:
+        description: 'The start date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressUntil:
+        description: 'The end date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T02:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeUpdated:
+        description: 'The date and time the alarm suppression was last updated (deleted).
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-03T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - id
+    - compartmentId
+    - alarmSuppressionTarget
+    - level
+    - displayName
+    - timeSuppressFrom
+    - timeSuppressUntil
+    - lifecycleState
+    - timeCreated
+    - timeUpdated
+    type: object
+  AlarmSuppressionTarget:
+    description: The target of the alarm suppression.
+    discriminator: targetType
+    properties:
+      targetType:
+        description: The type of the alarm suppression target.
+        enum:
+        - ALARM
+        - COMPARTMENT
+        type: string
+    required:
+    - targetType
+  ChangeAlarmCompartmentDetails:
+    description: 'The configuration details for moving an alarm.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment to move the alarm to.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - compartmentId
+    type: object
+    x-example: "{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n\
+      }\n"
+  CreateAlarmDetails:
+    description: 'The configuration details for creating an alarm.
+
+      '
+    properties:
+      alarmSummary: *id001
+      body: *id003
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Usage of predefined tag keys. These predefined keys are scoped
+          to namespaces.
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      destinations:
+        description: 'A list of destinations for alarm notifications.
+
+          Each destination is represented by the [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+
+          of a related resource, such as a [topic](#/en/notification/latest/NotificationTopic).
+
+          Supported destination services: Notifications, Streaming.
+
+          Limit: One destination per supported destination service.
+
+          '
+        items:
+          type: string
+        minItems: 1
+        type: array
+      displayName:
+        description: 'A user-friendly name for the alarm. It does not have to be unique,
+          and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          This value determines the title of each alarm notification.
+
+
+          Example: `High CPU Utilization`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      evaluationSlackDuration: *id007
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      isEnabled:
+        description: 'Whether the alarm is enabled.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      isNotificationsPerMetricDimensionEnabled:
+        default: false
+        description: 'When set to `true`, splits alarm notifications per metric stream.
+
+          When set to `false`, groups alarm notifications across metric streams.
+
+          Example: `true`
+
+          '
+        type: boolean
+      messageFormat:
+        default: RAW
+        description: 'The format to use for alarm notifications. The formats are:
+
+          * `RAW` - Raw JSON blob. Default value. When the `destinations` attribute
+          specifies `Streaming`, all alarm notifications use this format.
+
+          * `PRETTY_JSON`: JSON with new lines and indents. Available when the `destinations`
+          attribute specifies `Notifications` only.
+
+          * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Available when the
+          `destinations` attribute specifies `Notifications` only. Applies to Email
+          subscription types only.
+
+          '
+        enum:
+        - RAW
+        - PRETTY_JSON
+        - ONS_OPTIMIZED
+        type: string
+      metricCompartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the metric
+
+          being evaluated by the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      metricCompartmentIdInSubtree:
+        description: 'When true, the alarm evaluates metrics from all compartments
+          and subcompartments. The parameter can
+
+          only be set to true when metricCompartmentId is the tenancy OCID (the tenancy
+          is the root compartment).
+
+          A true value requires the user to have tenancy-level permissions. If this
+          requirement is not met,
+
+          then the call is rejected. When false, the alarm evaluates metrics from
+          only the compartment specified
+
+          in metricCompartmentId. Default is false.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      namespace:
+        description: 'The source service or application emitting the metric that is
+          evaluated by the alarm.
+
+
+          Example: `oci_computeagent`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      notificationTitle: *id008
+      notificationVersion: *id009
+      overrides: *id010
+      pendingDuration: *id004
+      query: *id005
+      repeatNotificationDuration:
+        description: 'The frequency for re-submitting alarm notifications, if the
+          alarm keeps firing without
+
+          interruption. Format defined by ISO 8601. For example, `PT4H` indicates
+          four hours.
+
+          As another example, `PT0M` indicates a repeat notification each time the
+          alarm trigger condition is met,
+
+          otherwise known as an event-based notification. For more information, see
+
+          [Getting Event-Based Notifications for an Alarm](/iaas/Content/Monitoring/Tasks/update-alarm-event.htm).
+
+          Minimum: PT0M. Maximum: P30D.
+
+
+          Default value: null (notifications are not re-submitted).
+
+          '
+        type: string
+      resolution:
+        description: 'The time between calculated aggregation windows for the alarm.
+          Supported value: `1m`
+
+          '
+        type: string
+      resourceGroup:
+        description: 'Resource group that you want to match. A null value returns
+          only metric data that has no resource groups. The alarm retrieves metric
+          data associated with the specified resource group only. Only one resource
+          group can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+          Avoid entering confidential information.
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      ruleName: *id002
+      severity:
+        description: 'The perceived type of response required when the alarm is in
+          the "FIRING" state.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/Alarm/severity'
+      suppression:
+        $ref: '#/definitions/Suppression'
+        description: 'The configuration details for suppressing an alarm.
+
+          '
+    required:
+    - displayName
+    - compartmentId
+    - metricCompartmentId
+    - namespace
+    - query
+    - severity
+    - destinations
+    - isEnabled
+    type: object
+    x-example: "Sample 1: Single condition\n  \n{\n  \"body\": \"CPU utilization has\
+      \ reached high values.\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+      : \"High CPU Utilization\",\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\"\
+      : true,\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\": \"oci_computeagent\"\
+      ,\n  \"pendingDuration\": \"PT5M\",\n  \"query\": \"CpuUtilization[1m]{availabilityDomain\
+      \ = \\\"cumS:PHX-AD-1\"\\}.groupBy(availabilityDomain).percentile(0.9) > 85\"\
+      ,\n  \"repeatNotificationDuration\": \"PT2H\",\n  \"severity\": \"WARNING\"\
+      ,\n  \"suppression\":\n  {\n    \"description\": \"System Maintenance\",\n \
+      \   \"timeSuppressFrom\": \"2023-02-04T05:00:00.600Z\",\n    \"timeSuppressUntil\"\
+      : \"2023-02-04T07:00:00.600Z\"\n  }\n}\n \nSample 2: Multiple conditions, with\
+      \ dynamic variables and a five-minute evaluation slack duration\n\n{\n  \"alarmSummary\"\
+      : \"test summary with severity = {{severity}} and query = {{{query}}}\",\n \
+      \ \"body\": \"{{severity}} alarm triggered because threshold got breached due\
+      \ to {{metricValues}} at {{timestamp}}\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+      : \"High CPU Utilization\",\n  \"evaluationSlackDuration\": \"PT5M\",\n  \"\
+      isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\": true,\n\
+      \  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"namespace\": \"oci_computeagent\",\n  \"notificationTitle\": \"Sample\
+      \ title with severity {{severity}}\",\n  \"overrides\":\n    [\n      {\"body\"\
+      : \"95% CPU utilization\", \"query\": \"CPUUtilization[1m].mean()>95\", \"severity\"\
+      : \"CRITICAL\"},\n      {\"body\": \"80% CPU utilization\", \"query\": \"CPUUtilization[1m].mean()>80\"\
+      , \"severity\": \"WARNING\"}\n    ],\n  \"pendingDuration\": \"PT5M\",\n  \"\
+      query\": \"CpuUtilization[1m]{availabilityDomain=\\\"cumS:PHX-AD-1\\\"}.groupBy(availabilityDomain).percentile(0.9)\
+      \ > 85\",\n  \"repeatNotificationDuration\": \"PT2H\",\n  \"ruleName\": \"BASE\"\
+      ,\n  \"severity\": \"INFO\"\n}        \n\nSample 3: Event-based alarm\n\n{\n\
+      \  \"body\": \"Database instance terminated.\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+      ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+      : \"Database instance shutdown\",\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\"\
+      : true,\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\"\
+      : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\": \"oci_database\"\
+      ,\n  \"pendingDuration\": \"PT1M\",\n  \"query\": \"DatabaseInstance.Shutdown[1m].groupBy(availabilityDomain).count()\
+      \ > 0\",\n  \"repeatNotificationDuration\": \"PT0M\",\n  \"severity\": \"INFO\"\
+      \n}\n"
+  CreateAlarmSuppressionDetails:
+    description: 'The configuration details for creating an alarm suppression.
+
+      '
+    properties:
+      alarmSuppressionTarget:
+        $ref: '#/definitions/AlarmSuppressionTarget'
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Usage of predefined tag keys. These predefined keys are scoped
+          to namespaces.
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      description:
+        description: 'Human-readable reason for this alarm suppression.
+
+          It does not have to be unique, and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          Oracle recommends including tracking information for the event or associated
+          work,
+
+          such as a ticket number.
+
+
+          Example: `Planned outage due to change IT-1234.`
+
+          '
+        type: string
+      dimensions:
+        additionalProperties:
+          type: string
+        description: 'A filter to suppress only alarm state entries that include the
+          set of specified dimension key-value pairs.
+
+          If you specify {"availabilityDomain": "phx-ad-1"}
+
+          and the alarm state entry corresponds to the set {"availabilityDomain":
+          "phx-ad-1" and "resourceId": "ocid1.instance.region1.phx.exampleuniqueID"},
+
+          then this alarm will be included for suppression.
+
+
+          This is required only when the value of level is `DIMENSION`. If required,
+          the value cannot be an empty object.
+
+          Only a single value is allowed per key. No grouping of multiple values is
+          allowed under the same key.
+
+          Maximum characters (after serialization): 4000. This maximum satisfies typical
+          use cases.
+
+          The response for an exceeded maximum is `HTTP 400` with an "dimensions values
+          are too long" message.
+
+          '
+        type: object
+      displayName:
+        description: A user-friendly name for the alarm suppression. It does not have
+          to be unique, and it's changeable. Avoid entering confidential information.
+        type: string
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      level: *id012
+      suppressionConditions: *id011
+      timeSuppressFrom:
+        description: 'The start date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressUntil:
+        description: 'The end date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T02:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - alarmSuppressionTarget
+    - displayName
+    - timeSuppressFrom
+    - timeSuppressUntil
+    type: object
+  Datapoint:
+    description: 'Metric value for a specific timestamp.
+
+      '
+    properties:
+      count:
+        description: 'The number of occurrences of the associated value in the set
+          of data.
+
+
+          Default is 1. Value must be greater than zero.
+
+          '
+        format: int32
+        type: integer
+      timestamp:
+        description: 'Timestamp for this metric value. Format defined by RFC3339.
+
+          For a data point to be posted, its timestamp must be near current time (less
+          than two hours in the past and less than 10 minutes in the future).
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      value:
+        description: 'Numeric value of the metric.
+
+
+          Example: `10.23`
+
+          '
+        format: double
+        type: number
+    required:
+    - timestamp
+    - value
+    type: object
+    x-example: "{\n  \"timestamp\": \"2023-03-10T22:20:00Z\",\n  \"value\": 10.4,\n\
+      \  \"count\": 2\n}\n"
+  Error:
+    description: An error has occurred.
+    properties:
+      code:
+        description: 'A short error code that defines the error, meant for programmatic
+          parsing. See
+
+          [API Errors](/iaas/Content/API/References/apierrors.htm).
+
+          '
+        type: string
+      message:
+        description: A human-readable error string.
+        type: string
+    required:
+    - code
+    - message
+    type: object
+  FailedMetricRecord:
+    description: 'The record of a single metric object that failed input validation
+      and the reason for the failure.
+
+      '
+    properties:
+      message:
+        description: 'An error message indicating the reason that the indicated metric
+          object failed input validation.
+
+          '
+        type: string
+      metricData:
+        $ref: '#/definitions/MetricDataDetails'
+        description: 'Identifier of a metric object that failed input validation.
+
+          '
+    required:
+    - message
+    - metricData
+    type: object
+  ListMetricsDetails:
+    description: 'The request details for retrieving metric definitions. Specify optional
+      properties to filter the returned results.
+
+      Use an asterisk (&#42;) as a wildcard character, placed anywhere in the string.
+
+      For example, to search for all metrics with names that begin with "disk", specify
+      "name" as "disk&#42;".
+
+      If no properties are specified, then all metric definitions within the request
+      scope are returned.
+
+      '
+    properties:
+      dimensionFilters:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'Qualifiers that you want to use when searching for metric definitions.
+
+          Available dimensions vary by metric namespace. Each dimension takes the
+          form of a key-value pair.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        minItems: 1
+        type: object
+      groupBy:
+        description: "Group metrics by these fields in the response. For example,\
+          \ to list all metric namespaces available\n          in a compartment, groupBy\
+          \ the \"namespace\" field. Supported fields: namespace, name, resourceGroup.\n\
+          If `groupBy` is used, then `dimensionFilters` is ignored.\n\nExample - group\
+          \ by namespace:\n`[ \"namespace\" ]`\n"
+        items:
+          type: string
+        type: array
+      name:
+        description: 'The metric name to use when searching for metric definitions.
+
+
+          Example: `CpuUtilization`
+
+          '
+        type: string
+      namespace:
+        description: 'The source service or application to use when searching for
+          metric definitions.
+
+
+          Example: `oci_computeagent`
+
+          '
+        type: string
+      resourceGroup:
+        description: 'Resource group that you want to match. A null value returns
+          only metric data that has no resource groups. The specified resource group
+          must exist in the definition of the posted metric. Only one resource group
+          can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      sortBy:
+        description: 'The field to use when sorting returned metric definitions. Only
+          one sorting level is provided.
+
+
+          Example: `NAMESPACE`
+
+          '
+        enum:
+        - NAMESPACE
+        - NAME
+        - RESOURCEGROUP
+        type: string
+      sortOrder:
+        description: 'The sort order to use when sorting returned metric definitions.
+          Ascending (ASC) or
+
+          descending (DESC).
+
+
+          Example: `ASC`
+
+          '
+        enum:
+        - ASC
+        - DESC
+        type: string
+    type: object
+    x-example: "Sample 1: List all namespaces\n\n{\n  \"groupBy\":[\"namespace\"]\n\
+      }\n\nSample 2: List all resource groups in a namespace\n\n{\n  \"groupBy\":[\"\
+      resourceGroup\"],\n  \"namespace\":\"my_namespace\"\n}\n\nSample 3: List all\
+      \ metrics in a namespace for a specific resource group\n\n{\n  \"groupBy\":[\"\
+      name\"],\n  \"namespace\": \"my_namespace\",\n  \"resourceGroup\": \"my_resourcegroup\"\
+      \n}\n"
+  Metric:
+    description: 'The properties that define a metric.
+
+      For information about metrics, see
+
+      [Metrics Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing
+
+          the resources monitored by the metric.
+
+          '
+        example: ocid1.compartment.oc1..exampleuniqueID
+        type: string
+      dimensions:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'Qualifiers provided in a metric definition. Available dimensions
+          vary by metric namespace.
+
+          Each dimension takes the form of a key-value pair.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      name:
+        description: 'The name of the metric.
+
+
+          Example: `CpuUtilization`
+
+          '
+        type: string
+      namespace:
+        description: 'The source service or application emitting the metric.
+
+
+          Example: `oci_computeagent`
+
+          '
+        type: string
+      resourceGroup:
+        description: 'Resource group provided with the posted metric. A resource group
+          is a custom string that you can match when retrieving custom metrics. Only
+          one resource group can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+    type: object
+    x-example: "{\n  \"name\": \"DiskBytesRead\",\n  \"namespace\": \"oci_computeagent\"\
+      ,\n  \"compartmentId\": \"ocid1.tenancy.oc1..exampleuniqueID\",\n  \"dimensions\"\
+      :\n    {\n      \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\"\
+      \n    }\n}\n"
+  MetricData:
+    description: 'The set of aggregated data returned for a metric.
+
+      For information about metrics, see
+
+      [Metrics Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
+
+
+      Limits information for returned data follows.
+
+
+      * Data points: 100,000.
+
+      * Metric streams* within data points: 2,000.
+
+      * Time range returned for 1-day resolution: 90 days.
+
+      * Time range returned for 1-hour resolution: 90 days.
+
+      * Time range returned for 5-minute resolution: 30 days.
+
+      * Time range returned for 1-minute resolution: 7 days.
+
+
+      *A metric stream is an individual set of aggregated data for a metric with zero
+      or more dimension values.
+
+      Metric streams cannot be aggregated across metric groups.
+
+      A metric group is the combination of a given metric, metric namespace, and tenancy
+      for the purpose of determining limits.
+
+      For more information about metric-related concepts, see
+
+      [Monitoring Concepts](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts).
+
+      '
+    properties:
+      aggregatedDatapoints:
+        description: 'The list of timestamp-value pairs returned for the specified
+          request. Metric values are rolled up to the start time specified in the
+          request.
+
+          For important limits information related to data points, see MetricData
+          Reference at the top of this page.
+
+          '
+        items:
+          $ref: '#/definitions/AggregatedDatapoint'
+        minItems: 1
+        type: array
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the
+
+          resources that the aggregated data was returned from.
+
+          '
+        example: ocid1.compartment.oc1..exampleuniqueID
+        maxLength: 255
+        minLength: 1
+        type: string
+      dimensions:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'Qualifiers provided in the definition of the returned metric.
+
+          Available dimensions vary by metric namespace. Each dimension takes the
+          form of a key-value pair.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      metadata:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'The references provided in a metric definition to indicate extra
+          information about the metric.
+
+
+          Example: `"unit": "bytes"`
+
+          '
+        type: object
+      name:
+        description: 'The name of the metric.
+
+
+          Example: `CpuUtilization`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      namespace:
+        description: 'The reference provided in a metric definition to indicate the
+          source service or
+
+          application that emitted the metric.
+
+
+          Example: `oci_computeagent`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      resolution:
+        description: 'The time between calculated aggregation windows. Use with the
+          query interval to vary the
+
+          frequency for returning aggregated data points. For example, use a query
+          interval of
+
+          5 minutes with a resolution of 1 minute to retrieve five-minute aggregations
+          at a one-minute
+
+          frequency. The resolution must be equal or less than the interval in the
+          query. The default
+
+          resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`,
+          `1d`.
+
+
+          Example: `5m`
+
+          '
+        type: string
+      resourceGroup:
+        description: 'Resource group provided with the posted metric. A resource group
+          is a custom string that you can match when retrieving custom metrics. Only
+          one resource group can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - namespace
+    - compartmentId
+    - name
+    - dimensions
+    - aggregatedDatapoints
+    type: object
+    x-example: "[\n  {\n    \"namespace\": \"oci_computeagent\",\n    \"compartmentId\"\
+      : \"ocid1.tenancy.oc1..exampleuniqueID\",\n    \"name\": \"DiskBytesRead\",\n\
+      \    \"dimensions\":\n      {\n        \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\"\
+      \n      },\n  \"metadata\":\n    {\n      \"unit\": \"bytes\"\n    }\n  },\n\
+      \  \"aggregatedDatapoints\":\n  [\n    {\n      \"timestamp\": \"2023-03-10T22:19:00Z\"\
+      ,\n      \"value\": 10.4\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:20:00Z\"\
+      ,\n      \"value\": 11.3\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:21:00Z\"\
+      ,\n      \"value\": 11.2\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:22:00Z\"\
+      ,\n      \"value\": 10.9\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:23:00Z\"\
+      ,\n      \"value\": 10.2\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:24:00Z\"\
+      ,\n      \"value\": 10.5\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:25:00Z\"\
+      ,\n      \"value\": 11.3\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:26:00Z\"\
+      ,\n      \"value\": 9.6\n      },\n    {\n      \"timestamp\": \"2023-03-10T22:27:00Z\"\
+      ,\n      \"value\": 10.7\n    },\n    {\n      \"timestamp\": \"2023-03-10T22:28:00Z\"\
+      ,\n      \"value\": 11.3\n    }\n  ]\n]\n"
+  MetricDataDetails:
+    description: 'A metric object containing raw metric data points to be posted to
+      the Monitoring service.
+
+      '
+    properties:
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment to use for metrics.
+
+          '
+        example: ocid1.compartment.oc1..exampleuniqueID
+        maxLength: 255
+        minLength: 1
+        type: string
+      datapoints:
+        description: 'A list of metric values with timestamps. At least one data point
+          is required per call.
+
+          For a data point to be posted, its timestamp must be near current time (less
+          than two hours in the past and less than 10 minutes in the future).
+
+          '
+        items:
+          $ref: '#/definitions/Datapoint'
+        minItems: 1
+        type: array
+      dimensions:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'Qualifiers provided in a metric definition. Available dimensions
+          vary by metric namespace.
+
+          Each dimension takes the form of a key-value pair.
+
+          A valid dimension key includes only printable ASCII, excluding spaces. The
+          character limit for a dimension key is 256.
+
+          A valid dimension value includes only Unicode characters. The character
+          limit for a dimension value is 512.
+
+          Empty strings are not allowed for keys or values. Avoid entering confidential
+          information.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      metadata:
+        additionalProperties:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description: 'Properties describing metrics. These are not part of the unique
+          fields identifying the metric.
+
+          Each metadata item takes the form of a key-value pair. The character limit
+          for a metadata key is 256. The character limit for a metadata value is 256.
+
+
+          Example: `"unit": "bytes"`
+
+          '
+        type: object
+      name:
+        description: 'The name of the metric.
+
+
+          A valid name value starts with an alphabetical character and includes only
+          alphanumeric characters, dots, underscores, hyphens, and dollar signs.
+
+          Avoid entering confidential information.
+
+
+          Example: `my_app.success_rate`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      namespace:
+        description: 'The source service or application emitting the metric.
+
+
+          A valid namespace value starts with an alphabetical character and includes
+          only alphanumeric characters and underscores. Custom metrics can''t use
+          the following reserved prefixes: `oci_` and `oracle_`
+
+          Avoid entering confidential information.
+
+
+          Example: `my_namespace`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      resourceGroup:
+        description: 'Resource group to assign to the metric. A resource group is
+          a custom string that you can match when retrieving custom metrics. Only
+          one resource group can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+          Avoid entering confidential information.
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - namespace
+    - compartmentId
+    - name
+    - datapoints
+    - dimensions
+    type: object
+    x-example: "[\n  {\n    \"namespace\": \"my_namespace\",\n    \"name\": \"my_app.success_rate\"\
+      ,\n    \"compartmentId\": \"ocid1.compartment.oc1..exampleuniqueID\",\n    \"\
+      resourceGroup\":\"my_ResourceGroup\",\n    \"dimensions\":\n      {\n      \
+      \  \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\",\n       \
+      \ \"availabilityDomain\": \"cumS:PHX-AD-1\"\n      },\n    \"metadata\": { \"\
+      unit\": \"percent\" },\n    \"datapoints\":\n      [\n        {\n          \"\
+      timestamp\": \"2023-03-10T22:19:20Z\",\n          \"value\": 83\n        },\n\
+      \        {\n          \"timestamp\": \"2023-03-10T22:19:40Z\",\n          \"\
+      value\": 90\n        },\n        {\n          \"timestamp\": \"2023-03-10T22:20:00Z\"\
+      ,\n          \"value\": 85\n        },\n        {\n          \"timestamp\":\
+      \ \"2023-03-10T22:21:20Z\",\n          \"value\": 87\n        },\n        {\n\
+      \          \"timestamp\": \"2023-03-10T22:21:40Z\",\n          \"value\": 81\n\
+      \        },\n        {\n          \"timestamp\": \"2023-03-10T22:22:00Z\",\n\
+      \          \"value\": 92\n        }\n      ]\n  }\n]\n"
+  PostMetricDataDetails:
+    description: 'An array of metric objects containing raw metric data points to
+      be posted to the Monitoring service.
+
+      '
+    properties:
+      batchAtomicity:
+        default: NON_ATOMIC
+        description: 'Batch atomicity behavior. Requires either partial or full pass
+          of input validation for
+
+          metric objects in PostMetricData requests. The default value of NON_ATOMIC
+          requires a
+
+          partial pass: at least one metric object in the request must pass input
+          validation, and
+
+          any objects that failed validation are identified in the returned summary,
+          along with
+
+          their error messages. A value of ATOMIC requires a full pass: all metric
+          objects in
+
+          the request must pass input validation.
+
+
+          Example: `NON_ATOMIC`
+
+          '
+        enum:
+        - ATOMIC
+        - NON_ATOMIC
+        type: string
+      metricData:
+        description: 'A metric object containing raw metric data points to be posted
+          to the Monitoring service.
+
+          '
+        items:
+          $ref: '#/definitions/MetricDataDetails'
+        type: array
+    required:
+    - metricData
+    type: object
+  PostMetricDataResponseDetails:
+    description: 'The response object returned from a PostMetricData operation.
+
+      '
+    properties:
+      failedMetrics:
+        description: 'A list of records identifying metric objects that failed input
+          validation
+
+          and the reasons for the failures.
+
+          '
+        items:
+          $ref: '#/definitions/FailedMetricRecord'
+        type: array
+      failedMetricsCount:
+        description: The number of metric objects that failed input validation.
+        format: int32
+        type: integer
+    required:
+    - failedMetricsCount
+    type: object
+  Recurrence:
+    allOf:
+    - $ref: '#/definitions/SuppressionCondition'
+    - discriminator: RECURRENCE
+      properties:
+        suppressionDuration:
+          description: 'Duration of the recurring suppression. Specified as a string
+            in ISO 8601 format. Minimum: `PT1M` (1 minute). Maximum: `PT24H` (24 hours).
+
+            '
+          format: x-obmcs-duration
+          type: string
+        suppressionRecurrence:
+          description: 'Frequency and start time of the recurring suppression. The
+            format follows
+
+            [the iCalendar specification (RFC 5545, section 3.3.10)](https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10).
+
+            Supported rule parts:
+
+            * `FREQ`: Frequency of the recurring suppression: `WEEKLY` or `DAILY`
+            only.
+
+            * `BYDAY`: Comma separated days. Use with weekly suppressions only. Supported
+            values: `MO`, `TU`, `WE`, `TH`, `FR`, `SA` ,`SU`.
+
+            * `BYHOUR`, `BYMINUTE`, `BYSECOND`: Start time in UTC, after `timeSuppressFrom`
+            value. Default is 00:00:00 UTC after `timeSuppressFrom`.
+
+            '
+          format: x-obmcs-recurring-time
+          type: string
+      required:
+      - suppressionRecurrence
+      - suppressionDuration
+    description: 'Alarm suppression recurring schedule. Only one recurrence condition
+      is supported within the list of preconditions for a suppression (`suppressionConditions`).
+
+      '
+    x-example: "Example 1: Every Monday and Tuesday at 10:00:00 UTC, with one-hour\
+      \ duration\n\n{\n  \"conditionType\": \"RECURRENCE\",\n  \"suppressionRecurrence\"\
+      :\"FREQ=WEEKLY;BYDAY=MO,TU;BYHOUR=10\",\n  \"suppressionDuration\":\"PT1H\"\n\
+      }\n\nExample 2: Daily at 21:30 UTC, with ten-minute duration\n\n{\n  \"conditionType\"\
+      : \"RECURRENCE\",\n  \"suppressionRecurrence\":\"FREQ=DAILY;BYHOUR=21;BYMINUTE=30\"\
+      ,\n  \"suppressionDuration\":\"PT10M\"\n}\n"
+  RetrieveDimensionStatesDetails:
+    description: 'The configuration details for retrieving the alarm state entries.
+
+      Filter retrieved alarm state entries by status value and dimension key-value
+      pairs.
+
+      '
+    properties:
+      dimensionFilters:
+        additionalProperties:
+          type: string
+        description: 'A filter to return only alarm state entries that match the exact
+          set of specified dimension key-value pairs.
+
+          If you specify `"availabilityDomain": "phx-ad-1"` but the alarm state entry
+          corresponds to the set `"availabilityDomain": "phx-ad-1"`
+
+          and `"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"`, then no
+          results are returned.
+
+          '
+        type: object
+      status:
+        description: 'A filter to return only alarm state entries that match the status
+          value.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/AlarmDimensionStatesEntry/status'
+    type: object
+    x-example: "{\n  \"dimensions\":\n    {\n      \"availabilityDomain\": \"phx-ad-1\"\
+      ,\n      \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\"\n  \
+      \  },\n    \"status\" : FIRING\n}\n"
+  SummarizeAlarmSuppressionHistoryDetails:
+    description: 'The configuration details for returning history of suppressions
+      for the specified alarm.
+
+      '
+    properties:
+      dimensions:
+        additionalProperties:
+          type: string
+        description: 'A filter to suppress only alarm state entries that include the
+          set of specified dimension key-value pairs.
+
+          If you specify {"availabilityDomain": "phx-ad-1"}
+
+          and the alarm state entry corresponds to the set {"availabilityDomain":
+          "phx-ad-1" and "resourceId": "ocid1.instance.region1.phx.exampleuniqueID"},
+
+          then this alarm will be included for suppression.
+
+
+          Example: `{"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"}`
+
+          '
+        type: object
+      timeSuppressFromGreaterThanOrEqualTo:
+        description: 'A filter to return only entries with "timeSuppressFrom" time
+          occurring on or after the specified time.
+
+
+          The value cannot be a future time.
+
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressFromLessThan:
+        description: 'A filter to return only entries with "timeSuppressFrom" time
+          occurring before the specified time.
+
+
+          The value cannot be a future time.
+
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    type: object
+  SummarizeMetricsDataDetails:
+    description: 'The request details for retrieving aggregated data.
+
+      Use the query and optional properties to filter the returned results.
+
+      '
+    properties:
+      endTime:
+        description: 'The end of the time range to use when searching for metric data
+          points.
+
+          Format is defined by RFC3339. The response excludes metric data points for
+          the endTime.
+
+          Default value: the timestamp representing when the call was sent.
+
+
+          Example: `2023-02-01T02:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      namespace:
+        description: 'The source service or application to use when searching for
+          metric data points to aggregate.
+
+
+          Example: `oci_computeagent`
+
+          '
+        type: string
+      query:
+        description: 'The Monitoring Query Language (MQL) expression to use when searching
+          for metric data points to
+
+          aggregate. The query must specify a metric, statistic, and interval.
+
+          Supported values for interval depend on the specified time range. More interval
+          values are supported for smaller time ranges.
+
+          You can optionally specify dimensions and grouping functions.
+
+          When specifying a dimension value, surround it with double quotes, and escape
+          each double quote with a backslash (`\`) character.
+
+          Supported grouping functions: `grouping()`, `groupBy()`.
+
+
+          Construct your query to avoid exceeding limits on returned data. See [MetricData
+          Reference](#/en/monitoring/20180401/MetricData).
+
+
+          For details about Monitoring Query Language (MQL), see
+
+          [Monitoring Query Language (MQL) Reference](/iaas/Content/Monitoring/Reference/mql.htm).
+
+          For available dimensions, review the metric definition for the supported
+          service. See
+
+          [Supported Services](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
+
+
+          Example 1: `CpuUtilization[1m].sum()`
+
+
+          Example 2 (escaped double quotes for value string): `CpuUtilization[1m]{resourceId
+          = \"<var>&lt;instance_OCID&gt;</var>\"}.max()`
+
+          '
+        maxLength: 1000
+        minLength: 1
+        type: string
+      resolution:
+        description: 'The time between calculated aggregation windows. Use with the
+          query interval to vary the
+
+          frequency for returning aggregated data points. For example, use a query
+          interval of
+
+          5 minutes with a resolution of 1 minute to retrieve five-minute aggregations
+          at a one-minute
+
+          frequency. The resolution must be equal or less than the interval in the
+          query. The default
+
+          resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`,
+          `1d`.
+
+
+          Example: `5m`
+
+          '
+        type: string
+      resourceGroup: *id013
+      startTime:
+        description: 'The beginning of the time range to use when searching for metric
+          data points.
+
+          Format is defined by RFC3339. The response includes metric data points for
+          the startTime.
+
+          Default value: the timestamp 3 hours before the call was sent.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - namespace
+    - query
+    type: object
+    x-example: "{\n  \"namespace\": \"oci_computeagent\",\n  \"query\": \"DiskBytesRead[1m]{resourceId\
+      \ = \\\"ocid1.instance.region1.phx.exampleuniqueID\\\"}.max()\",\n  \"startTime\"\
+      : \"2023-03-10T22:44:26.789Z\",\n  \"endTime\": \"2023-03-10T22:59:26.789Z\"\
+      \n}\n"
+  Suppression:
+    description: 'The configuration details for an alarm-wide suppression.
+
+      For dimension-specific suppressions, see [AlarmSuppression](#/en/monitoring/latest/AlarmSuppression).
+
+
+      For information about alarms, see
+
+      [Alarms Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#AlarmsOverview).
+
+      '
+    properties:
+      description:
+        description: 'Human-readable reason for suppressing alarm notifications.
+
+          It does not have to be unique, and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          Oracle recommends including tracking information for the event or associated
+          work,
+
+          such as a ticket number.
+
+
+          Example: `Planned outage due to change IT-1234.`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      timeSuppressFrom:
+        description: 'The start date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T01:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+      timeSuppressUntil:
+        description: 'The end date and time for the suppression to take place, inclusive.
+          Format defined by RFC3339.
+
+
+          Example: `2023-02-01T02:02:29.600Z`
+
+          '
+        format: date-time
+        type: string
+    required:
+    - timeSuppressFrom
+    - timeSuppressUntil
+    type: object
+    x-example: "{\n  \"description\": \"Planned outage due to change IT-1234.\",\n\
+      \  \"timeSuppressFrom\": \"2023-02-01T01:02:29.600Z\",\n  \"timeSuppressUntil\"\
+      : \"2023-02-01T02:02:29.600Z\"\n}\n"
+  SuppressionCondition:
+    description: 'Precondition for an alarm suppression within the suppression date
+      and time range (`timeSuppressFrom` to `timeSuppressUntil`).
+
+      '
+    discriminator: conditionType
+    properties:
+      conditionType:
+        description: Type of suppression condition.
+        enum:
+        - RECURRENCE
+        type: string
+    required:
+    - conditionType
+    x-example: "{\n  \"conditionType\": \"RECURRENCE\",\n  \"suppressionRecurrence\"\
+      :\"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH;BYHOUR=10;BYMINUTE=00;BYSECOND=00\",\n  \"\
+      suppressionDuration\":\"PT1H\"\n}\n"
+  UpdateAlarmDetails:
+    description: 'The configuration details for updating an alarm.
+
+      '
+    properties:
+      alarmSummary: *id001
+      body: *id003
+      compartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      definedTags:
+        additionalProperties:
+          additionalProperties:
+            description: 'An object that represents the value of the tag. Only String
+              types are currently supported.
+
+              '
+            type: object
+          description: 'Key-value pair representing predefined tags'' keys and values
+            scoped to a namespace
+
+            Example: `{"CostCenter": "42"}`
+
+            '
+          type: object
+        description: 'Usage of predefined tag keys. These predefined keys are scoped
+          to namespaces.
+
+          Example: `{"Operations": {"CostCenter": "42"}}`
+
+          '
+        type: object
+      destinations:
+        description: 'A list of destinations for alarm notifications.
+
+          Each destination is represented by the [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+
+          of a related resource, such as a [topic](#/en/notification/latest/NotificationTopic).
+
+          Supported destination services: Notifications, Streaming.
+
+          Limit: One destination per supported destination service.
+
+          '
+        items:
+          type: string
+        type: array
+      displayName:
+        description: 'A user-friendly name for the alarm. It does not have to be unique,
+          and it''s changeable.
+
+          Avoid entering confidential information.
+
+
+          This value determines the title of each alarm notification.
+
+
+          Example: `High CPU Utilization`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      evaluationSlackDuration: *id007
+      freeformTags:
+        additionalProperties:
+          type: string
+        description: 'Simple key-value pair that is applied without any predefined
+          name, type or scope. Exists for cross-compatibility only.
+
+          Example: `{"Department": "Finance"}`
+
+          '
+        type: object
+      isEnabled:
+        description: 'Whether the alarm is enabled.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      isNotificationsPerMetricDimensionEnabled:
+        default: false
+        description: 'When set to `true`, splits alarm notifications per metric stream.
+
+          When set to `false`, groups alarm notifications across metric streams.
+
+          '
+        type: boolean
+      messageFormat:
+        description: 'The format to use for alarm notifications. The formats are:
+
+          * `RAW` - Raw JSON blob. Default value. When the `destinations` attribute
+          specifies `Streaming`, all alarm notifications use this format.
+
+          * `PRETTY_JSON`: JSON with new lines and indents. Available when the `destinations`
+          attribute specifies `Notifications` only.
+
+          * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Available when the
+          `destinations` attribute specifies `Notifications` only. Applies to Email
+          subscription types only.
+
+          '
+        enum:
+        - RAW
+        - PRETTY_JSON
+        - ONS_OPTIMIZED
+        type: string
+      metricCompartmentId:
+        description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of
+          the compartment containing the metric
+
+          being evaluated by the alarm.
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      metricCompartmentIdInSubtree:
+        description: 'When true, the alarm evaluates metrics from all compartments
+          and subcompartments. The parameter can
+
+          only be set to true when metricCompartmentId is the tenancy OCID (the tenancy
+          is the root compartment).
+
+          A true value requires the user to have tenancy-level permissions. If this
+          requirement is not met,
+
+          then the call is rejected. When false, the alarm evaluates metrics from
+          only the compartment specified
+
+          in metricCompartmentId. Default is false.
+
+
+          Example: `true`
+
+          '
+        type: boolean
+      namespace:
+        description: 'The source service or application emitting the metric that is
+          evaluated by the alarm.
+
+
+          Example: `oci_computeagent`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      notificationTitle: *id008
+      notificationVersion: *id009
+      overrides: *id010
+      pendingDuration: *id004
+      query: *id005
+      repeatNotificationDuration:
+        description: 'The frequency for re-submitting alarm notifications, if the
+          alarm keeps firing without
+
+          interruption. Format defined by ISO 8601. For example, `PT4H` indicates
+          four hours.
+
+          As another example, `PT0M` indicates a repeat notification each time the
+          alarm trigger condition is met,
+
+          otherwise known as an event-based notification. For more information, see
+
+          [Getting Event-Based Notifications for an Alarm](/iaas/Content/Monitoring/Tasks/update-alarm-event.htm).
+
+          Minimum: PT0M. Maximum: P30D.
+
+          '
+        type: string
+      resolution:
+        description: 'The time between calculated aggregation windows for the alarm.
+          Supported value: `1m`
+
+          '
+        type: string
+      resourceGroup:
+        description: 'Resource group that you want to match. A null value returns
+          only metric data that has no resource groups. The alarm retrieves metric
+          data associated with the specified resource group only. Only one resource
+          group can be applied per metric.
+
+          A valid resourceGroup value starts with an alphabetical character and includes
+          only alphanumeric characters, periods (.), underscores (_), hyphens (-),
+          and dollar signs ($).
+
+          Avoid entering confidential information.
+
+
+          Example: `frontend-fleet`
+
+          '
+        maxLength: 255
+        minLength: 1
+        type: string
+      ruleName: *id002
+      severity:
+        description: 'The perceived severity of the alarm with regard to the affected
+          system.
+
+          '
+        type: string
+        x-obmcs-enumref: '#/definitions/Alarm/severity'
+      suppression:
+        $ref: '#/definitions/Suppression'
+        description: 'The configuration details for suppressing an alarm.
+
+          '
+    type: object
+    x-example: "{\n  \"destinations\":\n  [\n    \"ocid1.onstopic.exampleuniqueID\"\
+      \n  ]\n}\n"
+info:
+  description: 'Use the Monitoring API to manage metric queries and alarms for assessing
+    the health, capacity, and performance of your cloud resources.
+
+    Endpoints vary by operation. For PostMetricData, use the `telemetry-ingestion`
+    endpoints; for all other operations, use the `telemetry` endpoints.
+
+    For more information, see
+
+    [the Monitoring documentation](/iaas/Content/Monitoring/home.htm).
+
+    '
+  license:
+    name: Oracle Corporation
+  title: Monitoring API
+  version: '20180401'
+parameters:
+  AlarmHistoryTypeParam:
+    description: 'The type of history entries to retrieve.
+
+      State history (STATE_HISTORY), state transition history (STATE_TRANSITION_HISTORY),
+      rule history (RULE_HISTORY) or rule transition history (RULE_TRANSITION_HISTORY).
+
+      If not specified, entries of all types are retrieved.
+
+
+      Example: `STATE_HISTORY`
+
+      '
+    enum:
+    - STATE_HISTORY
+    - STATE_TRANSITION_HISTORY
+    - RULE_HISTORY
+    - RULE_TRANSITION_HISTORY
+    in: query
+    name: alarmHistorytype
+    required: false
+    type: string
+    x-default-description: 'null'
+  AlarmIdPathParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of an
+      alarm.
+
+      '
+    in: path
+    maxLength: 255
+    minLength: 1
+    name: alarmId
+    required: true
+    type: string
+  AlarmIdQueryParam:
+    description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      alarm that is the target of the alarm suppression.
+    in: query
+    name: alarmId
+    required: false
+    type: string
+  AlarmSuppressionCompartmentIdQueryParam:
+    description: "The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the\
+      \ compartment for searching. \nUse the tenancy OCID to search in the root compartment.\n\
+      \nIf targetType is not specified, searches all suppressions defined under the\
+      \ compartment. \nIf targetType is `COMPARTMENT`, searches suppressions in the\
+      \ specified compartment only.\n\nExample: `ocid1.compartment.oc1..exampleuniqueID`\n"
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: compartmentId
+    required: false
+    type: string
+  AlarmSuppressionIdPathParam:
+    description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      alarm suppression.
+    in: path
+    name: alarmSuppressionId
+    required: true
+    type: string
+  AlarmSuppressionLevelQueryParam:
+    description: 'The level of this alarm suppression.
+
+      `ALARM` indicates a suppression of the entire alarm, regardless of dimension.
+
+      `DIMENSION` indicates a suppression configured for specified dimensions.
+
+      '
+    in: query
+    name: level
+    required: false
+    type: string
+    x-default-description: 'null'
+    x-obmcs-enumref: '#/definitions/AlarmSuppression/level'
+  AlarmSuppressionSortByQueryParam:
+    description: 'The field to use when sorting returned alarm suppressions. Only
+      one sorting level is provided.
+
+
+      Example: `timeCreated`
+
+      '
+    enum:
+    - displayName
+    - timeCreated
+    - timeSuppressFrom
+    in: query
+    name: sortBy
+    required: false
+    type: string
+    x-default-description: 'null'
+  AlarmSuppressionSortOrderQueryParam:
+    description: 'The sort order to use when sorting returned alarm suppressions.
+      Ascending (ASC) or descending (DESC).
+
+
+      Example: `ASC`
+
+      '
+    enum:
+    - ASC
+    - DESC
+    in: query
+    name: sortOrder
+    required: false
+    type: string
+    x-default-description: 'null'
+  AlarmSuppressionTargetTypeQueryParam:
+    description: "The target type to use when listing alarm suppressions.    \n`ALARM`\
+      \ lists all suppression records for the specified alarm.\n`COMPARTMENT` lists\
+      \ all suppression records for the specified compartment or tenancy.\n"
+    enum:
+    - ALARM
+    - COMPARTMENT
+    in: query
+    name: targetType
+    required: false
+    type: string
+    x-default-description: 'null'
+  CompartmentIdInSubtreeQueryParam:
+    description: 'When true, returns resources from all compartments and subcompartments.
+      The parameter can
+
+      only be set to true when compartmentId is the tenancy OCID (the tenancy is the
+      root compartment).
+
+      A true value requires the user to have tenancy-level permissions. If this requirement
+      is not met,
+
+      then the call is rejected. When false, returns resources from only the compartment
+      specified in
+
+      compartmentId. Default is false.
+
+      '
+    in: query
+    name: compartmentIdInSubtree
+    required: false
+    type: boolean
+    x-default-description: 'null'
+  CompartmentIdQueryParam:
+    description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment containing the
+
+      resources monitored by the metric that you are searching for. Use tenancyId
+      to search in
+
+      the root compartment.
+
+
+      Example: `ocid1.compartment.oc1..exampleuniqueID`
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: compartmentId
+    required: true
+    type: string
+  EncodingHeader:
+    description: 'The optional Content-Encoding header that defines the content encodings
+      that were applied to the payload.
+
+      '
+    in: header
+    name: content-encoding
+    type: string
+  EntityIdQueryParam:
+    description: 'A filter to return only resources that match the given entity [OCID](/iaas/Content/General/Concepts/identifiers.htm)
+      exactly.
+
+      The resource (entity) must be monitored by the metric that you are searching
+      for.
+
+
+      Example: `ocid1.instance.oc1.phx.exampleuniqueID`
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: entityId
+    required: false
+    type: string
+  FilterByAlarmHistoryTimeStampFromParam:
+    description: 'A filter to return only alarm history entries with timestamps occurring
+      on or after the specified date and time. Format defined by RFC3339.
+
+
+      Example: `2023-01-01T01:00:00.789Z`
+
+      '
+    format: date-time
+    in: query
+    name: timestampGreaterThanOrEqualTo
+    required: false
+    type: string
+    x-default-description: 'null'
+  FilterByAlarmHistoryTimeStampUntilParam:
+    description: 'A filter to return only alarm history entries with timestamps occurring
+      before the specified date and time. Format defined by RFC3339.
+
+
+      Example: `2023-01-02T01:00:00.789Z`
+
+      '
+    format: date-time
+    in: query
+    name: timestampLessThan
+    required: false
+    type: string
+    x-default-description: 'null'
+  FilterByAlarmSuppressionDisplayNameQueryParam:
+    description: 'A filter to return only resources that match the given display name
+      exactly.
+
+      Use this filter to list an alarm suppression by name.
+
+      Alternatively, when you know the alarm suppression OCID, use the GetAlarmSuppression
+      operation.
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: displayName
+    required: false
+    type: string
+    x-default-description: 'null'
+  FilterByAlarmSuppressionLifecycleStateQueryParam:
+    description: 'A filter to return only resources that match the given lifecycle
+      state exactly. When not specified, only resources in the ACTIVE lifecycle state
+      are listed.
+
+      '
+    in: query
+    name: lifecycleState
+    required: false
+    type: string
+    x-default-description: 'null'
+    x-obmcs-enumref: '#/definitions/AlarmSuppression/lifecycleState'
+  FilterByDisplayNameQueryParam:
+    description: 'A filter to return only resources that match the given display name
+      exactly.
+
+      Use this filter to list an alarm by name. Alternatively, when you know the alarm
+      OCID, use the GetAlarm operation.
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: displayName
+    required: false
+    type: string
+    x-default-description: 'null'
+  FilterByLifecycleStateQueryParam:
+    description: 'A filter to return only alarms that match the given lifecycle state
+      exactly. When not specified, only alarms in the ACTIVE lifecycle state are listed.
+
+      '
+    in: query
+    name: lifecycleState
+    required: false
+    type: string
+    x-default-description: 'null'
+    x-obmcs-enumref: '#/definitions/Alarm/lifecycleState'
+  IfMatchHeader:
+    description: 'For optimistic concurrency control. In the PUT or DELETE call for
+      a resource, set the `if-match`
+
+      parameter to the value of the etag from a previous GET or POST response for
+      that resource.  The resource
+
+      will be updated or deleted only if the etag you provide matches the resource''s
+      current etag value.
+
+      '
+    in: header
+    name: if-match
+    type: string
+  IsAllSuppressionsQueryParam:
+    description: 'Setting this parameter to true requires the query to specify the
+      alarm (`alarmId`).
+
+
+      When true, lists all alarm suppressions that affect the specified alarm,
+
+      including suppressions that target the corresponding compartment or tenancy.
+
+      When false, lists only the alarm suppressions that target the specified alarm.
+
+
+      Default is false.
+
+      '
+    in: query
+    name: isAllSuppressions
+    required: false
+    type: boolean
+    x-default-description: 'null'
+  PaginationLimitQueryParam:
+    description: 'For list pagination. The maximum number of results per page, or
+      items to return in a paginated "List" call.
+
+      For important details about how pagination works, see
+
+      [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+
+      Default: 1000
+
+
+      Example: 500
+
+      '
+    in: query
+    maximum: 1000
+    minimum: 1
+    name: limit
+    type: integer
+    x-default-description: 'null'
+  PaginationTokenQueryParam:
+    description: 'For list pagination. The value of the `opc-next-page` response header
+      from the previous "List" call.
+
+      For important details about how pagination works, see
+
+      [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+      '
+    in: query
+    maxLength: 512
+    minLength: 1
+    name: page
+    type: string
+    x-default-description: 'null'
+  RequestIdHeader:
+    description: 'Customer part of the request identifier token. If you need to contact
+      Oracle about a particular
+
+      request, please provide the complete request ID.
+
+      '
+    in: header
+    name: opc-request-id
+    type: string
+  ResourceIdQueryParam:
+    description: 'A filter to return only the resource with the specified [OCID](/iaas/Content/General/Concepts/identifiers.htm).
+
+      The resource must be monitored by the metric that you are searching for.
+
+
+      Example: `ocid1.instance.oc1.phx.exampleuniqueID`
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: resourceId
+    required: false
+    type: string
+  RetryTokenHeaderParam:
+    description: 'A token that uniquely identifies a request so it can be retried
+      in case of a timeout or
+
+      server error without risk of executing that same action again. Retry tokens
+      expire after 24
+
+      hours, but can be invalidated before then due to conflicting operations. For
+      example, if a resource
+
+      has been deleted and purged from the system, then a retry of the original creation
+      request
+
+      might be rejected.
+
+      '
+    in: header
+    maxLength: 64
+    minLength: 1
+    name: opc-retry-token
+    required: false
+    type: string
+    x-default-description: 'null'
+  ServiceNameQueryParam:
+    description: 'A filter to return only resources that match the given service name
+      exactly.
+
+      Use this filter to list all alarms containing metric streams that match the
+      *exact* service-name dimension.
+
+
+      Example: `logging-analytics`
+
+      '
+    in: query
+    maxLength: 255
+    minLength: 1
+    name: serviceName
+    required: false
+    type: string
+    x-default-description: 'null'
+  SortByQueryParam:
+    description: 'The field to use when sorting returned alarm definitions. Only one
+      sorting level is provided.
+
+
+      Example: `severity`
+
+      '
+    enum:
+    - displayName
+    - severity
+    in: query
+    name: sortBy
+    required: false
+    type: string
+    x-default-description: 'null'
+  SortOrderQueryParam:
+    description: 'The sort order to use when sorting returned alarm definitions. Ascending
+      (ASC) or descending (DESC).
+
+
+      Example: `ASC`
+
+      '
+    enum:
+    - ASC
+    - DESC
+    in: query
+    name: sortOrder
+    required: false
+    type: string
+    x-default-description: 'null'
+  StatusQueryParam:
+    description: 'A filter to return only metric streams that match the specified
+      status.
+
+      For example, the value "FIRING" returns only firing metric streams.
+
+
+      Example: `FIRING`
+
+      '
+    enum:
+    - FIRING
+    - OK
+    in: query
+    name: status
+    required: false
+    type: string
+    x-default-description: 'null'
+paths:
+  /alarmSuppressions:
+    get:
+      description: 'Lists alarm suppressions for the specified alarm. For more information,
+        see
+
+        [Listing Alarm Suppressions](/iaas/Content/Monitoring/Tasks/list-alarm-suppression.htm).
+
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: ListAlarmSuppressions
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdQueryParam'
+      - $ref: '#/parameters/FilterByAlarmSuppressionDisplayNameQueryParam'
+      - $ref: '#/parameters/FilterByAlarmSuppressionLifecycleStateQueryParam'
+      - $ref: '#/parameters/AlarmSuppressionLevelQueryParam'
+      - $ref: '#/parameters/AlarmSuppressionCompartmentIdQueryParam'
+      - $ref: '#/parameters/CompartmentIdInSubtreeQueryParam'
+      - $ref: '#/parameters/AlarmSuppressionTargetTypeQueryParam'
+      - $ref: '#/parameters/IsAllSuppressionsQueryParam'
+      - $ref: '#/parameters/AlarmSuppressionSortByQueryParam'
+      - $ref: '#/parameters/AlarmSuppressionSortOrderQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      responses:
+        200:
+          description: alarm suppression items
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                next page of results remains.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-previous-page:
+              description: 'For list pagination. When this header appears in the response,
+                previous pages of results remains.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/AlarmSuppressionCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: List Alarm Suppressions
+      tags:
+      - monitoring
+      x-example: 'GET /20180401/alarmSuppressions?alarmId=<var>&lt;alarm_OCID&gt;</var>
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    post:
+      description: 'Creates a new alarm suppression at the specified level (alarm-wide
+        or dimension-specific).
+
+        For more information, see
+
+        [Suppressing a Single Alarm](/iaas/Content/Monitoring/Tasks/create-alarm-suppression.htm)
+        and
+
+        [Suppressing Multiple Alarms](/iaas/Content/Monitoring/Tasks/create-alarm-suppression-multiple.htm).
+
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: CreateAlarmSuppression
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/RetryTokenHeaderParam'
+      - description: 'The details of the alarm suppression to be created
+
+          '
+        in: body
+        name: CreateAlarmSuppressionDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAlarmSuppressionDetails'
+      responses:
+        200:
+          description: 'Successfully created alarm suppression.
+
+            '
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/AlarmSuppression'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Creates a new alarm suppression
+      tags:
+      - monitoring
+      x-example: "POST /20180401/alarmSuppressions\nHost: telemetry.us-phoenix-1.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"alarmSuppressionTarget\"\
+        \ : {\n      \"targetType\" : \"ALARM\",\n      \"alarmId\" : \"<var>&lt;alarm_OCID&gt;</var>\"\
+        \n  },\n  \"level\": \"DIMENSION\",\n  \"displayName\": \"Suppression for\
+        \ monthly downtime of resource ABC\",\n  \"description\": \"Suppression for\
+        \ monthly downtime of resource ABC, for support ticket IT-ABC\",\n  \"dimensions\"\
+        : {\"resourceId\": <var>&lt;resource_OCID&gt;</var>}\n  \"timeSuppressFrom\"\
+        : \"2023-03-04T05:00:00.600Z\",\n  \"timeSuppressUntil\": \"2023-03-31T17:00:00.000Z\"\
+        ,\n  \"suppressionConditions\": [{\n    \"conditionType\": \"RECURRENCE\"\
+        ,\n    \"suppressionRecurrence\":\"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH;BYHOUR=10;BYMINUTE=00;BYSECOND=00\"\
+        ,\n    \"suppressionDuration\":\"PT1H\"\n  }]\n}\n"
+  /alarmSuppressions/{alarmSuppressionId}:
+    delete:
+      description: 'Deletes the specified alarm suppression. For more information,
+        see
+
+        [Removing a Suppression from a Single Alarm](/iaas/Content/Monitoring/Tasks/delete-alarm-suppression.htm)
+        and
+
+        [Removing a Suppression from Multiple Alarms](/iaas/Content/Monitoring/Tasks/delete-alarm-suppression-multiple.htm).
+
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: DeleteAlarmSuppression
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/AlarmSuppressionIdPathParam'
+      responses:
+        204:
+          description: Successfully deleted the alarm suppression.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: 'DELETE /20180401/alarmSuppressions/<var>&lt;alarmSuppression_OCID&gt;</var>
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/AlarmSuppression'
+    get:
+      description: 'Gets the specified alarm suppression. For more information, see
+
+        [Getting an Alarm-wide Suppression](/iaas/Content/Monitoring/Tasks/get-alarm-suppression.htm).
+
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: GetAlarmSuppression
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmSuppressionIdPathParam'
+      responses:
+        200:
+          description: 'Successfully retrieved alarm suppression.
+
+            '
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/AlarmSuppression'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: 'GET /20180401/alarmSuppressions/<var>&lt;alarmSuppression_OCID&gt;</var>
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+  /alarms:
+    get:
+      description: 'Lists the alarms for the specified compartment.
+
+        For more information, see
+
+        [Listing Alarms](/iaas/Content/Monitoring/Tasks/list-alarm.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: ListAlarms
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/FilterByDisplayNameQueryParam'
+      - $ref: '#/parameters/FilterByLifecycleStateQueryParam'
+      - $ref: '#/parameters/SortByQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - $ref: '#/parameters/CompartmentIdInSubtreeQueryParam'
+      responses:
+        200:
+          description: Successfully retrieved alarms for listing.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of results remain.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/AlarmSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: 'Sample 1: List all alarms in a compartment, sorted by display name
+
+
+        GET /20180401/alarms?compartmentId=<var>&lt;compartment_OCID&gt;</var>&sortBy=displayName
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+
+        Sample 2: List the alarm named "CPU" in a compartment
+
+
+        GET /20180401/alarms?compartmentId=<var>&lt;compartment_OCID&gt;</var>&displayName=CPU
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    post:
+      description: 'Creates a new alarm in the specified compartment.
+
+        For more information, see
+
+        [Creating an Alarm](/iaas/Content/Monitoring/Tasks/create-alarm.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: CreateAlarm
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/RetryTokenHeaderParam'
+      - description: Document for creating an alarm.
+        in: body
+        name: CreateAlarmDetails
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAlarmDetails'
+      responses:
+        200:
+          description: Successfully created alarm.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Alarm'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: 'Creates a new alarm in the specified compartment.
+
+        '
+      tags:
+      - monitoring
+      x-example: "Sample 1: Single condition\n\nPOST /20180401/alarms\nHost: telemetry.us-phoenix-1.oraclecloud.com\n\
+        <var>&lt;authorization and other headers&gt;</var>\n{\n  \"body\": \"CPU utilization\
+        \ has reached high values.\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+        ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+        : \"High CPU Utilization\",\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\"\
+        : true,\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\"\
+        : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\": \"oci_computeagent\"\
+        ,\n  \"pendingDuration\": \"PT5M\",\n  \"query\": \"CpuUtilization[1m]{availabilityDomain\
+        \ = \\\"cumS:PHX-AD-1\"\\}.groupBy(availabilityDomain).percentile(0.9) > 85\"\
+        ,\n  \"repeatNotificationDuration\": \"PT2H\",\n  \"severity\": \"WARNING\"\
+        ,\n  \"suppression\":\n  {\n    \"description\": \"System Maintenance\",\n\
+        \    \"timeSuppressFrom\": \"2023-02-04T05:00:00.600Z\",\n    \"timeSuppressUntil\"\
+        : \"2023-02-04T07:00:00.600Z\"\n  }\n}\n        \nSample 2: Multiple conditions,\
+        \ with dynamic variables and a five-minute evaluation slack duration\n\nPOST\
+        \ /20180401/alarms\nHost: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization\
+        \ and other headers&gt;</var>\n{\n  \"alarmSummary\": \"test summary with\
+        \ severity = {{severity}} and query = {{{query}}}\",\n  \"body\": \"{{severity}}\
+        \ alarm triggered because threshold got breached due to {{metricValues}} at\
+        \ {{timestamp}}\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+        ,\n  \"destinations\": [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\"\
+        : \"High CPU Utilization\",\n  \"evaluationSlackDuration\": \"PT5M\",\n  \"\
+        isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\": true,\n\
+        \  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+        ,\n  \"namespace\": \"oci_computeagent\",\n  \"notificationTitle\": \"Sample\
+        \ title with severity {{severity}}\",\n  \"overrides\":\n    [\n      {\"\
+        body\": \"95% CPU utilization\", \"query\": \"CPUUtilization[1m].mean()>95\"\
+        , \"severity\": \"CRITICAL\"},\n      {\"body\": \"80% CPU utilization\",\
+        \ \"query\": \"CPUUtilization[1m].mean()>80\", \"severity\": \"WARNING\"}\n\
+        \    ],\n  \"pendingDuration\": \"PT5M\",\n  \"query\": \"CpuUtilization[1m]{availabilityDomain=\\\
+        \"cumS:PHX-AD-1\\\"}.groupBy(availabilityDomain).percentile(0.9) > 85\",\n\
+        \  \"repeatNotificationDuration\": \"PT2H\",\n  \"ruleName\": \"BASE\",\n\
+        \  \"severity\": \"INFO\"\n}        \n\nSample 3: Event-based alarm\n\nPOST\
+        \ /20180401/alarms\nHost: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization\
+        \ and other headers&gt;</var>\n{\n  \"body\": \"Database instance terminated.\"\
+        ,\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"destinations\"\
+        : [ \"<var>&lt;topic_OCID&gt;</var>\" ],\n  \"displayName\": \"Database instance\
+        \ shutdown\",\n  \"isEnabled\": true,\n  \"isNotificationsPerMetricDimensionEnabled\"\
+        : true,\n  \"messageFormat\": \"ONS_OPTIMIZED\",\n  \"metricCompartmentId\"\
+        : \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"namespace\": \"oci_database\"\
+        ,\n  \"pendingDuration\": \"PT1M\",\n  \"query\": \"DatabaseInstance.Shutdown[1m].groupBy(availabilityDomain).count()\
+        \ > 0\",\n  \"repeatNotificationDuration\": \"PT0M\",\n  \"severity\": \"\
+        INFO\"\n}\n"
+  /alarms/status:
+    get:
+      description: 'List the status of each alarm in the specified compartment.
+
+        Status is collective, across all metric streams in the alarm.
+
+        To list alarm status for each metric stream, use [RetrieveDimensionStates](#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+
+        Optionally filter by resource or status value.
+
+
+        For more information, see
+
+        [Listing Alarm Statuses](/iaas/Content/Monitoring/Tasks/list-alarm-status.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: ListAlarmsStatus
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/CompartmentIdInSubtreeQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/FilterByDisplayNameQueryParam'
+      - $ref: '#/parameters/SortByQueryParam'
+      - $ref: '#/parameters/SortOrderQueryParam'
+      - $ref: '#/parameters/ResourceIdQueryParam'
+      - $ref: '#/parameters/ServiceNameQueryParam'
+      - $ref: '#/parameters/EntityIdQueryParam'
+      - $ref: '#/parameters/StatusQueryParam'
+      responses:
+        200:
+          description: 'Successfully retrieved alarms status for listing.
+
+            '
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of results remain.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/AlarmStatusSummary'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: 'GET /20180401/alarms/status?compartmentId=<var>&lt;compartment_OCID&gt;</var>&resourceId=<var>&lt;resource_OCID&gt;</var>
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-obmcs-client-retries-enabled: true
+  /alarms/{alarmId}:
+    delete:
+      description: 'Deletes the specified alarm.
+
+        For more information, see
+
+        [Deleting an Alarm](/iaas/Content/Monitoring/Tasks/delete-alarm.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: DeleteAlarm
+      parameters:
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      - $ref: '#/parameters/RequestIdHeader'
+      responses:
+        204:
+          description: Successfully deleted the alarm.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: 'Deletes an alarm.
+
+        '
+      tags:
+      - monitoring
+      x-example: 'DELETE /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Alarm'
+    get:
+      description: 'Gets the specified alarm.
+
+        For more information, see
+
+        [Getting an Alarm](/iaas/Content/Monitoring/Tasks/get-alarm.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: GetAlarm
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      responses:
+        200:
+          description: Successfully retrieved alarm.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Alarm'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: 'GET /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+    put:
+      description: 'Updates the specified alarm.
+
+        For more information, see
+
+        [Updating an Alarm](/iaas/Content/Monitoring/Tasks/update-alarm.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: UpdateAlarm
+      parameters:
+      - $ref: '#/parameters/AlarmIdPathParam'
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/RequestIdHeader'
+      - description: Document for updating an alarm.
+        in: body
+        name: UpdateAlarmDetails
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateAlarmDetails'
+      responses:
+        200:
+          description: Successfully updated alarm.
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/Alarm'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: 'Updates an alarm.
+
+        '
+      tags:
+      - monitoring
+      x-example: "Sample 1: Updating displayName\n\nPUT /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"displayName\": \"System Down\"\n}\n\nSample 2:\
+        \ Removing an override (AlarmOverride)\n\nPUT /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"overrides\": []\n}\n"
+  /alarms/{alarmId}/actions/changeCompartment:
+    post:
+      description: 'Moves an alarm into a different compartment within the same tenancy.
+
+        For more information, see
+
+        [Moving an Alarm](/iaas/Content/Monitoring/Tasks/change-compartment-alarm.htm).
+
+        '
+      operationId: ChangeAlarmCompartment
+      parameters:
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      - $ref: '#/parameters/RetryTokenHeaderParam'
+      - description: The configuration details for moving an alarm.
+        in: body
+        name: ChangeAlarmCompartmentDetails
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeAlarmCompartmentDetails'
+      responses:
+        204:
+          description: Successfully changed compartment for the specified alarm.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: "POST /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>/actions/changeCompartment\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\
+        \n}\n"
+      x-related-resource: '#/definitions/Alarm'
+  /alarms/{alarmId}/actions/removeSuppression:
+    post:
+      description: 'Removes any existing suppression for the specified alarm.
+
+        For more information, see
+
+        [Removing a Suppression from a Single Alarm](/iaas/Content/Monitoring/Tasks/delete-alarm-suppression.htm)
+        and
+
+        [Removing a Suppression from Multiple Alarms](/iaas/Content/Monitoring/Tasks/delete-alarm-suppression-multiple.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: RemoveAlarmSuppression
+      parameters:
+      - $ref: '#/parameters/IfMatchHeader'
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      responses:
+        200:
+          description: Successfully removed suppression for the specified alarm.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        409:
+          $ref: '#/responses/409'
+        412:
+          $ref: '#/responses/412'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: 'Removes any existing suppression for the specified alarm.
+
+        '
+      tags:
+      - monitoring
+      x-example: 'POST /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>/actions/removeSuppression
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Suppression'
+  /alarms/{alarmId}/actions/retrieveDimensionStates:
+    post:
+      description: 'Lists the current alarm status of each metric stream, where status
+        is derived from the metric stream''s last associated transition.
+
+        Optionally filter by status value and one or more dimension key-value pairs.
+
+
+        For more information, see
+
+        [Listing Metric Stream Status in an Alarm](/iaas/Content/Monitoring/Tasks/list-alarm-status-metric-stream.htm).
+
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: RetrieveDimensionStates
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - description: 'The configuration details for retrieving the current alarm status
+          of each metric stream.
+
+          '
+        in: body
+        name: RetrieveDimensionStatesDetails
+        required: false
+        schema:
+          $ref: '#/definitions/RetrieveDimensionStatesDetails'
+      responses:
+        200:
+          description: Successfully retrieved alarm state entries.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of results remain.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/AlarmDimensionStatesCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: "POST /20211201/alarms/<var>&lt;alarm_OCID&gt;</var>/actions/retrieveDimensionStates\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n \"dimensionFilters\":\n   {\n     \"availabilityDomain\"\
+        : \"phx-ad-1\",\n     \"resourceId\": \"ocid1.instance.region1.phx.exampleuniqueID\"\
+        \n   },\n  \"status\": \"FIRING\"\n       \n}\n"
+      x-related-resource: '#/definitions/AlarmDimensionStatesCollection'
+  /alarms/{alarmId}/actions/summarizeAlarmSuppressionHistory:
+    post:
+      description: 'Returns history of suppressions for the specified alarm, including
+        both dimension-specific and and alarm-wide suppressions. For more information,
+        see
+
+        [Getting Suppression History for an Alarm](/iaas/Content/Monitoring/Tasks/summarize-alarm-suppression-history.htm).
+
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: SummarizeAlarmSuppressionHistory
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - description: summarize history details
+        in: body
+        name: SummarizeAlarmSuppressionHistoryDetails
+        required: false
+        schema:
+          $ref: '#/definitions/SummarizeAlarmSuppressionHistoryDetails'
+      responses:
+        200:
+          description: Alarm suppression history was successfully retrieved.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                next page of results remains.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-previous-page:
+              description: 'For list pagination. When this header appears in the response,
+                previous pages of results remains.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/AlarmSuppressionHistoryItemCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: "POST /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>/actions/summarizeAlarmSuppressionHistory\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"dimensions\": {\"resourceId\": <var>&lt;resource_OCID&gt;</var>}\n\
+        \  \"timeSuppressFromGreaterThanOrEqualTo\": \"2023-03-04T05:00:00.600Z\"\
+        ,\n  \"timeSuppressFromLessThan\": \"2023-03-04T07:00:00.600Z\"\n}\n"
+      x-related-resource: '#/definitions/AlarmSuppression'
+  /alarms/{alarmId}/history:
+    get:
+      description: 'Get the history of the specified alarm.
+
+        For more information, see
+
+        [Getting History of an Alarm](/iaas/Content/Monitoring/Tasks/get-alarm-history.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        This call is subject to a Monitoring limit that applies to the total number
+        of requests across all alarm operations.
+
+        Monitoring might throttle this call to reject an otherwise valid request when
+        the total rate of alarm operations exceeds 10 requests,
+
+        or transactions, per second (TPS) for a given tenancy.
+
+        '
+      operationId: GetAlarmHistory
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/AlarmIdPathParam'
+      - $ref: '#/parameters/AlarmHistoryTypeParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/FilterByAlarmHistoryTimeStampFromParam'
+      - $ref: '#/parameters/FilterByAlarmHistoryTimeStampUntilParam'
+      responses:
+        200:
+          description: Successfully retrieved alarm history.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of results remain.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/AlarmHistoryCollection'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      tags:
+      - monitoring
+      x-example: 'GET /20180401/alarms/<var>&lt;alarm_OCID&gt;</var>/history
+
+        Host: telemetry.us-phoenix-1.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/AlarmHistoryCollection'
+  /metrics:
+    post:
+      description: "Publishes raw metric data points to the Monitoring service.\n\
+        For a data point to be posted, its timestamp must be near current time (less\
+        \ than two hours in the past and less than 10 minutes in the future).\n\n\
+        For more information about publishing metrics, see \n[Publishing Custom Metrics](/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm)\n\
+        and\n[Custom Metrics Walkthrough](/iaas/Content/Monitoring/Tasks/custom-metrics-walkthrough.htm).\n\
+        For information about developing a metric-posting client, see\n[Developer\
+        \ Guide](/iaas/Content/API/Concepts/devtoolslanding.htm).\nFor an example\
+        \ client, see\n[MonitoringMetricPostExample.java](https://github.com/oracle/oci-java-sdk/blob/master/bmc-examples/src/main/java/MonitoringMetricPostExample.java).\n\
+        For important limits information, see\n[Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).\n\
+        \nPer-call limits information follows.\n\n* Dimensions per metric group*.\
+        \ Maximum: 20. Minimum: 1.\n* Unique metric streams*. Maximum: 50.\n* Transactions\
+        \ Per Second (TPS) per-tenancy limit for this operation: 50.\n\n*A metric\
+        \ group is the combination of a given metric, metric namespace, and tenancy\
+        \ for the purpose of determining limits.\nA dimension is a qualifier provided\
+        \ in a metric definition.\nA metric stream is an individual set of aggregated\
+        \ data for a metric with zero or more dimension values.\nFor more information\
+        \ about metric-related concepts, see\n[Monitoring Concepts](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts).\n\
+        \n**Note:** The endpoints for this operation differ from other Monitoring\
+        \ operations. Replace the string `telemetry` with `telemetry-ingestion` in\
+        \ the endpoint, as in the following example:\n\nhttps://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com\n"
+      operationId: PostMetricData
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/EncodingHeader'
+      - description: 'An array of metric objects containing raw metric data points
+          to be posted to the Monitoring service.
+
+          '
+        in: body
+        name: PostMetricDataDetails
+        required: true
+        schema:
+          $ref: '#/definitions/PostMetricDataDetails'
+      responses:
+        200:
+          description: 'Successfully posted metrics to the Monitoring service.
+
+            This response means that the request passed the partial or full input
+            validation requirements
+
+            determined by the BatchAtomicity parameter value. The default value of
+            NON_ATOMIC requires a
+
+            partial pass: at least one metric object in the request must pass input
+            validation, and any
+
+            objects that failed validation are identified in the returned summary,
+            along with their error
+
+            messages. A value of ATOMIC requires a full pass: all metric objects in
+            the request must
+
+            pass input validation.
+
+            '
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            $ref: '#/definitions/PostMetricDataResponseDetails'
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: 'Publishes raw metric data points to the Monitoring service.
+
+        '
+      tags:
+      - monitoring
+      x-related-resource: '#/definitions/MetricData'
+  /metrics/actions/listMetrics:
+    post:
+      description: 'Returns metric definitions that match the criteria specified in
+        the request. Compartment OCID required.
+
+        For more information, see
+
+        [Listing Metric Definitions](/iaas/Content/Monitoring/Tasks/list-metric.htm).
+
+        For information about metrics, see
+
+        [Metrics Overview](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
+
+        '
+      operationId: ListMetrics
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/PaginationTokenQueryParam'
+      - $ref: '#/parameters/PaginationLimitQueryParam'
+      - $ref: '#/parameters/CompartmentIdInSubtreeQueryParam'
+      - description: The dimensions used to filter metrics.
+        in: body
+        name: ListMetricsDetails
+        required: true
+        schema:
+          $ref: '#/definitions/ListMetricsDetails'
+      responses:
+        200:
+          description: 'The metric definitions were successfully retrieved.
+
+            '
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response,
+                additional pages of results remain.
+
+                For important details about how pagination works, see
+
+                [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/Metric'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: List metrics based on matching criteria.
+      tags:
+      - monitoring
+      x-example: "Sample 1: List all namespaces\n\nPOST /20180401/metrics/actions/listMetrics?compartmentId=<var>&lt;compartment_OCID&gt;</var>\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"groupBy\":[\"namespace\"]\n}\n\nSample 2: List\
+        \ all resource groups in a namespace\n\nPOST /20180401/metrics/actions/listMetrics?compartmentId=<var>&lt;compartment_OCID&gt;</var>\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"groupBy\":[\"resourceGroup\"],\n  \"namespace\"\
+        :\"my_namespace\"\n}\n\nSample 3: List all metrics in a namespace for a specific\
+        \ resource group\n\nPOST /20180401/metrics/actions/listMetrics?compartmentId=<var>&lt;compartment_OCID&gt;</var>\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"groupBy\":[\"name\"],\n  \"namespace\": \"my_namespace\"\
+        ,\n  \"resourceGroup\": \"my_resourcegroup\"\n}\n"
+      x-related-resource: '#/definitions/Metric'
+  /metrics/actions/summarizeMetricsData:
+    post:
+      description: 'Returns aggregated data that match the criteria specified in the
+        request. Compartment OCID required.
+
+        For more information, see
+
+        [Querying Metric Data](/iaas/Content/Monitoring/Tasks/query-metric-landing.htm)
+
+        and
+
+        [Creating a Query](/iaas/Content/Monitoring/Tasks/query-metric.htm).
+
+        For important limits information, see
+
+        [Limits on Monitoring](/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#limits).
+
+
+        Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
+
+        '
+      operationId: SummarizeMetricsData
+      parameters:
+      - $ref: '#/parameters/RequestIdHeader'
+      - $ref: '#/parameters/CompartmentIdQueryParam'
+      - $ref: '#/parameters/CompartmentIdInSubtreeQueryParam'
+      - description: The dimensions used to filter for metrics.
+        in: body
+        name: SummarizeMetricsDataDetails
+        required: true
+        schema:
+          $ref: '#/definitions/SummarizeMetricsDataDetails'
+      responses:
+        200:
+          description: 'The metric data was successfully retrieved.
+
+            Results are not paginated.
+
+            '
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If
+                you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/MetricData'
+            type: array
+        400:
+          $ref: '#/responses/400'
+        401:
+          $ref: '#/responses/401'
+        404:
+          $ref: '#/responses/404'
+        429:
+          $ref: '#/responses/429'
+        500:
+          $ref: '#/responses/500'
+        default:
+          $ref: '#/responses/DefaultError'
+      summary: Summarizes and returns metrics data filtered using the provided query
+        expression and compartmentId.
+      tags:
+      - monitoring
+      x-example: "POST /20180401/metrics/actions/summarizeMetricsData?compartmentId=<var>&lt;compartment_OCID&gt;</var>\n\
+        Host: telemetry.us-phoenix-1.oraclecloud.com\n<var>&lt;authorization and other\
+        \ headers&gt;</var>\n{\n  \"namespace\": \"oci_computeagent\",\n  \"query\"\
+        : \"CpuUtilization[1m]{resourceId = \\\"<var>&lt;instance_OCID&gt;</var>\\\
+        \"}.max()\",\n  \"startTime\": \"2023-03-10T22:19:26.789Z\",\n  \"endTime\"\
+        : \"2023-03-10T22:28:26.789Z\"\n}\n"
+      x-related-resource: '#/definitions/MetricData'
+produces:
+- application/json
+responses:
+  400:
+    description: Bad Request
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  401:
+    description: Unauthorized
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  404:
+    description: Not Authorized Or Not Found
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  409:
+    description: Conflict
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  412:
+    description: Precondition Failed
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  429:
+    description: Client is getting throttled, please retry with backoff.
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  500:
+    description: Internal Server Error
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+  DefaultError:
+    description: An error has occurred.
+    headers:
+      opc-request-id:
+        description: 'Unique Oracle-assigned identifier for the request. If you need
+          to contact Oracle about
+
+          a particular request, please provide the request ID.
+
+          '
+        type: string
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- http
+- https
+swagger: '2.0'
+x-anchors:
+  x-properties:
+    level: *id012
+    suppressionConditions: *id011

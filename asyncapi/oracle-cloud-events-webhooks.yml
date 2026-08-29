@@ -1,0 +1,82 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://docs.oracle.com/en-us/iaas/Content/Events/Concepts/eventsoverview.htm,
+  https://docs.oracle.com/en-us/iaas/Content/Events/Reference/eventenvelopereference.htm,
+  https://docs.oracle.com/en-us/iaas/Content/Notification/Tasks/create-subscription.htm, and the
+  first-party contracts openapi/_original/oracle-cloud-events-openapi.yaml and
+  openapi/_original/oracle-cloud-notifications-openapi.yaml
+provider: Oracle Cloud Infrastructure
+providerId: oracle-cloud
+asyncapi_published: false
+asyncapi_note: >-
+  Oracle publishes NO AsyncAPI document for OCI Events, Notifications, Streaming or Queue. The
+  event surface is real and well documented, but its contract is expressed as CloudEvents envelopes
+  plus per-service event-type reference pages, and its control plane is REST (Swagger 2.0). Nothing
+  is fabricated here — this file is the webhook/event catalog, not a synthesized AsyncAPI.
+event_surface:
+  service: OCI Events
+  control_plane_spec: openapi/_original/oracle-cloud-events-openapi.yaml
+  control_plane_operations: [ListRules, CreateRule, GetRule, UpdateRule, DeleteRule, ChangeRuleCompartment]
+  model: >-
+    OCI services emit events onto a tenancy-wide bus. A Rule matches events by a filter over
+    eventType / compartment / tags and routes matches to one or more Actions: a Notifications topic,
+    a Streaming stream, or a Function.
+  envelope:
+    standard: CloudEvents
+    version: '0.1'
+    hosted_by: Cloud Native Computing Foundation
+    docs: https://docs.oracle.com/en-us/iaas/Content/Events/Reference/eventenvelopereference.htm
+    statement: >-
+      Verbatim from Oracle: "The structure of the envelope follows the CloudEvents industry
+      standard format hosted by the Cloud Native Computing Foundation (CNCF)." and "Events uses
+      version 0.1 specification of the CloudEvents event envelope."
+    fields:
+      - {name: cloudEventsVersion, example: '0.1'}
+      - {name: eventID, description: Unique event identifier.}
+      - {name: eventType, example: com.oraclecloud.objectstorage.deletebucket}
+      - {name: eventTypeVersion, example: '1.0'}
+      - {name: source, example: objectstorage}
+      - {name: eventTime, example: '2019-01-10T21:19:24Z'}
+      - {name: contentType, example: application/json}
+      - {name: extensions, description: 'Mandatory in Oracle''s implementation; carries compartmentId and tenancy context.'}
+      - {name: data, description: Service-specific payload including resourceId and additionalDetails.}
+    deviation: >-
+      CloudEvents 0.1 predates the 1.0 attribute names. OCI uses cloudEventsVersion / eventID /
+      eventTime rather than specversion / id / time, and adds a mandatory `extensions` object. A
+      consumer written against CloudEvents 1.0 will not parse an OCI event without a shim.
+  event_type_naming: com.oraclecloud.<service>.<action>
+  event_type_catalog: https://docs.oracle.com/en-us/iaas/Content/Events/Reference/eventsproducers.htm
+webhooks:
+  supported: true
+  mechanism: OCI Notifications subscription with the HTTPS (Custom URL) protocol
+  control_plane_spec: openapi/_original/oracle-cloud-notifications-openapi.yaml
+  control_plane_operations: [CreateSubscription, ListSubscriptions, GetSubscription, UpdateSubscription, DeleteSubscription, GetConfirmSubscription, ResendSubscriptionConfirmation, GetUnsubscription, PublishMessage]
+  endpoint_field:
+    name: endpoint
+    max_length: 512
+    description: >-
+      Verbatim from the Notifications contract: "A locator that corresponds to the subscription
+      protocol... HTTP-based protocols use URL endpoints that begin with 'http:' or 'https:'. A URL
+      cannot exceed 512 characters."
+  confirmation:
+    required: true
+    operations: [GetConfirmSubscription, ResendSubscriptionConfirmation]
+    note: >-
+      A new subscription is created in PENDING state and must be confirmed via the confirmation URL
+      Oracle delivers to the endpoint before messages flow. Unsubscribe is a matching
+      GetUnsubscription call.
+  protocols:
+    - {name: EMAIL, kind: email}
+    - {name: HTTPS (Custom URL), kind: webhook}
+    - {name: Function, kind: compute}
+    - {name: PagerDuty, kind: integration}
+    - {name: Slack, kind: integration}
+    - {name: SMS, kind: sms}
+  delivery_guarantees_documented: false
+  delivery_note: >-
+    Retry policy, delivery timeout and signature verification for HTTPS subscriptions are not
+    stated on the pages fetched in this pass, so nothing is asserted about them here.
+alternative_streams:
+  - {service: OCI Streaming, kind: kafka-compatible, spec: not harvested in this pass}
+  - {service: OCI Queue, kind: message-queue, spec: not harvested in this pass}
