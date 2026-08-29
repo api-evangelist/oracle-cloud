@@ -4,6 +4,19 @@ description: >-
   Collection of Oracle Cloud Infrastructure (OCI) REST APIs for managing cloud resources
   and services.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -9705,6 +9718,16 @@ apis:
   - type: Examples
     url: examples/monitoring-metric-example.json
 common:
+  - type: IssueTracker
+    url: https://github.com/oracle/oci-cli/issues
+  - type: Releases
+    url: https://github.com/oracle/oci-cli/releases
+  - type: SecurityPolicy
+    url: https://github.com/oracle/oci-cli/blob/master/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/oracle/oci-cli/blob/master/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/oracle/oci-cli/blob/master/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/oracle-cloud-agentic-access.yml
   - type: DomainSecurity
