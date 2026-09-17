@@ -10125,17 +10125,17 @@ apis:
     url: examples/monitoring-summarize-metrics-data-details-example.json
   - type: Examples
     url: examples/monitoring-metric-example.json
-- aid: oracle-cloud:oracle-cloud-objectstorage-api
-  name: Oracle Cloud Infrastructure Object Storage API
+- aid: oracle-cloud:oracle-cloud-virtualnetwork-api
+  name: Oracle Cloud Infrastructure Virtual Network API
   description: >-
-    The objectStorage API from Oracle Cloud Infrastructure — 33 operation(s) for objectstorage.
+    The virtualNetwork API from Oracle Cloud Infrastructure — 176 operation(s) for virtualnetwork.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
-  - objectStorage
+  - virtualNetwork
   properties:
   - type: OpenAPI
-    url: openapi/oracle-cloud-objectstorage-api-openapi.yml
+    url: openapi/oracle-cloud-virtualnetwork-api-openapi.yml
   - type: Documentation
     url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
   - type: Pricing
@@ -10512,17 +10512,17 @@ apis:
     url: examples/monitoring-summarize-metrics-data-details-example.json
   - type: Examples
     url: examples/monitoring-metric-example.json
-- aid: oracle-cloud:oracle-cloud-virtualnetwork-api
-  name: Oracle Cloud Infrastructure Virtual Network API
+- aid: oracle-cloud:oracle-cloud-object-storage-api
+  name: Oracle Cloud Infrastructure Object Storage API
   description: >-
-    The virtualNetwork API from Oracle Cloud Infrastructure — 176 operation(s) for virtualnetwork.
+    The Object Storage API from Oracle Cloud Infrastructure — 33 operation(s) for object storage.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
-  - virtualNetwork
+  - Object Storage
   properties:
   - type: OpenAPI
-    url: openapi/oracle-cloud-virtualnetwork-api-openapi.yml
+    url: openapi/oracle-cloud-object-storage-api-openapi.yml
   - type: Documentation
     url: https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm
   - type: Pricing
