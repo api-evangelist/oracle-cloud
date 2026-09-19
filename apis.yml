@@ -5494,6 +5494,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
+  - Block Storage
+  tags_raw:
   - blockstorage
   properties:
   - type: OpenAPI
@@ -5880,6 +5882,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
+  - Compute
+  tags_raw:
   - compute
   properties:
   - type: OpenAPI
@@ -6266,7 +6270,8 @@ apis:
     The computeManagement API from Oracle Cloud Infrastructure — 23 operation(s) for computemanagement.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - computeManagement
   properties:
   - type: OpenAPI
@@ -6652,7 +6657,8 @@ apis:
   description: API operations for working with the container engine service.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - containerEngine
   properties:
   - type: OpenAPI
@@ -7039,6 +7045,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
+  - Database
+  tags_raw:
   - database
   properties:
   - type: OpenAPI
@@ -7425,6 +7433,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -7811,7 +7821,8 @@ apis:
     The functionsInvoke API from Oracle Cloud Infrastructure — 1 operation(s) for functionsinvoke.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - functionsInvoke
   properties:
   - type: OpenAPI
@@ -8198,7 +8209,8 @@ apis:
     The functionsManagement API from Oracle Cloud Infrastructure — 10 operation(s) for functionsmanagement.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - functionsManagement
   properties:
   - type: OpenAPI
@@ -8585,6 +8597,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
+  - Identity
+  tags_raw:
   - identity
   properties:
   - type: OpenAPI
@@ -8971,6 +8985,8 @@ apis:
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
   tags:
+  - Monitoring
+  tags_raw:
   - monitoring
   properties:
   - type: OpenAPI
@@ -9357,7 +9373,8 @@ apis:
     The notificationControlPlane API from Oracle Cloud Infrastructure — 13 operation(s) for notificationcontrolplane.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - notificationControlPlane
   properties:
   - type: OpenAPI
@@ -9744,7 +9761,8 @@ apis:
     The notificationDataPlane API from Oracle Cloud Infrastructure — 9 operation(s) for notificationdataplane.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - notificationDataPlane
   properties:
   - type: OpenAPI
@@ -10131,7 +10149,8 @@ apis:
     The virtualNetwork API from Oracle Cloud Infrastructure — 176 operation(s) for virtualnetwork.
   humanURL: https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/20180401/
   baseURL: https://telemetry.{region}.oraclecloud.com
-  tags:
+  tags: []
+  tags_raw:
   - virtualNetwork
   properties:
   - type: OpenAPI
