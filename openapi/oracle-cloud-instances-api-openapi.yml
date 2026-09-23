@@ -496,59 +496,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    LaunchInstanceDetails:
-      type: object
-      description: Details for launching a new compute instance.
-      required:
-      - compartmentId
-      - shape
-      - availabilityDomain
-      properties:
-        compartmentId:
-          type: string
-          description: The OCID of the compartment.
-          example: ocid1.compartment.oc1..abcdefg123456
-        availabilityDomain:
-          type: string
-          description: The availability domain.
-          example: Uocm:US-ASHBURN-AD-1
-        shape:
-          type: string
-          description: The shape of the instance.
-          example: VM.Standard.E4.Flex
-        displayName:
-          type: string
-          description: A user-friendly name.
-          example: my-new-instance
-        imageId:
-          type: string
-          description: The OCID of the image to use.
-          example: ocid1.image.oc1.iad.abcdefg123456
-        subnetId:
-          type: string
-          description: The OCID of the subnet.
-          example: ocid1.subnet.oc1.iad.abcdefg123456
-        shapeConfig:
-          type: object
-          description: Configuration for flexible shapes.
-          properties:
-            ocpus:
-              type: number
-              description: The total number of OCPUs.
-              example: 2.0
-            memoryInGBs:
-              type: number
-              description: The total amount of memory in gigabytes.
-              example: 16.0
-          example:
-            ocpus: 2.0
-            memoryInGBs: 16.0
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
     Error:
       type: object
       description: Error response from OCI API.
@@ -565,36 +512,6 @@ components:
           type: integer
           description: HTTP status code.
           example: 404
-    UpdateInstanceDetails:
-      type: object
-      description: Details for updating an instance.
-      properties:
-        displayName:
-          type: string
-          description: A user-friendly name.
-          example: updated-instance-name
-        shape:
-          type: string
-          description: The shape of the instance.
-          example: VM.Standard.E4.Flex
-        shapeConfig:
-          type: object
-          properties:
-            ocpus:
-              type: number
-              example: 4.0
-            memoryInGBs:
-              type: number
-              example: 32.0
-          example:
-            ocpus: 4.0
-            memoryInGBs: 32.0
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
     Instance:
       type: object
       description: A compute instance running in Oracle Cloud Infrastructure.
@@ -657,6 +574,89 @@ components:
           description: Defined tags for the instance.
           additionalProperties:
             type: object
+          example:
+            key1: value1
+    UpdateInstanceDetails:
+      type: object
+      description: Details for updating an instance.
+      properties:
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: updated-instance-name
+        shape:
+          type: string
+          description: The shape of the instance.
+          example: VM.Standard.E4.Flex
+        shapeConfig:
+          type: object
+          properties:
+            ocpus:
+              type: number
+              example: 4.0
+            memoryInGBs:
+              type: number
+              example: 32.0
+          example:
+            ocpus: 4.0
+            memoryInGBs: 32.0
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    LaunchInstanceDetails:
+      type: object
+      description: Details for launching a new compute instance.
+      required:
+      - compartmentId
+      - shape
+      - availabilityDomain
+      properties:
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.compartment.oc1..abcdefg123456
+        availabilityDomain:
+          type: string
+          description: The availability domain.
+          example: Uocm:US-ASHBURN-AD-1
+        shape:
+          type: string
+          description: The shape of the instance.
+          example: VM.Standard.E4.Flex
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-new-instance
+        imageId:
+          type: string
+          description: The OCID of the image to use.
+          example: ocid1.image.oc1.iad.abcdefg123456
+        subnetId:
+          type: string
+          description: The OCID of the subnet.
+          example: ocid1.subnet.oc1.iad.abcdefg123456
+        shapeConfig:
+          type: object
+          description: Configuration for flexible shapes.
+          properties:
+            ocpus:
+              type: number
+              description: The total number of OCPUs.
+              example: 2.0
+            memoryInGBs:
+              type: number
+              description: The total amount of memory in gigabytes.
+              example: 16.0
+          example:
+            ocpus: 2.0
+            memoryInGBs: 16.0
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
           example:
             key1: value1
   securitySchemes:

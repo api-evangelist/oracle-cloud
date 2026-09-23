@@ -225,83 +225,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AlarmSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        severity:
-          type: string
-          example: example-value
-        isEnabled:
-          type: boolean
-          example: true
-        lifecycleState:
-          type: string
-          example: example-value
-    UpdateAlarmDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-          example: my-resource
-        query:
-          type: string
-          example: CpuUtilization[1m].mean()
-        severity:
-          type: string
-          example: example-value
-        isEnabled:
-          type: boolean
-          example: true
-    CreateAlarmDetails:
-      type: object
-      required:
-      - compartmentId
-      - displayName
-      - metricCompartmentId
-      - namespace
-      - query
-      - severity
-      - isEnabled
-      - destinations
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        displayName:
-          type: string
-          example: my-resource
-        metricCompartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        namespace:
-          type: string
-          example: oci_computeagent
-        query:
-          type: string
-          example: CpuUtilization[1m].mean()
-        severity:
-          type: string
-          enum:
-          - CRITICAL
-          - ERROR
-          - WARNING
-          - INFO
-          example: CRITICAL
-        isEnabled:
-          type: boolean
-          example: true
-        destinations:
-          type: array
-          items:
-            type: string
-          example:
-          - example-value
     Alarm:
       type: object
       description: A monitoring alarm.
@@ -352,6 +275,83 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
+    CreateAlarmDetails:
+      type: object
+      required:
+      - compartmentId
+      - displayName
+      - metricCompartmentId
+      - namespace
+      - query
+      - severity
+      - isEnabled
+      - destinations
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        metricCompartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        namespace:
+          type: string
+          example: oci_computeagent
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
+        severity:
+          type: string
+          enum:
+          - CRITICAL
+          - ERROR
+          - WARNING
+          - INFO
+          example: CRITICAL
+        isEnabled:
+          type: boolean
+          example: true
+        destinations:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
+    AlarmSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        displayName:
+          type: string
+          example: my-resource
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
+        lifecycleState:
+          type: string
+          example: example-value
+    UpdateAlarmDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
   securitySchemes:
     ociSignature:
       type: http

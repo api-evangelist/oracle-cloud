@@ -1,0 +1,393 @@
+openapi: 3.2.0
+info:
+  description: API for the Functions service.
+  license:
+    name: Oracle Corporation
+  title: Functions Service Functions Invoke API
+  version: '20181201'
+servers:
+- url: https://127.0.0.1/20181201
+tags:
+- name: functionsInvoke
+paths:
+  /functions/{functionId}/actions/invoke:
+    post:
+      operationId: InvokeFunction
+      parameters:
+      - $ref: '#/components/parameters/FunctionIdPathParam'
+      - $ref: '#/components/parameters/FnIntentHeader'
+      - $ref: '#/components/parameters/FnInvokeTypeHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/FnDryRunHeader'
+      responses:
+        200:
+          description: 'Succesfully invoked function.
+
+            '
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+        202:
+          description: 'Succesfully accepted function call.
+
+            '
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
+
+                a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        502:
+          $ref: '#/components/responses/502'
+        503:
+          $ref: '#/components/responses/503'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Invokes a function
+      tags:
+      - functionsInvoke
+      x-example: "POST /20181201/functions/<var>&lt;function_OCID&gt;</var>/actions/invoke\nHost: <var>&lt;unique_ID&gt;</var>.us-phoenix-1.functions.oci.oraclecloud.com\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"ExamplePayloadKey\": \"ExamplePayloadValue\"\n}\n"
+      x-related-resource: '#/definitions/Function'
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              format: binary
+              type: string
+        description: 'The body of the function invocation.
+
+          Note: The maximum size of the request is limited. This limit is currently 6MB and the endpoint will not accept requests that are bigger than this limit.
+
+          '
+components:
+  parameters:
+    FnInvokeTypeHeader:
+      description: "Indicates whether Oracle Functions should execute the request and return the result ('sync') of the execution, \nor whether Oracle Functions should return as soon as processing has begun ('detached') and leave result handling to the function.\n"
+      in: header
+      name: fn-invoke-type
+      required: false
+      schema:
+        type: string
+        enum:
+        - detached
+        - sync
+        default: sync
+    FunctionIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this function.
+
+        '
+      in: path
+      name: functionId
+      required: true
+      schema:
+        type: string
+    FnDryRunHeader:
+      description: 'Indicates that the request is a dry run, if set to "true". A dry run request does not execute the function.
+
+        '
+      in: header
+      name: is-dry-run
+      required: false
+      schema:
+        type: boolean
+        default: false
+    OpcRequestIdHeaderParam:
+      description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+
+        particular request, please provide the request ID.
+
+        '
+      in: header
+      name: opc-request-id
+      required: false
+      schema:
+        type: string
+    FnIntentHeader:
+      description: 'An optional intent header that indicates to the FDK the way the event should be interpreted. E.g. ''httprequest'', ''cloudevent''.
+
+        '
+      in: header
+      name: fn-intent
+      required: false
+      x-default-description: 'null'
+      schema:
+        type: string
+        enum:
+        - httprequest
+        - cloudevent
+  schemas:
+    Error:
+      description: An error has occurred.
+      properties:
+        code:
+          description: A short error code that defines the error, meant for programmatic parsing.
+          type: string
+        message:
+          description: A human-readable error string.
+          type: string
+      required:
+      - code
+      - message
+      type: object
+  responses:
+    DefaultError:
+      description: An error has occurred.
+      headers:
+        opc-request-id:
+          description: 'Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
+
+            a particular request, please provide the request ID.
+
+            '
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+x-anchors:
+  x-headers:
+    etag:
+      description: 'For optimistic concurrency control. See `if-match`.
+
+        '
+      type: string
+    opc-next-page:
+      description: 'For pagination of a list of items. When paging through a list, if this header appears in the response,
+
+        then a partial list might have been returned. Include this value as the `page` parameter for the
+
+        subsequent GET request to get the next batch of items.
+
+        '
+      type: string
+    opc-request-id:
+      description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+        Oracle about a particular request, please provide the request ID.
+
+        '
+      type: string
+    opc-work-request-id:
+      description: 'Unique Oracle-assigned identifier for the asynchronous work. You can use this to query its status.
+
+        '
+      type: string
+    retry-after:
+      description: A decimal number representing the number of seconds the client should wait before polling this endpoint again.
+      type: integer
+  x-pbf-listing-properties:
+    description:
+      description: 'A short overview of the PBF Listing: the purpose of the PBF and and associated information.'
+      example: "A PBF to transform and send logs, metrics and data to Splunk. The PBF pushes data to Splunk through \nhttp/post requests and Splunk's HEC module (https://docs.splunk.com/Documentation/Splunk/9.0.0/Data/UsetheHTTPEventCollector).\n"
+      maxLength: 1024
+      minLength: 1
+      type: string
+    id:
+      description: Unique identifier that is immutable on creation.
+      example: ocid1.pbflisting.oc1.iad.aaaaaaaal3dkjeliven6l7kw3kiwlkbqjtfhdra6fly7uqekgmuef6forplq
+      maxLength: 255
+      minLength: 1
+      type: string
+    lifecycleDetails:
+      description: "A message describing the current state in more detail. For example, can be used to provide actionable \ninformation for a resource in Failed state.\n"
+      example: 'PBF failed the build stage: missed code coverage requirements for unit tests.'
+      type: string
+    name:
+      description: 'A brief descriptive name for the PBF listing. The PBF listing name must be unique, and not match and existing
+
+        PBF.
+
+        '
+      example: Logs to Splunk
+      maxLength: 255
+      minLength: 1
+      type: string
+    publisherDetails:
+      $ref: '#/components/schemas/PublisherDetails'
+    timeCreated:
+      description: The time the PbfListing was created. An RFC3339 formatted datetime string.
+      example: 2022-09-30T0710:20:50.52Z
+      format: date-time
+      type: string
+    timeUpdated:
+      description: The last time the PbfListing was updated. An RFC3339 formatted datetime string.
+      example: 2022-09-30T0710:20:50.52Z
+      format: date-time
+      type: string
+  x-pbf-listing-rv-properties:
+    changeSummary:
+      description: Details changes are included in this version.
+      example: 'First release of the PBF.
+
+        '
+      maxLength: 1024
+      minLength: 1
+      type: string
+    config:
+      description: 'Details about the required and optional Function configurations needed for proper performance of the PBF.
+
+        '
+      items:
+        $ref: '#/components/schemas/ConfigDetails'
+      maxItems: 100
+      type: array
+      x-default-description: 'null'
+    id:
+      description: Unique identifier that is immutable on creation
+      example: ocid1.pbflistingversion.oc1.iad.aaaaaaaal3dkjeliven6l7kw3kiwlkbqjtfhdra6fly7uqekgmuef6forplq
+      maxLength: 255
+      minLength: 1
+      type: string
+    lifecycleDetails:
+      description: "A message describing the current state in more detail. For example, can be used to provide actionable \ninformation for a resource in Failed state.\n"
+      example: 'PBF is not backwards compatible: previous input schema have been removed with no change to major version.'
+      type: string
+    name:
+      description: Semantic version
+      example: 0.0.1
+      maxLength: 32
+      minLength: 1
+      type: string
+    pbfListingId:
+      description: The OCID of the PbfListing this resource version belongs to.
+      example: ocid1.pbflisting.oc1.iad.aaaaaaaal3dkjeliven6l7kw3kiwlkbqjtfhdra6fly7uqekgmuef6forplq
+      maxLength: 255
+      minLength: 1
+      type: string
+    requirements:
+      $ref: '#/components/schemas/RequirementDetails'
+    timeCreated:
+      description: The time the PbfListingVersion was created. An RFC3339 formatted datetime string.
+      example: 2022-09-30T0710:20:50.52Z
+      format: date-time
+      type: string
+    timeUpdated:
+      description: The last time the PbfListingVersion was updated. An RFC3339 formatted datetime string.
+      example: 2022-09-30T0710:20:50.52Z
+      format: date-time
+      type: string
+  x-pbf-trigger-properties:
+    name:
+      description: A brief descriptive name for the PBF trigger.
+      example: API Gateway
+      maxLength: 32
+      minLength: 1
+      type: string
+  x-properties:
+    definedTags:
+      additionalProperties:
+        additionalProperties:
+          description: 'The value of the tag. Only string type is supported.
+
+            '
+          type: object
+        description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace.
+
+        Example: `{"foo-namespace": {"bar-key": "value"}}`
+
+        '
+      type: object
+    freeformTags:
+      additionalProperties:
+        type: string
+      description: 'Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+
+        Example: `{"bar-key": "value"}`
+
+        '
+      type: object
+    pbfLifecycleState:
+      description: The current state of the PBF resource.
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - DELETED
+      type: string
+    securityAttributes:
+      additionalProperties:
+        additionalProperties:
+          description: 'Attribute value and mode. Only the String type is supported for value. Mode is currently always "enforce".
+
+            '
+          type: object
+        description: 'Key-value pair representing a security attribute key and value, scoped to a namespace.
+
+
+          Example: `{"MaxEgressCount": {"value": "42", "mode": "enforce"}}`
+
+          '
+        type: object
+      description: 'Security attributes for this resource. Each key is predefined and scoped to a namespace.
+
+        For more information, see [Resource Tags](/iaas/Content/General/Concepts/resourcetags.htm).
+
+
+        Example: `{"Oracle-ZPR": {"MaxEgressCount": {"value": "42", "mode": "enforce"}}}`
+
+        '
+      type: object
+    systemTags:
+      additionalProperties:
+        additionalProperties:
+          description: 'The value of the tag. Only string type is supported.
+
+            '
+          type: object
+        description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+        Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+        '
+      type: object
+    triggers:
+      description: An array of Trigger. A list of triggers that may activate the PBF.
+      items:
+        $ref: '#/components/schemas/Trigger'
+      maxItems: 100
+      minItems: 1
+      type: array
+  x-tag-groups:
+    PbfManagement:
+    - PbfManagement
+    functionsManagement:
+    - functionsManagement
+x-oracle-package: com.oracle.functions

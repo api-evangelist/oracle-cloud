@@ -366,60 +366,35 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
+    BucketSummary:
       type: object
-      description: Error response from OCI API.
+      description: Summary information about a bucket.
       properties:
-        code:
-          type: string
-          description: A short error code.
-          example: BucketNotFound
-        message:
-          type: string
-          description: A human-readable error message.
-          example: The bucket does not exist.
-        status:
-          type: integer
-          description: HTTP status code.
-          example: 404
-    UpdateBucketDetails:
-      type: object
-      description: Details for updating a bucket.
-      properties:
-        name:
-          type: string
-          description: The name of the bucket.
-          example: example-value
         namespace:
           type: string
           description: The Object Storage namespace.
-          example: oci_computeagent
+          example: my-namespace
+        name:
+          type: string
+          description: The name of the bucket.
+          example: my-bucket
         compartmentId:
           type: string
           description: The OCID of the compartment.
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        publicAccessType:
+          example: ocid1.compartment.oc1..abcdefg123456
+        createdBy:
           type: string
-          enum:
-          - NoPublicAccess
-          - ObjectRead
-          - ObjectReadWithoutList
-          example: NoPublicAccess
-        objectEventsEnabled:
-          type: boolean
-          example: true
-        versioning:
+          description: The OCID of the user who created the bucket.
+          example: example-value
+        timeCreated:
           type: string
-          enum:
-          - Enabled
-          - Suspended
-          example: Enabled
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
+          format: date-time
+          description: The date and time the bucket was created.
+          example: '2026-01-15T10:30:00Z'
+        etag:
+          type: string
+          description: The entity tag (ETag) for the bucket.
+          example: example-value
     Bucket:
       type: object
       description: A bucket is a container for storing objects in Object Storage.
@@ -496,35 +471,22 @@ components:
           - Suspended
           - Disabled
           example: Enabled
-    BucketSummary:
+    Error:
       type: object
-      description: Summary information about a bucket.
+      description: Error response from OCI API.
       properties:
-        namespace:
+        code:
           type: string
-          description: The Object Storage namespace.
-          example: my-namespace
-        name:
+          description: A short error code.
+          example: BucketNotFound
+        message:
           type: string
-          description: The name of the bucket.
-          example: my-bucket
-        compartmentId:
-          type: string
-          description: The OCID of the compartment.
-          example: ocid1.compartment.oc1..abcdefg123456
-        createdBy:
-          type: string
-          description: The OCID of the user who created the bucket.
-          example: example-value
-        timeCreated:
-          type: string
-          format: date-time
-          description: The date and time the bucket was created.
-          example: '2026-01-15T10:30:00Z'
-        etag:
-          type: string
-          description: The entity tag (ETag) for the bucket.
-          example: example-value
+          description: A human-readable error message.
+          example: The bucket does not exist.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
     CreateBucketDetails:
       type: object
       description: Details for creating a new bucket.
@@ -568,6 +530,44 @@ components:
           enum:
           - Enabled
           - Disabled
+          example: Enabled
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    UpdateBucketDetails:
+      type: object
+      description: Details for updating a bucket.
+      properties:
+        name:
+          type: string
+          description: The name of the bucket.
+          example: example-value
+        namespace:
+          type: string
+          description: The Object Storage namespace.
+          example: oci_computeagent
+        compartmentId:
+          type: string
+          description: The OCID of the compartment.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        publicAccessType:
+          type: string
+          enum:
+          - NoPublicAccess
+          - ObjectRead
+          - ObjectReadWithoutList
+          example: NoPublicAccess
+        objectEventsEnabled:
+          type: boolean
+          example: true
+        versioning:
+          type: string
+          enum:
+          - Enabled
+          - Suspended
           example: Enabled
         freeformTags:
           type: object

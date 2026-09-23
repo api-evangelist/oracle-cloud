@@ -1,0 +1,2837 @@
+openapi: 3.2.0
+info:
+  description: 'Use the Notifications API to broadcast messages to distributed components by topic, using a publish-subscribe pattern.
+
+    For information about managing topics, subscriptions, and messages, see the Notifications documentation.'
+  title: Notifications Notification Control Plane API
+  version: '20181201'
+servers:
+- url: https://notification.{region}.oraclecloud.com/20181201
+tags:
+- name: notificationControlPlane
+paths:
+  /publisherMapGroups:
+    get:
+      description: 'Lists the publisher map groups in the specified compartment.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: ListPublisherMapGroups
+      parameters:
+      - $ref: '#/components/parameters/CompartmentIdQueryParam'
+      - $ref: '#/components/parameters/PaginationTokenQueryParam'
+      - $ref: '#/components/parameters/PaginationLimitQueryParam'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: The list of publisher map groups.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PublisherMapGroupSummary'
+                type: array
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+      summary: List publisher map groups
+      x-summary-source: derived
+    post:
+      description: 'Creates a publisher map group.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: CreatePublisherMapGroup
+      parameters:
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/SplatGeneratedResourceId'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMapGroup'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePublisherMapGroupDetails'
+        description: The publisher map group to create.
+        required: true
+      summary: Create publisher map group
+      x-summary-source: derived
+  /publisherMapGroups/{publisherMapGroupId}:
+    delete:
+      description: 'Deletes the specified publisher map group.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: DeletePublisherMapGroup
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group to delete.
+
+          '
+        in: path
+        name: publisherMapGroupId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: Deleted
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+      summary: Delete publisher map group
+      x-summary-source: derived
+    get:
+      description: 'Gets the specified publisher map group''s configuration information.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: GetPublisherMapGroup
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group to retrieve.
+
+          '
+        in: path
+        name: publisherMapGroupId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMapGroup'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+      summary: Get publisher map group
+      x-summary-source: derived
+    put:
+      description: 'Updates the specified PublisherMapGroup''s configuration.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: UpdatePublisherMapGroup
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group to update.
+
+          '
+        in: path
+        name: publisherMapGroupId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/SplatStoreRequestToken'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        200:
+          description: Publisher map group updated
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMapGroup'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'PUT /20181201/publisherMapGroups/<var>&lt;publisherMapGroup_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/PublisherMapGroup'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePublisherMapGroupDetails'
+        description: entity of details passed in to update PublisherMapGroup
+        required: true
+      summary: Update publisher map group
+      x-summary-source: derived
+  /publisherMapGroups/{publisherMapGroupId}/actions/addLock:
+    post:
+      description: Adds a lock to a PublisherMapGroup resource.
+      operationId: AddPublisherMapGroupLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        schema:
+          type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+          '
+        in: header
+        name: if-match
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PublisherMapGroupIdPathParam'
+      - $ref: '#/components/parameters/AddResourceLockDetailsBodyParam'
+      responses:
+        200:
+          description: Lock is added.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMapGroup resource.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMapGroup'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Adds a lock to a PublisherMapGroup resource
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+  /publisherMapGroups/{publisherMapGroupId}/actions/removeLock:
+    post:
+      description: Removes a lock from a PublisherMapGroup resource.
+      operationId: RemovePublisherMapGroupLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        schema:
+          type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+          '
+        in: header
+        name: if-match
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PublisherMapGroupIdPathParam'
+      - $ref: '#/components/parameters/RemoveResourceLockDetailsBodyParam'
+      responses:
+        200:
+          description: Lock is removed.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMapGroup resource.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMapGroup'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Removes a lock to a PublisherMapGroup resource
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMapGroup'
+  /publisherMaps:
+    get:
+      description: 'Lists the publisher maps in the specified compartment.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: ListPublisherMaps
+      parameters:
+      - $ref: '#/components/parameters/CompartmentIdQueryParam'
+      - $ref: '#/components/parameters/PaginationTokenQueryParam'
+      - $ref: '#/components/parameters/PaginationLimitQueryParam'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: The list of publisher maps.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PublisherMapSummary'
+                type: array
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+      summary: List publisher maps
+      x-summary-source: derived
+    post:
+      description: 'Creates a publisher map.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: CreatePublisherMap
+      parameters:
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/SplatGeneratedResourceId'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMap'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePublisherMapDetails'
+        description: The publisher map to create.
+        required: true
+      summary: Create publisher map
+      x-summary-source: derived
+  /publisherMaps/{publisherMapId}:
+    delete:
+      description: 'Deletes the specified publisher map.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: DeletePublisherMap
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map to delete.
+
+          '
+        in: path
+        name: publisherMapId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: Deleted
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+      summary: Delete publisher map
+      x-summary-source: derived
+    get:
+      description: 'Gets the specified publisher map''s configuration information.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: GetPublisherMap
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map to retrieve.
+
+          '
+        in: path
+        name: publisherMapId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMap'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+      summary: Get publisher map
+      x-summary-source: derived
+    put:
+      description: 'Updates the specified PublisherMap''s configuration.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: UpdatePublisherMap
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map to update.
+
+          '
+        in: path
+        name: publisherMapId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/SplatStoreRequestToken'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        200:
+          description: Publisher map updated
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMap'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'PUT /20181201/publisherMaps/<var>&lt;publisherMap_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/PublisherMap'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePublisherMapDetails'
+        description: entity of details passed in to update PublisherMap
+        required: true
+      summary: Update publisher map
+      x-summary-source: derived
+  /publisherMaps/{publisherMapId}/actions/addLock:
+    post:
+      description: Adds a lock to a PublisherMap resource.
+      operationId: AddPublisherMapLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        schema:
+          type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+          '
+        in: header
+        name: if-match
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PublisherMapIdPathParam'
+      - $ref: '#/components/parameters/AddResourceLockDetailsBodyParam'
+      responses:
+        200:
+          description: Lock is added.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMap resource.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMap'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Adds a lock to a PublisherMap resource
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+  /publisherMaps/{publisherMapId}/actions/removeLock:
+    post:
+      description: Removes a lock from a PublisherMap resource.
+      operationId: RemovePublisherMapLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        schema:
+          type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+          '
+        in: header
+        name: if-match
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PublisherMapIdPathParam'
+      - $ref: '#/components/parameters/RemoveResourceLockDetailsBodyParam'
+      responses:
+        200:
+          description: Lock is removed.
+          headers:
+            etag:
+              description: 'etag for the returned PublisherMap resource.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherMap'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Removes a lock to a PublisherMap resource
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/PublisherMap'
+  /topics:
+    get:
+      description: 'Lists topics in the specified compartment.
+
+        For instructions, see
+
+        Listing Topics.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 120.'
+      operationId: ListTopics
+      parameters:
+      - $ref: '#/components/parameters/CompartmentIdQueryParam'
+      - $ref: '#/components/parameters/FilterByIdQueryParam'
+      - $ref: '#/components/parameters/FilterByNameQueryParam'
+      - $ref: '#/components/parameters/PaginationTokenQueryParam'
+      - $ref: '#/components/parameters/PaginationLimitQueryParam'
+      - $ref: '#/components/parameters/SortByQueryParam'
+      - $ref: '#/components/parameters/SortOrderQueryParam'
+      - description: 'Filter returned list by specified lifecycle state. This parameter is case-insensitive.
+
+          '
+        in: query
+        name: lifecycleState
+        required: false
+        x-obmcs-enumref: '#/definitions/NotificationTopicSummary/lifecycleState'
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: The list of topics.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-previous-page:
+              description: 'For list pagination. When this header appears in the response, previous pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NotificationTopicSummary'
+                type: array
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'Sample 1: List all topics in a compartment, sorted by lifecycle state
+
+
+        GET /20181201/topics?compartmentId=<var>&lt;compartment_OCID&gt;</var>&sortBy="LIFECYCLESTATE"
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+
+        Sample 2: List the topic named "MessageMonitoring" in a compartment
+
+
+        GET /20181201/topics?compartmentId=<var>&lt;compartment_OCID&gt;</var>&name="MessageMonitoring"
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/NotificationTopic'
+      summary: List topics
+      x-summary-source: derived
+    post:
+      description: 'Creates a topic in the specified compartment.
+
+        For instructions, see
+
+        Creating a Topic.
+
+
+        For the purposes of access control, you must provide the OCID of the compartment where you want the topic to reside.
+
+        For information about access control and compartments, see Overview of the IAM Service.
+
+
+        You must specify a display name for the topic.
+
+
+        All Oracle Cloud Infrastructure resources, including topics, get an Oracle-assigned, unique ID called an
+
+        Oracle Cloud Identifier (OCID). When you create a resource, you can find its OCID in the response. You can also
+
+        retrieve a resource''s OCID by using a List API operation on that resource type, or by viewing the resource in the
+
+        Console. For more information, see Resource Identifiers.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: CreateTopic
+      parameters:
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/components/parameters/SplatGeneratedResourceId'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationTopic'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: "POST /20181201/topics\nHost: notification.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"name\": \"Admins\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"description\": \"Channel for admin messages\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTopicDetails'
+        description: The topic to create.
+        required: true
+      summary: Create topic
+      x-summary-source: derived
+  /topics/{topicId}:
+    delete:
+      description: 'Deletes the specified topic.
+
+        For instructions, see
+
+        Deleting a Topic.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: DeleteTopic
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic to delete.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: The topic is being deleted.
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'DELETE /20181201/topics/<var>&lt;topic_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/NotificationTopic'
+      summary: Delete topic
+      x-summary-source: derived
+    get:
+      description: 'Gets the specified topic''s configuration information.
+
+        For instructions, see
+
+        Getting a Topic''s Details.'
+      operationId: GetTopic
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic to retrieve.
+
+
+          Transactions Per Minute (TPM) per-tenancy limit for this operation: 120.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationTopic'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: 'GET /20181201/topics/<var>&lt;topic_OCID&gt;</var>
+
+        Host: notification.us-phoenix-1.oci.oraclecloud.com
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/NotificationTopic'
+      summary: Get topic
+      x-summary-source: derived
+    put:
+      description: 'Updates the specified topic''s configuration.
+
+        For instructions, see
+
+        Updating a Topic.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: UpdateTopic
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic to update.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/components/parameters/SplatStoreRequestToken'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        200:
+          description: Accepted
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationTopic'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: "PUT /20181201/topics/<var>&lt;topic_OCID&gt;</var>\nHost: notification.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"description\": \"Channel for admin messages\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TopicAttributesDetails'
+        description: TopicAttributes
+        required: true
+      summary: Update topic
+      x-summary-source: derived
+  /topics/{topicId}/actions/addLock:
+    post:
+      description: Adds a lock to a Topic resource.
+      operationId: AddTopicLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        schema:
+          type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+          '
+        in: header
+        name: if-match
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TopicIdPathParam'
+      - $ref: '#/components/parameters/AddResourceLockDetailsBodyParam'
+      responses:
+        200:
+          description: Lock is added.
+          headers:
+            etag:
+              description: 'etag for the returned Topic resource.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationTopic'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Adds a lock to a Topic resource
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/NotificationTopic'
+  /topics/{topicId}/actions/changeCompartment:
+    post:
+      description: 'Moves a topic into a different compartment within the same tenancy.
+
+        For instructions, see
+
+        Moving a Topic.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: ChangeTopicCompartment
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic to move.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      - $ref: '#/components/parameters/OverrideLocksQueryParameter'
+      responses:
+        204:
+          description: Accepted
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationControlPlane
+      x-example: "POST /20181201/topics/<var>&lt;topic_OCID&gt;</var>/actions/changeCompartment\nHost: notification.us-phoenix-1.oci.oraclecloud.com\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeCompartmentDetails'
+        description: The configuration details for the move operation.
+        required: true
+      summary: Change topic compartment
+      x-summary-source: derived
+  /topics/{topicId}/actions/removeLock:
+    post:
+      description: Removes a lock from a Topic resource.
+      operationId: RemoveTopicLock
+      parameters:
+      - description: 'Unique identifier for the request.
+
+          If you need to contact Oracle about a particular request, please provide the request ID.
+
+          '
+        in: header
+        name: opc-request-id
+        required: false
+        schema:
+          type: string
+      - description: 'For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+          parameter to the value of the etag from a previous GET or POST response for that resource. The resource
+
+          will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+          '
+        in: header
+        name: if-match
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TopicIdPathParam'
+      - $ref: '#/components/parameters/RemoveResourceLockDetailsBodyParam'
+      responses:
+        200:
+          description: Lock is removed.
+          headers:
+            etag:
+              description: 'etag for the returned Topic resource.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationTopic'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      summary: Removes a lock to a Topic resource
+      tags:
+      - notificationControlPlane
+      x-related-resource: '#/definitions/NotificationTopic'
+components:
+  schemas:
+    UpdatePublisherMapDetails:
+      description: The update publisher message map details.
+      properties:
+        bodyMap:
+          additionalProperties:
+            type: string
+          description: body map
+          type: object
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map description
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+      type: object
+      x-example: "{\n  \"bodyMap\" : {\n    \"subject\" : \"{{body.my.subject}}\",\n    \"body\" : \"{{body.my.body}}\"\n  },\n  \"description\" : \"Publisher map description\"\n}\n"
+    ResourceLock:
+      description: 'Resource locks are used to prevent certain APIs from being called for the resource.
+
+        A full lock prevents both updating the resource and deleting the resource. A delete
+
+        lock prevents deleting the resource.
+
+        '
+      properties:
+        compartmentId:
+          description: The compartment ID of the lock.
+          type: string
+        message:
+          description: 'A message added by the creator of the lock. This is typically used to give an
+
+            indication of why the resource is locked.
+
+            '
+          type: string
+        relatedResourceId:
+          description: 'The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+
+            '
+          type: string
+        timeCreated:
+          description: When the lock was created.
+          format: date-time
+          type: string
+        type:
+          description: Type of the lock.
+          enum:
+          - FULL
+          - DELETE
+          type: string
+      required:
+      - type
+      - compartmentId
+      type: object
+    NotificationTopic:
+      description: 'The properties that define a topic. For general information about topics, see
+
+        [Overview of Notifications](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__topicdefinition).
+
+        '
+      properties:
+        apiEndpoint:
+          description: 'The endpoint for managing subscriptions or publishing messages to the topic.
+
+            '
+          type: string
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
+
+            '
+          maxLength: 255
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: The description of the topic.
+          maxLength: 256
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        lifecycleState:
+          description: 'The lifecycle state of the topic.
+
+            '
+          enum:
+          - ACTIVE
+          - DELETING
+          - CREATING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: The name of the topic.
+          maxLength: 256
+          type: string
+        shortTopicId:
+          description: 'A short code used to identify the topic in messages sent to SMS subscriptions. Each short code contains six case-insensitive alphanumeric characters.
+
+            '
+          maxLength: 10
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        timeCreated:
+          description: The time the topic was created.
+          format: date-time
+          type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic.
+
+            '
+          maxLength: 255
+          type: string
+      required:
+      - name
+      - topicId
+      - compartmentId
+      - lifecycleState
+      - timeCreated
+      - apiEndpoint
+      type: object
+      x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\": {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\": \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\n}\n"
+    UpdatePublisherMapGroupDetails:
+      description: The update publisher message map group details.
+      properties:
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map group description
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        publisherMapIds:
+          items:
+            type: string
+          type: array
+      type: object
+      x-example: "{\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\" ],\n  \"description\" : \"Publisher map group description\"\n}\n"
+    NotificationTopicSummary:
+      description: 'A summary of the properties that define a topic.
+
+        '
+      properties:
+        apiEndpoint:
+          description: 'The endpoint for managing subscriptions or publishing messages to the topic.
+
+            '
+          type: string
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
+
+            '
+          maxLength: 255
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: The description of the topic.
+          maxLength: 256
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        lifecycleState:
+          description: 'The lifecycle state of the topic.
+
+            '
+          enum:
+          - ACTIVE
+          - DELETING
+          - CREATING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: 'The name of the topic.
+
+            '
+          maxLength: 256
+          type: string
+        shortTopicId:
+          description: 'A short code used to identify the topic in messages sent to SMS subscriptions. Each short code contains six case-insensitive alphanumeric characters.
+
+            '
+          maxLength: 10
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        timeCreated:
+          description: The time the topic was created.
+          format: date-time
+          type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic.
+
+            '
+          maxLength: 255
+          type: string
+      required:
+      - name
+      - topicId
+      - compartmentId
+      - lifecycleState
+      - timeCreated
+      - apiEndpoint
+      type: object
+      x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\": {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\": \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\n}\n"
+    PublisherMapGroupSummary:
+      description: The publisher map group summary.
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map group.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        createdTime:
+          format: date-time
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
+
+            '
+          type: string
+        lifecycleState:
+          enum:
+          - INACTIVE
+          - ACTIVE
+          - DELETING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: Publisher map group name
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        updatedTime:
+          format: date-time
+          type: string
+      type: object
+    CreatePublisherMapDetails:
+      description: The create publisher message map details.
+      properties:
+        bodyMap:
+          additionalProperties:
+            type: string
+          description: body map
+          type: object
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map description
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        name:
+          description: Publisher map name
+          type: string
+        providerName:
+          enum:
+          - EMAIL
+          - SMS
+          - SLACK
+          - OCEAN_INTERNAL
+          type: string
+          x-obmcs-top-level-enum: '#/definitions/ProviderName'
+        providerVersion:
+          description: publisher map version.
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+      required:
+      - providerName
+      - providerVersion
+      - bodyMap
+      - compartmentId
+      - name
+      type: object
+      x-example: "{\n  \"compartmentId\" : \"ocid1.compartment.oc1..aaaaaaaayetz53j6gqsc7gc4bcqltokxigos66hivqnva6ul3deiwxqgpqgq\",\n  \"providerName\" : \"Email\",\n  \"providerVersion\" : \"1.0.0\",\n  \"bodyMap\" : {\n    \"subject\" : \"{{body.my.subject}}\",\n    \"body\" : \"{{body.my.body}}\"\n  },\n  \"name\" : \"Map name\",\n  \"description\" : \"Map description\"\n}\n"
+    ChangeCompartmentDetails:
+      description: 'The configuration details for the move operation.
+
+        '
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the specified topic
+
+            or subscription to.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - compartmentId
+      type: object
+      x-example: "{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+    PublisherMapGroup:
+      description: The create publisher message map group details.
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map group.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        createdTime:
+          description: Time that the PublisherMapGroup was created.
+          format: date-time
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map group description
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
+
+            '
+          type: string
+        lifecycleState:
+          enum:
+          - INACTIVE
+          - ACTIVE
+          - DELETING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: Publisher map group name
+          type: string
+        publisherMapIds:
+          items:
+            type: string
+          type: array
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        tenantId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the tenant for the publisher map group.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        updatedTime:
+          description: Time that the PublisherMapGroup was updated.
+          format: date-time
+          type: string
+      required:
+      - compartmentId
+      - name
+      type: object
+    PublisherMap:
+      description: The create publisher message map details.
+      properties:
+        bodyMap:
+          additionalProperties:
+            type: string
+          description: body map
+          type: object
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        createdTime:
+          description: Time that the PublisherMap was created.
+          format: date-time
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map description
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
+
+            '
+          type: string
+        lifecycleState:
+          enum:
+          - INACTIVE
+          - ACTIVE
+          - DELETING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: Publisher map name
+          type: string
+        providerName:
+          enum:
+          - EMAIL
+          - SMS
+          - SLACK
+          - OCEAN_INTERNAL
+          type: string
+          x-obmcs-top-level-enum: '#/definitions/ProviderName'
+        providerVersion:
+          description: publisher map version.
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        tenantId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the tenant for the publisher map.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        updatedTime:
+          description: Time that the PublisherMap was updated.
+          format: date-time
+          type: string
+      required:
+      - providerName
+      - providerVersion
+      - bodyMap
+      - compartmentId
+      - name
+      type: object
+    PublisherMapSummary:
+      description: The publisher map summary.
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        createdTime:
+          format: date-time
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
+
+            '
+          type: string
+        lifecycleState:
+          enum:
+          - INACTIVE
+          - ACTIVE
+          - DELETING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: Publisher map name
+          type: string
+        providerName:
+          enum:
+          - EMAIL
+          - SMS
+          - SLACK
+          - OCEAN_INTERNAL
+          type: string
+          x-obmcs-top-level-enum: '#/definitions/ProviderName'
+        providerVersion:
+          description: publisher map version.
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        updatedTime:
+          format: date-time
+          type: string
+      type: object
+    Error:
+      description: An error has occurred.
+      properties:
+        code:
+          description: A short error code that defines the error, meant for programmatic parsing. See [API Errors](/iaas/Content/API/References/apierrors.htm).
+          format: x-obmcs-ascii-identifier
+          type: string
+        message:
+          description: A human-readable error string.
+          format: x-obmcs-human-language
+          type: string
+      required:
+      - code
+      - message
+      type: object
+    AddResourceLockDetails:
+      allOf:
+      - $ref: '#/components/schemas/ResourceLock'
+    TopicAttributesDetails:
+      description: 'The configuration details for updating the topic.
+
+        '
+      properties:
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: The description of the topic. Avoid entering confidential information.
+          maxLength: 256
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+      required:
+      - description
+      type: object
+      x-example: "{\n  \"description\": \"Channel for admin messages\"\n}\n"
+    CreateTopicDetails:
+      description: 'The configuration details for creating the topic.
+
+        '
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the topic in.
+
+            '
+          maxLength: 255
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: The description of the topic being created. Avoid entering confidential information.
+          maxLength: 256
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        name:
+          description: The name of the topic being created. The topic name must be unique across the tenancy. Avoid entering confidential information.
+          maxLength: 256
+          type: string
+      required:
+      - name
+      - compartmentId
+      type: object
+      x-example: "{\n  \"name\": \"Admins\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"description\": \"Channel for admin messages\"\n}\n"
+    RemoveResourceLockDetails:
+      allOf:
+      - $ref: '#/components/schemas/ResourceLock'
+    CreatePublisherMapGroupDetails:
+      description: The create publisher message map group details.
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map group.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map group description
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        name:
+          description: Publisher map group name
+          type: string
+        publisherMapIds:
+          items:
+            type: string
+          type: array
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+      required:
+      - compartmentId
+      - name
+      type: object
+      x-example: "{\n  \"id\" : \"ocid1.onspublishermapgroup.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\",\n  \"compartmentId\" : \"ocid1.compartment.oc1..aaaaaaaayetz53j6gqsc7gc4bcqltokxigos66hivqnva6ul3deiwxqgpqgq\",\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\" ],\n  \"name\" : \"Publisher map group name\",\n  \"description\" : \"Publisher map group description\"\n}\n"
+  parameters:
+    PaginationLimitQueryParam:
+      description: 'For list pagination. The maximum number of results per page, or items to return in a paginated "List" call.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 10
+        maximum: 50
+        minimum: 1
+    SortByQueryParam:
+      description: 'The field to sort by. Only one field can be selected for sorting.
+
+        '
+      in: query
+      name: sortBy
+      required: false
+      schema:
+        type: string
+        enum:
+        - TIMECREATED
+        - LIFECYCLESTATE
+        default: TIMECREATED
+    PublisherMapIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
+
+        '
+      in: path
+      name: publisherMapId
+      required: true
+      schema:
+        type: string
+    RetryTokenHeader:
+      description: 'A token that uniquely identifies a request so it can be retried in case of a timeout or
+
+        server error without risk of executing that same action again. Retry tokens expire after 24
+
+        hours, but can be invalidated before that due to conflicting operations (for example, if a resource
+
+        has been deleted and purged from the system, then a retry of the original creation request
+
+        may be rejected).
+
+        '
+      in: header
+      name: opc-retry-token
+      schema:
+        type: string
+        maxLength: 64
+        minLength: 1
+    AddResourceLockDetailsBodyParam:
+      description: AddResourceLockDetails body parameter
+      in: body
+      name: AddResourceLockDetails
+      required: true
+      schema:
+        $ref: '#/components/schemas/AddResourceLockDetails'
+    TopicIdPathParam:
+      description: The [OCID](/Content/General/Concepts/identifiers.htm) of a topic.
+      in: path
+      name: topicId
+      required: true
+      schema:
+        type: string
+    FilterByIdQueryParam:
+      description: 'A filter to only return resources that match the given id exactly.
+
+        '
+      in: query
+      name: id
+      required: false
+      schema:
+        type: string
+        maxLength: 1024
+        minLength: 1
+    PublisherMapGroupIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
+
+        '
+      in: path
+      name: publisherMapGroupId
+      required: true
+      schema:
+        type: string
+    PaginationTokenQueryParam:
+      description: 'For list pagination. The value of the opc-next-page response header from the previous "List" call.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      in: query
+      name: page
+      required: false
+      schema:
+        type: string
+        minLength: 1
+    OciNapCorpNetworkHeaderParam:
+      description: 'This is stamped on requests coming from customer''s corp network.
+
+        '
+      in: header
+      name: x-oci-nap-corpnetwork
+      required: false
+      schema:
+        type: string
+    SplatStoreRequestToken:
+      description: 'This token is to allow Splat be notified as customer updates resource, so that updated resource usage is properly reflected on the SPLAT''s side.
+
+        In order to do that, partner team must store the value of oci-splat-store-request-token header that SPLAT sends to the partner service in the update API.
+
+        The value of this header must be persisted in the internal resource''s state and reflected in the GET API.
+
+        '
+      in: header
+      name: oci-splat-store-request-token
+      required: false
+      schema:
+        type: string
+    OverrideLocksQueryParameter:
+      description: Whether to override locks (if any exist).
+      in: query
+      name: isLockOverride
+      schema:
+        type: boolean
+        default: false
+    FilterByNameQueryParam:
+      description: 'A filter to only return resources that match the given name exactly.
+
+        '
+      in: query
+      name: name
+      required: false
+      schema:
+        type: string
+        maxLength: 1024
+        minLength: 1
+    RemoveResourceLockDetailsBodyParam:
+      description: RemoveResourceLockDetails body parameter
+      in: body
+      name: RemoveResourceLockDetails
+      required: true
+      schema:
+        $ref: '#/components/schemas/RemoveResourceLockDetails'
+    OpcRequestIdHeaderParam:
+      description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+
+        particular request, please provide the request ID.
+
+        '
+      in: header
+      name: opc-request-id
+      required: false
+      schema:
+        type: string
+    SplatGeneratedResourceId:
+      description: 'resourceId generated by Splat
+
+        '
+      in: header
+      name: oci-splat-generated-ocids
+      required: false
+      schema:
+        type: string
+    SortOrderQueryParam:
+      description: 'The sort order to use (ascending or descending).
+
+        '
+      in: query
+      name: sortOrder
+      required: false
+      x-default-description: 'The default value depends upon `sortBy`, and
+
+        in general is ''DESC'' when sorting by time and ''ASC'' otherwise.
+
+        '
+      x-obmcs-top-level-enum: '#/definitions/SortOrder'
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    CompartmentIdQueryParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+
+        '
+      in: query
+      name: compartmentId
+      required: true
+      schema:
+        type: string
+        maxLength: 255
+        minLength: 1
+    IfMatchHeader:
+      description: 'Used for optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+        parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
+
+        will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+        '
+      in: header
+      name: if-match
+      required: false
+      schema:
+        type: string
+  responses:
+    DefaultError:
+      description: An error has occurred.
+      headers:
+        opc-request-id:
+          description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+            Oracle about a particular request, please provide the request ID.
+
+            '
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+x-anchors:
+  x-headers:
+    etag:
+      description: 'For optimistic concurrency control. See `if-match`.
+
+        '
+      type: string
+    opc-next-page:
+      description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      type: string
+    opc-previous-page:
+      description: 'For list pagination. When this header appears in the response, previous pages of results remain.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      type: string
+    opc-request-id:
+      description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+        Oracle about a particular request, please provide the request ID.
+
+        '
+      type: string
+    opc-work-request-id:
+      description: 'Unique Oracle-assigned identifier for the asynchronous work. You can use this to query its status.
+
+        '
+      type: string
+    retry-after:
+      description: A decimal number representing the number of seconds the client should wait before polling this endpoint again.
+      type: integer
+  x-properties:
+    definedTags:
+      additionalProperties:
+        additionalProperties:
+          description: 'The value of the tag. Only string type is supported as valid value type.
+
+            '
+          type: object
+        description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+        Example: `{"Operations": {"CostCenter": "42"}}`
+
+        '
+      type: object
+    freeformTags:
+      additionalProperties:
+        type: string
+      description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+        Example: `{"Department": "Finance"}`
+
+        '
+      type: object
+    protocolDescription: "The protocol used for the subscription.\n\nAllowed values:\n  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+    shortTopicId:
+      description: 'A short code used to identify the topic in messages sent to SMS subscriptions. Each short code contains six case-insensitive alphanumeric characters.
+
+        '
+      maxLength: 10
+      type: string
+    systemTags:
+      additionalProperties:
+        additionalProperties:
+          description: 'The value of the tag. Only string type is supported.
+
+            '
+          type: object
+        description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+        Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+        '
+      type: object
+x-obmcs-client-retries-enabled: false
+x-oracle-package: com.oracle.pic.ons.gateway

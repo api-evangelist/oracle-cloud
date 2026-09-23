@@ -1,0 +1,1721 @@
+openapi: 3.2.0
+info:
+  description: 'Use the Notifications API to broadcast messages to distributed components by topic, using a publish-subscribe pattern.
+
+    For information about managing topics, subscriptions, and messages, see the Notifications documentation.'
+  title: Notifications Notification Data Plane API
+  version: '20181201'
+servers:
+- url: https://notification.{region}.oraclecloud.com/20181201
+tags:
+- name: notificationDataPlane
+paths:
+  /smsNumbers:
+    get:
+      description: List the SMS numbers.
+      operationId: ListSmsNumbers
+      parameters:
+      - $ref: '#/components/parameters/FilterByStateQueryParam'
+      - $ref: '#/components/parameters/FilterBySmsProviderIdQueryParam'
+      - $ref: '#/components/parameters/FilterByUpdatedStartTimeQueryParam'
+      - $ref: '#/components/parameters/FilterByUpdatedEndTimeQueryParam'
+      - $ref: '#/components/parameters/PaginationTokenQueryParam'
+      - $ref: '#/components/parameters/PaginationLimitQueryParam'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SmsNumberSummary'
+                type: array
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      summary: List sms numbers
+      x-summary-source: derived
+  /subscriptions:
+    get:
+      description: 'Lists the subscriptions in the specified compartment or topic.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Listing Subscriptions.'
+      operationId: ListSubscriptions
+      parameters:
+      - $ref: '#/components/parameters/CompartmentIdQueryParam'
+      - $ref: '#/components/parameters/FilterByTopicIdQueryParam'
+      - $ref: '#/components/parameters/PaginationTokenQueryParam'
+      - $ref: '#/components/parameters/PaginationLimitQueryParam'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: The list of subscriptions.
+          headers:
+            opc-next-page:
+              description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-previous-page:
+              description: 'For list pagination. When this header appears in the response, previous pages of results remain.
+
+                For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SubscriptionSummary'
+                type: array
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'Sample 1: List all subscriptions in a compartment
+
+
+        GET /20181201/subscriptions?compartmentId=<var>&lt;compartment_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+
+        Sample 2: List all subscriptions for a topic
+
+
+        GET /20181201/subscriptions?topicId=<var>&lt;topic_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+      summary: List subscriptions
+      x-summary-source: derived
+    post:
+      description: 'Creates a subscription for the specified topic and sends a subscription confirmation URL to the endpoint.
+
+
+        For instructions, see
+
+        Creating a Subscription.
+
+
+        The subscription remains in "Pending" status until it has been confirmed.
+
+        For information about confirming subscriptions, see
+
+        Confirming a Subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: CreateSubscription
+      parameters:
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/subscriptions\nHost: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n  \"endpoint\": \"john.smith@example.com\"\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionDetails'
+        description: The subscription to create.
+        required: true
+      summary: Create subscription
+      x-summary-source: derived
+  /subscriptions/{id}/confirmation:
+    get:
+      description: 'Gets the confirmation details for the specified subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Getting Confirmation Results for a Subscription.'
+      operationId: GetConfirmSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to get the confirmation details for.
+
+          '
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TokenQueryParam'
+      - $ref: '#/components/parameters/ProtocolQueryParam'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationResult'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'GET /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/confirmation?token=<var>&lt;subscription_confirmation_token&gt;</var>&protocol=EMAIL
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+      summary: Get confirm subscription
+      x-summary-source: derived
+  /subscriptions/{id}/resendConfirmation:
+    post:
+      description: 'Resends the confirmation details for the specified subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Resending the Confirmation URL for a Subscription.'
+      operationId: ResendSubscriptionConfirmation
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to resend the confirmation for.
+
+          '
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'POST /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/resendConfirmation
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+      summary: Resend subscription confirmation
+      x-summary-source: derived
+  /subscriptions/{id}/unsubscription:
+    get:
+      description: 'Unsubscribes the subscription from the topic.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Unsubscribing a Subscription from a Topic.'
+      operationId: GetUnsubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to unsubscribe from.
+
+          '
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: 'The endpoint i.e. email address, phone number of the subscription to unsubscribe from.
+
+          '
+        in: query
+        name: endpoint
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TokenQueryParam'
+      - $ref: '#/components/parameters/ProtocolQueryParam'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: string
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'GET /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/unsubscription?token=<var>&lt;subscription_confirmation_token&gt;</var>&protocol=EMAIL
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+      summary: Get unsubscription
+      x-summary-source: derived
+  /subscriptions/{subscriptionId}:
+    delete:
+      description: 'Deletes the specified subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Deleting a Subscription.'
+      operationId: DeleteSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to delete.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        204:
+          description: Deleted
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'DELETE /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+      summary: Delete subscription
+      x-summary-source: derived
+    get:
+      description: 'Gets the specified subscription''s configuration information.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Getting a Subscription''s Details.'
+      operationId: GetSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to retrieve.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Success
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: 'GET /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>
+
+        Host: <var>&lt;topic API endpoint&gt;</var>
+
+        <var>&lt;authorization and other headers&gt;</var>
+
+        '
+      x-related-resource: '#/definitions/Subscription'
+      summary: Get subscription
+      x-summary-source: derived
+    put:
+      description: 'Updates the specified subscription''s configuration.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+
+
+        For instructions, see
+
+        Updating a Subscription.'
+      operationId: UpdateSubscription
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to update.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: OK
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSubscriptionDetails'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        412:
+          $ref: '#/components/responses/412'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "PUT /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>\nHost: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"freeformTags\":\n    {\n      \"Department\": \"Finance\"\n    }\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubscriptionDetails'
+        description: 'The configuration details for updating the subscription.
+
+          '
+        required: true
+      summary: Update subscription
+      x-summary-source: derived
+  /subscriptions/{subscriptionId}/actions/changeCompartment:
+    post:
+      description: 'Moves a subscription into a different compartment within the same tenancy.
+
+        For instructions, see
+
+        Moving a Subscription.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: ChangeSubscriptionCompartment
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription to move.
+
+          '
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        204:
+          description: Success
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/subscriptions/<var>&lt;subscription_OCID&gt;</var>/actions/changeCompartment\nHost: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeCompartmentDetails'
+        description: The configuration details for the move operation.
+        required: true
+      summary: Change subscription compartment
+      x-summary-source: derived
+  /subscriptionsPriorConfirmation:
+    post:
+      description: 'Creates a subscription where prior confirmation has already been given.
+
+        Creates a subscription for the specified topic in "Active" status, without sending a subscription confirmation URL to the endpoint.
+
+        This is an internal feature only only for whitelisted internal teams. It requires prior approval from Security & Legal.
+
+        The subscriptions recipients must all have already provided consent to receive notifications from Oracle.
+
+
+        For instructions, see
+
+        Creating a Subscription.
+
+
+        The subscription is created in "Active" status.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.'
+      operationId: CreateSubscriptionPriorConfirmation
+      parameters:
+      - $ref: '#/components/parameters/RetryTokenHeader'
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      responses:
+        200:
+          description: Created
+          headers:
+            etag:
+              description: 'For optimistic concurrency control. See `if-match`.
+
+                '
+              schema:
+                type: string
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        409:
+          $ref: '#/components/responses/409'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/subscriptionsPriorConfirmation\nHost: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n  \"endpoint\": \"john.smith@example.com\"\n}\n"
+      x-related-resource: '#/definitions/Subscription'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionDetails'
+        description: The subscription to create.
+        required: true
+      summary: Create subscription prior confirmation
+      x-summary-source: derived
+  /topics/{topicId}/messages:
+    post:
+      description: 'Publishes a message to the specified topic.
+
+
+        The topic API endpoint is required for this operation.
+
+        To get the topic API endpoint, use GetTopic
+
+        and review the `apiEndpoint` value in the response (NotificationTopic).
+
+
+        All limits are per tenancy.
+
+
+        Message size limit per request: 64KB.
+
+
+        Transactions Per Minute (TPM) per-tenancy limit for this operation: 60 per topic. (This TPM limit represents messages per minute.)
+
+
+        For other limits information, including message delivery limits by subscription, see
+
+        Limits for Publishing Messages.
+
+        For more information about publishing messages, see
+
+        Publishing a Message to a Topic.
+
+        For steps to request a limit increase, see
+
+        Requesting a Service Limit Increase.'
+      operationId: PublishMessage
+      parameters:
+      - description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic.
+
+          '
+        in: path
+        name: topicId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/OpcRequestIdHeaderParam'
+      - $ref: '#/components/parameters/MessageTypeHeaderParam'
+      - $ref: '#/components/parameters/OciNapCorpNetworkHeaderParam'
+      responses:
+        200:
+          description: Published
+          headers:
+            opc-request-id:
+              description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+                Oracle about a particular request, please provide the request ID.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishResult'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        404:
+          $ref: '#/components/responses/404'
+        429:
+          $ref: '#/components/responses/429'
+        500:
+          $ref: '#/components/responses/500'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+      - notificationDataPlane
+      x-example: "POST /20181201/topics/<var>&lt;topic_OCID&gt;</var>/messages\nHost: <var>&lt;topic API endpoint&gt;</var>\n<var>&lt;authorization and other headers&gt;</var>\n{\n  \"title\": \"Alarm notification\",\n  \"body\": \"High CPU usage\"\n}\n"
+      x-related-resource: '#/definitions/NotificationTopic'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageDetails'
+        description: The message to publish.
+        required: true
+      summary: Publish message
+      x-summary-source: derived
+components:
+  schemas:
+    BackoffRetryPolicy:
+      description: 'The backoff retry portion of the subscription delivery policy. For information about retry durations for subscriptions, see
+
+        [How Notifications Works](https://docs.cloud.oracle.com/iaas/Content/Notification/Concepts/notificationoverview.htm#how).
+
+        '
+      properties:
+        maxRetryDuration:
+          default: 7200000
+          description: The maximum retry duration in milliseconds. Default value is `7200000` (2 hours).
+          maximum: 7200000
+          minimum: 60000
+          type: integer
+        policyType:
+          default: EXPONENTIAL
+          description: 'The type of delivery policy.
+
+            '
+          enum:
+          - EXPONENTIAL
+          type: string
+      required:
+      - maxRetryDuration
+      - policyType
+      type: object
+      x-example: "{\n  \"maxRetryDuration\": 80000,\n  \"policyType\": \"EXPONENTIAL\"\n}\n"
+    PublishResult:
+      description: 'The response to a PublishMessage call.
+
+        '
+      properties:
+        messageId:
+          description: The UUID of the message.
+          type: string
+        timeStamp:
+          description: The time that the service received the message.
+          format: date-time
+          type: string
+      required:
+      - messageId
+      type: object
+      x-example: "{\n  \"messageId\": \"<var>&lt;message_UUID&gt;</var>\",\n  \"timeStamp\": \"2018-11-04T05:00:00.600Z\"\n}\n"
+    Subscription:
+      description: 'The subscription''s configuration. For general information about subscriptions, see
+
+        [Overview of Notifications](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptiondefinition).
+
+        '
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
+
+            '
+          maxLength: 255
+          type: string
+        createdTime:
+          description: 'The time when this suscription was created.
+
+            '
+          format: int64
+          type: integer
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        deliverPolicy:
+          description: The delivery policy of the subscription. Stored as a JSON string.
+          type: string
+        deliveryPolicy:
+          $ref: '#/components/schemas/DeliveryPolicy'
+        endpoint:
+          description: 'A locator that corresponds to the subscription protocol.
+
+            For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
+
+            '
+          maxLength: 512
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
+
+            '
+          type: string
+        lifecycleState:
+          default: PENDING
+          description: 'The lifecycle state of the subscription. The status of a new subscription is PENDING; when confirmed, the subscription status changes to ACTIVE.
+
+            '
+          enum:
+          - PENDING
+          - ACTIVE
+          - DELETED
+          type: string
+        protocol:
+          description: "The protocol used for the subscription.\n\nAllowed values:\n  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+          example: EMAIL
+          maxLength: 15
+          type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
+
+            '
+          type: string
+      required:
+      - id
+      - topicId
+      - protocol
+      - endpoint
+      - lifecycleState
+      - compartmentId
+      type: object
+      x-example: "{\n  \"id\": \"<var>&lt;subscription_OCID&gt;</var>\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n  \"endpoint\": \"john.smith@example.com\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+    ChangeCompartmentDetails:
+      description: 'The configuration details for the move operation.
+
+        '
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the specified topic
+
+            or subscription to.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - compartmentId
+      type: object
+      x-example: "{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+    SubscriptionSummary:
+      description: 'The subscription''s configuration summary.
+
+        '
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
+
+            '
+          maxLength: 255
+          type: string
+        createdTime:
+          description: The time when this suscription was created.
+          format: int64
+          type: integer
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        deliveryPolicy:
+          $ref: '#/components/schemas/DeliveryPolicy'
+        endpoint:
+          description: 'A locator that corresponds to the subscription protocol.
+
+            For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
+
+            '
+          maxLength: 512
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
+
+            '
+          type: string
+        lifecycleState:
+          default: PENDING
+          description: 'The lifecycle state of the subscription. The status of a new subscription is PENDING; when confirmed, the subscription status changes to ACTIVE.
+
+            '
+          enum:
+          - PENDING
+          - ACTIVE
+          - DELETED
+          type: string
+        protocol:
+          description: "The protocol used for the subscription.\n\nAllowed values:\n  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+          example: EMAIL
+          maxLength: 15
+          type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
+
+            '
+          type: string
+      required:
+      - id
+      - topicId
+      - protocol
+      - endpoint
+      - lifecycleState
+      - compartmentId
+      type: object
+      x-example: "{\n  \"id\": \"<var>&lt;subscription_OCID&gt;</var>\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"protocol\": \"EMAIL\",\n  \"endpoint\": \"john.smith@example.com\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+    UpdateSubscriptionDetails:
+      description: 'The configuration details for updating the subscription.
+
+        '
+      properties:
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        deliveryPolicy:
+          $ref: '#/components/schemas/DeliveryPolicy'
+          description: The delivery policy of the subscription. Stored as a JSON string.
+          type: object
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+      type: object
+      x-example: "{\n  \"freeformTags\":\n    {\n      \"Department\": \"Finance\"\n    }\n}\n"
+    SmsNumberSummary:
+      description: 'A summary of the properties that define an SMS number.
+
+        '
+      properties:
+        endUserNumber:
+          description: 'The SMS number
+
+            '
+          maxLength: 256
+          type: string
+        state:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+          x-obmcs-top-level-enum: '#/definitions/SmsNumberState'
+      required:
+      - endUserNumber
+      - state
+      type: object
+    Error:
+      description: An error has occurred.
+      properties:
+        code:
+          description: A short error code that defines the error, meant for programmatic parsing. See [API Errors](/iaas/Content/API/References/apierrors.htm).
+          format: x-obmcs-ascii-identifier
+          type: string
+        message:
+          description: A human-readable error string.
+          format: x-obmcs-human-language
+          type: string
+      required:
+      - code
+      - message
+      type: object
+    DeliveryPolicy:
+      description: 'The subscription delivery policy.
+
+        '
+      properties:
+        backoffRetryPolicy:
+          $ref: '#/components/schemas/BackoffRetryPolicy'
+      type: object
+      x-example: "{\n  backoffRetryPolicy:\n  {\n    \"maxRetryDuration\": 80000,\n    \"policyType\": \"EXPONENTIAL\"\n  }\n}\n"
+    MessageDetails:
+      description: 'The content of the message to be published.
+
+        '
+      properties:
+        body:
+          description: 'The body of the message to be published. Maximum size: 64 KB.
+
+            Avoid entering confidential information.
+
+            '
+          type: string
+        publisherMapGroupId:
+          description: 'The publisher map group ocid [OCID](/iaas/Content/General/Concepts/identifiers.htm) for mapping this message into various providers.
+
+            '
+          type: string
+        title:
+          description: 'The title of the message to be published. Maximum number of characters: 255.
+
+            Avoid entering confidential information.
+
+            '
+          type: string
+      type: object
+    ConfirmationResult:
+      description: 'The confirmation details for the specified subscription.
+
+        For information about confirming subscriptions, see
+
+        [Confirming a Subscription](/iaas/Content/Notification/Tasks/confirm-subscription.htm).
+
+        '
+      properties:
+        endpoint:
+          description: 'A locator that corresponds to the subscription protocol.
+
+            For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
+
+            '
+          example: abc@oracle.com
+          maxLength: 512
+          type: string
+        message:
+          description: A human-readable string indicating the status of the subscription confirmation.
+          example: The subscription has been confirmed
+          type: string
+        subscriptionId:
+          description: The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the subscription specified in the request.
+          type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic associated with the specified subscription.
+
+            '
+          type: string
+        topicName:
+          description: 'The name of the subscribed topic.
+
+            '
+          type: string
+        unsubscribeUrl:
+          description: The URL for unsubscribing from the topic.
+          type: string
+      required:
+      - topicName
+      - topicId
+      - endpoint
+      - unsubscribeUrl
+      - message
+      - subscriptionId
+      type: object
+      x-example: "{\n  \"topicName\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"endpoint\": \"john.smith@example.com\",\n  \"unsubscribeUrl\": \"<var>https://example.com/unsubscribe.html</var>\",\n  \"message\": \"Subscription confirmed\",\n  \"subscriptionId\": \"<var>&lt;subscription_OCID&gt;</var>\"\n}\n"
+    CreateSubscriptionDetails:
+      description: 'The configuration details for creating the subscription.
+
+        '
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
+
+            '
+          maxLength: 255
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        endpoint:
+          description: 'A locator that corresponds to the subscription protocol.
+
+            For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
+
+            HTTP-based protocols use URL endpoints that begin with "http:" or "https:".
+
+            A URL cannot exceed 512 characters.
+
+            Avoid entering confidential information.
+
+
+            For protocol-specific endpoint formats and steps to get or create endpoints, see
+
+            [Creating a Subscription](/iaas/Content/Notification/Tasks/create-subscription.htm).
+
+            '
+          example: abc@oracle.com
+          maxLength: 512
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        metadata:
+          description: Metadata for the subscription.
+          maxLength: 1024
+          type: string
+        protocol:
+          description: "The protocol used for the subscription.\n\nAllowed values:\n  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+          example: EMAIL
+          maxLength: 15
+          type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic for the subscription.
+
+            '
+          maxLength: 255
+          type: string
+      required:
+      - topicId
+      - compartmentId
+      - protocol
+      - endpoint
+      type: object
+      x-example: "Email subscription:\n{\n  \"protocol\": \"EMAIL\",\n  \"endpoint\": \"john.smith@example.com\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nFunction subscription:\n{\n  \"protocol\": \"ORACLE_FUNCTIONS\",\n  \"endpoint\": \"<var>&lt;function_OCID&gt;</var>\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nHTTPS (Custom URL) subscription:\n{\n  \"protocol\": \"CUSTOM_HTTPS\",\n  \"endpoint\": \"https://example.com\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nPagerDuty subscription:\n{\n  \"protocol\": \"PAGERDUTY\",\n  \"endpoint\": \"https://events.pagerduty.com/integration/<var>&lt;integrationkey&gt;</var>/enqueue\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nSlack subscription:\n{\n  \"protocol\": \"SLACK\",\n  \"endpoint\": \"https://hooks.slack.com/services/<var>&lt;webhook_token&gt;</var>\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n\nSMS subscription:\n{\n  \"protocol\": \"SMS\",\n  \"endpoint\": \"14255550100\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+  parameters:
+    PaginationLimitQueryParam:
+      description: 'For list pagination. The maximum number of results per page, or items to return in a paginated "List" call.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        default: 10
+        maximum: 50
+        minimum: 1
+    MessageTypeHeaderParam:
+      description: '**Deprecated.**
+
+        This attribute is deprecated, as is support for JSON.
+
+        You can send a JSON payload even when transmitting the payload as a raw string.
+
+        Configure your receiving system to read the raw payload as JSON format.
+
+
+        Type of message body in the request.
+
+        For `messageType` of JSON, a default key-value pair is required. Example: `{"default": "Alarm breached", "Email": "Alarm breached: <url>"}.`
+
+        '
+      in: header
+      name: messageType
+      required: false
+      schema:
+        type: string
+        enum:
+        - JSON
+        - RAW_TEXT
+        default: RAW_TEXT
+    FilterByTopicIdQueryParam:
+      description: 'Return all subscriptions that are subscribed to the given topic OCID. Either this query parameter or the compartmentId query parameter must be set.
+
+        '
+      in: query
+      name: topicId
+      required: false
+      schema:
+        type: string
+        maxLength: 255
+        minLength: 1
+    RetryTokenHeader:
+      description: 'A token that uniquely identifies a request so it can be retried in case of a timeout or
+
+        server error without risk of executing that same action again. Retry tokens expire after 24
+
+        hours, but can be invalidated before that due to conflicting operations (for example, if a resource
+
+        has been deleted and purged from the system, then a retry of the original creation request
+
+        may be rejected).
+
+        '
+      in: header
+      name: opc-retry-token
+      schema:
+        type: string
+        maxLength: 64
+        minLength: 1
+    PaginationTokenQueryParam:
+      description: 'For list pagination. The value of the opc-next-page response header from the previous "List" call.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      in: query
+      name: page
+      required: false
+      schema:
+        type: string
+        minLength: 1
+    OciNapCorpNetworkHeaderParam:
+      description: 'This is stamped on requests coming from customer''s corp network.
+
+        '
+      in: header
+      name: x-oci-nap-corpnetwork
+      required: false
+      schema:
+        type: string
+    FilterByUpdatedStartTimeQueryParam:
+      description: 'A filter to only return resources that have been updated since the given time.
+
+        '
+      in: query
+      name: startTime
+      required: false
+      schema:
+        type: string
+        maxLength: 64
+        minLength: 1
+    ProtocolQueryParam:
+      description: "The protocol used for the subscription.\n\nAllowed values:\n  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+      in: query
+      name: protocol
+      required: true
+      schema:
+        type: string
+        maxLength: 15
+        minLength: 1
+    FilterBySmsProviderIdQueryParam:
+      description: 'A filter to only return resources that match the given smsProviderId exactly.
+
+        '
+      in: query
+      name: smsProviderId
+      required: true
+      schema:
+        type: string
+        maxLength: 64
+        minLength: 1
+    OpcRequestIdHeaderParam:
+      description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+
+        particular request, please provide the request ID.
+
+        '
+      in: header
+      name: opc-request-id
+      required: false
+      schema:
+        type: string
+    FilterByUpdatedEndTimeQueryParam:
+      description: 'A filter to only return resources that have been updated before the given time.
+
+        '
+      in: query
+      name: endTime
+      required: false
+      schema:
+        type: string
+        maxLength: 64
+        minLength: 1
+    FilterByStateQueryParam:
+      description: 'A filter to only return resources that match the given state exactly.
+
+        '
+      in: query
+      name: state
+      required: false
+      x-obmcs-top-level-enum: '#/definitions/SmsNumberState'
+      schema:
+        type: string
+        enum:
+        - ACTIVE
+        - INACTIVE
+        maxLength: 64
+        minLength: 1
+    TokenQueryParam:
+      description: The subscription confirmation token.
+      in: query
+      name: token
+      required: true
+      schema:
+        type: string
+        maxLength: 256
+        minLength: 1
+    CompartmentIdQueryParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+
+        '
+      in: query
+      name: compartmentId
+      required: true
+      schema:
+        type: string
+        maxLength: 255
+        minLength: 1
+    IfMatchHeader:
+      description: 'Used for optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
+
+        parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
+
+        will be updated or deleted only if the etag you provide matches the resource''s current etag value.
+
+        '
+      in: header
+      name: if-match
+      required: false
+      schema:
+        type: string
+  responses:
+    DefaultError:
+      description: An error has occurred.
+      headers:
+        opc-request-id:
+          description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+            Oracle about a particular request, please provide the request ID.
+
+            '
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+x-anchors:
+  x-headers:
+    etag:
+      description: 'For optimistic concurrency control. See `if-match`.
+
+        '
+      type: string
+    opc-next-page:
+      description: 'For list pagination. When this header appears in the response, additional pages of results remain.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      type: string
+    opc-previous-page:
+      description: 'For list pagination. When this header appears in the response, previous pages of results remain.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      type: string
+    opc-request-id:
+      description: 'Unique Oracle-assigned identifier for the request. If you need to contact
+
+        Oracle about a particular request, please provide the request ID.
+
+        '
+      type: string
+    opc-work-request-id:
+      description: 'Unique Oracle-assigned identifier for the asynchronous work. You can use this to query its status.
+
+        '
+      type: string
+    retry-after:
+      description: A decimal number representing the number of seconds the client should wait before polling this endpoint again.
+      type: integer
+  x-properties:
+    definedTags:
+      additionalProperties:
+        additionalProperties:
+          description: 'The value of the tag. Only string type is supported as valid value type.
+
+            '
+          type: object
+        description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+        Example: `{"Operations": {"CostCenter": "42"}}`
+
+        '
+      type: object
+    freeformTags:
+      additionalProperties:
+        type: string
+      description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+        Example: `{"Department": "Finance"}`
+
+        '
+      type: object
+    protocolDescription: "The protocol used for the subscription.\n\nAllowed values:\n  * `CUSTOM_HTTPS`\n  * `EMAIL`\n  * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)\n  * `ORACLE_FUNCTIONS`\n  * `PAGERDUTY`\n  * `SLACK`\n  * `SMS`\n\nFor information about subscription protocols, see\n[Supported subscription protocols (on the overview page)](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__subscriptionprotocols).\n"
+    shortTopicId:
+      description: 'A short code used to identify the topic in messages sent to SMS subscriptions. Each short code contains six case-insensitive alphanumeric characters.
+
+        '
+      maxLength: 10
+      type: string
+    systemTags:
+      additionalProperties:
+        additionalProperties:
+          description: 'The value of the tag. Only string type is supported.
+
+            '
+          type: object
+        description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+          Example: `{"bar-key": "value"}`
+
+          '
+        type: object
+      description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+        Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+        '
+      type: object
+x-obmcs-client-retries-enabled: false
+x-oracle-package: com.oracle.pic.ons.gateway

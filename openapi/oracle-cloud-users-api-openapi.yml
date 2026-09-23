@@ -222,6 +222,36 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CreateUserDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: jsmith@example.com
+        description:
+          type: string
+          example: John Smith
+        email:
+          type: string
+          format: email
+          example: admin@example.com
+    UpdateUserDetails:
+      type: object
+      properties:
+        description:
+          type: string
+          example: example-value
+        email:
+          type: string
+          format: email
+          example: admin@example.com
     User:
       type: object
       description: An IAM user in Oracle Cloud Infrastructure.
@@ -264,36 +294,6 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
-    UpdateUserDetails:
-      type: object
-      properties:
-        description:
-          type: string
-          example: example-value
-        email:
-          type: string
-          format: email
-          example: admin@example.com
-    CreateUserDetails:
-      type: object
-      required:
-      - compartmentId
-      - name
-      - description
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: jsmith@example.com
-        description:
-          type: string
-          example: John Smith
-        email:
-          type: string
-          format: email
-          example: admin@example.com
   securitySchemes:
     ociSignature:
       type: http

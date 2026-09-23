@@ -106,6 +106,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CreatePolicyDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      - statements
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        description:
+          type: string
+          example: example-value
+        statements:
+          type: array
+          items:
+            type: string
+          example:
+          - example-value
     Policy:
       type: object
       description: An IAM policy with authorization statements.
@@ -141,29 +164,6 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
-    CreatePolicyDetails:
-      type: object
-      required:
-      - compartmentId
-      - name
-      - description
-      - statements
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        description:
-          type: string
-          example: example-value
-        statements:
-          type: array
-          items:
-            type: string
-          example:
-          - example-value
   securitySchemes:
     ociSignature:
       type: http
