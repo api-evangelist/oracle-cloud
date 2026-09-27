@@ -45,7 +45,9 @@
     "oracle-cloud-objects-api-openapi.yml",
     "oracle-cloud-preauthenticated-requests-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [
     "oracle-cloud-core-services-openapi.yaml: dangling $ref: #/responses/400",
     "oracle-cloud-core-services-openapi.yaml: dangling $ref: #/responses/401",
@@ -148,7 +150,8 @@
     "oracle-cloud-object-storage-openapi.yaml: declared missing tag: Namespaces",
     "oracle-cloud-object-storage-openapi.yaml: declared missing tag: Objects",
     "oracle-cloud-object-storage-openapi.yaml: declared missing tag: Preauthenticated Requests",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: oracle-cloud-object-storage-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 28 total)"
   ],
   "skipped": [
     "_ae-authored/oracle-cloud-oke-openapi.yaml: archived document superseded by a larger archived document",
@@ -175,8 +178,8 @@
     "oracle-cloud-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "oracle-cloud-notificationcontrolplane-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "oracle-cloud-notificationdataplane-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oracle-cloud-object-storage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "oracle-cloud-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "oracle-cloud-objectstorage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "oracle-cloud-policies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "oracle-cloud-preauthenticated-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "oracle-cloud-shapes-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -87,36 +87,6 @@ paths:
           '
 components:
   parameters:
-    FnInvokeTypeHeader:
-      description: "Indicates whether Oracle Functions should execute the request and return the result ('sync') of the execution, \nor whether Oracle Functions should return as soon as processing has begun ('detached') and leave result handling to the function.\n"
-      in: header
-      name: fn-invoke-type
-      required: false
-      schema:
-        type: string
-        enum:
-        - detached
-        - sync
-        default: sync
-    FunctionIdPathParam:
-      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this function.
-
-        '
-      in: path
-      name: functionId
-      required: true
-      schema:
-        type: string
-    FnDryRunHeader:
-      description: 'Indicates that the request is a dry run, if set to "true". A dry run request does not execute the function.
-
-        '
-      in: header
-      name: is-dry-run
-      required: false
-      schema:
-        type: boolean
-        default: false
     OpcRequestIdHeaderParam:
       description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 
@@ -141,20 +111,36 @@ components:
         enum:
         - httprequest
         - cloudevent
-  schemas:
-    Error:
-      description: An error has occurred.
-      properties:
-        code:
-          description: A short error code that defines the error, meant for programmatic parsing.
-          type: string
-        message:
-          description: A human-readable error string.
-          type: string
-      required:
-      - code
-      - message
-      type: object
+    FnDryRunHeader:
+      description: 'Indicates that the request is a dry run, if set to "true". A dry run request does not execute the function.
+
+        '
+      in: header
+      name: is-dry-run
+      required: false
+      schema:
+        type: boolean
+        default: false
+    FnInvokeTypeHeader:
+      description: "Indicates whether Oracle Functions should execute the request and return the result ('sync') of the execution, \nor whether Oracle Functions should return as soon as processing has begun ('detached') and leave result handling to the function.\n"
+      in: header
+      name: fn-invoke-type
+      required: false
+      schema:
+        type: string
+        enum:
+        - detached
+        - sync
+        default: sync
+    FunctionIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this function.
+
+        '
+      in: path
+      name: functionId
+      required: true
+      schema:
+        type: string
   responses:
     DefaultError:
       description: An error has occurred.
@@ -171,6 +157,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      description: An error has occurred.
+      properties:
+        code:
+          description: A short error code that defines the error, meant for programmatic parsing.
+          type: string
+        message:
+          description: A human-readable error string.
+          type: string
+      required:
+      - code
+      - message
+      type: object
 x-anchors:
   x-headers:
     etag:

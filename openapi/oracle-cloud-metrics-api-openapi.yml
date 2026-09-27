@@ -124,39 +124,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MetricData:
-      type: object
-      description: Aggregated metric data points.
-      properties:
-        namespace:
-          type: string
-          example: oci_computeagent
-        name:
-          type: string
-          example: CpuUtilization
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        dimensions:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
-        aggregatedDatapoints:
-          type: array
-          items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-                format: date-time
-              value:
-                type: number
-                example: 42.5
-          example:
-          - timestamp: '2026-04-18T10:30:00Z'
-            value: 42.5
     Metric:
       type: object
       description: A metric definition.
@@ -205,6 +172,39 @@ components:
           type: string
           description: The time interval for aggregation.
           example: 1m
+    MetricData:
+      type: object
+      description: Aggregated metric data points.
+      properties:
+        namespace:
+          type: string
+          example: oci_computeagent
+        name:
+          type: string
+          example: CpuUtilization
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        dimensions:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+        aggregatedDatapoints:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              value:
+                type: number
+                example: 42.5
+          example:
+          - timestamp: '2026-04-18T10:30:00Z'
+            value: 42.5
   securitySchemes:
     ociSignature:
       type: http

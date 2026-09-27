@@ -135,22 +135,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      description: Error response from OCI API.
-      properties:
-        code:
-          type: string
-          description: A short error code.
-          example: NotAuthorizedOrNotFound
-        message:
-          type: string
-          description: A human-readable error message.
-          example: Authorization failed or requested resource not found.
-        status:
-          type: integer
-          description: HTTP status code.
-          example: 404
     Image:
       type: object
       description: A boot disk image for launching compute instances.
@@ -193,6 +177,22 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
+    Error:
+      type: object
+      description: Error response from OCI API.
+      properties:
+        code:
+          type: string
+          description: A short error code.
+          example: NotAuthorizedOrNotFound
+        message:
+          type: string
+          description: A human-readable error message.
+          example: Authorization failed or requested resource not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
   securitySchemes:
     ociSignature:
       type: http

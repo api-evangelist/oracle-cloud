@@ -1483,61 +1483,18 @@ components:
           type: object
       type: object
       x-example: "{\n  \"bodyMap\" : {\n    \"subject\" : \"{{body.my.subject}}\",\n    \"body\" : \"{{body.my.body}}\"\n  },\n  \"description\" : \"Publisher map description\"\n}\n"
-    ResourceLock:
-      description: 'Resource locks are used to prevent certain APIs from being called for the resource.
-
-        A full lock prevents both updating the resource and deleting the resource. A delete
-
-        lock prevents deleting the resource.
-
-        '
+    PublisherMapSummary:
+      description: The publisher map summary.
       properties:
         compartmentId:
-          description: The compartment ID of the lock.
-          type: string
-        message:
-          description: 'A message added by the creator of the lock. This is typically used to give an
-
-            indication of why the resource is locked.
-
-            '
-          type: string
-        relatedResourceId:
-          description: 'The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
-
-            '
-          type: string
-        timeCreated:
-          description: When the lock was created.
-          format: date-time
-          type: string
-        type:
-          description: Type of the lock.
-          enum:
-          - FULL
-          - DELETE
-          type: string
-      required:
-      - type
-      - compartmentId
-      type: object
-    NotificationTopic:
-      description: 'The properties that define a topic. For general information about topics, see
-
-        [Overview of Notifications](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__topicdefinition).
-
-        '
-      properties:
-        apiEndpoint:
-          description: 'The endpoint for managing subscriptions or publishing messages to the topic.
-
-            '
-          type: string
-        compartmentId:
-          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map.
 
             '
           maxLength: 255
+          minLength: 1
+          type: string
+        createdTime:
+          format: date-time
           type: string
         definedTags:
           additionalProperties:
@@ -1559,15 +1516,6 @@ components:
 
             '
           type: object
-        description:
-          description: The description of the topic.
-          maxLength: 256
-          type: string
-        etag:
-          description: 'For optimistic concurrency control. See `if-match`.
-
-            '
-          type: string
         freeformTags:
           additionalProperties:
             type: string
@@ -1578,14 +1526,16 @@ components:
 
             '
           type: object
-        lifecycleState:
-          description: 'The lifecycle state of the topic.
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
 
             '
+          type: string
+        lifecycleState:
           enum:
+          - INACTIVE
           - ACTIVE
           - DELETING
-          - CREATING
           type: string
         locks:
           description: Locks associated with this resource.
@@ -1593,14 +1543,18 @@ components:
             $ref: '#/components/schemas/ResourceLock'
           type: array
         name:
-          description: The name of the topic.
-          maxLength: 256
+          description: Publisher map name
           type: string
-        shortTopicId:
-          description: 'A short code used to identify the topic in messages sent to SMS subscriptions. Each short code contains six case-insensitive alphanumeric characters.
-
-            '
-          maxLength: 10
+        providerName:
+          enum:
+          - EMAIL
+          - SMS
+          - SLACK
+          - OCEAN_INTERNAL
+          type: string
+          x-obmcs-top-level-enum: '#/definitions/ProviderName'
+        providerVersion:
+          description: publisher map version.
           type: string
         systemTags:
           additionalProperties:
@@ -1621,67 +1575,10 @@ components:
 
             '
           type: object
-        timeCreated:
-          description: The time the topic was created.
+        updatedTime:
           format: date-time
           type: string
-        topicId:
-          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic.
-
-            '
-          maxLength: 255
-          type: string
-      required:
-      - name
-      - topicId
-      - compartmentId
-      - lifecycleState
-      - timeCreated
-      - apiEndpoint
       type: object
-      x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\": {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\": \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\n}\n"
-    UpdatePublisherMapGroupDetails:
-      description: The update publisher message map group details.
-      properties:
-        definedTags:
-          additionalProperties:
-            additionalProperties:
-              description: 'The value of the tag. Only string type is supported as valid value type.
-
-                '
-              type: object
-            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
-
-              Example: `{"bar-key": "value"}`
-
-              '
-            type: object
-          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
-
-
-            Example: `{"Operations": {"CostCenter": "42"}}`
-
-            '
-          type: object
-        description:
-          description: Publisher map group description
-          type: string
-        freeformTags:
-          additionalProperties:
-            type: string
-          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
-
-
-            Example: `{"Department": "Finance"}`
-
-            '
-          type: object
-        publisherMapIds:
-          items:
-            type: string
-          type: array
-      type: object
-      x-example: "{\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\" ],\n  \"description\" : \"Publisher map group description\"\n}\n"
     NotificationTopicSummary:
       description: 'A summary of the properties that define a topic.
 
@@ -1801,18 +1698,23 @@ components:
       - apiEndpoint
       type: object
       x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\": {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\": \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\n}\n"
-    PublisherMapGroupSummary:
-      description: The publisher map group summary.
+    NotificationTopic:
+      description: 'The properties that define a topic. For general information about topics, see
+
+        [Overview of Notifications](/iaas/Content/Notification/Concepts/notificationoverview.htm#concepts__topicdefinition).
+
+        '
       properties:
+        apiEndpoint:
+          description: 'The endpoint for managing subscriptions or publishing messages to the topic.
+
+            '
+          type: string
         compartmentId:
-          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map group.
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
 
             '
           maxLength: 255
-          minLength: 1
-          type: string
-        createdTime:
-          format: date-time
           type: string
         definedTags:
           additionalProperties:
@@ -1834,6 +1736,15 @@ components:
 
             '
           type: object
+        description:
+          description: The description of the topic.
+          maxLength: 256
+          type: string
+        etag:
+          description: 'For optimistic concurrency control. See `if-match`.
+
+            '
+          type: string
         freeformTags:
           additionalProperties:
             type: string
@@ -1844,16 +1755,14 @@ components:
 
             '
           type: object
-        id:
-          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
+        lifecycleState:
+          description: 'The lifecycle state of the topic.
 
             '
-          type: string
-        lifecycleState:
           enum:
-          - INACTIVE
           - ACTIVE
           - DELETING
+          - CREATING
           type: string
         locks:
           description: Locks associated with this resource.
@@ -1861,7 +1770,14 @@ components:
             $ref: '#/components/schemas/ResourceLock'
           type: array
         name:
-          description: Publisher map group name
+          description: The name of the topic.
+          maxLength: 256
+          type: string
+        shortTopicId:
+          description: 'A short code used to identify the topic in messages sent to SMS subscriptions. Each short code contains six case-insensitive alphanumeric characters.
+
+            '
+          maxLength: 10
           type: string
         systemTags:
           additionalProperties:
@@ -1882,9 +1798,39 @@ components:
 
             '
           type: object
-        updatedTime:
+        timeCreated:
+          description: The time the topic was created.
           format: date-time
           type: string
+        topicId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the topic.
+
+            '
+          maxLength: 255
+          type: string
+      required:
+      - name
+      - topicId
+      - compartmentId
+      - lifecycleState
+      - timeCreated
+      - apiEndpoint
+      type: object
+      x-example: "{\n  \"name\": \"Admins\",\n  \"topicId\": \"<var>&lt;topic_OCID&gt;</var>\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"lifecycleState\": \"ACTIVE\",\n  \"description\": \"Channel for admin notifications\",\n  \"timeCreated\": \"2018-11-04T05:00:00.600Z\",\n  \"freeformTags\": {\n    \"additionalProp1\": \"{\"Department\": \"Finance\"}\",\n  },\n  \"definedTags\": {\n    \"additionalProp1\": {\n      \"additionalProp1\": {\"CostCenter\": \"42\"},\n    }\n  }\n  \"apiEndpoint\": \"<var>&lt;topic endpoint&gt;</var>\"\n}\n"
+    Error:
+      description: An error has occurred.
+      properties:
+        code:
+          description: A short error code that defines the error, meant for programmatic parsing. See [API Errors](/iaas/Content/API/References/apierrors.htm).
+          format: x-obmcs-ascii-identifier
+          type: string
+        message:
+          description: A human-readable error string.
+          format: x-obmcs-human-language
+          type: string
+      required:
+      - code
+      - message
       type: object
     CreatePublisherMapDetails:
       description: The create publisher message map details.
@@ -1993,6 +1939,135 @@ components:
       - compartmentId
       type: object
       x-example: "{\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\"\n}\n"
+    AddResourceLockDetails:
+      allOf:
+      - $ref: '#/components/schemas/ResourceLock'
+    TopicAttributesDetails:
+      description: 'The configuration details for updating the topic.
+
+        '
+      properties:
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: The description of the topic. Avoid entering confidential information.
+          maxLength: 256
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+      required:
+      - description
+      type: object
+      x-example: "{\n  \"description\": \"Channel for admin messages\"\n}\n"
+    UpdatePublisherMapGroupDetails:
+      description: The update publisher message map group details.
+      properties:
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        description:
+          description: Publisher map group description
+          type: string
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        publisherMapIds:
+          items:
+            type: string
+          type: array
+      type: object
+      x-example: "{\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\" ],\n  \"description\" : \"Publisher map group description\"\n}\n"
+    RemoveResourceLockDetails:
+      allOf:
+      - $ref: '#/components/schemas/ResourceLock'
+    ResourceLock:
+      description: 'Resource locks are used to prevent certain APIs from being called for the resource.
+
+        A full lock prevents both updating the resource and deleting the resource. A delete
+
+        lock prevents deleting the resource.
+
+        '
+      properties:
+        compartmentId:
+          description: The compartment ID of the lock.
+          type: string
+        message:
+          description: 'A message added by the creator of the lock. This is typically used to give an
+
+            indication of why the resource is locked.
+
+            '
+          type: string
+        relatedResourceId:
+          description: 'The id of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+
+            '
+          type: string
+        timeCreated:
+          description: When the lock was created.
+          format: date-time
+          type: string
+        type:
+          description: Type of the lock.
+          enum:
+          - FULL
+          - DELETE
+          type: string
+      required:
+      - type
+      - compartmentId
+      type: object
     PublisherMapGroup:
       description: The create publisher message map group details.
       properties:
@@ -2226,163 +2301,6 @@ components:
       - compartmentId
       - name
       type: object
-    PublisherMapSummary:
-      description: The publisher map summary.
-      properties:
-        compartmentId:
-          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map.
-
-            '
-          maxLength: 255
-          minLength: 1
-          type: string
-        createdTime:
-          format: date-time
-          type: string
-        definedTags:
-          additionalProperties:
-            additionalProperties:
-              description: 'The value of the tag. Only string type is supported as valid value type.
-
-                '
-              type: object
-            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
-
-              Example: `{"bar-key": "value"}`
-
-              '
-            type: object
-          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
-
-
-            Example: `{"Operations": {"CostCenter": "42"}}`
-
-            '
-          type: object
-        freeformTags:
-          additionalProperties:
-            type: string
-          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
-
-
-            Example: `{"Department": "Finance"}`
-
-            '
-          type: object
-        id:
-          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
-
-            '
-          type: string
-        lifecycleState:
-          enum:
-          - INACTIVE
-          - ACTIVE
-          - DELETING
-          type: string
-        locks:
-          description: Locks associated with this resource.
-          items:
-            $ref: '#/components/schemas/ResourceLock'
-          type: array
-        name:
-          description: Publisher map name
-          type: string
-        providerName:
-          enum:
-          - EMAIL
-          - SMS
-          - SLACK
-          - OCEAN_INTERNAL
-          type: string
-          x-obmcs-top-level-enum: '#/definitions/ProviderName'
-        providerVersion:
-          description: publisher map version.
-          type: string
-        systemTags:
-          additionalProperties:
-            additionalProperties:
-              description: 'The value of the tag. Only string type is supported.
-
-                '
-              type: object
-            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
-
-              Example: `{"bar-key": "value"}`
-
-              '
-            type: object
-          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
-
-            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
-
-            '
-          type: object
-        updatedTime:
-          format: date-time
-          type: string
-      type: object
-    Error:
-      description: An error has occurred.
-      properties:
-        code:
-          description: A short error code that defines the error, meant for programmatic parsing. See [API Errors](/iaas/Content/API/References/apierrors.htm).
-          format: x-obmcs-ascii-identifier
-          type: string
-        message:
-          description: A human-readable error string.
-          format: x-obmcs-human-language
-          type: string
-      required:
-      - code
-      - message
-      type: object
-    AddResourceLockDetails:
-      allOf:
-      - $ref: '#/components/schemas/ResourceLock'
-    TopicAttributesDetails:
-      description: 'The configuration details for updating the topic.
-
-        '
-      properties:
-        definedTags:
-          additionalProperties:
-            additionalProperties:
-              description: 'The value of the tag. Only string type is supported as valid value type.
-
-                '
-              type: object
-            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
-
-              Example: `{"bar-key": "value"}`
-
-              '
-            type: object
-          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
-
-
-            Example: `{"Operations": {"CostCenter": "42"}}`
-
-            '
-          type: object
-        description:
-          description: The description of the topic. Avoid entering confidential information.
-          maxLength: 256
-          type: string
-        freeformTags:
-          additionalProperties:
-            type: string
-          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
-
-
-            Example: `{"Department": "Finance"}`
-
-            '
-          type: object
-      required:
-      - description
-      type: object
-      x-example: "{\n  \"description\": \"Channel for admin messages\"\n}\n"
     CreateTopicDetails:
       description: 'The configuration details for creating the topic.
 
@@ -2437,9 +2355,6 @@ components:
       - compartmentId
       type: object
       x-example: "{\n  \"name\": \"Admins\",\n  \"compartmentId\": \"<var>&lt;compartment_OCID&gt;</var>\",\n  \"description\": \"Channel for admin messages\"\n}\n"
-    RemoveResourceLockDetails:
-      allOf:
-      - $ref: '#/components/schemas/ResourceLock'
     CreatePublisherMapGroupDetails:
       description: The create publisher message map group details.
       properties:
@@ -2514,7 +2429,155 @@ components:
       - name
       type: object
       x-example: "{\n  \"id\" : \"ocid1.onspublishermapgroup.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\",\n  \"compartmentId\" : \"ocid1.compartment.oc1..aaaaaaaayetz53j6gqsc7gc4bcqltokxigos66hivqnva6ul3deiwxqgpqgq\",\n  \"publisherMapIds\" : [ \"ocid1.onspublishermap.oc1.phx.aaaaaaaaqb45cr5kxvmlv3o55ljqocuszoqt5zcbdhon7fdzfi6hgfygb3rq\" ],\n  \"name\" : \"Publisher map group name\",\n  \"description\" : \"Publisher map group description\"\n}\n"
+    PublisherMapGroupSummary:
+      description: The publisher map group summary.
+      properties:
+        compartmentId:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the publisher map group.
+
+            '
+          maxLength: 255
+          minLength: 1
+          type: string
+        createdTime:
+          format: date-time
+          type: string
+        definedTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported as valid value type.
+
+                '
+              type: object
+            description: 'Key-value pair representing predefined tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Operations": {"CostCenter": "42"}}`
+
+            '
+          type: object
+        freeformTags:
+          additionalProperties:
+            type: string
+          description: 'Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](/Content/General/Concepts/resourcetags.htm).
+
+
+            Example: `{"Department": "Finance"}`
+
+            '
+          type: object
+        id:
+          description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
+
+            '
+          type: string
+        lifecycleState:
+          enum:
+          - INACTIVE
+          - ACTIVE
+          - DELETING
+          type: string
+        locks:
+          description: Locks associated with this resource.
+          items:
+            $ref: '#/components/schemas/ResourceLock'
+          type: array
+        name:
+          description: Publisher map group name
+          type: string
+        systemTags:
+          additionalProperties:
+            additionalProperties:
+              description: 'The value of the tag. Only string type is supported.
+
+                '
+              type: object
+            description: 'Key-value pair representing system tags'' keys and values scoped to a namespace.
+
+              Example: `{"bar-key": "value"}`
+
+              '
+            type: object
+          description: 'System tags for this resource. Each key is predefined and scoped to a namespace.
+
+            Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+
+            '
+          type: object
+        updatedTime:
+          format: date-time
+          type: string
+      type: object
   parameters:
+    RetryTokenHeader:
+      description: 'A token that uniquely identifies a request so it can be retried in case of a timeout or
+
+        server error without risk of executing that same action again. Retry tokens expire after 24
+
+        hours, but can be invalidated before that due to conflicting operations (for example, if a resource
+
+        has been deleted and purged from the system, then a retry of the original creation request
+
+        may be rejected).
+
+        '
+      in: header
+      name: opc-retry-token
+      schema:
+        type: string
+        maxLength: 64
+        minLength: 1
+    FilterByIdQueryParam:
+      description: 'A filter to only return resources that match the given id exactly.
+
+        '
+      in: query
+      name: id
+      required: false
+      schema:
+        type: string
+        maxLength: 1024
+        minLength: 1
+    SplatStoreRequestToken:
+      description: 'This token is to allow Splat be notified as customer updates resource, so that updated resource usage is properly reflected on the SPLAT''s side.
+
+        In order to do that, partner team must store the value of oci-splat-store-request-token header that SPLAT sends to the partner service in the update API.
+
+        The value of this header must be persisted in the internal resource''s state and reflected in the GET API.
+
+        '
+      in: header
+      name: oci-splat-store-request-token
+      required: false
+      schema:
+        type: string
+    PaginationTokenQueryParam:
+      description: 'For list pagination. The value of the opc-next-page response header from the previous "List" call.
+
+        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
+
+        '
+      in: query
+      name: page
+      required: false
+      schema:
+        type: string
+        minLength: 1
+    SplatGeneratedResourceId:
+      description: 'resourceId generated by Splat
+
+        '
+      in: header
+      name: oci-splat-generated-ocids
+      required: false
+      schema:
+        type: string
     PaginationLimitQueryParam:
       description: 'For list pagination. The maximum number of results per page, or items to return in a paginated "List" call.
 
@@ -2542,146 +2605,6 @@ components:
         - TIMECREATED
         - LIFECYCLESTATE
         default: TIMECREATED
-    PublisherMapIdPathParam:
-      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
-
-        '
-      in: path
-      name: publisherMapId
-      required: true
-      schema:
-        type: string
-    RetryTokenHeader:
-      description: 'A token that uniquely identifies a request so it can be retried in case of a timeout or
-
-        server error without risk of executing that same action again. Retry tokens expire after 24
-
-        hours, but can be invalidated before that due to conflicting operations (for example, if a resource
-
-        has been deleted and purged from the system, then a retry of the original creation request
-
-        may be rejected).
-
-        '
-      in: header
-      name: opc-retry-token
-      schema:
-        type: string
-        maxLength: 64
-        minLength: 1
-    AddResourceLockDetailsBodyParam:
-      description: AddResourceLockDetails body parameter
-      in: body
-      name: AddResourceLockDetails
-      required: true
-      schema:
-        $ref: '#/components/schemas/AddResourceLockDetails'
-    TopicIdPathParam:
-      description: The [OCID](/Content/General/Concepts/identifiers.htm) of a topic.
-      in: path
-      name: topicId
-      required: true
-      schema:
-        type: string
-    FilterByIdQueryParam:
-      description: 'A filter to only return resources that match the given id exactly.
-
-        '
-      in: query
-      name: id
-      required: false
-      schema:
-        type: string
-        maxLength: 1024
-        minLength: 1
-    PublisherMapGroupIdPathParam:
-      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
-
-        '
-      in: path
-      name: publisherMapGroupId
-      required: true
-      schema:
-        type: string
-    PaginationTokenQueryParam:
-      description: 'For list pagination. The value of the opc-next-page response header from the previous "List" call.
-
-        For important details about how pagination works, see [List Pagination](/iaas/Content/API/Concepts/usingapi.htm#nine).
-
-        '
-      in: query
-      name: page
-      required: false
-      schema:
-        type: string
-        minLength: 1
-    OciNapCorpNetworkHeaderParam:
-      description: 'This is stamped on requests coming from customer''s corp network.
-
-        '
-      in: header
-      name: x-oci-nap-corpnetwork
-      required: false
-      schema:
-        type: string
-    SplatStoreRequestToken:
-      description: 'This token is to allow Splat be notified as customer updates resource, so that updated resource usage is properly reflected on the SPLAT''s side.
-
-        In order to do that, partner team must store the value of oci-splat-store-request-token header that SPLAT sends to the partner service in the update API.
-
-        The value of this header must be persisted in the internal resource''s state and reflected in the GET API.
-
-        '
-      in: header
-      name: oci-splat-store-request-token
-      required: false
-      schema:
-        type: string
-    OverrideLocksQueryParameter:
-      description: Whether to override locks (if any exist).
-      in: query
-      name: isLockOverride
-      schema:
-        type: boolean
-        default: false
-    FilterByNameQueryParam:
-      description: 'A filter to only return resources that match the given name exactly.
-
-        '
-      in: query
-      name: name
-      required: false
-      schema:
-        type: string
-        maxLength: 1024
-        minLength: 1
-    RemoveResourceLockDetailsBodyParam:
-      description: RemoveResourceLockDetails body parameter
-      in: body
-      name: RemoveResourceLockDetails
-      required: true
-      schema:
-        $ref: '#/components/schemas/RemoveResourceLockDetails'
-    OpcRequestIdHeaderParam:
-      description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
-
-        particular request, please provide the request ID.
-
-        '
-      in: header
-      name: opc-request-id
-      required: false
-      schema:
-        type: string
-    SplatGeneratedResourceId:
-      description: 'resourceId generated by Splat
-
-        '
-      in: header
-      name: oci-splat-generated-ocids
-      required: false
-      schema:
-        type: string
     SortOrderQueryParam:
       description: 'The sort order to use (ascending or descending).
 
@@ -2700,6 +2623,37 @@ components:
         enum:
         - ASC
         - DESC
+    PublisherMapIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map.
+
+        '
+      in: path
+      name: publisherMapId
+      required: true
+      schema:
+        type: string
+    OpcRequestIdHeaderParam:
+      description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+
+        particular request, please provide the request ID.
+
+        '
+      in: header
+      name: opc-request-id
+      required: false
+      schema:
+        type: string
+    FilterByNameQueryParam:
+      description: 'A filter to only return resources that match the given name exactly.
+
+        '
+      in: query
+      name: name
+      required: false
+      schema:
+        type: string
+        maxLength: 1024
+        minLength: 1
     CompartmentIdQueryParam:
       description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 
@@ -2711,6 +2665,22 @@ components:
         type: string
         maxLength: 255
         minLength: 1
+    OciNapCorpNetworkHeaderParam:
+      description: 'This is stamped on requests coming from customer''s corp network.
+
+        '
+      in: header
+      name: x-oci-nap-corpnetwork
+      required: false
+      schema:
+        type: string
+    TopicIdPathParam:
+      description: The [OCID](/Content/General/Concepts/identifiers.htm) of a topic.
+      in: path
+      name: topicId
+      required: true
+      schema:
+        type: string
     IfMatchHeader:
       description: 'Used for optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 
@@ -2724,6 +2694,36 @@ components:
       required: false
       schema:
         type: string
+    OverrideLocksQueryParameter:
+      description: Whether to override locks (if any exist).
+      in: query
+      name: isLockOverride
+      schema:
+        type: boolean
+        default: false
+    PublisherMapGroupIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of the publisher map group.
+
+        '
+      in: path
+      name: publisherMapGroupId
+      required: true
+      schema:
+        type: string
+    RemoveResourceLockDetailsBodyParam:
+      description: RemoveResourceLockDetails body parameter
+      in: body
+      name: RemoveResourceLockDetails
+      required: true
+      schema:
+        $ref: '#/components/schemas/RemoveResourceLockDetails'
+    AddResourceLockDetailsBodyParam:
+      description: AddResourceLockDetails body parameter
+      in: body
+      name: AddResourceLockDetails
+      required: true
+      schema:
+        $ref: '#/components/schemas/AddResourceLockDetails'
   responses:
     DefaultError:
       description: An error has occurred.

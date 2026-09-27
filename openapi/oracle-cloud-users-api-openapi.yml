@@ -222,6 +222,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    UpdateUserDetails:
+      type: object
+      properties:
+        description:
+          type: string
+          example: example-value
+        email:
+          type: string
+          format: email
+          example: admin@example.com
     CreateUserDetails:
       type: object
       required:
@@ -238,16 +248,6 @@ components:
         description:
           type: string
           example: John Smith
-        email:
-          type: string
-          format: email
-          example: admin@example.com
-    UpdateUserDetails:
-      type: object
-      properties:
-        description:
-          type: string
-          example: example-value
         email:
           type: string
           format: email
