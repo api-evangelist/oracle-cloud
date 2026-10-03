@@ -100,6 +100,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CreateGroupDetails:
+      type: object
+      required:
+      - compartmentId
+      - name
+      - description
+      properties:
+        compartmentId:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        name:
+          type: string
+          example: example-value
+        description:
+          type: string
+          example: example-value
     Group:
       type: object
       description: An IAM group.
@@ -129,22 +145,6 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
-    CreateGroupDetails:
-      type: object
-      required:
-      - compartmentId
-      - name
-      - description
-      properties:
-        compartmentId:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        name:
-          type: string
-          example: example-value
-        description:
-          type: string
-          example: example-value
   securitySchemes:
     ociSignature:
       type: http

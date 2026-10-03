@@ -143,35 +143,6 @@ components:
             type: string
           example:
             key1: value1
-    SummarizeMetricsDataDetails:
-      type: object
-      description: Details for summarizing metrics data.
-      required:
-      - namespace
-      - query
-      properties:
-        namespace:
-          type: string
-          description: The metric namespace.
-          example: oci_computeagent
-        query:
-          type: string
-          description: The Monitoring Query Language expression.
-          example: CpuUtilization[1m].mean()
-        startTime:
-          type: string
-          format: date-time
-          description: Start of the time range.
-          example: '2026-04-18T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          description: End of the time range.
-          example: '2026-04-18T10:30:00Z'
-        resolution:
-          type: string
-          description: The time interval for aggregation.
-          example: 1m
     MetricData:
       type: object
       description: Aggregated metric data points.
@@ -205,6 +176,35 @@ components:
           example:
           - timestamp: '2026-04-18T10:30:00Z'
             value: 42.5
+    SummarizeMetricsDataDetails:
+      type: object
+      description: Details for summarizing metrics data.
+      required:
+      - namespace
+      - query
+      properties:
+        namespace:
+          type: string
+          description: The metric namespace.
+          example: oci_computeagent
+        query:
+          type: string
+          description: The Monitoring Query Language expression.
+          example: CpuUtilization[1m].mean()
+        startTime:
+          type: string
+          format: date-time
+          description: Start of the time range.
+          example: '2026-04-18T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: End of the time range.
+          example: '2026-04-18T10:30:00Z'
+        resolution:
+          type: string
+          description: The time interval for aggregation.
+          example: 1m
   securitySchemes:
     ociSignature:
       type: http

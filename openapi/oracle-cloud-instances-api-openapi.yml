@@ -496,36 +496,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UpdateInstanceDetails:
-      type: object
-      description: Details for updating an instance.
-      properties:
-        displayName:
-          type: string
-          description: A user-friendly name.
-          example: updated-instance-name
-        shape:
-          type: string
-          description: The shape of the instance.
-          example: VM.Standard.E4.Flex
-        shapeConfig:
-          type: object
-          properties:
-            ocpus:
-              type: number
-              example: 4.0
-            memoryInGBs:
-              type: number
-              example: 32.0
-          example:
-            ocpus: 4.0
-            memoryInGBs: 32.0
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            key1: value1
     LaunchInstanceDetails:
       type: object
       description: Details for launching a new compute instance.
@@ -573,6 +543,52 @@ components:
           example:
             ocpus: 2.0
             memoryInGBs: 16.0
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+    Error:
+      type: object
+      description: Error response from OCI API.
+      properties:
+        code:
+          type: string
+          description: A short error code.
+          example: NotAuthorizedOrNotFound
+        message:
+          type: string
+          description: A human-readable error message.
+          example: Authorization failed or requested resource not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+    UpdateInstanceDetails:
+      type: object
+      description: Details for updating an instance.
+      properties:
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: updated-instance-name
+        shape:
+          type: string
+          description: The shape of the instance.
+          example: VM.Standard.E4.Flex
+        shapeConfig:
+          type: object
+          properties:
+            ocpus:
+              type: number
+              example: 4.0
+            memoryInGBs:
+              type: number
+              example: 32.0
+          example:
+            ocpus: 4.0
+            memoryInGBs: 32.0
         freeformTags:
           type: object
           additionalProperties:
@@ -643,22 +659,6 @@ components:
             type: object
           example:
             key1: value1
-    Error:
-      type: object
-      description: Error response from OCI API.
-      properties:
-        code:
-          type: string
-          description: A short error code.
-          example: NotAuthorizedOrNotFound
-        message:
-          type: string
-          description: A human-readable error message.
-          example: Authorization failed or requested resource not found.
-        status:
-          type: integer
-          description: HTTP status code.
-          example: 404
   securitySchemes:
     ociSignature:
       type: http
