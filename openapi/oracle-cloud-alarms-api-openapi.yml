@@ -287,6 +287,21 @@ components:
             type: string
           example:
           - example-value
+    UpdateAlarmDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: my-resource
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
+        severity:
+          type: string
+          example: example-value
+        isEnabled:
+          type: boolean
+          example: true
     Alarm:
       type: object
       description: A monitoring alarm.
@@ -337,21 +352,6 @@ components:
           type: string
           format: date-time
           example: '2026-04-18T10:30:00Z'
-    UpdateAlarmDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-          example: my-resource
-        query:
-          type: string
-          example: CpuUtilization[1m].mean()
-        severity:
-          type: string
-          example: example-value
-        isEnabled:
-          type: boolean
-          example: true
   securitySchemes:
     ociSignature:
       type: http

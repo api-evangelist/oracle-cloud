@@ -288,22 +288,6 @@ components:
           - InfrequentAccess
           - Archive
           example: Standard
-    Error:
-      type: object
-      description: Error response from OCI API.
-      properties:
-        code:
-          type: string
-          description: A short error code.
-          example: BucketNotFound
-        message:
-          type: string
-          description: A human-readable error message.
-          example: The bucket does not exist.
-        status:
-          type: integer
-          description: HTTP status code.
-          example: 404
     ListObjects:
       type: object
       description: Response containing a list of objects.
@@ -331,6 +315,22 @@ components:
           type: string
           description: Object name to resume listing.
           example: example-value
+    Error:
+      type: object
+      description: Error response from OCI API.
+      properties:
+        code:
+          type: string
+          description: A short error code.
+          example: BucketNotFound
+        message:
+          type: string
+          description: A human-readable error message.
+          example: The bucket does not exist.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
   securitySchemes:
     ociSignature:
       type: http
