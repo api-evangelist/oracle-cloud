@@ -57,7 +57,6 @@ tags:
   - Platform-as-a-Service
   - Compute
   - Object Storage
-  - Identity and Access Management
   - Database
   - Kubernetes
   - Serverless
@@ -71,7 +70,6 @@ tags_raw:
   - Platform as a Service
   - Compute
   - Object Storage
-  - Identity and Access Management
   - Database
   - Kubernetes
   - Serverless
@@ -11295,3 +11293,5 @@ x-enrichment:
   pass: local-v1
 x-parent: oracle
 x-relationship: product
+x-tags-removed:
+- Identity and Access Management
