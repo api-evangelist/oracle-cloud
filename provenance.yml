@@ -79,17 +79,17 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-alarms-api
   collections/oracle-cloud-applications-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-applications-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-applications-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-applications-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-autonomous-databases-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-autonomous-databases-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-autonomous-databases-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-autonomous-databases-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-buckets-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-buckets-api
@@ -97,11 +97,11 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-buckets-api
   collections/oracle-cloud-clusters-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-clusters-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-clusters-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-clusters-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-compartments-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-compartments-api
@@ -109,17 +109,17 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-compartments-api
   collections/oracle-cloud-db-systems-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-db-systems-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-db-systems-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-db-systems-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-functions-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-functions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-functions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-functions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-groups-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-groups-api
@@ -139,11 +139,11 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-instances-api
   collections/oracle-cloud-internet-gateways-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-internet-gateways-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-internet-gateways-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-internet-gateways-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-metrics-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-metrics-api
@@ -157,11 +157,11 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-namespaces-api
   collections/oracle-cloud-node-pools-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-node-pools-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-node-pools-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-node-pools-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-objects-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-objects-api
@@ -181,17 +181,17 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-preauthenticated-requests-api
   collections/oracle-cloud-route-tables-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-route-tables-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-route-tables-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-route-tables-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-security-lists-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-security-lists-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-security-lists-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-security-lists-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-shapes-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-shapes-api
@@ -199,11 +199,11 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-shapes-api
   collections/oracle-cloud-subnets-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-subnets-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-subnets-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-subnets-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-users-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-users-api
@@ -211,11 +211,11 @@ artifacts:
     method: derived
     evidence: openapi/oracle-cloud-users-api
   collections/oracle-cloud-vcns-api.opencollection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-vcns-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-vcns-api.postman_collection.json:
-    method: derived
-    evidence: openapi/oracle-cloud-vcns-api
+    method: unknown
+    evidence: no authorship recorded
   collections/oracle-cloud-volume-attachments-api.opencollection.json:
     method: derived
     evidence: openapi/oracle-cloud-volume-attachments-api
@@ -621,6 +621,9 @@ artifacts:
   finops/oracle-cloud-finops.yml:
     method: generated
     evidence: declared in the artifact
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/oracle-cloud-compute-attach-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -1260,55 +1263,7 @@ artifacts:
   json-structure/oracle-cloud-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -1395,6 +1350,123 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/oracle-cloud-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -1409,74 +1481,101 @@ artifacts:
     evidence: declared in the artifact
   openapi/_original/oracle-cloud-core-services-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-database-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-events-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-functions-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-identity-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-kubernetes-engine-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-monitoring-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-notifications-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/oracle-cloud-object-storage-openapi.yaml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/oracle-cloud-alarms-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/oracle-cloud-applications-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/oracle-cloud-autonomous-databases-api-openapi.yml:
+  openapi/oracle-cloud-blockstorage-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-buckets-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/oracle-cloud-clusters-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-compartments-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/oracle-cloud-db-systems-api-openapi.yml:
+  openapi/oracle-cloud-compute-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/oracle-cloud-functions-api-openapi.yml:
+  openapi/oracle-cloud-computemanagement-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-containerengine-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-database-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-events-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-functionsinvoke-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-functionsmanagement-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-groups-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
+  openapi/oracle-cloud-identity-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-images-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-instances-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/oracle-cloud-internet-gateways-api-openapi.yml:
+  openapi/oracle-cloud-metrics-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/oracle-cloud-metrics-api-openapi.yml:
+  openapi/oracle-cloud-monitoring-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-namespaces-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/oracle-cloud-node-pools-api-openapi.yml:
+  openapi/oracle-cloud-notificationcontrolplane-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-notificationdataplane-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/oracle-cloud-object-storage-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-objects-api-openapi.yml:
@@ -1488,22 +1587,13 @@ artifacts:
   openapi/oracle-cloud-preauthenticated-requests-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/oracle-cloud-route-tables-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/oracle-cloud-security-lists-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-shapes-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/oracle-cloud-subnets-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-users-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/oracle-cloud-vcns-api-openapi.yml:
+  openapi/oracle-cloud-virtualnetwork-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/oracle-cloud-volume-attachments-api-openapi.yml:
@@ -1543,11 +1633,11 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   postman/oracle-cloud-compute.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/oracle-cloud-compute
   postman/oracle-cloud-database.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/oracle-cloud-database
   postman/oracle-cloud-functions.postman_collection.json:
     method: derived
     evidence: openapi/oracle-cloud-functions
@@ -1555,14 +1645,14 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   postman/oracle-cloud-monitoring.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/oracle-cloud-monitoring
   postman/oracle-cloud-networking.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
   postman/oracle-cloud-object-storage.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/oracle-cloud-object-storage
   postman/oracle-cloud-oke.postman_collection.json:
     method: unknown
     evidence: no authorship recorded

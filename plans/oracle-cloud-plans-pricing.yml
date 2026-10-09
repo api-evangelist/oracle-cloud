@@ -84,3 +84,36 @@ notes: >-
   Upgraded from method:generated to method:searched on 2026-08-29 after reading the live Free Tier
   page. Per-service unit rates were NOT transcribed — there are hundreds and they change; the Cloud
   Price List and Cost Estimator remain the authority and are linked above.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - negotiated
+  units: []
+  plans:
+  - name: Oracle Cloud Free Tier — Free Trial
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Always Free Services
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pay As You Go
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Oracle Universal Credits (annual / multi-year commitment)
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
