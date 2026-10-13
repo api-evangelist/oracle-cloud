@@ -1,0 +1,12 @@
+fetched: '2026-10-13'
+method: fetched
+source: https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm
+page: https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm
+file: oracle-cloud-oci-distribution-1.md
+bytes: 6158
+sha256: b2c2b98f6cbf79b2e54db4817436e8da79c6fbfc72927f21d7e085042bee7567
+anchor: open-container-initiative
+shape: oci-distribution
+classification: no-compatibility-statement
+quote: null
+note: text extracted from the provider's own page (tags stripped), saved for evidence
