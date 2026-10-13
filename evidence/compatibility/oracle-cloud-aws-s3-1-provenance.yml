@@ -1,0 +1,12 @@
+fetched: '2026-10-13'
+method: fetched
+source: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm
+page: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm
+file: oracle-cloud-aws-s3-1.md
+bytes: 6809
+sha256: 0dbb92abf172ea0c28fb870a4e4fabeef495601b8c59a67b8ce0df9f96b136ed
+anchor: amazon-web-services
+shape: aws-s3
+classification: declares-compatibility
+quote: Object Storage Amazon S3 Compatibility API
+note: text extracted from the provider's own page (tags stripped), saved for evidence

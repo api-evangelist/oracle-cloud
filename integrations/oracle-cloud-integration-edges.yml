@@ -37,6 +37,21 @@ edges:
   matched_by: verified-token-table
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: Amazon Web Services
+  partner: amazon-web-services
+  partner_match: shape-anchor
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  shape: aws-s3
+  type: docs
+  degree: declared-unqualified
+  evidence: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm
+  evidence_kind: own-docs
+  evidence_file: https://github.com/api-evangelist/oracle-cloud/blob/main/evidence/compatibility/oracle-cloud-aws-s3-1.md
+  quote: Object Storage Amazon S3 Compatibility API
+  detected_by: sweep-shape-compat.py
+  first_seen: '2026-10-13'
 generated: '2026-10-13'
 method: searched
 checked:
