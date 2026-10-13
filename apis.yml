@@ -10921,6 +10921,9 @@ apis:
   - type: Examples
     url: examples/monitoring-metric-example.json
 common:
+  - type: ParentCompany
+    url: https://www.oracle.com/
+    name: Oracle (oracle)
   - type: Plans
     url: plans/oracle-cloud-plans-pricing.yml
   - type: RateLimits
