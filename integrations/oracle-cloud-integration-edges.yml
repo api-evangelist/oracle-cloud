@@ -49,7 +49,8 @@ edges:
   evidence: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm
   evidence_kind: own-docs
   evidence_file: https://github.com/api-evangelist/oracle-cloud/blob/main/evidence/compatibility/oracle-cloud-aws-s3-1.md
-  quote: Object Storage Amazon S3 Compatibility API
+  quote: Learn how to use Oracle Cloud Infrastructure's Amazon S3 Compatibility API, where you can use existing
+    Amazon S3 tools to work with Object Storage.
   detected_by: sweep-shape-compat.py
   first_seen: '2026-10-13'
 - partner_name: Open Container Initiative
