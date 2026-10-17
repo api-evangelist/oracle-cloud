@@ -103,6 +103,17 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    FnInvokeTypeHeader:
+      description: "Indicates whether Oracle Functions should execute the request and return the result ('sync') of the execution, \nor whether Oracle Functions should return as soon as processing has begun ('detached') and leave result handling to the function.\n"
+      in: header
+      name: fn-invoke-type
+      required: false
+      schema:
+        type: string
+        enum:
+        - detached
+        - sync
+        default: sync
     FnIntentHeader:
       description: 'An optional intent header that indicates to the FDK the way the event should be interpreted. E.g. ''httprequest'', ''cloudevent''.
 
@@ -116,26 +127,6 @@ components:
         enum:
         - httprequest
         - cloudevent
-    FnInvokeTypeHeader:
-      description: "Indicates whether Oracle Functions should execute the request and return the result ('sync') of the execution, \nor whether Oracle Functions should return as soon as processing has begun ('detached') and leave result handling to the function.\n"
-      in: header
-      name: fn-invoke-type
-      required: false
-      schema:
-        type: string
-        enum:
-        - detached
-        - sync
-        default: sync
-    FunctionIdPathParam:
-      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this function.
-
-        '
-      in: path
-      name: functionId
-      required: true
-      schema:
-        type: string
     FnDryRunHeader:
       description: 'Indicates that the request is a dry run, if set to "true". A dry run request does not execute the function.
 
@@ -146,6 +137,15 @@ components:
       schema:
         type: boolean
         default: false
+    FunctionIdPathParam:
+      description: 'The [OCID](/iaas/Content/General/Concepts/identifiers.htm) of this function.
+
+        '
+      in: path
+      name: functionId
+      required: true
+      schema:
+        type: string
     OpcRequestIdHeaderParam:
       description: 'The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 

@@ -225,24 +225,21 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AlarmSummary:
+    UpdateAlarmDetails:
       type: object
       properties:
-        id:
-          type: string
-          example: ocid1.resource.oc1.iad.abcdefg123456
         displayName:
           type: string
           example: my-resource
+        query:
+          type: string
+          example: CpuUtilization[1m].mean()
         severity:
           type: string
           example: example-value
         isEnabled:
           type: boolean
           example: true
-        lifecycleState:
-          type: string
-          example: example-value
     CreateAlarmDetails:
       type: object
       required:
@@ -287,21 +284,24 @@ components:
             type: string
           example:
           - example-value
-    UpdateAlarmDetails:
+    AlarmSummary:
       type: object
       properties:
+        id:
+          type: string
+          example: ocid1.resource.oc1.iad.abcdefg123456
         displayName:
           type: string
           example: my-resource
-        query:
-          type: string
-          example: CpuUtilization[1m].mean()
         severity:
           type: string
           example: example-value
         isEnabled:
           type: boolean
           example: true
+        lifecycleState:
+          type: string
+          example: example-value
     Alarm:
       type: object
       description: A monitoring alarm.

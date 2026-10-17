@@ -140,38 +140,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AttachVolumeDetails:
-      type: object
-      description: Details for attaching a volume.
-      required:
-      - instanceId
-      - volumeId
-      - type
-      properties:
-        instanceId:
-          type: string
-          description: The OCID of the instance.
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        volumeId:
-          type: string
-          description: The OCID of the volume.
-          example: ocid1.resource.oc1.iad.abcdefg123456
-        type:
-          type: string
-          description: The type of volume attachment.
-          enum:
-          - iscsi
-          - paravirtualized
-          example: iscsi
-        displayName:
-          type: string
-          description: A user-friendly name.
-          example: my-resource
-        isReadOnly:
-          type: boolean
-          description: Whether the attachment is read-only.
-          default: false
-          example: false
     VolumeAttachment:
       type: object
       description: A volume attached to a compute instance.
@@ -211,6 +179,38 @@ components:
           - iscsi
           - paravirtualized
           example: iscsi
+    AttachVolumeDetails:
+      type: object
+      description: Details for attaching a volume.
+      required:
+      - instanceId
+      - volumeId
+      - type
+      properties:
+        instanceId:
+          type: string
+          description: The OCID of the instance.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        volumeId:
+          type: string
+          description: The OCID of the volume.
+          example: ocid1.resource.oc1.iad.abcdefg123456
+        type:
+          type: string
+          description: The type of volume attachment.
+          enum:
+          - iscsi
+          - paravirtualized
+          example: iscsi
+        displayName:
+          type: string
+          description: A user-friendly name.
+          example: my-resource
+        isReadOnly:
+          type: boolean
+          description: Whether the attachment is read-only.
+          default: false
+          example: false
   securitySchemes:
     ociSignature:
       type: http
