@@ -144,3 +144,43 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: oracle-cloud-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/oci-common
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: oci-common
+      version: 2.143.0
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/oci-common
+      repo_leg: shared-github-org:oracle
+      publisher_leg: email:oracle.com
+      matched_by: domain+name-among-holders
+    - name: oci-sdk
+      version: 2.143.0
+      released: '2026-10-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/oci-sdk
+      repo_leg: shared-github-org:oracle
+      publisher_leg: email:oracle.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
