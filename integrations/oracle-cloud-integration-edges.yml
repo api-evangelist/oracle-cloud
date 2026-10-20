@@ -213,11 +213,46 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: EU Cloud Code of Conduct (SCOPE Europe monitoring body)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eucoc.cloud/en/public-register/list-of-adherent-services
+  category: Cloud data-protection assurance
+  contract_reference:
+    register: EU Cloud Code of Conduct public register (eucoc.cloud, list of adherent services)
+    spec_file: null
+    standard: EU Cloud CoC
+    role: eu-cloud-coc-adherent
+    registered_name: Oracle Cloud Infrastructure
+    register_id: 2022LVL02SCOPE4214
+    service_url: https://oracle.com/cloud
+    matched_domain: oracle.com
+    matched_by: domain+name-among-holders
+    identity_source: the service URL on the register (filed by the adherent, verified by the monitoring body)
+    level_of_compliance: 2
+    latest_assessment: '2026-08-03'
+    due_date: '2027-08-02'
+    certified_products:
+    - product: EU Cloud CoC verified declaration of adherence
+      lapsed: false
+      level: 2
+    signal_note: 'one certified product: adherence verified by the accredited monitoring body (GDPR Art. 41); lapsed
+      when the due date has passed; level is context; services never counted'
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
 generated: '2026-10-13'
 method: searched
 checked:
 - https://api.nuget.org/v3
+- https://cloudsecurityalliance.org/star/registry
 - https://crates.io/api/v1
+- https://eucoc.cloud/en/public-register/list-of-adherent-services
 - https://focus.finops.org/data-generators/
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
