@@ -1,4 +1,4 @@
-# Oracle Cloud Infrastructure (oracle-cloud)
+# Oracle Cloud Infrastructure
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,706 +64,385 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Collection of Oracle Cloud Infrastructure (OCI) REST APIs for managing cloud resources and services.
+Oracle Cloud Infrastructure (OCI) is Oracle's public cloud, exposed as a REST control plane of 159 service APIs covering compute, virtual cloud networking, block and object storage, identity and access management, Autonomous Database, Kubernetes Engine, Functions, monitoring, events and notifications. Every request is signed with an RSA API signing key rather than a bearer token, every service is versioned by a YYYYMMDD segment in the URL path, and Oracle publishes a first-party Swagger 2.0 contract for each service from a single machine-readable index at docs.oracle.com/en-us/iaas/api/specs/. Client SDKs ship for Python, Java, TypeScript, Go, Ruby, .NET and PowerShell alongside the OCI CLI, a Terraform provider, and a repository of 27 reference MCP servers for agent access.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/oracle-cloud/refs/heads/main/apis.yml)
+**Areas:** Cloud Computing · Enterprise Cloud · Infrastructure-as-a-Service · Oracle · Platform-as-a-Service · Compute · Object Storage · Database · Kubernetes · Serverless · Monitoring · Event-Driven
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Oracle Cloud Infrastructure on APIs.io
 
-## Tags:
+Everything profiled for Oracle Cloud Infrastructure is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/oracle-cloud/](https://apis.io/providers/oracle-cloud/)** — or go straight to one of the APIs or properties below.
 
- - Cloud Computing, Enterprise Cloud, Infrastructure as a Service, Oracle, Platform as a Service
+### APIs (28)
 
-## Timestamps
+- [Oracle Cloud Infrastructure Alarms API](https://apis.io/apis/oracle-cloud/oracle-cloud-alarms-api/) — The Alarms API from Oracle Cloud Infrastructure — 2 operation(s) for alarms.
+- [Oracle Cloud Infrastructure Buckets API](https://apis.io/apis/oracle-cloud/oracle-cloud-buckets-api/) — The Buckets API from Oracle Cloud Infrastructure — 2 operation(s) for buckets.
+- [Oracle Cloud Infrastructure Compartments API](https://apis.io/apis/oracle-cloud/oracle-cloud-compartments-api/) — The Compartments API from Oracle Cloud Infrastructure — 1 operation(s) for compartments.
+- [Oracle Cloud Infrastructure Groups API](https://apis.io/apis/oracle-cloud/oracle-cloud-groups-api/) — The Groups API from Oracle Cloud Infrastructure — 1 operation(s) for groups.
+- [Oracle Cloud Infrastructure Images API](https://apis.io/apis/oracle-cloud/oracle-cloud-images-api/) — The Images API from Oracle Cloud Infrastructure — 2 operation(s) for images.
+- [Oracle Cloud Infrastructure Instances API](https://apis.io/apis/oracle-cloud/oracle-cloud-instances-api/) — The Instances API from Oracle Cloud Infrastructure — 3 operation(s) for instances.
+- [Oracle Cloud Infrastructure Metrics API](https://apis.io/apis/oracle-cloud/oracle-cloud-metrics-api/) — The Metrics API from Oracle Cloud Infrastructure — 2 operation(s) for metrics.
+- [Oracle Cloud Infrastructure Namespaces API](https://apis.io/apis/oracle-cloud/oracle-cloud-namespaces-api/) — The Namespaces API from Oracle Cloud Infrastructure — 1 operation(s) for namespaces.
+- [Oracle Cloud Infrastructure Objects API](https://apis.io/apis/oracle-cloud/oracle-cloud-objects-api/) — The Objects API from Oracle Cloud Infrastructure — 2 operation(s) for objects.
+- [Oracle Cloud Infrastructure Policies API](https://apis.io/apis/oracle-cloud/oracle-cloud-policies-api/) — The Policies API from Oracle Cloud Infrastructure — 1 operation(s) for policies.
+- [Oracle Cloud Infrastructure Preauthenticated Requests API](https://apis.io/apis/oracle-cloud/oracle-cloud-preauthenticated-requests-api/) — The Preauthenticated Requests API from Oracle Cloud Infrastructure — 1 operation(s) for preauthenticated requests.
+- [Oracle Cloud Infrastructure Shapes API](https://apis.io/apis/oracle-cloud/oracle-cloud-shapes-api/) — The Shapes API from Oracle Cloud Infrastructure — 1 operation(s) for shapes.
+- [Oracle Cloud Infrastructure Users API](https://apis.io/apis/oracle-cloud/oracle-cloud-users-api/) — The Users API from Oracle Cloud Infrastructure — 2 operation(s) for users.
+- [Oracle Cloud Infrastructure Volume Attachments API](https://apis.io/apis/oracle-cloud/oracle-cloud-volume-attachments-api/) — The Volume Attachments API from Oracle Cloud Infrastructure — 2 operation(s) for volume attachments.
+- [Oracle Cloud Infrastructure Blockstorage API](https://apis.io/apis/oracle-cloud/oracle-cloud-blockstorage-api/) — The blockstorage API from Oracle Cloud Infrastructure — 33 operation(s) for blockstorage.
+- [Oracle Cloud Infrastructure Compute API](https://apis.io/apis/oracle-cloud/oracle-cloud-compute-api/) — The compute API from Oracle Cloud Infrastructure — 82 operation(s) for compute.
+- [Oracle Cloud Infrastructure Compute Management API](https://apis.io/apis/oracle-cloud/oracle-cloud-computemanagement-api/) — The computeManagement API from Oracle Cloud Infrastructure — 23 operation(s) for computemanagement.
+- [Oracle Cloud Infrastructure Container Engine API](https://apis.io/apis/oracle-cloud/oracle-cloud-containerengine-api/) — API operations for working with the container engine service.
+- [Oracle Cloud Infrastructure Database API](https://apis.io/apis/oracle-cloud/oracle-cloud-database-api/) — The database API from Oracle Cloud Infrastructure — 319 operation(s) for database.
+- [Oracle Cloud Infrastructure Events API](https://apis.io/apis/oracle-cloud/oracle-cloud-events-api/) — The events API from Oracle Cloud Infrastructure — 3 operation(s) for events.
+- [Oracle Cloud Infrastructure Functions Invoke API](https://apis.io/apis/oracle-cloud/oracle-cloud-functionsinvoke-api/) — The functionsInvoke API from Oracle Cloud Infrastructure — 1 operation(s) for functionsinvoke.
+- [Oracle Cloud Infrastructure Functions Management API](https://apis.io/apis/oracle-cloud/oracle-cloud-functionsmanagement-api/) — The functionsManagement API from Oracle Cloud Infrastructure — 10 operation(s) for functionsmanagement.
+- [Oracle Cloud Infrastructure Identity API](https://apis.io/apis/oracle-cloud/oracle-cloud-identity-api/) — The identity API from Oracle Cloud Infrastructure — 93 operation(s) for identity.
+- [Oracle Cloud Infrastructure Monitoring API](https://apis.io/apis/oracle-cloud/oracle-cloud-monitoring-api/) — The monitoring API from Oracle Cloud Infrastructure — 13 operation(s) for monitoring.
+- [Oracle Cloud Infrastructure Notification Control Plane API](https://apis.io/apis/oracle-cloud/oracle-cloud-notificationcontrolplane-api/) — The notificationControlPlane API from Oracle Cloud Infrastructure — 13 operation(s) for notificationcontrolplane.
+- [Oracle Cloud Infrastructure Notification Data Plane API](https://apis.io/apis/oracle-cloud/oracle-cloud-notificationdataplane-api/) — The notificationDataPlane API from Oracle Cloud Infrastructure — 9 operation(s) for notificationdataplane.
+- [Oracle Cloud Infrastructure Virtual Network API](https://apis.io/apis/oracle-cloud/oracle-cloud-virtualnetwork-api/) — The virtualNetwork API from Oracle Cloud Infrastructure — 176 operation(s) for virtualnetwork.
+- [Oracle Cloud Infrastructure Object Storage API](https://apis.io/apis/oracle-cloud/oracle-cloud-object-storage-api/) — The Object Storage API from Oracle Cloud Infrastructure — 33 operation(s) for object storage.
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-18
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Compute API
-Manage compute instances, images, and related resources.
+#### Arazzo workflows (18)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/](https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/)
+Multi-step workflows that chain operations into a business task.
 
-#### Tags:
+- [Oracle Cloud Add Secured Subnet](https://apis.io/arazzos/oracle-cloud/oracle-cloud-add-secured-subnet-workflow/)
+- [Oracle Cloud Create Bucket And Upload Object](https://apis.io/arazzos/oracle-cloud/oracle-cloud-create-bucket-and-upload-object-workflow/)
+- [Oracle Cloud Create Metric Alarm](https://apis.io/arazzos/oracle-cloud/oracle-cloud-create-metric-alarm-workflow/)
+- [Oracle Cloud Deploy And Invoke Function](https://apis.io/arazzos/oracle-cloud/oracle-cloud-deploy-and-invoke-function-workflow/)
+- [Oracle Cloud Find Image And Launch Instance](https://apis.io/arazzos/oracle-cloud/oracle-cloud-find-image-and-launch-instance-workflow/)
+- [Oracle Cloud Launch Instance With Attached Volume](https://apis.io/arazzos/oracle-cloud/oracle-cloud-launch-instance-with-volume-workflow/)
+- [Oracle Cloud Onboard IAM User](https://apis.io/arazzos/oracle-cloud/oracle-cloud-onboard-iam-user-workflow/)
+- [Oracle Cloud Provision Autonomous Database](https://apis.io/arazzos/oracle-cloud/oracle-cloud-provision-autonomous-database-workflow/)
+- [Oracle Cloud Provision OKE Cluster With Node Pool](https://apis.io/arazzos/oracle-cloud/oracle-cloud-provision-oke-cluster-workflow/)
+- [Oracle Cloud Provision VCN Network](https://apis.io/arazzos/oracle-cloud/oracle-cloud-provision-vcn-network-workflow/)
+- [Oracle Cloud Resize Instance Shape](https://apis.io/arazzos/oracle-cloud/oracle-cloud-resize-instance-shape-workflow/)
+- [Oracle Cloud Restart Autonomous Database](https://apis.io/arazzos/oracle-cloud/oracle-cloud-restart-autonomous-database-workflow/)
+- [Oracle Cloud Share Object Via Preauthenticated Request](https://apis.io/arazzos/oracle-cloud/oracle-cloud-share-object-via-par-workflow/)
+- [Oracle Cloud Stop And Terminate Instance](https://apis.io/arazzos/oracle-cloud/oracle-cloud-stop-and-terminate-instance-workflow/)
+- [Oracle Cloud Summarize Instance CPU Metrics](https://apis.io/arazzos/oracle-cloud/oracle-cloud-summarize-instance-cpu-metrics-workflow/)
+- [Oracle Cloud Teardown Functions Application](https://apis.io/arazzos/oracle-cloud/oracle-cloud-teardown-functions-application-workflow/)
+- [Oracle Cloud Teardown OKE Cluster](https://apis.io/arazzos/oracle-cloud/oracle-cloud-teardown-oke-cluster-workflow/)
+- [Oracle Cloud Teardown VCN Network](https://apis.io/arazzos/oracle-cloud/oracle-cloud-teardown-vcn-network-workflow/)
 
- - Compute, Instances, Virtual Machines
+#### AsyncAPI (1)
 
-#### Properties
+Event-driven and webhook contracts.
 
-- [OpenAPI](openapi/oracle-cloud-compute-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Compute/home.htm)
-- [Pricing](https://www.oracle.com/cloud/compute/pricing.html)
-- [JSONSchema](json-schema/compute-update-instance-details-schema.json)
-- [JSONSchema](json-schema/compute-volume-attachment-schema.json)
-- [JSONSchema](json-schema/compute-shape-schema.json)
-- [JSONSchema](json-schema/compute-image-schema.json)
-- [JSONSchema](json-schema/compute-instance-schema.json)
-- [JSONSchema](json-schema/compute-launch-instance-details-schema.json)
-- [JSONSchema](json-schema/compute-attach-volume-details-schema.json)
-- [JSONStructure](json-structure/compute-volume-attachment-structure.json)
-- [JSONStructure](json-structure/compute-launch-instance-details-structure.json)
-- [JSONStructure](json-structure/compute-image-structure.json)
-- [JSONStructure](json-structure/compute-shape-structure.json)
-- [JSONStructure](json-structure/compute-instance-structure.json)
-- [JSONStructure](json-structure/compute-update-instance-details-structure.json)
-- [JSONStructure](json-structure/compute-attach-volume-details-structure.json)
-- [Example](examples/compute-volume-attachment-example.json)
-- [Example](examples/compute-shape-example.json)
-- [Example](examples/compute-image-example.json)
-- [Example](examples/compute-instance-example.json)
-- [Example](examples/compute-update-instance-details-example.json)
-- [Example](examples/compute-attach-volume-details-example.json)
-- [Example](examples/compute-launch-instance-details-example.json)
+- [Oracle Cloud Events Webhooks](https://apis.io/asyncapis/oracle-cloud/oracle-cloud-events-webhooks/)
 
-### Object Storage API
-Store and retrieve large amounts of unstructured data.
+#### MCP servers (1)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/latest/](https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/latest/)
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags:
+- [Oracle MCP Servers for OCI](https://apis.io/servers/oracle-cloud/oracle-mcp-servers-for-oci/)
 
- - Buckets, Object Storage, Storage
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [OpenAPI](openapi/oracle-cloud-object-storage-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Object/home.htm)
-- [Pricing](https://www.oracle.com/cloud/storage/pricing.html)
-- [JSONSchema](json-schema/object-storage-object-summary-schema.json)
-- [JSONSchema](json-schema/object-storage-bucket-summary-schema.json)
-- [JSONSchema](json-schema/object-storage-update-bucket-details-schema.json)
-- [JSONSchema](json-schema/object-storage-preauthenticated-request-summary-schema.json)
-- [JSONSchema](json-schema/object-storage-preauthenticated-request-schema.json)
-- [JSONSchema](json-schema/object-storage-bucket-schema.json)
-- [JSONSchema](json-schema/object-storage-list-objects-schema.json)
-- [JSONSchema](json-schema/object-storage-create-bucket-details-schema.json)
-- [JSONSchema](json-schema/object-storage-create-preauthenticated-request-details-schema.json)
-- [JSONStructure](json-structure/object-storage-create-bucket-details-structure.json)
-- [JSONStructure](json-structure/object-storage-create-preauthenticated-request-details-structure.json)
-- [JSONStructure](json-structure/object-storage-update-bucket-details-structure.json)
-- [JSONStructure](json-structure/object-storage-object-summary-structure.json)
-- [JSONStructure](json-structure/object-storage-list-objects-structure.json)
-- [JSONStructure](json-structure/object-storage-preauthenticated-request-summary-structure.json)
-- [JSONStructure](json-structure/object-storage-preauthenticated-request-structure.json)
-- [JSONStructure](json-structure/object-storage-bucket-summary-structure.json)
-- [JSONStructure](json-structure/object-storage-bucket-structure.json)
-- [Example](examples/object-storage-preauthenticated-request-example.json)
-- [Example](examples/object-storage-bucket-example.json)
-- [Example](examples/object-storage-bucket-summary-example.json)
-- [Example](examples/object-storage-preauthenticated-request-summary-example.json)
-- [Example](examples/object-storage-list-objects-example.json)
-- [Example](examples/object-storage-create-bucket-details-example.json)
-- [Example](examples/object-storage-object-summary-example.json)
-- [Example](examples/object-storage-create-preauthenticated-request-details-example.json)
-- [Example](examples/object-storage-update-bucket-details-example.json)
+- [Oracle Cloud Agentic Access](https://apis.io/agentic-access/oracle-cloud/oracle-cloud-agentic-access/)
 
-### Networking API
-Manage virtual cloud networks, subnets, and network resources.
+#### JSON Schema (119)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vcn/](https://docs.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vcn/)
+The data models the API reads and writes.
 
-#### Tags:
+- [AttachVolumeDetails](https://apis.io/schemas/oracle-cloud/compute-attach-volume-details/)
+- [Image](https://apis.io/schemas/oracle-cloud/compute-image/)
+- [Instance](https://apis.io/schemas/oracle-cloud/compute-instance/)
+- [LaunchInstanceDetails](https://apis.io/schemas/oracle-cloud/compute-launch-instance-details/)
+- [Shape](https://apis.io/schemas/oracle-cloud/compute-shape/)
+- [UpdateInstanceDetails](https://apis.io/schemas/oracle-cloud/compute-update-instance-details/)
+- [VolumeAttachment](https://apis.io/schemas/oracle-cloud/compute-volume-attachment/)
+- [AutonomousDatabase](https://apis.io/schemas/oracle-cloud/database-autonomous-database/)
+- [AutonomousDatabaseSummary](https://apis.io/schemas/oracle-cloud/database-autonomous-database-summary/)
+- [CreateAutonomousDatabaseDetails](https://apis.io/schemas/oracle-cloud/database-create-autonomous-database-details/)
+- [DbSystem](https://apis.io/schemas/oracle-cloud/database-db-system/)
+- [DbSystemSummary](https://apis.io/schemas/oracle-cloud/database-db-system-summary/)
+- [UpdateAutonomousDatabaseDetails](https://apis.io/schemas/oracle-cloud/database-update-autonomous-database-details/)
+- [Application](https://apis.io/schemas/oracle-cloud/functions-application/)
+- [ApplicationSummary](https://apis.io/schemas/oracle-cloud/functions-application-summary/)
+- [CreateApplicationDetails](https://apis.io/schemas/oracle-cloud/functions-create-application-details/)
+- [CreateFunctionDetails](https://apis.io/schemas/oracle-cloud/functions-create-function-details/)
+- [Function](https://apis.io/schemas/oracle-cloud/functions-function/)
+- [FunctionSummary](https://apis.io/schemas/oracle-cloud/functions-function-summary/)
+- [Compartment](https://apis.io/schemas/oracle-cloud/iam-compartment/)
+- [CreateGroupDetails](https://apis.io/schemas/oracle-cloud/iam-create-group-details/)
+- [CreatePolicyDetails](https://apis.io/schemas/oracle-cloud/iam-create-policy-details/)
+- [CreateUserDetails](https://apis.io/schemas/oracle-cloud/iam-create-user-details/)
+- [Group](https://apis.io/schemas/oracle-cloud/iam-group/)
+- [Policy](https://apis.io/schemas/oracle-cloud/iam-policy/)
+- …and 94 more published on APIs.io
 
- - Load Balancer, Networking, VCN
+#### JSON Structure (60)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [OpenAPI](openapi/oracle-cloud-networking-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/overview.htm)
-- [JSONSchema](json-schema/networking-vcn-schema.json)
-- [JSONSchema](json-schema/networking-create-vcn-details-schema.json)
-- [JSONSchema](json-schema/networking-create-subnet-details-schema.json)
-- [JSONSchema](json-schema/networking-route-table-schema.json)
-- [JSONSchema](json-schema/networking-update-vcn-details-schema.json)
-- [JSONSchema](json-schema/networking-create-internet-gateway-details-schema.json)
-- [JSONSchema](json-schema/networking-subnet-schema.json)
-- [JSONSchema](json-schema/networking-internet-gateway-schema.json)
-- [JSONSchema](json-schema/networking-security-list-schema.json)
-- [JSONStructure](json-structure/networking-security-list-structure.json)
-- [JSONStructure](json-structure/networking-route-table-structure.json)
-- [JSONStructure](json-structure/networking-update-vcn-details-structure.json)
-- [JSONStructure](json-structure/networking-subnet-structure.json)
-- [JSONStructure](json-structure/networking-create-subnet-details-structure.json)
-- [JSONStructure](json-structure/networking-create-internet-gateway-details-structure.json)
-- [JSONStructure](json-structure/networking-vcn-structure.json)
-- [JSONStructure](json-structure/networking-internet-gateway-structure.json)
-- [JSONStructure](json-structure/networking-create-vcn-details-structure.json)
-- [Example](examples/networking-create-internet-gateway-details-example.json)
-- [Example](examples/networking-security-list-example.json)
-- [Example](examples/networking-internet-gateway-example.json)
-- [Example](examples/networking-update-vcn-details-example.json)
-- [Example](examples/networking-vcn-example.json)
-- [Example](examples/networking-create-vcn-details-example.json)
-- [Example](examples/networking-subnet-example.json)
-- [Example](examples/networking-create-subnet-details-example.json)
-- [Example](examples/networking-route-table-example.json)
+- [Compute Attach Volume Details Structure](https://apis.io/json-structure/oracle-cloud/compute-attach-volume-details-structure/)
+- [Compute Image Structure](https://apis.io/json-structure/oracle-cloud/compute-image-structure/)
+- [Compute Instance Structure](https://apis.io/json-structure/oracle-cloud/compute-instance-structure/)
+- [Compute Launch Instance Details Structure](https://apis.io/json-structure/oracle-cloud/compute-launch-instance-details-structure/)
+- [Compute Shape Structure](https://apis.io/json-structure/oracle-cloud/compute-shape-structure/)
+- [Compute Update Instance Details Structure](https://apis.io/json-structure/oracle-cloud/compute-update-instance-details-structure/)
+- [Compute Volume Attachment Structure](https://apis.io/json-structure/oracle-cloud/compute-volume-attachment-structure/)
+- [Database Autonomous Database Structure](https://apis.io/json-structure/oracle-cloud/database-autonomous-database-structure/)
+- [Database Autonomous Database Summary Structure](https://apis.io/json-structure/oracle-cloud/database-autonomous-database-summary-structure/)
+- [Database Create Autonomous Database Details Structure](https://apis.io/json-structure/oracle-cloud/database-create-autonomous-database-details-structure/)
+- [Database Db System Structure](https://apis.io/json-structure/oracle-cloud/database-db-system-structure/)
+- [Database Db System Summary Structure](https://apis.io/json-structure/oracle-cloud/database-db-system-summary-structure/)
+- [Database Update Autonomous Database Details Structure](https://apis.io/json-structure/oracle-cloud/database-update-autonomous-database-details-structure/)
+- [Functions Application Structure](https://apis.io/json-structure/oracle-cloud/functions-application-structure/)
+- [Functions Application Summary Structure](https://apis.io/json-structure/oracle-cloud/functions-application-summary-structure/)
+- [Functions Create Application Details Structure](https://apis.io/json-structure/oracle-cloud/functions-create-application-details-structure/)
+- [Functions Create Function Details Structure](https://apis.io/json-structure/oracle-cloud/functions-create-function-details-structure/)
+- [Functions Function Structure](https://apis.io/json-structure/oracle-cloud/functions-function-structure/)
+- [Functions Function Summary Structure](https://apis.io/json-structure/oracle-cloud/functions-function-summary-structure/)
+- [Iam Compartment Structure](https://apis.io/json-structure/oracle-cloud/iam-compartment-structure/)
+- [Iam Create Group Details Structure](https://apis.io/json-structure/oracle-cloud/iam-create-group-details-structure/)
+- [Iam Create Policy Details Structure](https://apis.io/json-structure/oracle-cloud/iam-create-policy-details-structure/)
+- [Iam Create User Details Structure](https://apis.io/json-structure/oracle-cloud/iam-create-user-details-structure/)
+- [Iam Group Structure](https://apis.io/json-structure/oracle-cloud/iam-group-structure/)
+- [Iam Policy Structure](https://apis.io/json-structure/oracle-cloud/iam-policy-structure/)
+- …and 35 more published on APIs.io
 
-### Database API
-Manage Oracle Database Cloud Services and Autonomous Databases.
+#### JSON-LD (34)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/database/latest/](https://docs.oracle.com/en-us/iaas/api/#/en/database/latest/)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags:
+- [Oracle Cloud Compute Attach Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-compute-attach-context/)
+- [Oracle Cloud Compute Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-compute-context/)
+- [Oracle Cloud Compute Launch Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-compute-launch-context/)
+- [Oracle Cloud Compute Update Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-compute-update-context/)
+- [Oracle Cloud Compute Volume Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-compute-volume-context/)
+- [Oracle Cloud Database Autonomous Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-database-autonomous-context/)
+- [Oracle Cloud Database Create Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-database-create-context/)
+- [Oracle Cloud Database Db Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-database-db-context/)
+- [Oracle Cloud Database Update Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-database-update-context/)
+- [Oracle Cloud Functions Application Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-functions-application-context/)
+- [Oracle Cloud Functions Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-functions-context/)
+- [Oracle Cloud Functions Create Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-functions-create-context/)
+- [Oracle Cloud Functions Function Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-functions-function-context/)
+- [Oracle Cloud Iam Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-iam-context/)
+- [Oracle Cloud Iam Create Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-iam-create-context/)
+- [Oracle Cloud Iam Update Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-iam-update-context/)
+- [Oracle Cloud Monitoring Alarm Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-monitoring-alarm-context/)
+- [Oracle Cloud Monitoring Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-monitoring-context/)
+- [Oracle Cloud Monitoring Create Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-monitoring-create-context/)
+- [Oracle Cloud Monitoring Metric Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-monitoring-metric-context/)
+- [Oracle Cloud Monitoring Summarize Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-monitoring-summarize-context/)
+- [Oracle Cloud Monitoring Update Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-monitoring-update-context/)
+- [Oracle Cloud Networking Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-networking-context/)
+- [Oracle Cloud Networking Create Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-networking-create-context/)
+- [Oracle Cloud Networking Internet Context](https://apis.io/jsonld/oracle-cloud/oracle-cloud-networking-internet-context/)
+- …and 9 more published on APIs.io
 
- - Autonomous Database, Database, DBaaS
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [OpenAPI](openapi/oracle-cloud-database-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Database/home.htm)
-- [Pricing](https://www.oracle.com/cloud/price-list.html#database)
-- [JSONSchema](json-schema/database-update-autonomous-database-details-schema.json)
-- [JSONSchema](json-schema/database-autonomous-database-schema.json)
-- [JSONSchema](json-schema/database-db-system-schema.json)
-- [JSONSchema](json-schema/database-create-autonomous-database-details-schema.json)
-- [JSONSchema](json-schema/database-autonomous-database-summary-schema.json)
-- [JSONSchema](json-schema/database-db-system-summary-schema.json)
-- [JSONStructure](json-structure/database-create-autonomous-database-details-structure.json)
-- [JSONStructure](json-structure/database-autonomous-database-summary-structure.json)
-- [JSONStructure](json-structure/database-update-autonomous-database-details-structure.json)
-- [JSONStructure](json-structure/database-db-system-structure.json)
-- [JSONStructure](json-structure/database-autonomous-database-structure.json)
-- [JSONStructure](json-structure/database-db-system-summary-structure.json)
-- [Example](examples/database-db-system-summary-example.json)
-- [Example](examples/database-update-autonomous-database-details-example.json)
-- [Example](examples/database-create-autonomous-database-details-example.json)
-- [Example](examples/database-autonomous-database-example.json)
-- [Example](examples/database-db-system-example.json)
-- [Example](examples/database-autonomous-database-summary-example.json)
+- [Oracle Cloud Vocabulary](https://apis.io/vocabularies/oracle-cloud/oracle-cloud-vocabulary/)
 
-### Identity and Access Management API
-Manage users, groups, policies, and authentication.
+#### Examples (128)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/identity/latest/](https://docs.oracle.com/en-us/iaas/api/#/en/identity/latest/)
+Example requests and responses.
 
-#### Tags:
+- [Compute Attach Volume Details Example](https://apis.io/examples/oracle-cloud/compute-attach-volume-details-example/)
+- [Compute Image Example](https://apis.io/examples/oracle-cloud/compute-image-example/)
+- [Compute Instance Example](https://apis.io/examples/oracle-cloud/compute-instance-example/)
+- [Compute Launch Instance Details Example](https://apis.io/examples/oracle-cloud/compute-launch-instance-details-example/)
+- [Compute Shape Example](https://apis.io/examples/oracle-cloud/compute-shape-example/)
+- [Compute Update Instance Details Example](https://apis.io/examples/oracle-cloud/compute-update-instance-details-example/)
+- [Compute Volume Attachment Example](https://apis.io/examples/oracle-cloud/compute-volume-attachment-example/)
+- [Database Autonomous Database Example](https://apis.io/examples/oracle-cloud/database-autonomous-database-example/)
+- [Database Autonomous Database Summary Example](https://apis.io/examples/oracle-cloud/database-autonomous-database-summary-example/)
+- [Database Create Autonomous Database Details Example](https://apis.io/examples/oracle-cloud/database-create-autonomous-database-details-example/)
+- [Database Db System Example](https://apis.io/examples/oracle-cloud/database-db-system-example/)
+- [Database Db System Summary Example](https://apis.io/examples/oracle-cloud/database-db-system-summary-example/)
+- [Database Update Autonomous Database Details Example](https://apis.io/examples/oracle-cloud/database-update-autonomous-database-details-example/)
+- [Functions Application Example](https://apis.io/examples/oracle-cloud/functions-application-example/)
+- [Functions Application Summary Example](https://apis.io/examples/oracle-cloud/functions-application-summary-example/)
+- [Functions Create Application Details Example](https://apis.io/examples/oracle-cloud/functions-create-application-details-example/)
+- [Functions Create Function Details Example](https://apis.io/examples/oracle-cloud/functions-create-function-details-example/)
+- [Functions Function Example](https://apis.io/examples/oracle-cloud/functions-function-example/)
+- [Functions Function Summary Example](https://apis.io/examples/oracle-cloud/functions-function-summary-example/)
+- [Iam Compartment Example](https://apis.io/examples/oracle-cloud/iam-compartment-example/)
+- [Iam Create Group Details Example](https://apis.io/examples/oracle-cloud/iam-create-group-details-example/)
+- [Iam Create Policy Details Example](https://apis.io/examples/oracle-cloud/iam-create-policy-details-example/)
+- [Iam Create User Details Example](https://apis.io/examples/oracle-cloud/iam-create-user-details-example/)
+- [Iam Group Example](https://apis.io/examples/oracle-cloud/iam-group-example/)
+- [Iam Policy Example](https://apis.io/examples/oracle-cloud/iam-policy-example/)
+- …and 103 more published on APIs.io
 
- - Authentication, Authorization, IAM, Security
+#### Collections (33)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [OpenAPI](openapi/oracle-cloud-iam-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Identity/home.htm)
-- [JSONSchema](json-schema/iam-policy-schema.json)
-- [JSONSchema](json-schema/iam-compartment-schema.json)
-- [JSONSchema](json-schema/iam-create-policy-details-schema.json)
-- [JSONSchema](json-schema/iam-create-user-details-schema.json)
-- [JSONSchema](json-schema/iam-group-schema.json)
-- [JSONSchema](json-schema/iam-update-user-details-schema.json)
-- [JSONSchema](json-schema/iam-create-group-details-schema.json)
-- [JSONSchema](json-schema/iam-user-schema.json)
-- [JSONStructure](json-structure/iam-create-group-details-structure.json)
-- [JSONStructure](json-structure/iam-policy-structure.json)
-- [JSONStructure](json-structure/iam-create-user-details-structure.json)
-- [JSONStructure](json-structure/iam-compartment-structure.json)
-- [JSONStructure](json-structure/iam-update-user-details-structure.json)
-- [JSONStructure](json-structure/iam-create-policy-details-structure.json)
-- [JSONStructure](json-structure/iam-user-structure.json)
-- [JSONStructure](json-structure/iam-group-structure.json)
-- [Example](examples/iam-policy-example.json)
-- [Example](examples/iam-create-policy-details-example.json)
-- [Example](examples/iam-create-group-details-example.json)
-- [Example](examples/iam-group-example.json)
-- [Example](examples/iam-create-user-details-example.json)
-- [Example](examples/iam-compartment-example.json)
-- [Example](examples/iam-update-user-details-example.json)
-- [Example](examples/iam-user-example.json)
+- [Oracle Cloud Compute Alarms API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-alarms-api/)
+- [Oracle Cloud Compute Alarms Applications API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-applications-api/)
+- [Oracle Cloud Compute Alarms Autonomous Databases API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-autonomous-databases-api/)
+- [Oracle Cloud Compute Alarms Buckets API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-buckets-api/)
+- [Oracle Cloud Compute Alarms Clusters API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-clusters-api/)
+- [Oracle Cloud Compute Alarms Compartments API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-compartments-api/)
+- [Oracle Cloud Compute Alarms DB Systems API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-db-systems-api/)
+- [Oracle Cloud Compute Alarms Functions API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-functions-api/)
+- [Oracle Cloud Compute Alarms Groups API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-groups-api/)
+- [Oracle Cloud Compute Alarms Images API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-images-api/)
+- [Oracle Cloud Compute Alarms Instances API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-instances-api/)
+- [Oracle Cloud Compute Alarms Internet Gateways API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-internet-gateways-api/)
+- [Oracle Cloud Compute Alarms Metrics API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-metrics-api/)
+- [Oracle Cloud Compute Alarms Namespaces API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-namespaces-api/)
+- [Oracle Cloud Compute Alarms Node Pools API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-node-pools-api/)
+- [Oracle Cloud Compute Alarms Objects API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-objects-api/)
+- [Oracle Cloud Compute Alarms Policies API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-policies-api/)
+- [Oracle Cloud Compute Alarms Preauthenticated Requests API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-preauthenticated-requests-api/)
+- [Oracle Cloud Compute Alarms Route Tables API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-route-tables-api/)
+- [Oracle Cloud Compute Alarms Security Lists API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-security-lists-api/)
+- [Oracle Cloud Compute Alarms Shapes API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-shapes-api/)
+- [Oracle Cloud Compute Alarms Subnets API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-subnets-api/)
+- [Oracle Cloud Compute Alarms Users API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-users-api/)
+- [Oracle Cloud Compute Alarms VCNs API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-vcns-api/)
+- [Oracle Cloud Compute Alarms Volume Attachments API](https://apis.io/collections/oracle-cloud/open-oracle-cloud-volume-attachments-api/)
+- …and 8 more published on APIs.io
 
-### Container Engine for Kubernetes API
-Manage Kubernetes clusters and node pools.
+#### Overlays (37)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/latest/](https://docs.oracle.com/en-us/iaas/api/#/en/containerengine/latest/)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Tags:
+- [Oracle Cloud Alarms Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-alarms-api-phrasing-overlay/)
+- [Oracle Cloud Blockstorage Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-blockstorage-api-phrasing-overlay/)
+- [Oracle Cloud Buckets Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-buckets-api-phrasing-overlay/)
+- [Oracle Cloud Compartments Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-compartments-api-phrasing-overlay/)
+- [Oracle Cloud Compute Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-compute-api-phrasing-overlay/)
+- [Oracle Cloud Computemanagement Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-computemanagement-api-phrasing-overlay/)
+- [Oracle Cloud Containerengine Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-containerengine-api-phrasing-overlay/)
+- [Oracle Cloud Core Services Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-core-services-overlay/)
+- [Oracle Cloud Database Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-database-api-phrasing-overlay/)
+- [Oracle Cloud Database Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-database-overlay/)
+- [Oracle Cloud Events Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-events-api-phrasing-overlay/)
+- [Oracle Cloud Events Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-events-overlay/)
+- [Oracle Cloud Functions Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-functions-overlay/)
+- [Oracle Cloud Functionsinvoke Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-functionsinvoke-api-phrasing-overlay/)
+- [Oracle Cloud Functionsmanagement Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-functionsmanagement-api-phrasing-overlay/)
+- [Oracle Cloud Groups Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-groups-api-phrasing-overlay/)
+- [Oracle Cloud Identity Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-identity-api-phrasing-overlay/)
+- [Oracle Cloud Identity Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-identity-overlay/)
+- [Oracle Cloud Images Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-images-api-phrasing-overlay/)
+- [Oracle Cloud Instances Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-instances-api-phrasing-overlay/)
+- [Oracle Cloud Kubernetes Engine Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-kubernetes-engine-overlay/)
+- [Oracle Cloud Metrics Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-metrics-api-phrasing-overlay/)
+- [Oracle Cloud Monitoring Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-monitoring-api-phrasing-overlay/)
+- [Oracle Cloud Monitoring Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-monitoring-overlay/)
+- [Oracle Cloud Namespaces Api Phrasing Overlay](https://apis.io/overlays/oracle-cloud/oracle-cloud-namespaces-api-phrasing-overlay/)
+- …and 12 more published on APIs.io
 
- - Containers, Kubernetes, OKE
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [OpenAPI](openapi/oracle-cloud-oke-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm)
-- [JSONSchema](json-schema/oke-node-pool-schema.json)
-- [JSONSchema](json-schema/oke-node-pool-summary-schema.json)
-- [JSONSchema](json-schema/oke-create-cluster-details-schema.json)
-- [JSONSchema](json-schema/oke-create-node-pool-details-schema.json)
-- [JSONSchema](json-schema/oke-update-cluster-details-schema.json)
-- [JSONSchema](json-schema/oke-cluster-summary-schema.json)
-- [JSONSchema](json-schema/oke-cluster-schema.json)
-- [JSONStructure](json-structure/oke-cluster-structure.json)
-- [JSONStructure](json-structure/oke-node-pool-summary-structure.json)
-- [JSONStructure](json-structure/oke-update-cluster-details-structure.json)
-- [JSONStructure](json-structure/oke-create-node-pool-details-structure.json)
-- [JSONStructure](json-structure/oke-node-pool-structure.json)
-- [JSONStructure](json-structure/oke-create-cluster-details-structure.json)
-- [JSONStructure](json-structure/oke-cluster-summary-structure.json)
-- [Example](examples/oke-cluster-summary-example.json)
-- [Example](examples/oke-create-cluster-details-example.json)
-- [Example](examples/oke-cluster-example.json)
-- [Example](examples/oke-node-pool-example.json)
-- [Example](examples/oke-update-cluster-details-example.json)
-- [Example](examples/oke-node-pool-summary-example.json)
-- [Example](examples/oke-create-node-pool-details-example.json)
+- [Oracle Cloud Infrastructure — jsonschema rules](https://apis.io/rules/oracle-cloud/oracle-cloud-jsonschema-spectral-rules/)
+- [Oracle Cloud Infrastructure API Rules](https://apis.io/rules/oracle-cloud/oracle-cloud-spectral-rules/)
 
-### Functions API
-Serverless platform for building and running applications.
+#### Security (4)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/functions/latest/](https://docs.oracle.com/en-us/iaas/api/#/en/functions/latest/)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags:
+- [Oracle Cloud Authentication](https://apis.io/security/oracle-cloud/oracle-cloud-authentication/)
+- [Oracle Cloud Domain Security](https://apis.io/security/oracle-cloud/oracle-cloud-domain-security/)
+- [Oracle Cloud Trust Center](https://apis.io/security/oracle-cloud/oracle-cloud-trust-center/)
+- [Oracle Cloud Vulnerability Disclosure](https://apis.io/security/oracle-cloud/oracle-cloud-vulnerability-disclosure/)
 
- - FaaS, Functions, Serverless
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [OpenAPI](openapi/oracle-cloud-functions-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Functions/home.htm)
-- [JSONSchema](json-schema/functions-create-function-details-schema.json)
-- [JSONSchema](json-schema/functions-create-application-details-schema.json)
-- [JSONSchema](json-schema/functions-application-summary-schema.json)
-- [JSONSchema](json-schema/functions-function-summary-schema.json)
-- [JSONSchema](json-schema/functions-function-schema.json)
-- [JSONSchema](json-schema/functions-application-schema.json)
-- [JSONStructure](json-structure/functions-function-summary-structure.json)
-- [JSONStructure](json-structure/functions-application-structure.json)
-- [JSONStructure](json-structure/functions-create-function-details-structure.json)
-- [JSONStructure](json-structure/functions-create-application-details-structure.json)
-- [JSONStructure](json-structure/functions-application-summary-structure.json)
-- [JSONStructure](json-structure/functions-function-structure.json)
-- [Example](examples/functions-application-example.json)
-- [Example](examples/functions-function-example.json)
-- [Example](examples/functions-create-function-details-example.json)
-- [Example](examples/functions-create-application-details-example.json)
-- [Example](examples/functions-application-summary-example.json)
-- [Example](examples/functions-function-summary-example.json)
+- [Oracle Cloud Plans Pricing](https://apis.io/plans/oracle-cloud/oracle-cloud-plans-pricing/)
 
-### Monitoring API
-Monitor cloud resources using metrics and alarms.
+#### Rate limits (1)
 
-**Human URL:** [https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/latest/](https://docs.oracle.com/en-us/iaas/api/#/en/monitoring/latest/)
+Published request limits.
 
-#### Tags:
+- [Oracle Cloud Rate Limits](https://apis.io/rate-limits/oracle-cloud/oracle-cloud-rate-limits/)
 
- - Alarms, Metrics, Monitoring
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [OpenAPI](openapi/oracle-cloud-monitoring-openapi.yaml)
-- [Documentation](https://docs.oracle.com/en-us/iaas/Content/Monitoring/home.htm)
-- [JSONSchema](json-schema/monitoring-metric-data-schema.json)
-- [JSONSchema](json-schema/monitoring-create-alarm-details-schema.json)
-- [JSONSchema](json-schema/monitoring-update-alarm-details-schema.json)
-- [JSONSchema](json-schema/monitoring-summarize-metrics-data-details-schema.json)
-- [JSONSchema](json-schema/monitoring-metric-schema.json)
-- [JSONSchema](json-schema/monitoring-alarm-schema.json)
-- [JSONSchema](json-schema/monitoring-alarm-summary-schema.json)
-- [JSONStructure](json-structure/monitoring-summarize-metrics-data-details-structure.json)
-- [JSONStructure](json-structure/monitoring-create-alarm-details-structure.json)
-- [JSONStructure](json-structure/monitoring-alarm-structure.json)
-- [JSONStructure](json-structure/monitoring-update-alarm-details-structure.json)
-- [JSONStructure](json-structure/monitoring-metric-data-structure.json)
-- [JSONStructure](json-structure/monitoring-alarm-summary-structure.json)
-- [JSONStructure](json-structure/monitoring-metric-structure.json)
-- [Example](examples/monitoring-alarm-example.json)
-- [Example](examples/monitoring-metric-data-example.json)
-- [Example](examples/monitoring-create-alarm-details-example.json)
-- [Example](examples/monitoring-update-alarm-details-example.json)
-- [Example](examples/monitoring-alarm-summary-example.json)
-- [Example](examples/monitoring-summarize-metrics-data-details-example.json)
-- [Example](examples/monitoring-metric-example.json)
+- [Oracle Cloud Finops](https://apis.io/finops/oracle-cloud/oracle-cloud-finops/)
 
-## Common Properties
+## Where to find this API
 
-- [Portal](https://cloud.oracle.com/)
-- [Console](https://console.oracle.com/)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.oracle.com/cloud/)
 - [Documentation](https://docs.oracle.com/en-us/iaas/Content/home.htm)
-- [Authentication](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdk_authentication_methods.htm)
-- [SDK](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdks.htm)
-- [CLI](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm)
-- [StatusPage](https://ocistatus.oraclecloud.com/)
-- [Support](https://www.oracle.com/support/)
+- [Getting started](https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm)
+- [API reference](https://docs.oracle.com/en-us/iaas/api/)
 - [Pricing](https://www.oracle.com/cloud/price-list.html)
-- [TermsOfService](https://www.oracle.com/legal/terms.html)
-- [PrivacyPolicy](https://www.oracle.com/legal/privacy/)
-- [GettingStarted](https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm)
+- [Sign up](https://www.oracle.com/cloud/free/)
+- [Support](https://www.oracle.com/support/)
+- [Changelog](https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm)
 - [Blog](https://blogs.oracle.com/cloud-infrastructure/)
-- [GitHubOrganization](https://github.com/oracle)
-- [ReleaseNotes](https://docs.oracle.com/en-us/iaas/releasenotes/index.htm)
-- [SignUp](https://www.oracle.com/cloud/free/)
-- [Training](https://www.oracle.com/cloud/training/)
-- [ChangeLog](https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm)
-- [SDK (Java SDK)](https://github.com/oracle/oci-java-sdk)
-- [SDK (Python SDK)](https://github.com/oracle/oci-python-sdk)
-- [SDK (TypeScript SDK)](https://github.com/oracle/oci-typescript-sdk)
-- [SDK (.NET SDK)](https://github.com/oracle/oci-dotnet-sdk)
-- [SDK (Go SDK)](https://github.com/oracle/oci-go-sdk)
-- [SDK (Ruby SDK)](https://github.com/oracle/oci-ruby-sdk)
-- [SDK (PowerShell Modules)](https://github.com/oracle/oci-powershell-modules)
-- [GitHubRepository (OCI CLI Repository)](https://github.com/oracle/oci-cli)
-- [GitHubRepository (Terraform Provider)](https://github.com/oracle/terraform-provider-oci)
-- [SpectralRules](rules/oracle-cloud-spectral-rules.yml)
-- [Vocabulary](vocabulary/oracle-cloud-vocabulary.yaml)
-- [NaftikoCapability](capabilities/data-platform.yaml)
-- [NaftikoCapability](capabilities/cloud-native-development.yaml)
-- [NaftikoCapability](capabilities/infrastructure-management.yaml)
-- [NaftikoCapability](capabilities/security-and-compliance.yaml)
-- [JSONLD](json-ld/oracle-cloud-iam-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-database-create-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-monitoring-summarize-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-iam-update-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-oke-create-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-oke-node-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-functions-function-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-networking-update-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-database-db-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-functions-application-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-functions-create-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-object-storage-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-compute-update-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-database-autonomous-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-oke-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-monitoring-update-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-networking-route-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-compute-launch-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-compute-volume-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-monitoring-create-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-monitoring-metric-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-compute-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-functions-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-oke-cluster-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-networking-internet-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-monitoring-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-compute-attach-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-iam-create-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-database-update-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-networking-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-networking-create-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-oke-update-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-networking-security-context.jsonld)
-- [JSONLD](json-ld/oracle-cloud-monitoring-alarm-context.jsonld)
+- [Terms of service](https://www.oracle.com/legal/terms.html)
+- [Privacy policy](https://www.oracle.com/legal/privacy/)
+- [GitHub](https://github.com/oracle)
+- [Status](https://ocistatus.oraclecloud.com/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Compute | Bare metal, virtual machine, and GPU compute instances with flexible shapes and autoscaling |
-| Object Storage | Highly durable and scalable object storage for unstructured data with S3 compatibility |
-| Autonomous Database | Self-driving, self-securing, self-repairing database with automated patching and tuning |
-| Container Engine for Kubernetes | Managed Kubernetes service for deploying and managing containerized applications |
-| Virtual Cloud Networks | Software-defined networking with private subnets, security lists, and network security groups |
-| Identity and Access Management | Fine-grained access control with policies, compartments, and identity federation |
-| Serverless Functions | Event-driven serverless compute platform based on Fn Project |
-| Load Balancing | Layer 4 and Layer 7 load balancing with SSL termination and health checks |
-| Monitoring and Alarms | Real-time metrics collection, dashboards, and automated alarm notifications |
-| Cloud Guard | Automated security monitoring and threat detection across OCI resources |
-| Vault and Key Management | Hardware security module-backed encryption key management and secret storage |
-| Disaster Recovery | Automated disaster recovery orchestration for complex multi-tier applications |
-| Generative AI | Large language model hosting and inference with customizable foundation models |
-| Data Science | Managed Jupyter notebooks and ML model lifecycle management platform |
+**Kin Score 75.3** — exemplar · rubric 0.25.0 · scored 2026-10-23
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 76.7 |
+| Contract quality | 54.0 |
+| Contract governance | 45.5 |
+| Operational transparency | 60.5 |
+| Developer ergonomics | 83.9 |
+| Access clarity | 92.1 |
 
-| Name | Description |
-|------|-------------|
-| Cloud Migration | Migrate on-premises workloads to OCI with tools for assessment, planning, and execution |
-| High Performance Computing | Run HPC workloads with bare metal instances, RDMA networking, and cluster networking |
-| Data Warehousing | Build scalable data warehouses with Autonomous Database and integrated analytics |
-| DevOps and CI/CD | Automate build, test, and deployment pipelines with OCI DevOps and Container Engine |
-| Disaster Recovery | Implement business continuity with cross-region replication and automated failover |
-| AI and Machine Learning | Train and deploy ML models using GPU instances, Data Science, and Generative AI services |
-| Hybrid Cloud | Extend on-premises infrastructure with Cloud@Customer and dedicated regions |
-| SaaS Extension | Extend Oracle SaaS applications with custom APIs and integrations on OCI |
-| IoT and Edge Computing | Process IoT data at scale with streaming, functions, and edge infrastructure |
-| Multi-Cloud Networking | Connect OCI with AWS, Azure, and Google Cloud using FastConnect and partnerships |
+**Agent readiness 52.1** — agent-native
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | verified |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
 
-| Name | Description |
-|------|-------------|
-| Terraform | Infrastructure as Code provisioning with the OCI Terraform Provider |
-| Ansible | Configuration management and automation with OCI Ansible Collection |
-| Grafana | Metrics visualization with the OCI Grafana Plugin for Monitoring data |
-| Kubernetes | Container orchestration with managed OKE clusters and Helm chart support |
-| Visual Studio | IDE integration with OCI Tools for Visual Studio |
-| VS Code | IDE integration with OCI Toolkit for Visual Studio Code |
-| Eclipse | IDE integration with OCI Toolkit for Eclipse |
-| GitHub Actions | CI/CD automation with OCI GitHub Actions for deployment pipelines |
-| Oracle Integration Cloud | Pre-built connectors for SaaS and on-premises application integration |
-| Microsoft Azure | Oracle Database@Azure for running Oracle databases on Azure infrastructure |
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/oracle-cloud/](https://apis.io/providers/oracle-cloud/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Compute](openapi/oracle-cloud-compute-openapi.yaml)
-- [Database](openapi/oracle-cloud-database-openapi.yaml)
-- [Functions](openapi/oracle-cloud-functions-openapi.yaml)
-- [Iam](openapi/oracle-cloud-iam-openapi.yaml)
-- [Monitoring](openapi/oracle-cloud-monitoring-openapi.yaml)
-- [Networking](openapi/oracle-cloud-networking-openapi.yaml)
-- [Object Storage](openapi/oracle-cloud-object-storage-openapi.yaml)
-- [Oke](openapi/oracle-cloud-oke-openapi.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Oracle Cloud Infrastructure: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Compute Attach Volume Details](json-schema/compute-attach-volume-details-schema.json)
-- [Compute Image](json-schema/compute-image-schema.json)
-- [Compute Instance](json-schema/compute-instance-schema.json)
-- [Compute Launch Instance Details](json-schema/compute-launch-instance-details-schema.json)
-- [Compute Shape](json-schema/compute-shape-schema.json)
-- [Compute Update Instance Details](json-schema/compute-update-instance-details-schema.json)
-- [Compute Volume Attachment](json-schema/compute-volume-attachment-schema.json)
-- [Database Autonomous Database](json-schema/database-autonomous-database-schema.json)
-- [Database Autonomous Database Summary](json-schema/database-autonomous-database-summary-schema.json)
-- [Database Create Autonomous Database Details](json-schema/database-create-autonomous-database-details-schema.json)
-- [Database Db System](json-schema/database-db-system-schema.json)
-- [Database Db System Summary](json-schema/database-db-system-summary-schema.json)
-- [Database Update Autonomous Database Details](json-schema/database-update-autonomous-database-details-schema.json)
-- [Functions Application](json-schema/functions-application-schema.json)
-- [Functions Application Summary](json-schema/functions-application-summary-schema.json)
-- [Functions Create Application Details](json-schema/functions-create-application-details-schema.json)
-- [Functions Create Function Details](json-schema/functions-create-function-details-schema.json)
-- [Functions Function](json-schema/functions-function-schema.json)
-- [Functions Function Summary](json-schema/functions-function-summary-schema.json)
-- [Iam Compartment](json-schema/iam-compartment-schema.json)
-- [Iam Create Group Details](json-schema/iam-create-group-details-schema.json)
-- [Iam Create Policy Details](json-schema/iam-create-policy-details-schema.json)
-- [Iam Create User Details](json-schema/iam-create-user-details-schema.json)
-- [Iam Group](json-schema/iam-group-schema.json)
-- [Iam Policy](json-schema/iam-policy-schema.json)
-- [Iam Update User Details](json-schema/iam-update-user-details-schema.json)
-- [Iam User](json-schema/iam-user-schema.json)
-- [Monitoring Alarm](json-schema/monitoring-alarm-schema.json)
-- [Monitoring Alarm Summary](json-schema/monitoring-alarm-summary-schema.json)
-- [Monitoring Create Alarm Details](json-schema/monitoring-create-alarm-details-schema.json)
-- [Monitoring Metric Data](json-schema/monitoring-metric-data-schema.json)
-- [Monitoring Metric](json-schema/monitoring-metric-schema.json)
-- [Monitoring Summarize Metrics Data Details](json-schema/monitoring-summarize-metrics-data-details-schema.json)
-- [Monitoring Update Alarm Details](json-schema/monitoring-update-alarm-details-schema.json)
-- [Networking Create Internet Gateway Details](json-schema/networking-create-internet-gateway-details-schema.json)
-- [Networking Create Subnet Details](json-schema/networking-create-subnet-details-schema.json)
-- [Networking Create Vcn Details](json-schema/networking-create-vcn-details-schema.json)
-- [Networking Internet Gateway](json-schema/networking-internet-gateway-schema.json)
-- [Networking Route Table](json-schema/networking-route-table-schema.json)
-- [Networking Security List](json-schema/networking-security-list-schema.json)
-- [Networking Subnet](json-schema/networking-subnet-schema.json)
-- [Networking Update Vcn Details](json-schema/networking-update-vcn-details-schema.json)
-- [Networking Vcn](json-schema/networking-vcn-schema.json)
-- [Object Storage Bucket](json-schema/object-storage-bucket-schema.json)
-- [Object Storage Bucket Summary](json-schema/object-storage-bucket-summary-schema.json)
-- [Object Storage Create Bucket Details](json-schema/object-storage-create-bucket-details-schema.json)
-- [Object Storage Create Preauthenticated Request Details](json-schema/object-storage-create-preauthenticated-request-details-schema.json)
-- [Object Storage List Objects](json-schema/object-storage-list-objects-schema.json)
-- [Object Storage Object Summary](json-schema/object-storage-object-summary-schema.json)
-- [Object Storage Preauthenticated Request](json-schema/object-storage-preauthenticated-request-schema.json)
-- [Object Storage Preauthenticated Request Summary](json-schema/object-storage-preauthenticated-request-summary-schema.json)
-- [Object Storage Update Bucket Details](json-schema/object-storage-update-bucket-details-schema.json)
-- [Oke Cluster](json-schema/oke-cluster-schema.json)
-- [Oke Cluster Summary](json-schema/oke-cluster-summary-schema.json)
-- [Oke Create Cluster Details](json-schema/oke-create-cluster-details-schema.json)
-- [Oke Create Node Pool Details](json-schema/oke-create-node-pool-details-schema.json)
-- [Oke Node Pool](json-schema/oke-node-pool-schema.json)
-- [Oke Node Pool Summary](json-schema/oke-node-pool-summary-schema.json)
-- [Oke Update Cluster Details](json-schema/oke-update-cluster-details-schema.json)
-
-### JSON Structure
-
-- [Compute Attach Volume Details](json-structure/compute-attach-volume-details-structure.json)
-- [Compute Image](json-structure/compute-image-structure.json)
-- [Compute Instance](json-structure/compute-instance-structure.json)
-- [Compute Launch Instance Details](json-structure/compute-launch-instance-details-structure.json)
-- [Compute Shape](json-structure/compute-shape-structure.json)
-- [Compute Update Instance Details](json-structure/compute-update-instance-details-structure.json)
-- [Compute Volume Attachment](json-structure/compute-volume-attachment-structure.json)
-- [Database Autonomous Database](json-structure/database-autonomous-database-structure.json)
-- [Database Autonomous Database Summary](json-structure/database-autonomous-database-summary-structure.json)
-- [Database Create Autonomous Database Details](json-structure/database-create-autonomous-database-details-structure.json)
-- [Database Db System](json-structure/database-db-system-structure.json)
-- [Database Db System Summary](json-structure/database-db-system-summary-structure.json)
-- [Database Update Autonomous Database Details](json-structure/database-update-autonomous-database-details-structure.json)
-- [Functions Application](json-structure/functions-application-structure.json)
-- [Functions Application Summary](json-structure/functions-application-summary-structure.json)
-- [Functions Create Application Details](json-structure/functions-create-application-details-structure.json)
-- [Functions Create Function Details](json-structure/functions-create-function-details-structure.json)
-- [Functions Function](json-structure/functions-function-structure.json)
-- [Functions Function Summary](json-structure/functions-function-summary-structure.json)
-- [Iam Compartment](json-structure/iam-compartment-structure.json)
-- [Iam Create Group Details](json-structure/iam-create-group-details-structure.json)
-- [Iam Create Policy Details](json-structure/iam-create-policy-details-structure.json)
-- [Iam Create User Details](json-structure/iam-create-user-details-structure.json)
-- [Iam Group](json-structure/iam-group-structure.json)
-- [Iam Policy](json-structure/iam-policy-structure.json)
-- [Iam Update User Details](json-structure/iam-update-user-details-structure.json)
-- [Iam User](json-structure/iam-user-structure.json)
-- [Monitoring Alarm](json-structure/monitoring-alarm-structure.json)
-- [Monitoring Alarm Summary](json-structure/monitoring-alarm-summary-structure.json)
-- [Monitoring Create Alarm Details](json-structure/monitoring-create-alarm-details-structure.json)
-- [Monitoring Metric Data](json-structure/monitoring-metric-data-structure.json)
-- [Monitoring Metric](json-structure/monitoring-metric-structure.json)
-- [Monitoring Summarize Metrics Data Details](json-structure/monitoring-summarize-metrics-data-details-structure.json)
-- [Monitoring Update Alarm Details](json-structure/monitoring-update-alarm-details-structure.json)
-- [Networking Create Internet Gateway Details](json-structure/networking-create-internet-gateway-details-structure.json)
-- [Networking Create Subnet Details](json-structure/networking-create-subnet-details-structure.json)
-- [Networking Create Vcn Details](json-structure/networking-create-vcn-details-structure.json)
-- [Networking Internet Gateway](json-structure/networking-internet-gateway-structure.json)
-- [Networking Route Table](json-structure/networking-route-table-structure.json)
-- [Networking Security List](json-structure/networking-security-list-structure.json)
-- [Networking Subnet](json-structure/networking-subnet-structure.json)
-- [Networking Update Vcn Details](json-structure/networking-update-vcn-details-structure.json)
-- [Networking Vcn](json-structure/networking-vcn-structure.json)
-- [Object Storage Bucket](json-structure/object-storage-bucket-structure.json)
-- [Object Storage Bucket Summary](json-structure/object-storage-bucket-summary-structure.json)
-- [Object Storage Create Bucket Details](json-structure/object-storage-create-bucket-details-structure.json)
-- [Object Storage Create Preauthenticated Request Details](json-structure/object-storage-create-preauthenticated-request-details-structure.json)
-- [Object Storage List Objects](json-structure/object-storage-list-objects-structure.json)
-- [Object Storage Object Summary](json-structure/object-storage-object-summary-structure.json)
-- [Object Storage Preauthenticated Request](json-structure/object-storage-preauthenticated-request-structure.json)
-- [Object Storage Preauthenticated Request Summary](json-structure/object-storage-preauthenticated-request-summary-structure.json)
-- [Object Storage Update Bucket Details](json-structure/object-storage-update-bucket-details-structure.json)
-- [Oke Cluster](json-structure/oke-cluster-structure.json)
-- [Oke Cluster Summary](json-structure/oke-cluster-summary-structure.json)
-- [Oke Create Cluster Details](json-structure/oke-create-cluster-details-structure.json)
-- [Oke Create Node Pool Details](json-structure/oke-create-node-pool-details-structure.json)
-- [Oke Node Pool](json-structure/oke-node-pool-structure.json)
-- [Oke Node Pool Summary](json-structure/oke-node-pool-summary-structure.json)
-- [Oke Update Cluster Details](json-structure/oke-update-cluster-details-structure.json)
-
-### JSON-LD
-
-- [Compute Attach Context](json-ld/oracle-cloud-compute-attach-context.jsonld)
-- [Compute Context](json-ld/oracle-cloud-compute-context.jsonld)
-- [Compute Launch Context](json-ld/oracle-cloud-compute-launch-context.jsonld)
-- [Compute Update Context](json-ld/oracle-cloud-compute-update-context.jsonld)
-- [Compute Volume Context](json-ld/oracle-cloud-compute-volume-context.jsonld)
-- [Database Autonomous Context](json-ld/oracle-cloud-database-autonomous-context.jsonld)
-- [Database Create Context](json-ld/oracle-cloud-database-create-context.jsonld)
-- [Database Db Context](json-ld/oracle-cloud-database-db-context.jsonld)
-- [Database Update Context](json-ld/oracle-cloud-database-update-context.jsonld)
-- [Functions Application Context](json-ld/oracle-cloud-functions-application-context.jsonld)
-- [Functions Context](json-ld/oracle-cloud-functions-context.jsonld)
-- [Functions Create Context](json-ld/oracle-cloud-functions-create-context.jsonld)
-- [Functions Function Context](json-ld/oracle-cloud-functions-function-context.jsonld)
-- [Iam Context](json-ld/oracle-cloud-iam-context.jsonld)
-- [Iam Create Context](json-ld/oracle-cloud-iam-create-context.jsonld)
-- [Iam Update Context](json-ld/oracle-cloud-iam-update-context.jsonld)
-- [Monitoring Alarm Context](json-ld/oracle-cloud-monitoring-alarm-context.jsonld)
-- [Monitoring Context](json-ld/oracle-cloud-monitoring-context.jsonld)
-- [Monitoring Create Context](json-ld/oracle-cloud-monitoring-create-context.jsonld)
-- [Monitoring Metric Context](json-ld/oracle-cloud-monitoring-metric-context.jsonld)
-- [Monitoring Summarize Context](json-ld/oracle-cloud-monitoring-summarize-context.jsonld)
-- [Monitoring Update Context](json-ld/oracle-cloud-monitoring-update-context.jsonld)
-- [Networking Context](json-ld/oracle-cloud-networking-context.jsonld)
-- [Networking Create Context](json-ld/oracle-cloud-networking-create-context.jsonld)
-- [Networking Internet Context](json-ld/oracle-cloud-networking-internet-context.jsonld)
-- [Networking Route Context](json-ld/oracle-cloud-networking-route-context.jsonld)
-- [Networking Security Context](json-ld/oracle-cloud-networking-security-context.jsonld)
-- [Networking Update Context](json-ld/oracle-cloud-networking-update-context.jsonld)
-- [Object Storage Context](json-ld/oracle-cloud-object-storage-context.jsonld)
-- [Oke Cluster Context](json-ld/oracle-cloud-oke-cluster-context.jsonld)
-- [Oke Context](json-ld/oracle-cloud-oke-context.jsonld)
-- [Oke Create Context](json-ld/oracle-cloud-oke-create-context.jsonld)
-- [Oke Node Context](json-ld/oracle-cloud-oke-node-context.jsonld)
-- [Oke Update Context](json-ld/oracle-cloud-oke-update-context.jsonld)
-
-### Examples
-
-- [Compute Attach Volume Details](examples/compute-attach-volume-details-example.json)
-- [Compute Image](examples/compute-image-example.json)
-- [Compute Instance](examples/compute-instance-example.json)
-- [Compute Launch Instance Details](examples/compute-launch-instance-details-example.json)
-- [Compute Shape](examples/compute-shape-example.json)
-- [Compute Update Instance Details](examples/compute-update-instance-details-example.json)
-- [Compute Volume Attachment](examples/compute-volume-attachment-example.json)
-- [Database Autonomous Database](examples/database-autonomous-database-example.json)
-- [Database Autonomous Database Summary](examples/database-autonomous-database-summary-example.json)
-- [Database Create Autonomous Database Details](examples/database-create-autonomous-database-details-example.json)
-- [Database Db System](examples/database-db-system-example.json)
-- [Database Db System Summary](examples/database-db-system-summary-example.json)
-- [Database Update Autonomous Database Details](examples/database-update-autonomous-database-details-example.json)
-- [Functions Application](examples/functions-application-example.json)
-- [Functions Application Summary](examples/functions-application-summary-example.json)
-- [Functions Create Application Details](examples/functions-create-application-details-example.json)
-- [Functions Create Function Details](examples/functions-create-function-details-example.json)
-- [Functions Function](examples/functions-function-example.json)
-- [Functions Function Summary](examples/functions-function-summary-example.json)
-- [Iam Compartment](examples/iam-compartment-example.json)
-- [Iam Create Group Details](examples/iam-create-group-details-example.json)
-- [Iam Create Policy Details](examples/iam-create-policy-details-example.json)
-- [Iam Create User Details](examples/iam-create-user-details-example.json)
-- [Iam Group](examples/iam-group-example.json)
-- [Iam Policy](examples/iam-policy-example.json)
-- [Iam Update User Details](examples/iam-update-user-details-example.json)
-- [Iam User](examples/iam-user-example.json)
-- [Monitoring Alarm](examples/monitoring-alarm-example.json)
-- [Monitoring Alarm Summary](examples/monitoring-alarm-summary-example.json)
-- [Monitoring Create Alarm Details](examples/monitoring-create-alarm-details-example.json)
-- [Monitoring Metric Data](examples/monitoring-metric-data-example.json)
-- [Monitoring Metric](examples/monitoring-metric-example.json)
-- [Monitoring Summarize Metrics Data Details](examples/monitoring-summarize-metrics-data-details-example.json)
-- [Monitoring Update Alarm Details](examples/monitoring-update-alarm-details-example.json)
-- [Networking Create Internet Gateway Details](examples/networking-create-internet-gateway-details-example.json)
-- [Networking Create Subnet Details](examples/networking-create-subnet-details-example.json)
-- [Networking Create Vcn Details](examples/networking-create-vcn-details-example.json)
-- [Networking Internet Gateway](examples/networking-internet-gateway-example.json)
-- [Networking Route Table](examples/networking-route-table-example.json)
-- [Networking Security List](examples/networking-security-list-example.json)
-- [Networking Subnet](examples/networking-subnet-example.json)
-- [Networking Update Vcn Details](examples/networking-update-vcn-details-example.json)
-- [Networking Vcn](examples/networking-vcn-example.json)
-- [Object Storage Bucket](examples/object-storage-bucket-example.json)
-- [Object Storage Bucket Summary](examples/object-storage-bucket-summary-example.json)
-- [Object Storage Create Bucket Details](examples/object-storage-create-bucket-details-example.json)
-- [Object Storage Create Preauthenticated Request Details](examples/object-storage-create-preauthenticated-request-details-example.json)
-- [Object Storage List Objects](examples/object-storage-list-objects-example.json)
-- [Object Storage Object Summary](examples/object-storage-object-summary-example.json)
-- [Object Storage Preauthenticated Request](examples/object-storage-preauthenticated-request-example.json)
-- [Object Storage Preauthenticated Request Summary](examples/object-storage-preauthenticated-request-summary-example.json)
-- [Object Storage Update Bucket Details](examples/object-storage-update-bucket-details-example.json)
-- [Oke Cluster](examples/oke-cluster-example.json)
-- [Oke Cluster Summary](examples/oke-cluster-summary-example.json)
-- [Oke Create Cluster Details](examples/oke-create-cluster-details-example.json)
-- [Oke Create Node Pool Details](examples/oke-create-node-pool-details-example.json)
-- [Oke Node Pool](examples/oke-node-pool-example.json)
-- [Oke Node Pool Summary](examples/oke-node-pool-summary-example.json)
-- [Oke Update Cluster Details](examples/oke-update-cluster-details-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Compute](capabilities/shared/compute.yaml)
-- [Database](capabilities/shared/database.yaml)
-- [Functions](capabilities/shared/functions.yaml)
-- [Iam](capabilities/shared/iam.yaml)
-- [Monitoring](capabilities/shared/monitoring.yaml)
-- [Networking](capabilities/shared/networking.yaml)
-- [Object Storage](capabilities/shared/object-storage.yaml)
-- [Oke](capabilities/shared/oke.yaml)
-
-### Workflow Capabilities
-
-| Workflow | File |
-|----------|------|
-| [Cloud Native Development](capabilities/cloud-native-development.yaml) | cloud-native-development.yaml |
-| [Data Platform](capabilities/data-platform.yaml) | data-platform.yaml |
-| [Infrastructure Management](capabilities/infrastructure-management.yaml) | infrastructure-management.yaml |
-| [Security And Compliance](capabilities/security-and-compliance.yaml) | security-and-compliance.yaml |
-
-## Vocabulary
-
-- [Oracle Cloud Vocabulary](vocabulary/oracle-cloud-vocabulary.yaml)
-
-## Rules
-
-- [Oracle Cloud Spectral Rules](rules/oracle-cloud-spectral-rules.yml)
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/oracle-cloud/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
