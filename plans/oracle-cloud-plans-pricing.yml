@@ -1,0 +1,169 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://www.oracle.com/cloud/price-list/#pricing-compute
+sources:
+- https://www.oracle.com/cloud/price-list/#pricing-compute
+- https://www.oracle.com/cloud/compute/pricing.html
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T120612
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-28'
+  evidence: Oracle Compute Cloud@Customer Infrastructure - E6 Compute with up to 552 OCPUs and 6.7 TB
+    Memory - Isolated $420.00 Resource possession per day
+published: true
+note: Oracle's full OCI price list; most service rows list only the service name and unit because the
+  price columns did not render in the extracted text. Only a handful of numeric prices appear (Functions,
+  block volume VPU example, Streaming example), plus percentage discounts (85% unused capacity reservations,
+  50% preemptible instances). Multi-currency selector present; defaults shown in US$.
+plan_count: 10
+currency: USD
+plans:
+- name: Functions – Invocation, first 2 million per month
+  price_text: Free
+  period: per-use
+  unit: Function invocation
+  included_quota: First 2 million invocations per month
+  overage: US$0.0000002 per function invocation over 2 million per month
+- name: Functions – Invocation, over 2 million per month
+  price_text: US$0.0000002
+  price: 2.0e-07
+  currency: USD
+  period: per-use
+  unit: Function invocation
+- name: Functions – Execution Time, first 400,000 per month
+  price_text: Free
+  period: per-use
+  unit: Gigabyte memory-seconds
+  included_quota: First 400,000 GB memory-seconds per month
+  overage: US$0.00001417 per gigabyte memory-second over 400,000
+- name: Functions – Execution Time, over 400,000 per month
+  price_text: US$0.00001417
+  price: 1.417e-05
+  currency: USD
+  period: per-use
+  unit: Gigabyte memory-seconds
+- name: Block Volume Performance Units (balanced)
+  price_text: 10 VPUs at $0.017 for balanced performance
+  price: 0.017
+  currency: USD
+  period: month
+  unit: Performance units per gigabyte per month
+- name: Streaming minimum usage example
+  price_text: 10 GB x $0.025 = $0.25 per hour for every 50 partitions
+  currency: USD
+  period: per-use
+  unit: Gigabytes of data transferred per hour
+- name: Oracle Linux 6/7/8/9
+  price_text: Free
+  period: per-use
+  unit: OCPU per hour
+- name: Oracle Cloud Infrastructure Kubernetes Engine - Basic Cluster
+  price_text: Free
+  period: none
+- name: Oracle Cloud Infrastructure DevOps
+  price_text: No additional charge
+  period: none
+- name: Oracle Cloud Infrastructure Data Flow
+  price_text: Free
+  period: per-use
+  unit: OCPU per hour
+rate_limit_statements:
+- There is a minimum consumption rate of 250 requests per hour for each instance.
+- Dedicated AI clusters require a minimum commitment of 1 unit-hour per cluster for hosting models.
+- First 1 million requests/month are free
+- The first 3K OCPU-hrs and the first 18K GB-hrs each month is free for Ampere A1 shape.
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  - subscription
+  units:
+  - compute
+  plans:
+  - name: Functions – Invocation, first 2 million per month
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Functions – Invocation, over 2 million per month
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Functions – Execution Time, first 400,000 per month
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Functions – Execution Time, over 400,000 per month
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Block Volume Performance Units (balanced)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Streaming minimum usage example
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Oracle Linux 6/7/8/9
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Oracle Cloud Infrastructure Kubernetes Engine - Basic Cluster
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Oracle Cloud Infrastructure DevOps
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Oracle Cloud Infrastructure Data Flow
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
