@@ -80,7 +80,7 @@ rate_limit_statements:
 - First 1 million requests/month are free
 - The first 3K OCPU-hrs and the first 18K GB-hrs each month is free for Ampere A1 shape.
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
