@@ -80,7 +80,7 @@ rate_limit_statements:
 - First 1 million requests/month are free
 - The first 3K OCPU-hrs and the first 18K GB-hrs each month is free for Ampere A1 shape.
 x-canonical:
-  generated: '2026-11-02'
+  generated: '2026-11-06'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
@@ -88,21 +88,23 @@ x-canonical:
   - subscription
   units:
   - compute
+  - period
+  - request
   plans:
   - name: Functions – Invocation, first 2 million per month
     access: other
     model: metered
     model_how: derived
     units:
-    - other
+    - request
     periods:
     - other
   - name: Functions – Invocation, over 2 million per month
     access: other
-    model: subscription
+    model: hybrid
     model_how: derived
     units:
-    - other
+    - request
     periods:
     - other
   - name: Functions – Execution Time, first 400,000 per month
@@ -126,7 +128,7 @@ x-canonical:
     model: subscription
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Streaming minimum usage example
